@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="Test" basedir="." default="test">
+
+    <target name="definir_propiedades">
+
+        <property name="src" value="src"></property>
+        <property name="tests" value="tests"></property>
+        <property name="build" value="build" />
+        <property name="libs" value="libs" />
+
+        <property name="src.out.dir" location="${build}/src" />
+        <property name="tests.out.dir" location="${build}/tests"></property>
+
+        <property name="reports.out.dir" location="${build}/reports" />
+        <property name="reports.xml.dir" location="${reports.out.dir}/junit-xml" />
+        <property name="reports.html.dir" location="${reports.out.dir}/junit-html" />
+
+        <property name="tests.main" value="tests/jumast.fiuba.algoIII.tp2.Main"></property>
+        <property name="jar.dest" value="app.jar"></property>
+
+        <path id="classpath">
+            <fileset dir="${libs}">
+                <include name="*.jar"></include>
+            </fileset>
+            <pathelement location="${build}"></pathelement>
+            <pathelement location="${tests.out.dir}"></pathelement>
+        </path>
+
+        <path id="tests.classpath">
+            <fileset dir="${libs}">
+                <include name="*.jar"></include>
+            </fileset>
+            <pathelement location="${src.out.dir}"></pathelement>
+            <pathelement location="${tests.out.dir}"></pathelement>
+        </path>
+
+    </target>
+
+
+    <target name="setup" depends="definir_propiedades, resolve">
+        <delete dir="${build}"></delete>
+        <mkdir dir="${build}"></mkdir>
+        <mkdir dir="${src.out.dir}"></mkdir>
+        <mkdir dir="${tests.out.dir}"></mkdir>
+        <mkdir dir="${reports.out.dir}"></mkdir>
+        <mkdir dir="${reports.xml.dir}" />
+        <mkdir dir="${reports.html.dir}" />
+    </target>
+
+
+    <target name="compilar.aplicacion.sin.deps">
+        <javac srcdir="${src}" destdir="${src.out.dir}" includeantruntime="false" debug="yes">
+            <classpath refid="classpath"></classpath>
+        </javac>
+    </target>
+
+    <target name="compilar.tests.sin.deps">
+        <javac srcdir="${tests}" destdir="${tests.out.dir}" includeantruntime="false" debug="yes">
+            <classpath refid="tests.classpath"></classpath>
+        </javac>
+    </target>
+
+    <target name="compilar.todo" depends="setup, compilar.aplicacion.sin.deps, compilar.tests.sin.deps"></target>
+
+    <target name="ejecutar.tests.con.reportes" depends="compilar.todo">
+        <junit fork="yes" failureproperty="test.failure" forkmode="once" showoutput="true">
+            <classpath refid="tests.classpath"></classpath>
+            <formatter type="xml"></formatter>
+            <!--<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />-->
+            <batchtest todir="${reports.xml.dir}" unless="testcase">
+                <fileset dir="${tests.out.dir}" includes="**/*Test.class" />
+                <fileset dir="${tests.out.dir}" includes="**/*Prueba.class" />
+                <formatter type="plain" usefile="false"/>
+            </batchtest>
+        </junit>
+        <fail message="Pruebas fallidas" if="test.failure" />
+        <junitreport todir="${reports.xml.dir}">
+            <fileset dir="${reports.xml.dir}">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="${reports.html.dir}" />
+        </junitreport>
+    </target>
+
+    <target name="ejecutar.tests.sin.reportes" depends="compilar.todo">
+        <junit fork="yes" failureproperty="test.failure" showoutput="false" logfailedtests="false">
+            <classpath refid="tests.classpath"></classpath>
+            <batchtest todir="${reports.xml.dir}" unless="testcase">
+                <fileset dir="${tests.out.dir}" includes="**/*Test.class" />
+                <formatter type="plain" usefile="false"/>
+            </batchtest>
+        </junit>
+        <fail message="Pruebas fallidas" if="test.failure" />
+    </target>
+
+    <target name="test" depends="ejecutar.tests.sin.reportes"></target>
+
+    <!-- Ivy customization -->
+    <property name="ivy.install.version" value="2.2.0" />
+    <property name="ivy.jar.dir" value="libs" />
+    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+    <available property="skip.download" file="${ivy.jar.file}"/>
+    <!-- End of 'Ivy customization -->
+
+    <!-- Ivy installation -->
+    <target name="download-ivy" unless="skip.download">
+        <mkdir dir="${ivy.jar.dir}" />
+        <!-- download Ivy from web site so that it can be used even
+         without any special installation -->
+        <echo message="installing ivy..." />
+        <get src="http://repo1.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar" dest="${ivy.jar.file}" usetimestamp="true" />
+    </target>
+
+
+    <target name="install-ivy" depends="download-ivy" description="--> install ivy">
+        <path id="ivy.lib.path">
+            <fileset dir="${ivy.jar.dir}" includes="*.jar" />
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path" />
+    </target>
+    <!-- End of 'Ivy installation -->
+
+    <!--Resolve dependencies-->
+    <target name="resolve" depends="install-ivy" description="--> retrieve dependencies with ivy">
+        <ivy:retrieve conf="build" pattern="${libs}/[artifact]-[type]-[revision].[ext]" />
+        <ivy:retrieve conf="analysis" pattern="${libs}/analysis/[artifact](-[classifier]).[ext]"/>
+
+    </target>
+    <!-- End of 'Resolve dependencies -->
+
+</project>
