@@ -1,13 +1,13 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Mapa {
     private int alto;
     private int ancho;
 
-    private List<IPosicionable> listaPosicionables;
+    private Map<Posicion, IPosicionable> listaPosicionables;
 
     public Mapa(int alto, int ancho) {
         if(alto == 0 || ancho == 0) //Numero magico?
@@ -17,7 +17,7 @@ public class Mapa {
         this.alto = Math.abs(alto);
         this.ancho = Math.abs(ancho);
 
-        this.listaPosicionables = new ArrayList<>();
+        this.listaPosicionables = new HashMap<>();
     }
 
     public int[] getDimensiones() {
@@ -34,7 +34,20 @@ public class Mapa {
         if(!estaDentroDelMapa(posicion))
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
 
-        this.listaPosicionables.add(posicionable);
+        //Si en esa posicion hay otro IPosicionable
+        if(!posicionLibre(posicion))
+            throw new NoPuedeColocar2IPosicionablesEnLaMismaPosicionException();
+
+        this.listaPosicionables.put(posicion, posicionable);
+    }
+
+    private boolean posicionLibre(Posicion posicion) {
+
+        for(Posicion otraPosicion : this.listaPosicionables.keySet())
+            if(posicion.equals(otraPosicion))
+                return false;
+
+        return true;
     }
 
     private boolean estaDentroDelMapa(Posicion posicion) {

@@ -45,7 +45,7 @@ public class MapaPruebasDeColocacionTest {
         mapa.colocarPosicionable(aldeano, posicion);
     }
 
-    /*@Test
+    @Test
     public void testColocar2IPosicionablesEnLaMismaPosicionLanzaException(){
         thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
         Mapa mapa = new Mapa(alto, ancho);
@@ -55,5 +55,19 @@ public class MapaPruebasDeColocacionTest {
 
         mapa.colocarPosicionable(aldeano, posicion);
         mapa.colocarPosicionable(arquero, posicion);
-    }*/
+    }
+
+    @Test
+    public void testColocar2IPosicionablesEnDiferentesPosicionesNoLanzaExcepsion(){
+        Mapa mapa = new Mapa(alto, ancho);
+        Posicion unaPosicion = new Posicion(5,15);
+        Posicion otraPosicion = new Posicion(10, 10);
+
+        IPosicionable aldeano = new Aldeano();
+        IPosicionable armaDeAsedio = new ArmaDeAsedio();
+
+        mapa.colocarPosicionable(aldeano, unaPosicion);
+        mapa.colocarPosicionable(armaDeAsedio, otraPosicion);
+    }
+
 }
