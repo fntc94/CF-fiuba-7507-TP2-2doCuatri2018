@@ -13,7 +13,7 @@ public class Mapa {
         if(alto == 0 || ancho == 0) //Numero magico?
             throw new DimensionDeMapaNoPuedeSerCeroException();
 
-        //Si me pasan negativos los hago positivos
+        //Si me pasan negativos los hago positivo
         this.alto = Math.abs(alto);
         this.ancho = Math.abs(ancho);
 
