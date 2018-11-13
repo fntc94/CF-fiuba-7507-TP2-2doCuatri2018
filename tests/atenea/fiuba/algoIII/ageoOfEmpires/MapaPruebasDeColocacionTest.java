@@ -21,53 +21,119 @@ public class MapaPruebasDeColocacionTest {
         assertEquals(true, estaVacio);
     }
 
+    /*
+    * Aca se prueba que se lance exception si se quiere colocar un
+    * IPosicionable fuera del mapa.
+    *
+    * */
+
     @Test
-    public void testMapaColocaIPosicionableYDejaDeEstarVacioSiLaPosicionEstaDentroDelMapa(){
+    public void testColocarIPosicionableDentroDelMapaNoLanzaException(){
         Mapa mapa = new Mapa(alto,ancho);
-        Posicion posicion = new Posicion(5,5);
+        Posicion posicion = new PosicionDeUnCasillero(5,5);
         IPosicionable aldeano = new Aldeano();
 
-        mapa.colocarPosicionable(aldeano, posicion);
-
-        assertEquals(false, mapa.estaVacio());
+        mapa.colocarPosicionable(posicion, aldeano);
     }
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testMapaLanzaExceptionSiSeColocaIPosicionableFueraDelMapa(){
+    public void testColocarIPosicionableFueraDelMapaLanzaException(){
         thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
         Mapa mapa = new Mapa(alto,ancho);
-        Posicion posicion = new Posicion(90,95);
+        Posicion posicion = new PosicionDeUnCasillero(90,95);
         IPosicionable aldeano = new Aldeano();
 
-        mapa.colocarPosicionable(aldeano, posicion);
+        mapa.colocarPosicionable(posicion, aldeano);
+    }
+
+    //En una esquina estando dentro del mapa
+    @Test
+    public void testColocarIPosicionableEnUnaEsquinaDelMapaNoLanzaException(){
+        Mapa mapa = new Mapa(alto,ancho);
+        Posicion posicion = new PosicionDeUnCasillero(28,19);
+        IPosicionable aldeano = new Aldeano();
+
+        mapa.colocarPosicionable(posicion, aldeano);
     }
 
     @Test
-    public void testColocar2IPosicionablesEnLaMismaPosicionLanzaException(){
-        thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
-        Mapa mapa = new Mapa(alto, ancho);
-        Posicion posicion = new Posicion(5,15);
-        IPosicionable aldeano = new Aldeano();
-        IPosicionable arquero = new Arquero();
+    public void testColocarPlazaCentralFueraDelMapaLanzaException(){
+        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new PlazaCentral();
+        Posicion posicion = new PosicionDe2x2(50,50);
 
-        mapa.colocarPosicionable(aldeano, posicion);
-        mapa.colocarPosicionable(arquero, posicion);
+        mapa.colocarPosicionable(posicion, plazaCentral);
     }
 
     @Test
-    public void testColocar2IPosicionablesEnDiferentesPosicionesNoLanzaExcepsion(){
-        Mapa mapa = new Mapa(alto, ancho);
-        Posicion unaPosicion = new Posicion(5,15);
-        Posicion otraPosicion = new Posicion(10, 10);
+    public void testColocarCuartelDentroDelMapaNoLanzaException(){
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Cuartel();
+        Posicion posicion = new PosicionDe2x2(5,5);
 
-        IPosicionable aldeano = new Aldeano();
-        IPosicionable armaDeAsedio = new ArmaDeAsedio();
-
-        mapa.colocarPosicionable(aldeano, unaPosicion);
-        mapa.colocarPosicionable(armaDeAsedio, otraPosicion);
+        mapa.colocarPosicionable(posicion, plazaCentral);
     }
 
+    //Dejo una fila de casilleros afuera y otra adentro del mapa
+    @Test
+    public void testColocarCuartelCon2CasillerosFueraDelMapaLanzaException(){
+        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Cuartel();
+        Posicion posicion = new PosicionDe2x2(29,10);
+
+        mapa.colocarPosicionable(posicion, plazaCentral);
+    }
+
+
+    @Test
+    public void testColocarCuartelAlBordeDelMapaNoLanzaException(){
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Cuartel();
+        Posicion posicion = new PosicionDe2x2(28,10);
+
+        mapa.colocarPosicionable(posicion, plazaCentral);
+    }
+
+    @Test
+    public void testColocarCastilloFueraDelMapaLanzaException(){
+        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Castillo();
+        Posicion posicion = new PosicionDe4x4(50,50);
+
+        mapa.colocarPosicionable(posicion, plazaCentral);
+    }
+
+    @Test
+    public void testColocarCastilloDentroDelMapaNoLanzaException(){
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Castillo();
+        Posicion posicion = new PosicionDe4x4(10,10);
+
+        mapa.colocarPosicionable(posicion, plazaCentral);
+    }
+
+    @Test
+    public void testColocarCastilloAlLimiteDelMapaNoLanzaException(){
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Castillo();
+        Posicion posicion = new PosicionDe4x4(26,10);
+
+        mapa.colocarPosicionable(posicion, plazaCentral);
+    }
+
+    @Test
+    public void testColocarCastilloDejandoUnaFilaFueraDelMapaLanzaException(){
+        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+        Mapa mapa = new Mapa(alto,ancho);
+        IPosicionable plazaCentral = new Castillo();
+        Posicion posicion = new PosicionDe4x4(27,10);
+
+        mapa.colocarPosicionable(posicion, plazaCentral);
+    }
 }
