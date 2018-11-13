@@ -1,7 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PosicionDe4x4 extends Posicion {
 

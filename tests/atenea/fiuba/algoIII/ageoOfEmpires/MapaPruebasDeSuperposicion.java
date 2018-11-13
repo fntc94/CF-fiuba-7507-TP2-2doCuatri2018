@@ -5,13 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class MapaPruebasDeSuperposicion {
-
-    /*
-    * Aca se prueban superposiciones entre IPosicionables dentro del mapa.
-    * Esto es, si quiere colocar un IPosicionable en una posicion ya ocupada
-    * por otro IPosicionable no deberia permitirse.
-    * */
-
+    
     public int alto = 20;
     public int ancho = 30;
 
@@ -19,11 +13,28 @@ public class MapaPruebasDeSuperposicion {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
+    public void testColocarAldeanoEnCasillerosOcupadosPorPlazaCentralLanzaException(){
+        thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
+        Mapa mapa = new Mapa(20,30);
+
+        Posicion pos1 = new PosicionDeUnCasillero(6,5);
+        Posicion pos2 = new PosicionCuadrado(6,5,7,5,6,4,7,4);
+
+        IPosicionable aldeano = new Aldeano();
+        IPosicionable plazaCentral = new PlazaCentral();
+
+        mapa.colocarPosicionable(pos1, aldeano);
+        mapa.colocarPosicionable(pos2, plazaCentral);
+    }
+
+    @Test
     public void testColocar2IPosicionablesEnLaMismaPosicionLanzaException(){
         thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
         Mapa mapa = new Mapa(alto, ancho);
+
         Posicion posicion1 = new PosicionDeUnCasillero(5,15);
         Posicion posicion2 = new PosicionDeUnCasillero(5,15);
+
         IPosicionable aldeano = new Aldeano();
         IPosicionable arquero = new Arquero();
 
@@ -34,6 +45,7 @@ public class MapaPruebasDeSuperposicion {
     @Test
     public void testColocar2IPosicionablesEnDiferentesPosicionesNoLanzaExcepsion(){
         Mapa mapa = new Mapa(alto, ancho);
+
         Posicion unaPosicion = new PosicionDeUnCasillero(5,15);
         Posicion otraPosicion = new PosicionDeUnCasillero(10, 10);
 
@@ -48,8 +60,9 @@ public class MapaPruebasDeSuperposicion {
     public void testSuperposicionEntreCastilloYAldeanoLanzaException(){
         thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
         Mapa mapa = new Mapa(alto, ancho);
+
         Posicion posicion1 = new PosicionDeUnCasillero(5,15);
-        Posicion posicion2 = new PosicionDe4x4(3,16);
+        Posicion posicion2 = new PosicionCuadrado(3,16,6,16,3,13,6,13);
 
         IPosicionable aldeano = new Aldeano();
         IPosicionable castillo = new Castillo();
@@ -60,12 +73,11 @@ public class MapaPruebasDeSuperposicion {
     }
 
     @Test
-    public void testColocarAldeanoYCastilloEnDiferentesPosicionesNoLanzaException(){
+    public void testColocarAldeanoContiguoAUnCastilloNoLanzaException(){
         Mapa mapa = new Mapa(alto, ancho);
-        // coloco el aldeano contiguo al castillo
+
         Posicion posicion1 = new PosicionDeUnCasillero(7,16);
-        // como ocupa 4 casilleros,poner aldeano en x = 3, 4, 5 y 6 lanzarian exception por superposicion
-        Posicion posicion2 = new PosicionDe4x4(3,16);
+        Posicion posicion2 = new PosicionCuadrado(3,16,6,16,3,13,6,13);
 
         IPosicionable aldeano = new Aldeano();
         IPosicionable castillo = new Castillo();
@@ -80,20 +92,8 @@ public class MapaPruebasDeSuperposicion {
         thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
         Mapa mapa = new Mapa(alto, ancho);
 
-        /*Ocupadas por el castillo
-         * En x:
-         * 5, 6, 7, 8
-         * En y:
-         * 15, 14, 13, 12
-         * */
-        /*Ocupadas por la plaza
-         * En x:
-         * 3, 4
-         * En y:
-         * 16, 15
-         * */
-        Posicion posicion1 = new PosicionDe4x4(5,15);
-        Posicion posicion2 = new PosicionDe2x2(5,16);
+        Posicion posicion1 = new PosicionCuadrado(5,15,8,15,5,12,8,12);
+        Posicion posicion2 = new PosicionCuadrado(5,16,6,16,5,15,6,15);
 
         IPosicionable castillo = new Castillo();
         IPosicionable plazaCentral = new PlazaCentral();
@@ -106,8 +106,8 @@ public class MapaPruebasDeSuperposicion {
     @Test
     public void testColocarUnaPlazaCentralContiguoAUnCastilloNoLanzaException(){
         Mapa mapa = new Mapa(alto, ancho);
-        Posicion posicion1 = new PosicionDe4x4(5,15);
-        Posicion posicion2 = new PosicionDe2x2(5,17);
+        Posicion posicion1 = new PosicionCuadrado(5,15,8,15,5,12,8,12);
+        Posicion posicion2 = new PosicionCuadrado(5,17,6,17,5,16,6,16);
 
         IPosicionable castillo = new Castillo();
         IPosicionable plazaCentral = new PlazaCentral();
@@ -116,5 +116,4 @@ public class MapaPruebasDeSuperposicion {
         mapa.colocarPosicionable(posicion1, castillo);
         mapa.colocarPosicionable(posicion2, plazaCentral);
     }
-
 }
