@@ -1,32 +1,25 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Posicion {
-    private int ejeX;
-    private int ejeY;
+import java.util.List;
 
-    public Posicion(int x, int y){
-        this.ejeX = x;
-        this.ejeY = y;
+public abstract class Posicion {
+    protected List<Casillero> posicionesOcupadas;
+
+    public List<Casillero> getPosicionesOcupadas(){
+        return this.posicionesOcupadas;
     }
 
-    public int getEjeX(){
-        return this.ejeX;
-    }
+    public boolean seSuperponeCon(Posicion otraPosicion){
+        List<Casillero> lista1 = this.getPosicionesOcupadas();
+        List<Casillero> lista2 = otraPosicion.getPosicionesOcupadas();
 
-    public int getEjeY(){
-        return this.ejeY;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Posicion)) {
-            return false;
+        for(Casillero unCasillero : lista1){
+            for(Casillero otroCasillero : lista2){
+                if(unCasillero.equals(otroCasillero))
+                    return true;
+            }
         }
-        if (obj == this) {
-            return true;
-        }
-        Posicion other = (Posicion) obj;
-
-        return (this.getEjeX() == other.getEjeX() && this.getEjeY() == other.getEjeY());
+        return false;
     }
+
 }
