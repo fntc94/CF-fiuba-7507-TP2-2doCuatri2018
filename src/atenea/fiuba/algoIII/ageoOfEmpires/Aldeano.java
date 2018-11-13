@@ -1,14 +1,17 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Aldeano implements IReparadorDeEdificios {
+public class Aldeano {
 
     private int _vida = 50;
     private int _costo = 25;
-
-    private IReparadorDeEdificios _reparador = new NullAledeanoReparador();
+    private IEstadoAldeano _estado = new AldeanoRecolector();
 
     public Aldeano(){
 
+    }
+
+    void establecerEstado(IEstadoAldeano estado){
+        _estado = estado;
     }
 
     public int getVida() {
@@ -25,14 +28,16 @@ public class Aldeano implements IReparadorDeEdificios {
     }
 
 
-    @Override
     public void reparar(IEdificioReparable edificioReparable){
-        _reparador = new AldeanoReparador(edificioReparable);
-        _reparador.reparar(edificioReparable);
+        _estado = new AldeanoReparador(edificioReparable, this);
+        _estado.reparar(edificioReparable);
     }
 
-    @Override
     public void reparar(){
-        _reparador.reparar();
+        _estado.reparar();
+    }
+
+    public int recolectarOro() {
+        return _estado.recolectarOro();
     }
 }

@@ -11,4 +11,10 @@ public class NullAledeanoReparador implements  IReparadorDeEdificios {
     public void reparar() {
         // hace nada;
     }
+
+    @Override
+    public void darPorTerminadaLaReparacion() {
+        // hace nada;
+    }
+
 }
