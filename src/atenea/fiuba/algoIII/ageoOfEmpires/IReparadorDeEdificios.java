@@ -5,6 +5,5 @@ public interface IReparadorDeEdificios {
     void reparar(IEdificioReparable edificioReparable);
     void reparar();
     void darPorTerminadaLaReparacion();
-//    Boolean estaReparando();
 
 }
