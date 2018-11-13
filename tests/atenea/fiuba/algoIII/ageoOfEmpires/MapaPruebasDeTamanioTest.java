@@ -15,12 +15,6 @@ public class MapaPruebasDeTamanioTest {
     @Test
     public void testCrearMapaConDimensionesPositivasNoLanzaException(){
         Mapa mapa = new Mapa(alto, ancho);
-
-        //En la posicion 0 esta el alto y en la posicion 1 el ancho del mapa
-        int dimensiones[] = mapa.getDimensiones();
-
-        assertEquals(alto, dimensiones[0]);
-        assertEquals(ancho, dimensiones[1]);
     }
 
     @Rule
@@ -48,10 +42,8 @@ public class MapaPruebasDeTamanioTest {
     public void testAlCrearMapaConDimensionesPositivasEstasSonConvertidasAPositivas(){
         Mapa mapa = new Mapa(alto*(-1), ancho*(-1));
 
-        int dimensiones[] = mapa.getDimensiones();
-
-        assertEquals(alto, dimensiones[0]);
-        assertEquals(ancho, dimensiones[1]);
+        assertEquals(alto, mapa.getAlto());
+        assertEquals(ancho, mapa.getAncho());
     }
 
 }

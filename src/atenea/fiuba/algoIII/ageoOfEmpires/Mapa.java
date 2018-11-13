@@ -6,31 +6,31 @@ import java.util.Map;
 public class Mapa {
     private int alto;
     private int ancho;
-
     private Map<Posicion, IPosicionable> listaPosicionables;
 
     public Mapa(int alto, int ancho) {
-        if(alto == 0 || ancho == 0) //Numero magico?
+        if(alto == 0 || ancho == 0)
             throw new DimensionDeMapaNoPuedeSerCeroException();
 
-        //Si me pasan negativos los hago positivo
         this.alto = Math.abs(alto);
         this.ancho = Math.abs(ancho);
 
         this.listaPosicionables = new HashMap<>();
     }
 
-    public int[] getDimensiones() {
-        int limites[] = {this.alto, this.ancho};
-        return limites;
+    public int getAlto(){
+        return this.alto;
+    }
+
+    public int getAncho(){
+        return this.ancho;
     }
 
     public boolean estaVacio() {
         return this.listaPosicionables.isEmpty();
     }
 
-    //Todavia no se agrega en ningun lado la posicion
-    public void colocarPosicionable(IPosicionable posicionable, Posicion posicion) {
+    public void colocarPosicionable(Posicion posicion, IPosicionable posicionable) {
         if(!estaDentroDelMapa(posicion))
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
 
@@ -42,20 +42,25 @@ public class Mapa {
     }
 
     private boolean posicionLibre(Posicion posicion) {
-
         for(Posicion otraPosicion : this.listaPosicionables.keySet())
-            if(posicion.equals(otraPosicion))
+            if(posicion.seSuperponeCon(otraPosicion))
                 return false;
 
         return true;
     }
 
     private boolean estaDentroDelMapa(Posicion posicion) {
-        int x = posicion.getEjeX();
-        int y = posicion.getEjeY();
+        for(Casillero casillero : posicion.getPosicionesOcupadas())
+            if(!estaDentro(casillero))
+                return false;
 
-        boolean esValidoEnX = (x < this.ancho) && (x > 0);
-        boolean esValidoEnY = (y < this.alto) && (y > 0);
+        return true;
+    }
+
+    private boolean estaDentro(Casillero casillero){
+
+        boolean esValidoEnX = (casillero.getEjeX() < ancho) && (casillero.getEjeX() > 0);
+        boolean esValidoEnY = (casillero.getEjeY() < alto) && (casillero.getEjeY() > 0);
 
         return (esValidoEnX && esValidoEnY);
     }
