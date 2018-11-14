@@ -63,7 +63,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new PlazaCentral();
-        Posicion posicion = new PosicionCuadrado(50,50,51,50,50,49,51,49);
+        Posicion posicion = new PosicionCuadrado(50,50,51,50);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -73,7 +73,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Cuartel();
-        Posicion posicion = new PosicionCuadrado(5,5,6,5,5,4,6,4);
+        Posicion posicion = new PosicionCuadrado(5,5,6,5);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -86,7 +86,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Cuartel();
-        Posicion posicion = new PosicionCuadrado(29,10,30,10,29,9,30,9);
+        Posicion posicion = new PosicionCuadrado(29,10,30,10);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -97,7 +97,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Cuartel();
-        Posicion posicion = new PosicionCuadrado(28,10,29,10,28,9,29,9);
+        Posicion posicion = new PosicionCuadrado(28,10,29,10);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -109,7 +109,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Castillo();
-        Posicion posicion = new PosicionCuadrado(50,50,53,50,50,47,53,47);
+        Posicion posicion = new PosicionCuadrado(50,50,53,50);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -119,7 +119,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Castillo();
-        Posicion posicion = new PosicionCuadrado(10,10,13,10,10,7,13,7);
+        Posicion posicion = new PosicionCuadrado(10,10,13,10);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -129,7 +129,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Castillo();
-        Posicion posicion = new PosicionCuadrado(26,10,29,10,26,7,29,7);
+        Posicion posicion = new PosicionCuadrado(26,10,29,10);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
@@ -141,7 +141,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = new Mapa(alto,ancho);
 
         IPosicionable plazaCentral = new Castillo();
-        Posicion posicion = new PosicionCuadrado(27,10,30,10,27,7,30,7);
+        Posicion posicion = new PosicionCuadrado(27,10,30,10);
 
         mapa.colocarPosicionable(posicion, plazaCentral);
     }
