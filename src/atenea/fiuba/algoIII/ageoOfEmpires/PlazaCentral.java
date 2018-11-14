@@ -35,6 +35,7 @@ public class PlazaCentral implements  IEdificioReparable {
 
         if(_vidaActual > _vidaMaxima){
             _vidaActual = _vidaMaxima;
+            _reparadorActivo.darPorTerminadaLaReparacion();
         }
     }
 }

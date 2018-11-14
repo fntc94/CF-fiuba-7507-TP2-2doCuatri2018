@@ -2,6 +2,8 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
+
 import static org.junit.Assert.assertEquals;
 
 public class AldeanoTest {
@@ -327,7 +329,7 @@ public class AldeanoTest {
     @Test
     public void reparar_SinHaberReparadoPreviamentePasandoElEdificio_NoLanzaError(){
 
-        IReparadorDeEdificios reparador = new Aldeano();
+        Aldeano reparador = new Aldeano();
 
         int vidaMaximaDeCuartel = 450;
         int vidaInicialDeCuartel = 300;
@@ -342,7 +344,7 @@ public class AldeanoTest {
 
         // Arrange
 
-        IReparadorDeEdificios reparador = new Aldeano();
+        Aldeano reparador = new Aldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -367,8 +369,7 @@ public class AldeanoTest {
     public void reparar_PlazaCentralYLuegoCuartel_ReparaSoloUnaVezAlCuartel(){
 
         // Arrange
-
-        IReparadorDeEdificios reparador = new Aldeano();
+        Aldeano reparador = new Aldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -389,4 +390,61 @@ public class AldeanoTest {
 
     }
 
+    @Test
+    public void recolectarOro_CuandoNoEstaConstruyendoNiReparando_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+        int oroEsperado = 20;
+
+        // Act
+        int oroRecolectado = aldeano.recolectarOro();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+
+    }
+
+    @Test
+    public void recolectarOro_CuandoEstaReparando_DevuelveCero(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+        int oroEsperado = 0;
+
+        int vidaMaximaDePlazaCentral = 450;
+        int vidaInicialDePlazaCentral = 300;
+        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+
+
+        // Act
+        aldeano.reparar(plazaCentral);
+        int oroRecolectado = aldeano.recolectarOro();
+
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
+
+    @Test
+    public void recolectarOro_LuegoDeTerminarDeReparar_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+        int oroEsperado = 20;
+
+        int vidaMaximaDePlazaCentral = 450;
+        int vidaInicialDePlazaCentral = 400;
+        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+
+        // Act
+        aldeano.reparar(plazaCentral);
+        aldeano.reparar();
+        aldeano.reparar();
+
+        int oroRecolectado = aldeano.recolectarOro();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
 }

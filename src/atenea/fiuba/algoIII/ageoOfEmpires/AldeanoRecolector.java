@@ -1,10 +1,20 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class NullAledeanoReparador implements  IReparadorDeEdificios {
+public class AldeanoRecolector implements IEstadoAldeano {
+
+    AldeanoRecolector(){
+
+    }
+
+    @Override
+    public int recolectarOro() {
+        return 20;
+    }
 
     @Override
     public void reparar(IEdificioReparable edificioReparable) {
         // hace nada;
+        // TODO: throw?
     }
 
     @Override
@@ -15,6 +25,7 @@ public class NullAledeanoReparador implements  IReparadorDeEdificios {
     @Override
     public void darPorTerminadaLaReparacion() {
         // hace nada;
+        // TODO: throw?
     }
 
 }
