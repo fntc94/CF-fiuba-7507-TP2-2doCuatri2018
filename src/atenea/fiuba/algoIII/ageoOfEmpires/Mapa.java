@@ -57,8 +57,8 @@ public class Mapa {
 
     private boolean estaDentro(Casillero casillero){
 
-        boolean esValidoEnX = (casillero.getEjeX() < ancho) && (casillero.getEjeX() > 0);
-        boolean esValidoEnY = (casillero.getEjeY() < alto) && (casillero.getEjeY() > 0);
+        boolean esValidoEnX = (casillero.getEjeX() <= this.ancho) && (casillero.getEjeX() > 0);
+        boolean esValidoEnY = (casillero.getEjeY() <= this.alto) && (casillero.getEjeY() > 0);
 
         return (esValidoEnX && esValidoEnY);
     }
