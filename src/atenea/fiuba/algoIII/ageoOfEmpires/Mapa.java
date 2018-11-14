@@ -17,10 +17,10 @@ public class Mapa {
 
     public Mapa(int alto, int ancho) {
         if((alto < alto_min) || (alto >  alto_max) || (ancho < ancho_min) || (ancho > ancho_max))
-            throw new DimensionDelMapaInvalidaException("Ancho debe estar entre 30 y 100. EL alto entre 20 y 50");
+            throw new DimensionDelMapaInvalidaException("Ancho debe estar entre 30 y 100. Alto entre 20 y 50");
 
-        this.alto = Math.abs(alto);
-        this.ancho = Math.abs(ancho);
+        this.alto = alto;
+        this.ancho = ancho;
 
         this.listaPosicionables = new HashMap<>();
     }
@@ -33,7 +33,6 @@ public class Mapa {
         if(!estaDentroDelMapa(posicion))
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
 
-        //Si en esa posicion hay otro IPosicionable
         if(!posicionLibre(posicion))
             throw new NoPuedeColocar2IPosicionablesEnLaMismaPosicionException();
 
@@ -63,4 +62,5 @@ public class Mapa {
 
         return (esValidoEnX && esValidoEnY);
     }
+
 }
