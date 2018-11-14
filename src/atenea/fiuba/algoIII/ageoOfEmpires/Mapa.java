@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class Mapa {
 
-    private static int alto_max = 50;
-    private static int ancho_max = 100;
-    private static int alto_min = 20;
-    private static int ancho_min = 30;
+    private static final int alto_max = 50;
+    private static final int ancho_max = 100;
+    private static final int alto_min = 20;
+    private static final int ancho_min = 30;
 
     private int alto;
     private int ancho;
@@ -17,7 +17,7 @@ public class Mapa {
 
     public Mapa(int alto, int ancho) {
         if((alto < alto_min) || (alto >  alto_max) || (ancho < ancho_min) || (ancho > ancho_max))
-            throw new DimensionDeMapaNoPuedeSerCeroException();
+            throw new DimensionDelMapaInvalidaException("Ancho debe estar entre 30 y 100. EL alto entre 20 y 50");
 
         this.alto = Math.abs(alto);
         this.ancho = Math.abs(ancho);
