@@ -2,13 +2,11 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class PosicionCuadrado extends Posicion {
 
-    //Cada uno de los parametros representa una esquina
-    public PosicionCuadrado(int arr_derx, int arr_dery , int arr_izx, int ab_dery) {
+    public PosicionCuadrado(int xInicial, int yInicial , int xFinal, int yFinal) {
         super();
 
-        //Agrego los casilleros ocupados
-        for(int j = arr_dery; j >= ab_dery; j--)
-            for(int i = arr_derx; i <= arr_izx; i++)
+        for(int j = yInicial; j >= yFinal; j--)
+            for(int i = xInicial; i <= xFinal; i++)
                 this.posicionesOcupadas.add(new Casillero(i, j));
     }
 }
