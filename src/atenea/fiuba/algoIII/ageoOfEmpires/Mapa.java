@@ -4,26 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Mapa {
+
+    private static final int alto_max = 50;
+    private static final int ancho_max = 100;
+    private static final int alto_min = 20;
+    private static final int ancho_min = 30;
+
     private int alto;
     private int ancho;
+
     private Map<Posicion, IPosicionable> listaPosicionables;
 
     public Mapa(int alto, int ancho) {
-        if(alto == 0 || ancho == 0)
-            throw new DimensionDeMapaNoPuedeSerCeroException();
+        if((alto < alto_min) || (alto >  alto_max) || (ancho < ancho_min) || (ancho > ancho_max))
+            throw new DimensionDelMapaInvalidaException("Ancho debe estar entre 30 y 100. Alto entre 20 y 50");
 
-        this.alto = Math.abs(alto);
-        this.ancho = Math.abs(ancho);
+        this.alto = alto;
+        this.ancho = ancho;
 
         this.listaPosicionables = new HashMap<>();
-    }
-
-    public int getAlto(){
-        return this.alto;
-    }
-
-    public int getAncho(){
-        return this.ancho;
     }
 
     public boolean estaVacio() {
@@ -34,7 +33,6 @@ public class Mapa {
         if(!estaDentroDelMapa(posicion))
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
 
-        //Si en esa posicion hay otro IPosicionable
         if(!posicionLibre(posicion))
             throw new NoPuedeColocar2IPosicionablesEnLaMismaPosicionException();
 
@@ -64,4 +62,5 @@ public class Mapa {
 
         return (esValidoEnX && esValidoEnY);
     }
+
 }
