@@ -39,11 +39,9 @@ public class MapaPruebasDeTamanioTest {
     }
 
     @Test
-    public void testAlCrearMapaConDimensionesPositivasEstasSonConvertidasAPositivas(){
+    public void testAlCrearMapaConDimensionesNegativasLanzaException(){
+        thrown.expect(DimensionDeMapaNoPuedeSerCeroException.class);
         Mapa mapa = new Mapa(alto*(-1), ancho*(-1));
-
-        assertEquals(alto, mapa.getAlto());
-        assertEquals(ancho, mapa.getAncho());
     }
 
 }

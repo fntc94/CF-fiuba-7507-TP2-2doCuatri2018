@@ -4,26 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Mapa {
+
+    private static int alto_max = 50;
+    private static int ancho_max = 100;
+    private static int alto_min = 20;
+    private static int ancho_min = 30;
+
     private int alto;
     private int ancho;
+
     private Map<Posicion, IPosicionable> listaPosicionables;
 
     public Mapa(int alto, int ancho) {
-        if(alto == 0 || ancho == 0)
+        if((alto < alto_min) || (alto >  alto_max) || (ancho < ancho_min) || (ancho > ancho_max))
             throw new DimensionDeMapaNoPuedeSerCeroException();
 
         this.alto = Math.abs(alto);
         this.ancho = Math.abs(ancho);
 
         this.listaPosicionables = new HashMap<>();
-    }
-
-    public int getAlto(){
-        return this.alto;
-    }
-
-    public int getAncho(){
-        return this.ancho;
     }
 
     public boolean estaVacio() {
