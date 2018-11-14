@@ -9,6 +9,7 @@ public abstract class Posicion {
     public Posicion(){
         this.posicionesOcupadas = new ArrayList<>();
     }
+
     public List<Casillero> getPosicionesOcupadas(){
         return this.posicionesOcupadas;
     }
