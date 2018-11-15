@@ -29,7 +29,7 @@ public class AldeanoTest {
         int vidaInicialDeCuartel = 300;
         IEdificioReparable cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
 
-        reparador.reparar();
+        reparador.continuarReparacion();
         Assert.assertTrue(true);
     }
 
@@ -50,8 +50,8 @@ public class AldeanoTest {
         Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
 
         // Act
-        aldeano.reparar(plazaCentral);
-        aldeano.reparar(cuartel);
+        aldeano.iniciarReparacion(plazaCentral);
+        aldeano.iniciarReparacion(cuartel);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -75,8 +75,8 @@ public class AldeanoTest {
         int vidaFinalEsperadaDeCuartelLuegoDeReparacion = 140;
 
         // Act
-        reparador.reparar(plazaCentral);
-        reparador.reparar(cuartel);
+        reparador.iniciarReparacion(plazaCentral);
+        reparador.iniciarReparacion(cuartel);
         int vidaFinalDeCuartel = cuartel.getVida();
 
         // Assert
@@ -112,7 +112,7 @@ public class AldeanoTest {
 
 
         // Act
-        aldeano.reparar(plazaCentral);
+        aldeano.iniciarReparacion(plazaCentral);
         int oroRecolectado = aldeano.recolectarOro();
 
 
@@ -132,9 +132,9 @@ public class AldeanoTest {
         PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
 
         // Act
-        aldeano.reparar(plazaCentral);
-        aldeano.reparar();
-        aldeano.reparar();
+        aldeano.iniciarReparacion(plazaCentral);
+        aldeano.continuarReparacion();
+        aldeano.continuarReparacion();
 
         int oroRecolectado = aldeano.recolectarOro();
 

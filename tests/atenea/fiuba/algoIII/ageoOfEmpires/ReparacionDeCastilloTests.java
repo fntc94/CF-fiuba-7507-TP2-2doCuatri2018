@@ -21,7 +21,7 @@ public class ReparacionDeCastilloTests {
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 575;
 
         // Act
-        aldeano.reparar(castillo);
+        aldeano.iniciarReparacion(castillo);
         int vidaFinalDelCastillo = castillo.getVida();
 
         // Assert
@@ -41,7 +41,7 @@ public class ReparacionDeCastilloTests {
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 800;
 
         // Act
-        aldeano.reparar(castillo);
+        aldeano.iniciarReparacion(castillo);
         int vidaFinalDelCastillo = castillo.getVida();
 
         // Assert
@@ -61,7 +61,7 @@ public class ReparacionDeCastilloTests {
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 800;
 
         // Act
-        aldeano.reparar(castillo);
+        aldeano.iniciarReparacion(castillo);
         int vidaFinalDelCastillo = castillo.getVida();
 
         // Assert
@@ -81,8 +81,8 @@ public class ReparacionDeCastilloTests {
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 590;
 
         // Act
-        aldeano.reparar(castillo);
-        aldeano.reparar();
+        aldeano.iniciarReparacion(castillo);
+        aldeano.continuarReparacion();
         int vidaFinalDelCastillo = castillo.getVida();
 
         // Assert
@@ -103,8 +103,8 @@ public class ReparacionDeCastilloTests {
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 575;
 
         // Act
-        aldeano1.reparar(castillo);
-        aldeano2.reparar(castillo);
+        aldeano1.iniciarReparacion(castillo);
+        aldeano2.iniciarReparacion(castillo);
         int vidaFinalDelCastillo = castillo.getVida();
 
         // Assert

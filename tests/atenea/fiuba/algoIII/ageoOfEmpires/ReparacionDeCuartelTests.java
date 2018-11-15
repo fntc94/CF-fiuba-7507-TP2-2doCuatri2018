@@ -21,7 +21,7 @@ public class ReparacionDeCuartelTests {
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 140;
 
         // Act
-        aldeano.reparar(cuartel);
+        aldeano.iniciarReparacion(cuartel);
         int vidaFinalDelCuartel = cuartel.getVida();
 
         // Assert
@@ -42,7 +42,7 @@ public class ReparacionDeCuartelTests {
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 250;
 
         // Act
-        aldeano.reparar(cuartel);
+        aldeano.iniciarReparacion(cuartel);
         int vidaFinalDelCuartel = cuartel.getVida();
 
         // Assert
@@ -61,7 +61,7 @@ public class ReparacionDeCuartelTests {
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 250;
 
         // Act
-        aldeano.reparar(cuartel);
+        aldeano.iniciarReparacion(cuartel);
         int vidaFinalDelCuartel = cuartel.getVida();
 
         // Assert
@@ -80,8 +80,8 @@ public class ReparacionDeCuartelTests {
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 190;
 
         // Act
-        aldeano.reparar(cuartel);
-        aldeano.reparar();
+        aldeano.iniciarReparacion(cuartel);
+        aldeano.continuarReparacion();
         int vidaFinalDelCuartel = cuartel.getVida();
 
         // Assert
@@ -103,8 +103,8 @@ public class ReparacionDeCuartelTests {
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 140;
 
         // Act
-        aldeano1.reparar(cuartel);
-        aldeano2.reparar(cuartel);
+        aldeano1.iniciarReparacion(cuartel);
+        aldeano2.iniciarReparacion(cuartel);
         int vidaFinalDelCuartel = cuartel.getVida();
 
         // Assert

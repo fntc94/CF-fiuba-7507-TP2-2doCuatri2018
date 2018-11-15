@@ -1,8 +1,9 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public interface IConstructorDeEdificios {
+public interface IConstructor {
 
     void iniciarConstruccion();
     void continuarConstruccion();
     boolean estaConstruyendo();
+
 }

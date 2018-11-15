@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public interface IRecolectorDeOro {
+public interface IRecolectorOro {
 
     int recolectarOro();
 

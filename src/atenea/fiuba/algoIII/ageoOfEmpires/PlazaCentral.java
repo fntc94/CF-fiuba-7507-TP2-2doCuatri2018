@@ -4,7 +4,7 @@ public class PlazaCentral implements IEdificioReparable {
 
     private int _vidaMaxima;
     private int _vidaActual;
-    private IReparadorDeEdificios _reparadorActivo = null;
+    private IReparador _reparadorActivo = null;
 
     private IUnidadFabrica<Aldeano> _fabricaDeAldeanos = new AldeanoFabrica();
 
@@ -23,7 +23,7 @@ public class PlazaCentral implements IEdificioReparable {
     }
 
     @Override
-    public void recibirReparador(IReparadorDeEdificios reparador) {
+    public void recibirReparador(IReparador reparador) {
 
         if(_reparadorActivo == null){
             _reparadorActivo = reparador;

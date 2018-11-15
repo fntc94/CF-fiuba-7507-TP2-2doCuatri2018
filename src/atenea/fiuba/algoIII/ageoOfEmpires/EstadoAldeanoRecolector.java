@@ -1,8 +1,8 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class AldeanoRecolector implements IEstadoAldeano {
+public class EstadoAldeanoRecolector implements IEstadoAldeano {
 
-    AldeanoRecolector(){
+    EstadoAldeanoRecolector(){
 
     }
 
@@ -12,13 +12,13 @@ public class AldeanoRecolector implements IEstadoAldeano {
     }
 
     @Override
-    public void reparar(IEdificioReparable edificioReparable) {
+    public void iniciarReparacion(IEdificioReparable edificioReparable) {
         // hace nada;
         // TODO: throw?
     }
 
     @Override
-    public void reparar() {
+    public void continuarReparacion() {
         // hace nada;
     }
 

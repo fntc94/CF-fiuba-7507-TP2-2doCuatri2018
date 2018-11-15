@@ -2,6 +2,6 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public interface IEdificioReparable {
 
-    void recibirReparador(IReparadorDeEdificios reparador);
+    void recibirReparador(IReparador reparador);
 
 }

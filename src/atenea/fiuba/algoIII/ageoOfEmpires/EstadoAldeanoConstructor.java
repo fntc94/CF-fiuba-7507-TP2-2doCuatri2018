@@ -2,13 +2,13 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import java.util.function.Consumer;
 
-  public class AldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
+  public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
 
     private Aldeano _contexto;
     private IEdificioEnConstruccion<TEdificioTerminado> _edificioEnConstruccion;
     private Consumer<TEdificioTerminado> _accionAlTerminarConstruccion;
 
-    public AldeanoConstructor(IEdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto){
+    public EstadoAldeanoConstructor(IEdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto){
 
         _edificioEnConstruccion = edificioEnConstruccion;
         _accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {};
@@ -26,7 +26,7 @@ import java.util.function.Consumer;
         if(_edificioEnConstruccion.estaTerminado()){
 
             _accionAlTerminarConstruccion.accept(_edificioEnConstruccion.obtenerEdificioTerminado());
-            _contexto.establecerEstado(new AldeanoRecolector());
+            _contexto.establecerEstado(new EstadoAldeanoRecolector());
 
         }
 
@@ -43,12 +43,12 @@ import java.util.function.Consumer;
     }
 
     @Override
-    public void reparar(IEdificioReparable edificioReparable) {
+    public void iniciarReparacion(IEdificioReparable edificioReparable) {
 
     }
 
     @Override
-    public void reparar() {
+    public void continuarReparacion() {
 
     }
 

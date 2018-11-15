@@ -21,7 +21,7 @@ public class ReparacionDePlazaCentralTests {
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
 
         // Act
-        aldeano.reparar(plazaCentral);
+        aldeano.iniciarReparacion(plazaCentral);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -40,8 +40,8 @@ public class ReparacionDePlazaCentralTests {
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 350;
 
         // Act
-        aldeano.reparar(plazaCentral);
-        aldeano.reparar();
+        aldeano.iniciarReparacion(plazaCentral);
+        aldeano.continuarReparacion();
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -61,7 +61,7 @@ public class ReparacionDePlazaCentralTests {
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 450;
 
         // Act
-        aldeano.reparar(plazaCentral);
+        aldeano.iniciarReparacion(plazaCentral);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -81,7 +81,7 @@ public class ReparacionDePlazaCentralTests {
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 450;
 
         // Act
-        aldeano.reparar(plazaCentral);
+        aldeano.iniciarReparacion(plazaCentral);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -102,8 +102,8 @@ public class ReparacionDePlazaCentralTests {
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
 
         // Act
-        aldeano1.reparar(plazaCentral);
-        aldeano2.reparar(plazaCentral);
+        aldeano1.iniciarReparacion(plazaCentral);
+        aldeano2.iniciarReparacion(plazaCentral);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert

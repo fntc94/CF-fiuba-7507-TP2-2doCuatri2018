@@ -4,7 +4,7 @@ public class Castillo implements IEdificioReparable {
 
     private int _vidaMaxima;
     private int _vidaActual;
-    private IReparadorDeEdificios _reparadorActivo;
+    private IReparador _reparadorActivo;
 
     public Castillo(int vidaMaxima, int vidaInicial) {
 
@@ -21,7 +21,7 @@ public class Castillo implements IEdificioReparable {
     }
 
     @Override
-    public void recibirReparador(IReparadorDeEdificios reparador) {
+    public void recibirReparador(IReparador reparador) {
 
         if(_reparadorActivo == null){
             _reparadorActivo = reparador;

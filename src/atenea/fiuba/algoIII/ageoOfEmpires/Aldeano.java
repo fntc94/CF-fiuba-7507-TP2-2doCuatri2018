@@ -6,10 +6,14 @@ public class Aldeano {
 
     private int _vidaMaxima = 50;
     private int _vidaActual;
-    private IEstadoAldeano _estado = new AldeanoRecolector();
+    private IEstadoAldeano _estado = new EstadoAldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
         _estado = estado;
+    }
+
+    int getVidaActual() {
+        return _vidaActual;
     }
 
     public Aldeano(int vidaMaxima, int vidaInicial){
@@ -21,17 +25,13 @@ public class Aldeano {
         this(vidaMaxima, vidaMaxima);
     }
 
-    public int getVidaActual() {
-        return _vidaMaxima;
+    public void iniciarReparacion(IEdificioReparable edificioReparable){
+        _estado = new EstadoAldeanoReparador(edificioReparable, this);
+        _estado.iniciarReparacion(edificioReparable);
     }
 
-    public void reparar(IEdificioReparable edificioReparable){
-        _estado = new AldeanoReparador(edificioReparable, this);
-        _estado.reparar(edificioReparable);
-    }
-
-    public void reparar(){
-        _estado.reparar();
+    public void continuarReparacion(){
+        _estado.continuarReparacion();
     }
 
     public int recolectarOro() {
@@ -41,7 +41,7 @@ public class Aldeano {
 
     public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
 
-        _estado = new AldeanoConstructor(new CuartelEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estado = new EstadoAldeanoConstructor(new CuartelEnConstruccion(), accionAlTerminarConstruccion, this);
         _estado.iniciarConstruccion();
 
     }
@@ -52,7 +52,7 @@ public class Aldeano {
     }
 
     public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        _estado = new AldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estado = new EstadoAldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
         _estado.iniciarConstruccion();
     }
 
