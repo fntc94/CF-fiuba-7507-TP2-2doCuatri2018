@@ -36,5 +36,4 @@ public class CastilloTest {
         Assert.assertEquals(costoEsperado, costoObtenido);
     }
 
-
 }
