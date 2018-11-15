@@ -66,7 +66,7 @@ public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAlde
     }
 
     @Override
-    public void continuarReparacion() {
+    public void continuarReparando() {
         throw new OperacionInvalidaExcepcion();
     }
 

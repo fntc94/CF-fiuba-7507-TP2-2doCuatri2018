@@ -2,35 +2,22 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class EstadoAldeanoRecolector implements IEstadoAldeano {
 
-    EstadoAldeanoRecolector(){
-
-    }
-
-    @Override
-    public boolean estaRecolectandoOro() {
-        return true;
-    }
-
+    //IRecolectorDeOro
     @Override
     public int recolectarOro() {
         return 20;
     }
 
     @Override
+    public boolean estaRecolectandoOro() {
+        return true;
+    }
+    //fin IRecolectorDeOro
+
+    //IReparador
+    @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
-        // hace nada;
-        // TODO: throw?
-    }
-
-    @Override
-    public void continuarReparacion() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion();
-    }
-
-    @Override
-    public void darPorTerminadaLaReparacion() {
-        // hace nada;
-        // TODO: throw?
+        throw new OperacionInvalidaExcepcion();
     }
 
     @Override
@@ -39,17 +26,30 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
     }
 
     @Override
-    public void iniciarConstruccion() {
-
+    public void continuarReparando() {
+        throw new OperacionInvalidaExcepcion();
     }
 
     @Override
-    public void continuarConstruyendo() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion();
+    public void darPorTerminadaLaReparacion() {
+        throw new OperacionInvalidaExcepcion();
+    }
+    //fin IReparador
+
+    //IConstructor
+    @Override
+    public void iniciarConstruccion() {
+        throw new OperacionInvalidaExcepcion();
     }
 
     @Override
     public boolean estaConstruyendo() {
         return false;
     }
+
+    @Override
+    public void continuarConstruyendo() {
+        throw new OperacionInvalidaExcepcion();
+    }
+    // fin IConstructor
 }

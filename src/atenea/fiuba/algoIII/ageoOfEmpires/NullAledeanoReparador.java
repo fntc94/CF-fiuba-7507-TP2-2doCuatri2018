@@ -8,7 +8,7 @@ public class NullAledeanoReparador implements IEstadoReparador {
     }
 
     @Override
-    public void continuarReparacion() {
+    public void continuarReparando() {
         // hace nada;
     }
 

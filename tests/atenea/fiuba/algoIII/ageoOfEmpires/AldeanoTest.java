@@ -63,7 +63,7 @@ public class AldeanoTest {
 
     }
 
-    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion.class)
+    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion.class)
     public void continuarReparacion_CuandoEstaRecolectando_LanzaExcepcion(){
 
         // Arrange
@@ -73,7 +73,7 @@ public class AldeanoTest {
         aldeano.continuarReparando();
     }
 
-    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion.class)
+    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion.class)
     public void continuarConstruyendo_CuandoEstaRecolectando_LanzaExcepcion(){
 
         // Arrange

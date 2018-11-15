@@ -18,7 +18,7 @@ public class EstadoAldeanoReparador implements IEstadoAldeano {
     }
 
     @Override
-    public void continuarReparacion(){
+    public void continuarReparando(){
         _edificioReparable.recibirReparador(this);
     }
 

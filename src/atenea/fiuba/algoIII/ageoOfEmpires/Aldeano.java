@@ -45,6 +45,9 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
     @Override
     public void continuarConstruyendo() {
+        if(!_estadoAldeano.estaConstruyendo()){
+            throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+        }
         _estadoAldeano.continuarConstruyendo();
     }
     //fin IConstructor
@@ -63,7 +66,10 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
     @Override
     public void continuarReparando(){
-        _estadoAldeano.continuarReparacion();
+        if(!_estadoAldeano.estaReparando()){
+            throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+        }
+        _estadoAldeano.continuarReparando();
     }
     //fin IReparador
 
