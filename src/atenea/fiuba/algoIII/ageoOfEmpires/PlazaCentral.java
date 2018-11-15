@@ -14,6 +14,14 @@ public class PlazaCentral implements IEdificioReparable {
         _vidaActual = vidaInicial;
     }
 
+    public PlazaCentral(int vidaMaxima) {
+
+        _vidaMaxima = vidaMaxima;
+        _vidaActual = vidaMaxima;
+    }
+
+
+
     public int getVida() {
         return _vidaActual;
     }

@@ -5,11 +5,16 @@ import org.junit.Test;
 
 public class PlazaCentralTest {
 
+    private PlazaCentral crearPlazaCentral(){
+        int vidaMaximaDePlazaCentral = 450;
+        return new PlazaCentral(vidaMaximaDePlazaCentral);
+    }
+
     @Test
     public void construirAldeano_DevuelveAldeano(){
 
         // Arrange
-        PlazaCentral plazaCentral = new PlazaCentral(450, 450);
+        PlazaCentral plazaCentral = this.crearPlazaCentral();
 
         // Act
         Aldeano aldeano = plazaCentral.construirAldeano();
@@ -23,14 +28,14 @@ public class PlazaCentralTest {
     public void obtenerCostoAldeano_Devuelve25(){
 
         // Arange
-        PlazaCentral plazaCentral = new PlazaCentral(450, 450);
-        int costoEsperado = 25;
+        PlazaCentral plazaCentral = this.crearPlazaCentral();
+        int costoEsperadoDeAldeano = 25;
 
         // Act
-        int costoObtenido = plazaCentral.obtenerCostoAldeano();
+        int costoObtenidoDeAldeano = plazaCentral.obtenerCostoAldeano();
 
         // Assert
-        Assert.assertEquals(costoEsperado, costoObtenido);
+        Assert.assertEquals(costoEsperadoDeAldeano, costoObtenidoDeAldeano);
 
     }
 
