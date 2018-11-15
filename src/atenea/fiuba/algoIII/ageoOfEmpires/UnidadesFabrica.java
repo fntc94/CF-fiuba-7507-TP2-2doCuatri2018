@@ -11,6 +11,9 @@ public class UnidadesFabrica {
     private final int _costoEnOroEspadachin = 50;
     private final int _vidaMaximaEspadachin = 100;
 
+    private final int _costoEnOroArmaDeAsedio = 200;
+    private final int _vidaMaximaArmaDeAsedio = 100;
+
     public int obtenerCostoEnOroAldeano(){
         return _costoEnOroAldeano;
     }
@@ -30,6 +33,14 @@ public class UnidadesFabrica {
     }
     public Espadachin crearEspadachin(){
         return new Espadachin(_vidaMaximaEspadachin);
+    }
+
+    public int obtenerCostoArmaDeAsedio(){
+        return _costoEnOroArmaDeAsedio;
+    }
+
+    public ArmaDeAsedio crearArmaDeAsedio(){
+        return new ArmaDeAsedio(_vidaMaximaArmaDeAsedio);
     }
 
 }

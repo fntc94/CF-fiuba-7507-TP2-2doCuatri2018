@@ -7,7 +7,6 @@ public class PlazaCentralTest {
 
     private PlazaCentral crearPlazaCentral(){
         int vidaMaximaDePlazaCentral = 450;
-
         return new PlazaCentral(vidaMaximaDePlazaCentral, new UnidadesFabrica());
     }
 

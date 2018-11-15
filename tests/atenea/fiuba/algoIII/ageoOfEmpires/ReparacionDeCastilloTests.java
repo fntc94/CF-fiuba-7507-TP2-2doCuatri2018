@@ -2,6 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class ReparacionDeCastilloTests {
 
@@ -17,7 +18,7 @@ public class ReparacionDeCastilloTests {
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 560;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
+        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 575;
 
         // Act
@@ -37,7 +38,7 @@ public class ReparacionDeCastilloTests {
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 795;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
+        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 800;
 
         // Act
@@ -57,7 +58,7 @@ public class ReparacionDeCastilloTests {
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 800;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
+        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 800;
 
         // Act
@@ -77,7 +78,7 @@ public class ReparacionDeCastilloTests {
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 560;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
+        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 590;
 
         // Act
@@ -99,7 +100,7 @@ public class ReparacionDeCastilloTests {
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 560;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
+        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 575;
 
         // Act
