@@ -69,6 +69,7 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
     }
     //fin IReparador
 
+
     public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
         _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
         _estadoAldeano.iniciarConstruccion();

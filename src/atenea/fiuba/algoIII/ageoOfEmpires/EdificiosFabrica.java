@@ -9,11 +9,9 @@ public class EdificiosFabrica {
     private final int VIDA_CASTILLO = 450;
 
 
-
     public PlazaCentral crearPlazaCentral(){
         return new PlazaCentral(VIDA_PLAZA_CENTRAL, _fabricaDeUnidades);
     }
-
 
     public Cuartel crearCuartel(){
         return new Cuartel(VIDA_CUARTEL, _fabricaDeUnidades);
