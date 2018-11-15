@@ -5,12 +5,16 @@ import org.junit.Test;
 
 public class CuartelTest {
 
+    private Cuartel crearCuartel(){
+        int vidaMaximaCuartel = 250;
+        return new Cuartel(vidaMaximaCuartel);
+    }
+
     @Test
     public void construirArquero_DevuelveArquero(){
 
         // Arrange
-        int vidaMaximaCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaCuartel);
+        Cuartel cuartel = this.crearCuartel();
 
         // Act
         Arquero arquero = cuartel.crearArquero();
@@ -24,15 +28,14 @@ public class CuartelTest {
     public void obtenerCostoArquero_Devuelve75(){
 
         // Arrange
-        int vidaMaximaCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaCuartel);
-        int costoEsperadoArquero = 75;
+        Cuartel cuartel = this.crearCuartel();
+        int costoArqueroEsperado = 75;
 
         // Act
-        int costoObtenidoArquero = cuartel.obtenerCostoArquero();
+        int costoArqueroObtenido = cuartel.obtenerCostoArquero();
 
         // Assert
-        Assert.assertEquals(costoEsperadoArquero, costoObtenidoArquero);
+        Assert.assertEquals(costoArqueroEsperado, costoArqueroObtenido);
 
     }
 
@@ -40,8 +43,7 @@ public class CuartelTest {
     public void construirEspadachin_DevuelveEspadachin(){
 
         // Arrange
-        int vidaMaximaCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaCuartel);
+        Cuartel cuartel = this.crearCuartel();
 
         // Act
         Espadachin espadachin = cuartel.crearEspadachin();
@@ -57,13 +59,13 @@ public class CuartelTest {
         // Arrange
         int vidaMaximaCuartel = 250;
         Cuartel cuartel = new Cuartel(vidaMaximaCuartel);
-        int costoEsperadoEspadachin = 50;
+        int costoEspadachinEsperado = 50;
 
         // Act
-        int costoObtenidoEspadachin = cuartel.obtenerCostoEspadachin();
+        int costoEspadachinObtenido = cuartel.obtenerCostoEspadachin();
 
         // Assert
-        Assert.assertEquals(costoEsperadoEspadachin, costoObtenidoEspadachin);
+        Assert.assertEquals(costoEspadachinEsperado, costoEspadachinObtenido);
 
     }
 
