@@ -51,7 +51,7 @@ public class PlazaCentral implements IEdificioReparable {
 
     public int obtenerCostoAldeano(){
 
-        return _fabricaDeAldeanos.obtenerCosto();
+        return _fabricaDeAldeanos.obtenerCostoEnOro();
     }
 
     public Aldeano construirAldeano() {

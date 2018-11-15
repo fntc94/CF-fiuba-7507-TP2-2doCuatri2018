@@ -16,6 +16,7 @@ public class Castillo implements IEdificioReparable {
         return _vidaActual;
     }
 
+
     private int getRecuperoDeVida() {
         return 15;
     }

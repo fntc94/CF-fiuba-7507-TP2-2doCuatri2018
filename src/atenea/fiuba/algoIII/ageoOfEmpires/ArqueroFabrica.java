@@ -7,7 +7,7 @@ public class ArqueroFabrica implements IUnidadFabrica<Arquero> {
     private final int _vidaMaxima = 75;
 
     @Override
-    public int obtenerCosto() {
+    public int obtenerCostoEnOro() {
         return _costo;
     }
 

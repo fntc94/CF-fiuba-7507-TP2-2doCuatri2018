@@ -6,7 +6,7 @@ public class EspadachinFabrica implements IUnidadFabrica<Espadachin> {
     private final int _vidaMaxima = 100;
 
     @Override
-    public int obtenerCosto(){
+    public int obtenerCostoEnOro(){
         return _costoEnOro;
     }
 

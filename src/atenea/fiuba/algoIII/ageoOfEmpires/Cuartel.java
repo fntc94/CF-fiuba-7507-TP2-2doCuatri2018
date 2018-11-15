@@ -47,7 +47,7 @@ public class Cuartel implements IEdificioReparable {
 
 
     public int obtenerCostoArquero(){
-        return _arqueroFabrica.obtenerCosto();
+        return _arqueroFabrica.obtenerCostoEnOro();
     }
 
     public Arquero crearArquero(){
@@ -55,7 +55,7 @@ public class Cuartel implements IEdificioReparable {
     }
 
     public int obtenerCostoEspadachin(){
-        return _espadachinFabrica.obtenerCosto();
+        return _espadachinFabrica.obtenerCostoEnOro();
     }
 
     public Espadachin crearEspadachin(){

@@ -5,7 +5,8 @@ public class AldeanoFabrica implements IUnidadFabrica<Aldeano> {
     private final int _costoEnOro = 25;
     private final int _vidaMaxima = 50;
 
-    public int obtenerCosto(){
+    @Override
+    public int obtenerCostoEnOro(){
         return _costoEnOro;
     }
 
