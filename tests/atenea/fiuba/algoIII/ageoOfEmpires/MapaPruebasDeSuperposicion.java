@@ -21,7 +21,7 @@ public class MapaPruebasDeSuperposicion {
         Posicion posPlazaCentral = new PosicionCuadrado(6,5,7,4);
 
         IPosicionable aldeano = new Aldeano();
-        IPosicionable plazaCentral = new PlazaCentral();
+        IPosicionable plazaCentral = new PlazaCentral(10,10);
 
         mapa.colocarPosicionable(posAldeano, aldeano);
         mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
@@ -35,7 +35,7 @@ public class MapaPruebasDeSuperposicion {
         Posicion posPlazaCentral = new PosicionCuadrado(6,5,7,4);
 
         IPosicionable aldeano = new Aldeano();
-        IPosicionable plazaCentral = new PlazaCentral();
+        IPosicionable plazaCentral = new PlazaCentral(10,10);
 
         mapa.colocarPosicionable(posAldeano, aldeano);
         mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
@@ -50,7 +50,7 @@ public class MapaPruebasDeSuperposicion {
         Posicion posCastillo = new PosicionCuadrado(6,7,9,4);
 
         IPosicionable aldeano = new Aldeano();
-        IPosicionable castillo = new Castillo();
+        IPosicionable castillo = new Castillo(10,10);
 
         mapa.colocarPosicionable(posCastillo, castillo);
         mapa.colocarPosicionable(posAldeano, aldeano);
@@ -64,7 +64,7 @@ public class MapaPruebasDeSuperposicion {
         Posicion posCastillo = new PosicionCuadrado(6,7,9,4);
 
         IPosicionable aldeano = new Aldeano();
-        IPosicionable castillo = new Castillo();
+        IPosicionable castillo = new Castillo(10,10);
 
         mapa.colocarPosicionable(posCastillo, castillo);
         mapa.colocarPosicionable(posAldeano, aldeano);
@@ -121,8 +121,8 @@ public class MapaPruebasDeSuperposicion {
         Posicion posPlazaCentral = new PosicionCuadrado(2,16,3,15);
         Posicion posCastillo = new PosicionCuadrado(3,16,6,12);
 
-        IPosicionable plazaCentral = new PlazaCentral();
-        IPosicionable castillo = new Castillo();
+        IPosicionable plazaCentral = new PlazaCentral(10,10);
+        IPosicionable castillo = new Castillo(10,10);
 
         mapa.colocarPosicionable(posCastillo, castillo);
         mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
@@ -135,8 +135,8 @@ public class MapaPruebasDeSuperposicion {
         Posicion posCastillo = new PosicionCuadrado(5, 15, 8, 12);
         Posicion posPlazaCentral = new PosicionCuadrado(3, 14, 4, 12);
 
-        IPosicionable castillo = new Castillo();
-        IPosicionable plazaCentral = new PlazaCentral();
+        IPosicionable castillo = new Castillo(10,10);
+        IPosicionable plazaCentral = new PlazaCentral(10,10);
 
         mapa.colocarPosicionable(posCastillo, castillo);
         mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
@@ -147,8 +147,8 @@ public class MapaPruebasDeSuperposicion {
         thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
         Mapa mapa = new Mapa(alto, ancho);
 
-        IPosicionable plazaCentral = new PlazaCentral();
-        IPosicionable cuartel = new Cuartel();
+        IPosicionable plazaCentral = new PlazaCentral(10,10);
+        IPosicionable cuartel = new Cuartel(10,10);
 
         Posicion posPlazaCentral = new PosicionCuadrado(5,7,6,6);
         Posicion posCuartel = new PosicionCuadrado(5,7,6,6);
@@ -161,8 +161,8 @@ public class MapaPruebasDeSuperposicion {
     public void testColocarPlazaCentralContiguaACuartelNoLanzaException(){
         Mapa mapa = new Mapa(alto, ancho);
 
-        IPosicionable plazaCentral = new PlazaCentral();
-        IPosicionable cuartel = new Cuartel();
+        IPosicionable plazaCentral = new PlazaCentral(10,10);
+        IPosicionable cuartel = new Cuartel(10,10);
 
         Posicion posPlazaCentral = new PosicionCuadrado(5,7,6,6);
         Posicion posCuartel = new PosicionCuadrado(5,5,6,6);

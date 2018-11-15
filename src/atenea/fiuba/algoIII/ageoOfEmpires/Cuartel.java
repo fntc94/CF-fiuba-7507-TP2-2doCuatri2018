@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Cuartel implements  IEdificioReparable {
+public class Cuartel implements  IEdificioReparable, IPosicionable {
 
     private int _vidaMaxima;
     private int _vidaActual;

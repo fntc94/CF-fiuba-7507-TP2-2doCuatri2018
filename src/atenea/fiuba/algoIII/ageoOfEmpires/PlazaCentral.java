@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class PlazaCentral implements  IEdificioReparable {
+public class PlazaCentral implements  IEdificioReparable, IPosicionable {
 
     private int _vidaMaxima;
     private int _vidaActual;
@@ -38,4 +38,5 @@ public class PlazaCentral implements  IEdificioReparable {
             _reparadorActivo.darPorTerminadaLaReparacion();
         }
     }
+
 }
