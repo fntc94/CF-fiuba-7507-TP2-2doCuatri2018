@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Castillo implements IEdificioReparable {
+public class Castillo implements IEdificioReparable, IPosicionable {
 
     private int _vidaMaxima;
     private int _vidaActual;
@@ -37,4 +37,5 @@ public class Castillo implements IEdificioReparable {
             _vidaActual = _vidaMaxima;
         }
     }
+
 }

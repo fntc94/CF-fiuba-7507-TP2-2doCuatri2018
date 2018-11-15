@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class ArmaDeAsedio {
+public class ArmaDeAsedio implements IPosicionable {
 
     private int vida = 150;
     private int costo = 200;
@@ -12,4 +12,5 @@ public class ArmaDeAsedio {
     public int getCosto(){
         return costo;
     }
+    
 }

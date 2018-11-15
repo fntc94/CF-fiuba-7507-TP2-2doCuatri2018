@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Aldeano {
+public class Aldeano implements IPosicionable {
 
     private int _vida = 50;
     private int _costo = 25;
@@ -40,4 +40,5 @@ public class Aldeano {
     public int recolectarOro() {
         return _estado.recolectarOro();
     }
+
 }
