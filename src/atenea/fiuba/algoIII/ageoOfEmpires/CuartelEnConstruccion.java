@@ -25,7 +25,7 @@ public class CuartelEnConstruccion implements IEdificioEnConstruccion<Cuartel> {
             throw new InvalidDnDOperationException();
         }
 
-        return new Cuartel(_vidaMaxima, _vidaActual);
+        return new Cuartel(_vidaMaxima);
     }
 
 }

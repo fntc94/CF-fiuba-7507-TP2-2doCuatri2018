@@ -267,10 +267,6 @@ public class AldeanoTest {
         Assert.assertEquals(vidaFinalEsperadaDeCuartelLuegoDeReparacion, vidaFinalDeCuartel);
     }
 
-
-
-
-
     @Test
     public void recolectarOro_LuegoDeTerminarDeReparar_Devuelve20(){
 
@@ -302,10 +298,10 @@ public class AldeanoTest {
         // Act
         aldeano.iniciarConstruccionDeCuartel();
         aldeano.continuarConstruyendo();
-        Boolean esta_construyendo = aldeano.estaConstruyendo();
+        boolean estaConstruyendo = aldeano.estaConstruyendo();
 
         // Assert
-        Assert.assertTrue(esta_construyendo);
+        Assert.assertEquals(true, estaConstruyendo);
 
     }
 
