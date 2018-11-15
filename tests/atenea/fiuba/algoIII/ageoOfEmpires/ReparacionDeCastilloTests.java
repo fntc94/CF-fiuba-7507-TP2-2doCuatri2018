@@ -5,11 +5,15 @@ import org.junit.Test;
 
 public class ReparacionDeCastilloTests {
 
+    private Aldeano crearAldeano(){
+        return new AldeanoFabrica().crear();
+    }
+
     @Test
     public void reparar_Castillo_CastilloRecupera15DeVida(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 560;
@@ -29,7 +33,7 @@ public class ReparacionDeCastilloTests {
     public void reparar_CastilloUnaVez_VidaDeCastilloNoSuperaElMaximo(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 795;
@@ -49,7 +53,7 @@ public class ReparacionDeCastilloTests {
     public void reparar_CastilloConMaximoDeVida_VidaDeCastilloNoSuperaElMaximo(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 800;
@@ -69,7 +73,7 @@ public class ReparacionDeCastilloTests {
     public void reparar_CastilloDosVecesConElMismoAldeano_CastilloRecupera30DeVida(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 560;
@@ -90,8 +94,8 @@ public class ReparacionDeCastilloTests {
     public void reparar_CastilloConDosAldeanosDistintos_CastilloRecuperaSolo15DeVida(){
 
         // Arrange
-        Aldeano aldeano1 = new Aldeano();
-        Aldeano aldeano2 = new Aldeano();
+        Aldeano aldeano1 = this.crearAldeano();
+        Aldeano aldeano2 = this.crearAldeano();
 
         int vidaMaximaDelCastillo = 800;
         int vidaInicialDelCastillo = 560;

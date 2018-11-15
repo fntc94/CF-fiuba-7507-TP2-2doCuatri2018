@@ -5,11 +5,15 @@ import org.junit.Test;
 
 public class ReparacionDePlazaCentralTests {
 
+    private Aldeano crearAldeano(){
+        return new AldeanoFabrica().crear();
+    }
+
     @Test
     public void reparar_PlazaCentral_PlazaCentralRecupera25DeVida(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -28,7 +32,7 @@ public class ReparacionDePlazaCentralTests {
     public void reparar_PlazaCentralDosVecesConElMismoAldeano_PlazaCentralRecupera50DeVida(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -49,7 +53,7 @@ public class ReparacionDePlazaCentralTests {
     public void reparar_PlazaCentralUnaVez_VidaDePlazaCentralNoSuperaElMaximo(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 440;
@@ -69,7 +73,7 @@ public class ReparacionDePlazaCentralTests {
     public void reparar_PlazaCentralConMaximoDeVida_VidaDePlazaCentralNoSuperaElMaximo(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 450;
@@ -88,8 +92,8 @@ public class ReparacionDePlazaCentralTests {
     public void reparar_PlazaCentralConDosAldeanosDistintos_PlazaCentralRecuperaSolo25DeVida(){
 
         // Arrange
-        Aldeano aldeano1 = new Aldeano();
-        Aldeano aldeano2 = new Aldeano();
+        Aldeano aldeano1 = this.crearAldeano();
+        Aldeano aldeano2 = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;

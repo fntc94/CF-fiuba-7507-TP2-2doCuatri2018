@@ -9,24 +9,21 @@ import static org.junit.Assert.assertEquals;
 
 public class AldeanoTest {
 
-    @Test
-    public void getVida_Devuelve50(){
-
-        Aldeano aldeano = new Aldeano();
-        assertEquals(50, aldeano.getVida());
+    private Aldeano crearAldeano(){
+        return new AldeanoFabrica().crear();
     }
 
     @Test
-    public void getCosto_Devuelve25(){
+    public void getVida_Devuelve50(){
 
-        Aldeano aldeano = new Aldeano();
-        assertEquals(25, aldeano.getCosto());
+        Aldeano aldeano = this.crearAldeano();
+        assertEquals(50, aldeano.getVidaActual());
     }
 
     @Test
     public void reparar_SinHaberReparadoPreviamentePasandoElEdificio_NoLanzaError(){
 
-        Aldeano reparador = new Aldeano();
+        Aldeano reparador = this.crearAldeano();
 
         int vidaMaximaDeCuartel = 450;
         int vidaInicialDeCuartel = 300;
@@ -41,7 +38,7 @@ public class AldeanoTest {
 
         // Arrange
 
-        Aldeano reparador = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -53,8 +50,8 @@ public class AldeanoTest {
         Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
 
         // Act
-        reparador.reparar(plazaCentral);
-        reparador.reparar(cuartel);
+        aldeano.reparar(plazaCentral);
+        aldeano.reparar(cuartel);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -66,7 +63,7 @@ public class AldeanoTest {
     public void reparar_PlazaCentralYLuegoCuartel_ReparaSoloUnaVezAlCuartel(){
 
         // Arrange
-        Aldeano reparador = new Aldeano();
+        Aldeano reparador = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -91,7 +88,7 @@ public class AldeanoTest {
     public void recolectarOro_CuandoNoEstaConstruyendoNiReparando_Devuelve20(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 20;
 
         // Act
@@ -106,7 +103,7 @@ public class AldeanoTest {
     public void recolectarOro_CuandoEstaReparando_DevuelveCero(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 0;
 
         int vidaMaximaDePlazaCentral = 450;
@@ -127,7 +124,7 @@ public class AldeanoTest {
     public void recolectarOro_LuegoDeTerminarDeReparar_Devuelve20(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 20;
 
         int vidaMaximaDePlazaCentral = 450;
@@ -149,7 +146,7 @@ public class AldeanoTest {
     public void estaConstruyendo_LuegoDeIniciarConstruccionDeCuartel_DevuelveTrue(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
         aldeano.iniciarConstruccionDeCuartel();
@@ -163,7 +160,7 @@ public class AldeanoTest {
     public void estaConstruyendo_LuegoDeContinuarConstruyendoUnaVezUnCuartel_DevuelveTrue(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
         aldeano.iniciarConstruccionDeCuartel();
@@ -179,7 +176,7 @@ public class AldeanoTest {
     public void estaConstruyendo_LuegoDeContinuarConstruyendoDosVecesUnCuartel_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
         aldeano.iniciarConstruccionDeCuartel();
@@ -196,7 +193,7 @@ public class AldeanoTest {
     public void estaConstruyendo_CuandoEstaRecolectando_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
         Boolean esta_construyendo = aldeano.estaConstruyendo();
@@ -212,7 +209,7 @@ public class AldeanoTest {
 
         // Arragnge
         ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
         aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
@@ -228,7 +225,7 @@ public class AldeanoTest {
 
         // Arragnge
         ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
         aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
@@ -242,7 +239,7 @@ public class AldeanoTest {
     public void recolectarOro_LuegoDeTerminarDeConstruir_Devuelve20(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         aldeano.iniciarConstruccionDeCuartel();
         aldeano.continuarConstruccion();
@@ -262,7 +259,7 @@ public class AldeanoTest {
     public void recolectarOro_LuegoDeComenzarAConstruir_Devuelve0(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
         aldeano.iniciarConstruccionDeCuartel();
 
         int oroEsperado = 0;

@@ -4,29 +4,25 @@ import java.util.function.Consumer;
 
 public class Aldeano {
 
-    private int _vida = 50;
-    private int _costo = 25;
+    private int _vidaMaxima = 50;
+    private int _vidaActual;
     private IEstadoAldeano _estado = new AldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
         _estado = estado;
     }
 
+    public Aldeano(int vidaMaxima, int vidaInicial){
+        _vidaMaxima = vidaMaxima;
+        _vidaActual = vidaInicial;
+    }
+
     public Aldeano(int vidaMaxima){
-        _vida = vidaMaxima;
-
+        this(vidaMaxima, vidaMaxima);
     }
 
-    public Aldeano(){
-
-    }
-
-    public int getVida() {
-        return _vida;
-    }
-
-    public int getCosto() {
-        return _costo;
+    public int getVidaActual() {
+        return _vidaMaxima;
     }
 
     public void reparar(IEdificioReparable edificioReparable){

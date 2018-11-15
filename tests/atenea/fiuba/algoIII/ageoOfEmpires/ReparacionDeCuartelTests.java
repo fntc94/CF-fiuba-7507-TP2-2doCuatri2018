@@ -5,11 +5,15 @@ import org.junit.Test;
 
 public class ReparacionDeCuartelTests {
 
+    private Aldeano crearAldeano(){
+        return new AldeanoFabrica().crear();
+    }
+
     @Test
     public void reparar_Cuartel_CuartelRecupera50DeVida(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
@@ -30,7 +34,7 @@ public class ReparacionDeCuartelTests {
     public void reparar_CuartelUnaVez_VidaDeCuartelNoSuperaElMaximo(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 230;
@@ -49,7 +53,7 @@ public class ReparacionDeCuartelTests {
     public void reparar_CuartelConMaximoDeVida_VidaDeCuartelNoSuperaElMaximo(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 250;
@@ -68,7 +72,7 @@ public class ReparacionDeCuartelTests {
     public void repararCuartel_DosVecesConElMismoAldeano_CuartelRecupera100DeVida(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
@@ -90,8 +94,8 @@ public class ReparacionDeCuartelTests {
     public void reparar_CuartelConDosAldeanosDistintos_CuartelRecuperaSolo50DeVida(){
 
         // Arrange
-        Aldeano aldeano1 = new Aldeano();
-        Aldeano aldeano2 = new Aldeano();
+        Aldeano aldeano1 = this.crearAldeano();
+        Aldeano aldeano2 = this.crearAldeano();
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
