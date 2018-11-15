@@ -32,4 +32,19 @@ public class AldeanoReparador  implements IEstadoAldeano {
     public int recolectarOro() {
         return 0;
     }
+
+    @Override
+    public void iniciarConstruccion() {
+
+    }
+
+    @Override
+    public void continuarConstruccion() {
+
+    }
+
+    @Override
+    public boolean estaConstruyendo() {
+        return false;
+    }
 }

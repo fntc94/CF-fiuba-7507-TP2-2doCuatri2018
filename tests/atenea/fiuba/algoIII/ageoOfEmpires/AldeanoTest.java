@@ -2,7 +2,8 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -446,5 +447,135 @@ public class AldeanoTest {
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
+
+    @Test
+    public void estaConstruyendo_LuegoDeIniciarConstruccionDeCuartel_DevuelveTrue(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel();
+        Boolean esta_construyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertTrue(esta_construyendo);
+    }
+
+    @Test
+    public void estaConstruyendo_LuegoDeContinuarConstruyendoUnaVezUnCuartel_DevuelveTrue(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel();
+        aldeano.continuarConstruccion();
+        Boolean esta_construyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertTrue(esta_construyendo);
+
+    }
+
+    @Test
+    public void estaConstruyendo_LuegoDeContinuarConstruyendoDosVecesUnCuartel_DevuelveFalse(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel();
+        aldeano.continuarConstruccion();
+        aldeano.continuarConstruccion();
+        Boolean esta_construyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertFalse(esta_construyendo);
+
+    }
+
+    @Test
+    public void estaConstruyendo_CuandoEstaRecolectando_DevuelveFalse(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+
+        // Act
+        Boolean esta_construyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertFalse(esta_construyendo);
+
+    }
+
+
+    @Test
+    public void inicicarConstruccionDeCuartel_AlTerminarLaConstruccion_SeEjecutaLaAccion(){
+
+        // Arragnge
+        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
+        Aldeano aldeano = new Aldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
+        aldeano.continuarConstruccion();
+        aldeano.continuarConstruccion();
+
+        // Assert
+        Assert.assertFalse(cuarteles.isEmpty());
+    }
+
+    @Test
+    public void inicicarConstruccionDeCuartel_AntesDeTerminarLaConstruccion_NoSeEjecutaLaAccion(){
+
+        // Arragnge
+        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
+        Aldeano aldeano = new Aldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
+        aldeano.continuarConstruccion();
+
+        // Assert
+        Assert.assertTrue(cuarteles.isEmpty());
+    }
+
+    @Test
+    public void recolectarOro_LuegoDeTerminarDeConstruir_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+
+        aldeano.iniciarConstruccionDeCuartel();
+        aldeano.continuarConstruccion();
+        aldeano.continuarConstruccion();
+
+        int oroEsperado = 20;
+
+        // Act
+        int oroRecolectado = aldeano.recolectarOro();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+
+    }
+
+    @Test
+    public void recolectarOro_LuegoDeComenzarAConstruir_Devuelve0(){
+
+        // Arrange
+        Aldeano aldeano = new Aldeano();
+        aldeano.iniciarConstruccionDeCuartel();
+
+        int oroEsperado = 0;
+
+        // Act
+        int oroRecolectado = aldeano.recolectarOro();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+
     }
 }

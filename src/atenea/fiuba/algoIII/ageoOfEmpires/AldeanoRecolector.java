@@ -28,4 +28,18 @@ public class AldeanoRecolector implements IEstadoAldeano {
         // TODO: throw?
     }
 
+    @Override
+    public void iniciarConstruccion() {
+
+    }
+
+    @Override
+    public void continuarConstruccion() {
+
+    }
+
+    @Override
+    public boolean estaConstruyendo() {
+        return false;
+    }
 }

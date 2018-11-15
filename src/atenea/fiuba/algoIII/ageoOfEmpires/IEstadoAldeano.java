@@ -1,4 +1,4 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public interface IEstadoAldeano extends IReparadorDeEdificios, IRecolectorDeOro {
+public interface IEstadoAldeano extends IReparadorDeEdificios, IRecolectorDeOro, IConstructorDeEdificios {
 }
