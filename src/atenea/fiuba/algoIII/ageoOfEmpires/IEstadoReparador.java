@@ -1,9 +1,9 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public interface IReparador {
+public interface IEstadoReparador {
 
     void iniciarReparacion(IEdificioReparable edificioReparable);
     void continuarReparacion();
+    void darPorTerminadaLaReparacion();
     boolean estaReparando();
-
 }

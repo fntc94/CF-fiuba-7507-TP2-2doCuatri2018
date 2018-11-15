@@ -29,6 +29,16 @@ public class EstadoAldeanoReparador implements IEstadoAldeano {
     }
 
     @Override
+    public boolean estaReparando() {
+        return true;
+    }
+
+    @Override
+    public boolean estaRecolectandoOro() {
+        return false;
+    }
+
+    @Override
     public int recolectarOro() {
         return 0;
     }

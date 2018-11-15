@@ -4,7 +4,7 @@ public class Cuartel implements IEdificioReparable {
 
     private int _vidaMaxima;
     private int _vidaActual;
-    private IReparador _reparadorActivo;
+    private IEstadoReparador _reparadorActivo;
 
     private IUnidadFabrica<Arquero> _arqueroFabrica = new ArqueroFabrica();
     private IUnidadFabrica<Espadachin> _espadachinFabrica = new EspadachinFabrica();
@@ -28,7 +28,7 @@ public class Cuartel implements IEdificioReparable {
     }
 
     @Override
-    public void recibirReparador(IReparador reparador) {
+    public void recibirReparador(IEstadoReparador reparador) {
 
         if(_reparadorActivo == null){
             _reparadorActivo = reparador;

@@ -7,6 +7,11 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
     }
 
     @Override
+    public boolean estaRecolectandoOro() {
+        return true;
+    }
+
+    @Override
     public int recolectarOro() {
         return 20;
     }
@@ -19,7 +24,7 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
 
     @Override
     public void continuarReparacion() {
-        // hace nada;
+        throw new OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion();
     }
 
     @Override
@@ -29,13 +34,18 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
     }
 
     @Override
+    public boolean estaReparando() {
+        return false;
+    }
+
+    @Override
     public void iniciarConstruccion() {
 
     }
 
     @Override
     public void continuarConstruccion() {
-
+        throw new OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion();
     }
 
     @Override

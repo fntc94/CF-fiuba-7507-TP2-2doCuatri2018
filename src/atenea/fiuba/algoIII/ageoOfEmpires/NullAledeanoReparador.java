@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class NullAledeanoReparador implements IReparador {
+public class NullAledeanoReparador implements IEstadoReparador {
 
     @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
@@ -15,6 +15,11 @@ public class NullAledeanoReparador implements IReparador {
     @Override
     public void darPorTerminadaLaReparacion() {
         // hace nada;
+    }
+
+    @Override
+    public boolean estaReparando() {
+        return false;
     }
 
 }

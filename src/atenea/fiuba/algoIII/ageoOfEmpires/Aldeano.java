@@ -2,14 +2,14 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import java.util.function.Consumer;
 
-public class Aldeano {
+public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
     private int _vidaMaxima = 50;
     private int _vidaActual;
-    private IEstadoAldeano _estado = new EstadoAldeanoRecolector();
+    private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
-        _estado = estado;
+        _estadoAldeano = estado;
     }
 
     int getVidaActual() {
@@ -26,23 +26,33 @@ public class Aldeano {
     }
 
     public void iniciarReparacion(IEdificioReparable edificioReparable){
-        _estado = new EstadoAldeanoReparador(edificioReparable, this);
-        _estado.iniciarReparacion(edificioReparable);
+        _estadoAldeano = new EstadoAldeanoReparador(edificioReparable, this);
+        _estadoAldeano.iniciarReparacion(edificioReparable);
     }
 
     public void continuarReparacion(){
-        _estado.continuarReparacion();
+        _estadoAldeano.continuarReparacion();
+    }
+
+    @Override
+    public boolean estaReparando() {
+        return _estadoAldeano.estaReparando();
+    }
+
+    @Override
+    public boolean estaRecolectandoOro() {
+        return _estadoAldeano.estaRecolectandoOro();
     }
 
     public int recolectarOro() {
-        return _estado.recolectarOro();
+        return _estadoAldeano.recolectarOro();
     }
 
 
     public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
 
-        _estado = new EstadoAldeanoConstructor(new CuartelEnConstruccion(), accionAlTerminarConstruccion, this);
-        _estado.iniciarConstruccion();
+        _estadoAldeano = new EstadoAldeanoConstructor(new CuartelEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano.iniciarConstruccion();
 
     }
 
@@ -52,21 +62,21 @@ public class Aldeano {
     }
 
     public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        _estado = new EstadoAldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
-        _estado.iniciarConstruccion();
+        _estadoAldeano = new EstadoAldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano.iniciarConstruccion();
     }
 
     public void iniciarConstruccionDePlazaCentral(){
         this.iniciarConstruccionDePlazaCentral(plazaCentral -> {});
     }
 
-    public void continuarConstruccion() {
+    public void continuarConstruyendo() {
 
-        _estado.continuarConstruccion();
+        _estadoAldeano.continuarConstruccion();
     }
 
     public boolean estaConstruyendo() {
 
-        return _estado.estaConstruyendo();
+        return _estadoAldeano.estaConstruyendo();
     }
 }

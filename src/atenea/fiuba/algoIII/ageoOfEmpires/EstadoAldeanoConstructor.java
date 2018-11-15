@@ -37,7 +37,12 @@ import java.util.function.Consumer;
     }
 
 
-    @Override
+      @Override
+      public boolean estaRecolectandoOro() {
+          return false;
+      }
+
+      @Override
     public int recolectarOro() {
         return 0;
     }
@@ -56,4 +61,9 @@ import java.util.function.Consumer;
     public void darPorTerminadaLaReparacion() {
 
     }
-}
+
+      @Override
+      public boolean estaReparando() {
+          return false;
+      }
+  }
