@@ -2,7 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class Espadachin {
 
-    private int _vidaMaxima = 75;
+    private final int _vidaMaxima;
 
     public Espadachin(int vidaMaxima){
         _vidaMaxima = vidaMaxima;
