@@ -19,7 +19,7 @@ import java.util.function.Consumer;
         _edificioEnConstruccion.avanzarConstruccion();
     }
 
-    public void continuarConstruccion(){
+    public void continuarConstruyendo(){
 
         _edificioEnConstruccion.avanzarConstruccion();
 

@@ -70,7 +70,7 @@ public class AldeanoTest {
         IReparador aldeano = this.crearAldeano();
 
         // Act
-        aldeano.continuarReparacion();
+        aldeano.continuarReparando();
     }
 
     @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion.class)
@@ -284,8 +284,8 @@ public class AldeanoTest {
 
         // Act
         aldeano.iniciarReparacion(plazaCentral);
-        aldeano.continuarReparacion();
-        aldeano.continuarReparacion();
+        aldeano.continuarReparando();
+        aldeano.continuarReparando();
 
         int oroRecolectado = aldeano.recolectarOro();
 

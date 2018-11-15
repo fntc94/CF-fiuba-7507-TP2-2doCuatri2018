@@ -41,7 +41,7 @@ public class ReparacionDePlazaCentralTests {
 
         // Act
         aldeano.iniciarReparacion(plazaCentral);
-        aldeano.continuarReparacion();
+        aldeano.continuarReparando();
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert

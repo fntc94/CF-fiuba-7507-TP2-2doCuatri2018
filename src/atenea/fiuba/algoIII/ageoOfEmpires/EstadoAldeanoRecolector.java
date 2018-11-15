@@ -44,7 +44,7 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
     }
 
     @Override
-    public void continuarConstruccion() {
+    public void continuarConstruyendo() {
         throw new OperacionInvalidaDadoElEstadoActualDelObjectoExcepcion();
     }
 

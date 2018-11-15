@@ -81,7 +81,7 @@ public class ReparacionDeCuartelTests {
 
         // Act
         aldeano.iniciarReparacion(cuartel);
-        aldeano.continuarReparacion();
+        aldeano.continuarReparando();
         int vidaFinalDelCuartel = cuartel.getVida();
 
         // Assert

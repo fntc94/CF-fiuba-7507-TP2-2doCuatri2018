@@ -49,7 +49,7 @@ public class EstadoAldeanoReparador implements IEstadoAldeano {
     }
 
     @Override
-    public void continuarConstruccion() {
+    public void continuarConstruyendo() {
 
     }
 

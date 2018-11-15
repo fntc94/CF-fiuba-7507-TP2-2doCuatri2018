@@ -82,7 +82,7 @@ public class ReparacionDeCastilloTests {
 
         // Act
         aldeano.iniciarReparacion(castillo);
-        aldeano.continuarReparacion();
+        aldeano.continuarReparando();
         int vidaFinalDelCastillo = castillo.getVida();
 
         // Assert

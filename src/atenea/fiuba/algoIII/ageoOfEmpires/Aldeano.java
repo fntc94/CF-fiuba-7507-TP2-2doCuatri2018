@@ -25,13 +25,35 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
         this(vidaMaxima, vidaMaxima);
     }
 
+    //IRecolectorDeOro
+    @Override
+    public int recolectarOro() {
+        return _estadoAldeano.recolectarOro();
+    }
+
+    @Override
+    public boolean estaRecolectandoOro() {
+        return _estadoAldeano.estaRecolectandoOro();
+    }
+    //fin IRecolectorDeOro
+
+    //IConstructor
+    @Override
+    public boolean estaConstruyendo() {
+        return _estadoAldeano.estaConstruyendo();
+    }
+
+    @Override
+    public void continuarConstruyendo() {
+        _estadoAldeano.continuarConstruyendo();
+    }
+    //fin IConstructor
+
+    //IReparador
+    @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable){
         _estadoAldeano = new EstadoAldeanoReparador(edificioReparable, this);
         _estadoAldeano.iniciarReparacion(edificioReparable);
-    }
-
-    public void continuarReparacion(){
-        _estadoAldeano.continuarReparacion();
     }
 
     @Override
@@ -40,14 +62,19 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
     }
 
     @Override
-    public boolean estaRecolectandoOro() {
-        return _estadoAldeano.estaRecolectandoOro();
+    public void continuarReparando(){
+        _estadoAldeano.continuarReparacion();
+    }
+    //fin IReparador
+
+    public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
+        _estadoAldeano = new EstadoAldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano.iniciarConstruccion();
     }
 
-    public int recolectarOro() {
-        return _estadoAldeano.recolectarOro();
+    public void iniciarConstruccionDePlazaCentral(){
+        this.iniciarConstruccionDePlazaCentral(plazaCentral -> {});
     }
-
 
     public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
 
@@ -59,24 +86,5 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
     public void iniciarConstruccionDeCuartel(){
 
         this.iniciarConstruccionDeCuartel(cuartel -> {});
-    }
-
-    public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        _estadoAldeano = new EstadoAldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
-        _estadoAldeano.iniciarConstruccion();
-    }
-
-    public void iniciarConstruccionDePlazaCentral(){
-        this.iniciarConstruccionDePlazaCentral(plazaCentral -> {});
-    }
-
-    public void continuarConstruyendo() {
-
-        _estadoAldeano.continuarConstruccion();
-    }
-
-    public boolean estaConstruyendo() {
-
-        return _estadoAldeano.estaConstruyendo();
     }
 }
