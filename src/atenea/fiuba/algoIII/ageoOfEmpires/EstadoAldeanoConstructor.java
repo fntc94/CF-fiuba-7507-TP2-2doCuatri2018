@@ -2,28 +2,48 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import java.util.function.Consumer;
 
-  public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
+public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
 
     private Aldeano _contexto;
     private IEdificioEnConstruccion<TEdificioTerminado> _edificioEnConstruccion;
     private Consumer<TEdificioTerminado> _accionAlTerminarConstruccion;
 
-    public EstadoAldeanoConstructor(IEdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto){
+    public EstadoAldeanoConstructor(IEdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
 
         _edificioEnConstruccion = edificioEnConstruccion;
-        _accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {};
+        _accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
+        };
         _contexto = contexto;
     }
 
-    public void iniciarConstruccion(){
+    //IRecolectorDeOro
+    @Override
+    public int recolectarOro() {
+        return 0;
+    }
+
+    public boolean estaRecolectandoOro() {
+        return false;
+    }
+    //fin IRecolectorDeOro
+
+    //IConstructor
+    @Override
+    public void iniciarConstruccion() {
         _edificioEnConstruccion.avanzarConstruccion();
     }
 
-    public void continuarConstruyendo(){
+    @Override
+    public boolean estaConstruyendo() {
+        return true;
+    }
+
+    @Override
+    public void continuarConstruyendo() {
 
         _edificioEnConstruccion.avanzarConstruccion();
 
-        if(_edificioEnConstruccion.estaTerminado()){
+        if (_edificioEnConstruccion.estaTerminado()) {
 
             _accionAlTerminarConstruccion.accept(_edificioEnConstruccion.obtenerEdificioTerminado());
             _contexto.establecerEstado(new EstadoAldeanoRecolector());
@@ -31,39 +51,28 @@ import java.util.function.Consumer;
         }
 
     }
-
-    public boolean estaConstruyendo(){
-        return true;
-    }
+    // fin IConstructor
 
 
-      @Override
-      public boolean estaRecolectandoOro() {
-          return false;
-      }
-
-      @Override
-    public int recolectarOro() {
-        return 0;
+    //IReparador
+    @Override
+    public void iniciarReparacion(IEdificioReparable edificioReparable) {
+        throw new OperacionInvalidaExcepcion();
     }
 
     @Override
-    public void iniciarReparacion(IEdificioReparable edificioReparable) {
-
+    public boolean estaReparando() {
+        return false;
     }
 
     @Override
     public void continuarReparacion() {
-
+        throw new OperacionInvalidaExcepcion();
     }
 
     @Override
     public void darPorTerminadaLaReparacion() {
-
+        throw new OperacionInvalidaExcepcion();
     }
-
-      @Override
-      public boolean estaReparando() {
-          return false;
-      }
-  }
+    //fin IReparador
+}
