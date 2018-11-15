@@ -2,21 +2,19 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class EdificiosEnConstruccionFabrica {
 
-    private UnidadesFabrica fabricaDeUnidades = new UnidadesFabrica();
+    private EdificiosFabrica _fabricaDeEdificio = new EdificiosFabrica();
 
     public EdificioEnConstruccion<PlazaCentral> obtenerPlazaCentralEnConstruccion(){
 
         int turnosEnConstruir = 3;
-        int vidaMaximaPlazaCentral = 450;
-        return new EdificioEnConstruccion<>(turnosEnConstruir, new PlazaCentral(vidaMaximaPlazaCentral, fabricaDeUnidades));
+        return new EdificioEnConstruccion<>(turnosEnConstruir, _fabricaDeEdificio.crearPlazaCentral());
 
     }
 
     public EdificioEnConstruccion<Cuartel> obtenerCuartelEnConstruccion(){
 
         int turnosEnConstruir = 3;
-        int vidaMaximaCuartel = 250;
-        return new EdificioEnConstruccion<>(turnosEnConstruir, new Cuartel(vidaMaximaCuartel, fabricaDeUnidades));
+        return new EdificioEnConstruccion<>(turnosEnConstruir, _fabricaDeEdificio.crearCuartel());
     }
 
 }
