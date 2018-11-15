@@ -5,7 +5,8 @@ public class Arquero {
     private int _vida = 75;
     private int _costo = 75;
 
-    public Arquero(){
+    public Arquero(int vidaMaxima){
+        _vida = vidaMaxima;
     }
 
     public int getVida() {

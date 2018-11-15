@@ -6,6 +6,8 @@ public class PlazaCentral implements IEdificioReparable {
     private int _vidaActual;
     private IReparadorDeEdificios _reparadorActivo = null;
 
+    private IUnidadFabrica<Aldeano> _fabricaDeAldeanos = new AldeanoFabrica();
+
     public PlazaCentral(int vidaMaxima, int vidaInicial) {
 
         _vidaMaxima = vidaMaxima;
@@ -37,5 +39,16 @@ public class PlazaCentral implements IEdificioReparable {
             _vidaActual = _vidaMaxima;
             _reparadorActivo.darPorTerminadaLaReparacion();
         }
+    }
+
+    public int obtenerCostoAldeano(){
+
+        return _fabricaDeAldeanos.obtenerCosto();
+    }
+
+    public Aldeano construirAldeano() {
+
+        return _fabricaDeAldeanos.crear();
+
     }
 }

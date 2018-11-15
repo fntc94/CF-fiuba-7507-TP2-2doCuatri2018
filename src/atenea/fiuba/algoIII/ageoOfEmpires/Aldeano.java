@@ -12,6 +12,11 @@ public class Aldeano {
         _estado = estado;
     }
 
+    public Aldeano(int vidaMaxima){
+        _vida = vidaMaxima;
+
+    }
+
     public Aldeano(){
 
     }

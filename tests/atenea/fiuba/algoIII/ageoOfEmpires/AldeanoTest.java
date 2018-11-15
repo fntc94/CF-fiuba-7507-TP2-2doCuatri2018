@@ -23,6 +23,7 @@ public class AldeanoTest {
         assertEquals(25, aldeano.getCosto());
     }
 
+
     @Test
     public void reparar_PlazaCentral_PlazaCentralRecupera25DeVida(){
 
