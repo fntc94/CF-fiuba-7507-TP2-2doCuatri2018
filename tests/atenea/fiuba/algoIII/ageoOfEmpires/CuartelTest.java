@@ -7,7 +7,7 @@ public class CuartelTest {
 
     private Cuartel crearCuartel(){
         int vidaMaximaCuartel = 250;
-        return new Cuartel(vidaMaximaCuartel);
+        return new Cuartel(vidaMaximaCuartel, new UnidadesFabrica());
     }
 
     @Test
@@ -58,7 +58,7 @@ public class CuartelTest {
 
         // Arrange
         int vidaMaximaCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaCuartel, new UnidadesFabrica());
         int costoEspadachinEsperado = 50;
 
         // Act

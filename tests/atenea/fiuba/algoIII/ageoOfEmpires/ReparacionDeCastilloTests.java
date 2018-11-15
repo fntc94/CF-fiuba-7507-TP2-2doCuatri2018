@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ReparacionDeCastilloTests {
 
     private Aldeano crearAldeano(){
-        return new AldeanoFabrica().crear();
+        return new UnidadesFabrica().crearAldeano();
     }
 
     @Test

@@ -1,27 +1,30 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public abstract class EdificioEnConstruccion<TEdificio> {
+public class EdificioEnConstruccion<TEdificio> {
 
-
-    private int _turnosEnConstruir;
+    private int _turnosQueTardaEnConstruir;
     private int _turnosEnConstruccion = 0;
+    private TEdificio _edificioConstruido;
 
-    protected abstract TEdificio _crearEdificio();
-
-    public EdificioEnConstruccion(int turnosEnConstruir){
-        _turnosEnConstruir = turnosEnConstruir;
+    EdificioEnConstruccion(int turnosEnConstruir, TEdificio edificioConstruido){
+        _turnosQueTardaEnConstruir = turnosEnConstruir;
+        _edificioConstruido = edificioConstruido;
     }
 
     public void avanzarConstruccion(){
         _turnosEnConstruccion += 1;
     }
 
-    public Boolean estaTerminado(){
-        return _turnosEnConstruccion == _turnosEnConstruir;
+    public boolean estaTerminado(){
+        return _turnosEnConstruccion == _turnosQueTardaEnConstruir;
     }
 
     public TEdificio obtenerEdificioTerminado(){
-        return this._crearEdificio();
+        if(!estaTerminado()){
+            throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+        }
+
+        return _edificioConstruido;
     }
 
 }

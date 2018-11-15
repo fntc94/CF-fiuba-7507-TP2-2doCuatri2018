@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class AldeanoTest {
 
     private Aldeano crearAldeano(){
-        return new AldeanoFabrica().crear();
+        return new UnidadesFabrica().crearAldeano();
     }
 
     @Test
@@ -231,7 +231,8 @@ public class AldeanoTest {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel, Mockito.mock(UnidadesFabrica.class));
 
         // Act
         aldeano.iniciarReparacion(plazaCentral);
@@ -255,7 +256,7 @@ public class AldeanoTest {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDeCuartelLuegoDeReparacion = 140;
 
         // Act

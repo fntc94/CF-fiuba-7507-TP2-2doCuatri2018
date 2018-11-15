@@ -6,7 +6,7 @@ import org.junit.Test;
 public class ReparacionDeCuartelTests {
 
     private Aldeano crearAldeano(){
-        return new AldeanoFabrica().crear();
+        return new UnidadesFabrica().crearAldeano();
     }
 
     @Test
@@ -17,7 +17,7 @@ public class ReparacionDeCuartelTests {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel, new UnidadesFabrica());
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 140;
 
         // Act
@@ -38,7 +38,7 @@ public class ReparacionDeCuartelTests {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 230;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, new UnidadesFabrica());
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 250;
 
         // Act
@@ -57,7 +57,7 @@ public class ReparacionDeCuartelTests {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, new UnidadesFabrica());
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 250;
 
         // Act
@@ -76,7 +76,7 @@ public class ReparacionDeCuartelTests {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel,new UnidadesFabrica());
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 190;
 
         // Act
@@ -99,7 +99,7 @@ public class ReparacionDeCuartelTests {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel, new UnidadesFabrica());
         int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 140;
 
         // Act

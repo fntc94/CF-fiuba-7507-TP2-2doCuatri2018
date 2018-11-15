@@ -2,35 +2,36 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class Cuartel extends EdificioReparable implements IEdificioReparable {
 
-    private IUnidadFabrica<Arquero> _arqueroFabrica = new ArqueroFabrica();
-    private IUnidadFabrica<Espadachin> _espadachinFabrica = new EspadachinFabrica();
+    private final int VELOCIDAD_DE_REPARACION = 50;
+    private UnidadesFabrica _fabricaDeUnidades;
 
-    public Cuartel(int vidaMaxima, int vidaInicial) {
+    public Cuartel(int vidaMaxima, int vidaInicial, UnidadesFabrica fabricaDeUnidades) {
         super(vidaMaxima, vidaInicial);
+        _fabricaDeUnidades = fabricaDeUnidades;
     }
 
-    public Cuartel(int vidaMaxima){
-        this(vidaMaxima, vidaMaxima);
+    public Cuartel(int vidaMaxima, UnidadesFabrica fabricaDeUnidades){
+        this(vidaMaxima, vidaMaxima, fabricaDeUnidades);
     }
 
     @Override
-    protected int getRecuperoDeVida() {
-        return 50;
+    protected int getVelocidadDeReparacion() {
+        return VELOCIDAD_DE_REPARACION;
     }
 
     public int obtenerCostoArquero(){
-        return _arqueroFabrica.obtenerCostoEnOro();
+        return _fabricaDeUnidades.obtenerCostoEnOroArquero();
     }
 
     public Arquero crearArquero(){
-        return _arqueroFabrica.crear();
+        return _fabricaDeUnidades.crearArquero();
     }
 
     public int obtenerCostoEspadachin(){
-        return _espadachinFabrica.obtenerCostoEnOro();
+        return _fabricaDeUnidades.obtenerCostoEspadachin();
     }
 
     public Espadachin crearEspadachin(){
-        return _espadachinFabrica.crear();
+        return _fabricaDeUnidades.crearEspadachin();
     }
 }

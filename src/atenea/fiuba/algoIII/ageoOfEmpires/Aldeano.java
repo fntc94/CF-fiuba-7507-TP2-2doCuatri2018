@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
     private int _vidaMaxima = 50;
+    private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
     private int _vidaActual;
     private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
 
@@ -16,13 +17,14 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
         return _vidaActual;
     }
 
-    public Aldeano(int vidaMaxima, int vidaInicial){
+    public Aldeano(int vidaMaxima, int vidaInicial, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
         _vidaMaxima = vidaMaxima;
         _vidaActual = vidaInicial;
+        _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
     }
 
-    public Aldeano(int vidaMaxima){
-        this(vidaMaxima, vidaMaxima);
+    public Aldeano(int vidaMaxima, EdificiosEnConstruccionFabrica fabricaDeEdificios){
+        this(vidaMaxima, vidaMaxima, fabricaDeEdificios);
     }
 
     //IRecolectorDeOro
@@ -74,7 +76,7 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
     //fin IReparador
 
     public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        _estadoAldeano = new EstadoAldeanoConstructor(new PlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
         _estadoAldeano.iniciarConstruccion();
     }
 
@@ -84,13 +86,12 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
     public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
 
-        _estadoAldeano = new EstadoAldeanoConstructor(new CuartelEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
         _estadoAldeano.iniciarConstruccion();
 
     }
 
     public void iniciarConstruccionDeCuartel(){
-
         this.iniciarConstruccionDeCuartel(cuartel -> {});
     }
 }

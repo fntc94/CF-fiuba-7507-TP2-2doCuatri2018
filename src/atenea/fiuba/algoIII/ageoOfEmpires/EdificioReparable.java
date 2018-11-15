@@ -7,7 +7,6 @@ public abstract class EdificioReparable implements IEdificioReparable {
     private IEstadoReparador _reparadorActivo;
 
     public EdificioReparable(int vidaMaxima, int vidaInicial) {
-
         _vidaMaxima = vidaMaxima;
         _vidaActual = vidaInicial;
     }
@@ -15,8 +14,6 @@ public abstract class EdificioReparable implements IEdificioReparable {
     public int getVida() {
         return _vidaActual;
     }
-
-    protected abstract int getRecuperoDeVida();
 
     @Override
     public void recibirReparador(IEstadoReparador reparador) {
@@ -29,12 +26,14 @@ public abstract class EdificioReparable implements IEdificioReparable {
             return;
         }
 
-        this._vidaActual += getRecuperoDeVida();
+        this._vidaActual += getVelocidadDeReparacion();
 
         if(_vidaActual > _vidaMaxima){
             _vidaActual = _vidaMaxima;
             _reparadorActivo.darPorTerminadaLaReparacion();
         }
     }
+
+    protected abstract int getVelocidadDeReparacion();
 
 }

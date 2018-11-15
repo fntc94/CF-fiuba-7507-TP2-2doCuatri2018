@@ -5,10 +5,10 @@ import java.util.function.Consumer;
 public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
 
     private Aldeano _contexto;
-    private IEdificioEnConstruccion<TEdificioTerminado> _edificioEnConstruccion;
+    private EdificioEnConstruccion<TEdificioTerminado> _edificioEnConstruccion;
     private Consumer<TEdificioTerminado> _accionAlTerminarConstruccion;
 
-    public EstadoAldeanoConstructor(IEdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
+    public EstadoAldeanoConstructor(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
 
         _edificioEnConstruccion = edificioEnConstruccion;
         _accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
