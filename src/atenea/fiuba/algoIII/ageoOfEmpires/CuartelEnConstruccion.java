@@ -8,18 +8,17 @@ public class CuartelEnConstruccion implements IEdificioEnConstruccion<Cuartel> {
     private int _vidaActual = 0;
     private int _avancePorTurno = 150;
 
-    public CuartelEnConstruccion() {
-    }
-
-
+    @Override
     public boolean estaTerminado(){
         return _vidaActual == _vidaMaxima;
     }
 
+    @Override
     public void avanzarConstruccion(){
         _vidaActual += _avancePorTurno;
     }
 
+    @Override
     public Cuartel obtenerEdificioTerminado(){
 
         if(!estaTerminado()){
