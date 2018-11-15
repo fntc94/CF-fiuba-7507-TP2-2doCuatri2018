@@ -17,7 +17,7 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
     //IReparador
     @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
-        throw new OperacionInvalidaExcepcion();
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
@@ -27,19 +27,19 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
 
     @Override
     public void continuarReparando() {
-        throw new OperacionInvalidaExcepcion();
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
     public void darPorTerminadaLaReparacion() {
-        throw new OperacionInvalidaExcepcion();
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
     //fin IReparador
 
     //IConstructor
     @Override
     public void iniciarConstruccion() {
-        throw new OperacionInvalidaExcepcion();
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
 
     @Override
     public void continuarConstruyendo() {
-        throw new OperacionInvalidaExcepcion();
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
     // fin IConstructor
 }

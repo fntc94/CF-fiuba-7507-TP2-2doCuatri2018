@@ -35,7 +35,7 @@ public class EstadoAldeanoReparador implements IEstadoAldeano {
 
     @Override
     public void continuarConstruyendo() {
-        throw new OperacionInvalidaExcepcion();
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
     //fin IConstructor
 
