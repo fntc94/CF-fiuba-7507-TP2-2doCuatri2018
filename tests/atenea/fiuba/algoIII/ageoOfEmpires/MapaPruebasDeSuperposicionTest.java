@@ -1,8 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.mockito.Mockito;
 
 public class MapaPruebasDeSuperposicionTest {
@@ -10,137 +8,134 @@ public class MapaPruebasDeSuperposicionTest {
     public int alto = 20;
     public int ancho = 30;
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    private Mapa crearMapa(){
+        return new Mapa(alto, ancho);
+    }
 
-    @Test
-    public void testColocarUnidadEnCasillerosOcupadosPorEdificioLanzaException(){
-        thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
-        Mapa mapa = new Mapa(20,30);
+    private IPosicionable crearMock(Posicion posicion){
+        IPosicionable posicionable = Mockito.mock(IPosicionable.class);
+        Mockito.when(posicionable.getPosicion()).thenReturn(posicion);
+        return posicionable;
+    }
 
-        Posicion posAldeano = new PosicionDeUnCasillero(6,5);
-        Posicion posPlazaCentral = new PosicionCuadrado(6,5,7,4);
+    @Test(expected = NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class)
+    public void posicionar_UnidadEnPosicionOcupadaPorEdificio_LanzaException(){
 
-        IPosicionable unidad = Mockito.mock(IPosicionable.class);
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        mapa.colocarPosicionable(posAldeano, unidad);
-        mapa.colocarPosicionable(posPlazaCentral, edificio);
+        Posicion posicionUnidad = new PosicionDeUnCasillero(6,5);
+        Posicion posicionEdificio = new PosicionCuadrado(6,5,7,4);
+
+        IPosicionable unidad = this.crearMock(posicionUnidad);
+        IPosicionable edificio = this.crearMock(posicionEdificio);
+
+        // Act
+        mapa.posicionar(edificio);
+        mapa.posicionar(unidad);
+
     }
 
     @Test
-    public void testColocarUnidadContiguoAEdificioNoLanzaException(){
-        Mapa mapa = new Mapa(20,30);
+    public void posicionar_UnidadAlLadoDeAEdificio_NoLanzaException(){
 
-        Posicion posAldeano = new PosicionDeUnCasillero(5,5);
-        Posicion posPlazaCentral = new PosicionCuadrado(6,5,7,4);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable unidad = Mockito.mock(IPosicionable.class);
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
+        Posicion posicionUnidad = new PosicionDeUnCasillero(5,5);
+        Posicion posicionEdificio = new PosicionCuadrado(6,5,7,4);
 
-        mapa.colocarPosicionable(posAldeano, unidad);
-        mapa.colocarPosicionable(posPlazaCentral, edificio);
+        IPosicionable unidad = this.crearMock(posicionUnidad);
+        IPosicionable edificio = this.crearMock(posicionEdificio);
+
+        // Act
+        mapa.posicionar(edificio);
+        mapa.posicionar(unidad);
+    }
+
+    @Test(expected = NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class)
+    public void posicionar_DosUnidadesEnLaMismaPosicion_LanzaException(){
+
+        // Arrange
+        Mapa mapa = this.crearMapa();
+
+        Posicion posicionUnidad1 = new PosicionDeUnCasillero(5,15);
+        IPosicionable unidad1 = this.crearMock(posicionUnidad1);
+
+        Posicion posicionUnidad2 = new PosicionDeUnCasillero(5,15);
+        IPosicionable unidad2 = this.crearMock(posicionUnidad2);
+
+        // Act
+        mapa.posicionar(unidad1);
+        mapa.posicionar(unidad2);
     }
 
     @Test
-    public void testColocarUnAldeanoYUnArqueroEnLaMismaPosicionLanzaException(){
-        thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
-        Mapa mapa = new Mapa(alto, ancho);
+    public void posicionar_UnaUnidadALadoDeOtra_NoLanzaException(){
 
-        Posicion posicion1 = new PosicionDeUnCasillero(5,15);
-        Posicion posicion2 = new PosicionDeUnCasillero(5,15);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable aldeano = Mockito.mock(IPosicionable.class);
-        IPosicionable arquero = Mockito.mock(IPosicionable.class);
+        Posicion posicionUnidad1 = new PosicionDeUnCasillero(4,15);
+        Posicion posicionUnidad2 = new PosicionDeUnCasillero(5,15);
 
-        mapa.colocarPosicionable(posicion1, aldeano);
-        mapa.colocarPosicionable(posicion2, arquero);
+        IPosicionable aldeano = this.crearMock(posicionUnidad1);
+        IPosicionable arquero = this.crearMock(posicionUnidad2);
+
+        // Act
+        mapa.posicionar(aldeano);
+        mapa.posicionar(arquero);
+    }
+
+    @Test(expected = NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class)
+    public void posicionar_DosEdificiosQueSeSuperponen_LanzaException(){
+
+        // Arrange
+        Mapa mapa = this.crearMapa();
+
+        Posicion posicionEdificio1 = new PosicionCuadrado(2,16,3,15);
+        Posicion posicionEdificio2 = new PosicionCuadrado(3,16,6,12);
+
+        IPosicionable edificio1 = this.crearMock(posicionEdificio1);
+        IPosicionable edificio2 = this.crearMock(posicionEdificio2);
+
+        // Act
+        mapa.posicionar(edificio2);
+        mapa.posicionar(edificio1);
     }
 
     @Test
-    public void testColocarAldeanoContiguoAUnArqueroNoLanzaException(){
-        Mapa mapa = new Mapa(alto, ancho);
+    public void posicionar_UnEdificioAlLadoDeOtro_NoLanzaException() {
 
-        Posicion posicion1 = new PosicionDeUnCasillero(4,15);
-        Posicion posicion2 = new PosicionDeUnCasillero(5,15);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable aldeano = Mockito.mock(IPosicionable.class);
-        IPosicionable arquero = Mockito.mock(IPosicionable.class);
+        Posicion posicionEdificio1 = new PosicionCuadrado(5, 15, 8, 12);
+        Posicion posicionEdificio2 = new PosicionCuadrado(3, 14, 4, 12);
 
-        mapa.colocarPosicionable(posicion1, aldeano);
-        mapa.colocarPosicionable(posicion2, arquero);
+        IPosicionable edificio1 = this.crearMock(posicionEdificio1);
+        IPosicionable edificio2 = this.crearMock(posicionEdificio2);
+
+        // Act
+        mapa.posicionar(edificio1);
+        mapa.posicionar(edificio2);
     }
 
-    @Test
-    public void testColocarAldeanoYArmaDeAsedioEnDiferentesPosicionesNoLanzaException(){
-        Mapa mapa = new Mapa(alto, ancho);
+    @Test(expected =  NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class)
+    public void posicionar_DosEdificiosDistintosEnLaMismaPosicion_LanzaException(){
 
-        Posicion unaPosicion = new PosicionDeUnCasillero(5,15);
-        Posicion otraPosicion = new PosicionDeUnCasillero(10, 10);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable aldeano = Mockito.mock(IPosicionable.class);
-        IPosicionable armaDeAsedio = Mockito.mock(IPosicionable.class);
+        Posicion posicionEdificio1 = new PosicionCuadrado(5,7,6,6);
+        Posicion posicionEdificio2 = new PosicionCuadrado(5,7,6,6);
 
-        mapa.colocarPosicionable(unaPosicion, aldeano);
-        mapa.colocarPosicionable(otraPosicion, armaDeAsedio);
-    }
+        IPosicionable edificio1 = this.crearMock(posicionEdificio1);
+        IPosicionable edificio2 = this.crearMock(posicionEdificio2);
 
-    @Test
-    public void testColocarPlazaCentralEnCasillerosOcupadosPorCastilloLanzaException(){
-        thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
-        Mapa mapa = new Mapa(alto, ancho);
-
-        Posicion posPlazaCentral = new PosicionCuadrado(2,16,3,15);
-        Posicion posCastillo = new PosicionCuadrado(3,16,6,12);
-
-        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
-        IPosicionable castillo = Mockito.mock(IPosicionable.class);
-
-        mapa.colocarPosicionable(posCastillo, castillo);
-        mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
-    }
-
-    @Test
-    public void testColocaraPlazaCentralContiguoACastilloNoLanzaException() {
-        Mapa mapa = new Mapa(alto, ancho);
-
-        Posicion posCastillo = new PosicionCuadrado(5, 15, 8, 12);
-        Posicion posPlazaCentral = new PosicionCuadrado(3, 14, 4, 12);
-
-        IPosicionable castillo = Mockito.mock(IPosicionable.class);
-        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
-
-        mapa.colocarPosicionable(posCastillo, castillo);
-        mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
-    }
-
-    @Test
-    public void testSuperposicionEntrePlazaCentralYCuartelLanzaException(){
-        thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
-        Mapa mapa = new Mapa(alto, ancho);
-
-        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
-        IPosicionable cuartel = Mockito.mock(IPosicionable.class);
-
-        Posicion posPlazaCentral = new PosicionCuadrado(5,7,6,6);
-        Posicion posCuartel = new PosicionCuadrado(5,7,6,6);
-
-        mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
-        mapa.colocarPosicionable(posCuartel, cuartel);
-    }
-
-    @Test
-    public void testColocarPlazaCentralContiguaACuartelNoLanzaException(){
-        Mapa mapa = new Mapa(alto, ancho);
-
-        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
-        IPosicionable cuartel = Mockito.mock(IPosicionable.class);
-
-        Posicion posPlazaCentral = new PosicionCuadrado(5,7,6,6);
-        Posicion posCuartel = new PosicionCuadrado(5,5,6,6);
-
-        mapa.colocarPosicionable(posPlazaCentral, plazaCentral);
-        mapa.colocarPosicionable(posCuartel, cuartel);
+        // Act
+        mapa.posicionar(edificio1);
+        mapa.posicionar(edificio2);
     }
 
 }
