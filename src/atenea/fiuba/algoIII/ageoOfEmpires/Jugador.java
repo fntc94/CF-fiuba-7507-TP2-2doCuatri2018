@@ -1,29 +1,46 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.List;
-
 public class Jugador {
     private Castillo castillo;
     private PlazaCentral plazaCentral;
     private Cuartel cuartel;
-
+    private EdificiosFabrica edificiosFabrica;
+    private EdificiosEnConstruccionFabrica edificiosEnConstruccionFabrica;
+    private EdificioEnConstruccion edificioEnConstruccion;
 
     public Jugador (){
-        EdificiosFabrica edificiosFabrica = new EdificiosFabrica();
-        castillo = edificiosFabrica.crearCastillo();
-        plazaCentral = edificiosFabrica.crearPlazaCentral();
-        cuartel = edificiosFabrica.crearCuartel();
+        this.edificiosFabrica = new EdificiosFabrica();
+        this.castillo = edificiosFabrica.crearCastillo();
+        this.plazaCentral = edificiosFabrica.crearPlazaCentral();
+        this.edificiosEnConstruccionFabrica = new EdificiosEnConstruccionFabrica();
     }
 
-    public int tienePlazaCentral(){
-        return plazaCentral.getVida();
+    public boolean tienePlazaCentral(){
+        return this.edificioEnConstruccion.estaTerminado();
     }
 
-    public int tienePlazaCuartel(){
-        return cuartel.getVida();
+    public boolean tieneCuartel(){
+        return this.edificioEnConstruccion.estaTerminado();
     }
+
+    public void inicializarCuartel(){
+        this.edificioEnConstruccion = this.edificiosEnConstruccionFabrica.obtenerCuartelEnConstruccion();
+    }
+
+    public void inicializarPlazaCentral(){
+        this.edificioEnConstruccion = this.edificiosEnConstruccionFabrica.obtenerPlazaCentralEnConstruccion();
+    }
+
+    public void avanzarConstruccion(){
+        this.edificioEnConstruccion.avanzarConstruccion();
+    }
+
+    public void obtenerEdificioTerminado(){
+        this.cuartel = edificiosFabrica.crearCuartel();
+    }
+
+
+
 
 
 
