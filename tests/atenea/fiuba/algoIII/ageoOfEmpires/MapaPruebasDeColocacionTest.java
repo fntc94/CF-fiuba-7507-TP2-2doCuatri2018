@@ -109,7 +109,7 @@ public class MapaPruebasDeColocacionTest {
         thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
         Mapa mapa = new Mapa(alto,ancho);
 
-        IPosicionable edificio = Mockito.mock(PlazaCentral.class);
+        IPosicionable edificio = Mockito.mock(IPosicionable.class);
         Posicion posicion = new PosicionCuadrado(31,20,32,19);
 
         mapa.colocarPosicionable(posicion, edificio);

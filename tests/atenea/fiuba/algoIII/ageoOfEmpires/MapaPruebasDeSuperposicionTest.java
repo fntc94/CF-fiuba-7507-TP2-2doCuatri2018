@@ -93,7 +93,7 @@ public class MapaPruebasDeSuperposicionTest {
         Posicion posPlazaCentral = new PosicionCuadrado(2,16,3,15);
         Posicion posCastillo = new PosicionCuadrado(3,16,6,12);
 
-        IPosicionable plazaCentral = new PlazaCentral(10,10);
+        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
         IPosicionable castillo = Mockito.mock(IPosicionable.class);
 
         mapa.colocarPosicionable(posCastillo, castillo);
@@ -119,7 +119,7 @@ public class MapaPruebasDeSuperposicionTest {
         thrown.expect(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException.class);
         Mapa mapa = new Mapa(alto, ancho);
 
-        IPosicionable plazaCentral = new PlazaCentral(10,10);
+        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
         IPosicionable cuartel = Mockito.mock(IPosicionable.class);
 
         Posicion posPlazaCentral = new PosicionCuadrado(5,7,6,6);
@@ -133,7 +133,7 @@ public class MapaPruebasDeSuperposicionTest {
     public void testColocarPlazaCentralContiguaACuartelNoLanzaException(){
         Mapa mapa = new Mapa(alto, ancho);
 
-        IPosicionable plazaCentral = new PlazaCentral(10,10);
+        IPosicionable plazaCentral = Mockito.mock(IPosicionable.class);
         IPosicionable cuartel = Mockito.mock(IPosicionable.class);
 
         Posicion posPlazaCentral = new PosicionCuadrado(5,7,6,6);
