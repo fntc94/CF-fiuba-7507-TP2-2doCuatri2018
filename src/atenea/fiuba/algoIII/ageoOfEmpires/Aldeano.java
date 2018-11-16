@@ -1,44 +1,92 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Aldeano implements IPosicionable {
+import java.util.function.Consumer;
 
-    private int _vida = 50;
-    private int _costo = 25;
-    private IEstadoAldeano _estado = new AldeanoRecolector();
+public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
-    public Aldeano(){
-
-    }
+    private int _vidaMaxima = 50;
+    private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
+    private int _vidaActual;
+    private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
-        _estado = estado;
+        _estadoAldeano = estado;
     }
 
-    public int getVida() {
-        return _vida;
+    int getVidaActual() {
+        return _vidaActual;
     }
 
-    public int getCosto() {
-        return _costo;
+    public Aldeano(int vidaMaxima, int vidaInicial, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
+        _vidaMaxima = vidaMaxima;
+        _vidaActual = vidaInicial;
+        _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
+    }
+
+    public Aldeano(int vidaMaxima, EdificiosEnConstruccionFabrica fabricaDeEdificios){
+        this(vidaMaxima, vidaMaxima, fabricaDeEdificios);
+    }
+
+    //IRecolectorDeOro
+    @Override
+    public int recolectarOro() {
+        return _estadoAldeano.recolectarOro();
     }
 
     @Override
-    public String toString(){
-        return "Aldeano con vida=" + this._vida + " y costo=" + this._costo;
+    public boolean estaRecolectandoOro() {
+        return _estadoAldeano.estaRecolectandoOro();
+    }
+    //fin IRecolectorDeOro
+
+    //IConstructor
+    @Override
+    public boolean estaConstruyendo() {
+        return _estadoAldeano.estaConstruyendo();
     }
 
+    @Override
+    public void continuarConstruyendo() {
+        _estadoAldeano.continuarConstruyendo();
+    }
+    //fin IConstructor
 
-    public void reparar(IEdificioReparable edificioReparable){
-        _estado = new AldeanoReparador(edificioReparable, this);
-        _estado.reparar(edificioReparable);
+    //IReparador
+    @Override
+    public void iniciarReparacion(IEdificioReparable edificioReparable){
+        _estadoAldeano = new EstadoAldeanoReparador(edificioReparable, this);
+        _estadoAldeano.iniciarReparacion(edificioReparable);
     }
 
-    public void reparar(){
-        _estado.reparar();
+    @Override
+    public boolean estaReparando() {
+        return _estadoAldeano.estaReparando();
     }
 
-    public int recolectarOro() {
-        return _estado.recolectarOro();
+    @Override
+    public void continuarReparando(){
+        _estadoAldeano.continuarReparando();
+    }
+    //fin IReparador
+
+
+    public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
+        _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano.iniciarConstruccion();
     }
 
+    public void iniciarConstruccionDePlazaCentral(){
+        this.iniciarConstruccionDePlazaCentral(plazaCentral -> {});
+    }
+
+    public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
+
+        _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
+        _estadoAldeano.iniciarConstruccion();
+
+    }
+
+    public void iniciarConstruccionDeCuartel(){
+        this.iniciarConstruccionDeCuartel(cuartel -> {});
+    }
 }

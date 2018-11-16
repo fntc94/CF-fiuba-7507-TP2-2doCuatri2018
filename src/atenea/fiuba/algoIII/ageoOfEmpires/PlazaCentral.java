@@ -1,42 +1,33 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class PlazaCentral implements  IEdificioReparable, IPosicionable {
+public class PlazaCentral extends EdificioReparable implements IEdificioReparable {
 
-    private int _vidaMaxima;
-    private int _vidaActual;
-    private IReparadorDeEdificios _reparadorActivo = null;
+    private final int VELOCIDAD_DE_REPARACION = 25;
+    private UnidadesFabrica _fabricaDeUnidades;
 
     public PlazaCentral(int vidaMaxima, int vidaInicial) {
+        super(vidaMaxima, vidaInicial);
 
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaInicial;
     }
 
-    public int getVida() {
-        return _vidaActual;
-    }
-
-    private int getRecuperoDeVida() {
-        return 25;
+    public PlazaCentral(int vidaMaxima, UnidadesFabrica fabricaDeUnidades) {
+        this(vidaMaxima, vidaMaxima);
+        _fabricaDeUnidades = fabricaDeUnidades;
     }
 
     @Override
-    public void recibirReparador(IReparadorDeEdificios reparador) {
-
-        if(_reparadorActivo == null){
-            _reparadorActivo = reparador;
-        }
-
-        else if (_reparadorActivo != reparador){
-            return;
-        }
-
-        this._vidaActual += getRecuperoDeVida();
-
-        if(_vidaActual > _vidaMaxima){
-            _vidaActual = _vidaMaxima;
-            _reparadorActivo.darPorTerminadaLaReparacion();
-        }
+    protected int getVelocidadDeReparacion() {
+        return VELOCIDAD_DE_REPARACION;
     }
 
+    public int obtenerCostoAldeano(){
+
+        return _fabricaDeUnidades.obtenerCostoEnOroAldeano();
+    }
+
+    public Aldeano construirAldeano() {
+
+        return _fabricaDeUnidades.crearAldeano();
+
+    }
 }

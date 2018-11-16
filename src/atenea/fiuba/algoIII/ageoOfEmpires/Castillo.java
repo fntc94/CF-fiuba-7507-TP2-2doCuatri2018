@@ -1,41 +1,29 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Castillo implements IEdificioReparable, IPosicionable {
+public class Castillo extends EdificioReparable implements IEdificioReparable {
 
-    private int _vidaMaxima;
-    private int _vidaActual;
-    private IReparadorDeEdificios _reparadorActivo;
+    private final int VELOCIDAD_DE_REPARACION = 15;
+    private UnidadesFabrica _fabricaDeUnidades;
 
-    public Castillo(int vidaMaxima, int vidaInicial) {
-
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaInicial;
+    public Castillo(int vidaMaxima, int vidaInicial, UnidadesFabrica fabricaDeUnidades) {
+        super(vidaMaxima, vidaInicial);
+        _fabricaDeUnidades = fabricaDeUnidades;
     }
 
-    public int getVida() {
-        return _vidaActual;
-    }
-
-    private int getRecuperoDeVida() {
-        return 15;
+    public Castillo(int vidaMaxima, UnidadesFabrica fabricaDeUnidades){
+        this(vidaMaxima, vidaMaxima, fabricaDeUnidades);
     }
 
     @Override
-    public void recibirReparador(IReparadorDeEdificios reparador) {
-
-        if(_reparadorActivo == null){
-            _reparadorActivo = reparador;
-        }
-
-        else if (_reparadorActivo != reparador){
-            return;
-        }
-
-        this._vidaActual += getRecuperoDeVida();
-
-        if(_vidaActual > _vidaMaxima){
-            _vidaActual = _vidaMaxima;
-        }
+    protected int getVelocidadDeReparacion() {
+        return VELOCIDAD_DE_REPARACION;
     }
 
+    public int obtenerCostoArmaDeAsedio(){
+        return _fabricaDeUnidades.obtenerCostoArmaDeAsedio();
+    }
+
+    public ArmaDeAsedio crearArmaDeAsedio(){
+        return _fabricaDeUnidades.crearArmaDeAsedio();
+    }
 }

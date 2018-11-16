@@ -4,347 +4,225 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 public class AldeanoTest {
 
+    private Aldeano crearAldeano(){
+        return new UnidadesFabrica().crearAldeano();
+    }
+
     @Test
     public void getVida_Devuelve50(){
 
-        Aldeano aldeano = new Aldeano();
-        assertEquals(50, aldeano.getVida());
+        Aldeano aldeano = this.crearAldeano();
+        assertEquals(50, aldeano.getVidaActual());
     }
 
     @Test
-    public void getCosto_Devuelve25(){
-
-        Aldeano aldeano = new Aldeano();
-        assertEquals(25, aldeano.getCosto());
-    }
-
-    @Test
-    public void reparar_PlazaCentral_PlazaCentralRecupera25DeVida(){
+    public void estaRecolectandoOro_LuegoDeLaCreacion_DevuelveTrue(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDePlazaCentral = 450;
-        int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
-        int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
+        IRecolectorOro aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(plazaCentral);
-        int vidaFinalDePlazaCentral = plazaCentral.getVida();
+        boolean estaRecolectandoOro = aldeano.estaRecolectandoOro();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDePlazaCentralLuegoDeReparacion, vidaFinalDePlazaCentral);
+        Assert.assertEquals(true, estaRecolectandoOro);
+
     }
 
     @Test
-    public void reparar_Cuartel_CuartelRecupera50DeVida(){
+    public void estaConstruyendo_LuegoDeLaCreacion_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDeCuartel = 250;
-        int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
-        int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 140;
+        IConstructor aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(cuartel);
-        int vidaFinalDelCuartel = cuartel.getVida();
+        boolean estaConstruyendo = aldeano.estaConstruyendo();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCuartelLuegoDeReparacion, vidaFinalDelCuartel);
-
+        Assert.assertEquals(false, estaConstruyendo);
 
     }
 
     @Test
-    public void reparar_Castillo_CastilloRecupera15DeVida(){
+    public void estaReparando_LuegoDeLaCreacion_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDelCastillo = 800;
-        int vidaInicialDelCastillo = 560;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
-        int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 575;
+        IReparador aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(castillo);
-        int vidaFinalDelCastillo = castillo.getVida();
+        boolean estaReparando = aldeano.estaReparando();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCastilloLuegoDeReparacion, vidaFinalDelCastillo);
+        Assert.assertEquals(false, estaReparando);
 
     }
 
-    @Test
-    public void reparar_PlazaCentralDosVecesConElMismoAldeano_PlazaCentralRecupera50DeVida(){
+    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion.class)
+    public void continuarReparacion_CuandoEstaRecolectando_LanzaExcepcion(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDePlazaCentral = 450;
-        int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
-        int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 350;
+        IReparador aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(plazaCentral);
-        aldeano.reparar();
-        int vidaFinalDePlazaCentral = plazaCentral.getVida();
-
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDePlazaCentralLuegoDeReparacion, vidaFinalDePlazaCentral);
-
+        aldeano.continuarReparando();
     }
 
-    @Test
-    public void reparar_CuartelDosVecesConElMismoAldeano_CuartelRecupera100DeVida(){
+    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion.class)
+    public void continuarConstruyendo_CuandoEstaRecolectando_LanzaExcepcion(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDeCuartel = 250;
-        int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
-        int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 190;
+        IConstructor aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(cuartel);
-        aldeano.reparar();
-        int vidaFinalDelCuartel = cuartel.getVida();
-
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCuartelLuegoDeReparacion, vidaFinalDelCuartel);
+        aldeano.continuarConstruyendo();
     }
 
     @Test
-    public void reparar_CastilloDosVecesConElMismoAldeano_CastilloRecupera30DeVida(){
+    public void recolectarOro_LuegoDeLaCreacion_Devuelve20(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDelCastillo = 800;
-        int vidaInicialDelCastillo = 560;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
-        int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 590;
+        IRecolectorOro aldeano = this.crearAldeano();
+        int oroEsperado = 20;
 
         // Act
-        aldeano.reparar(castillo);
-        aldeano.reparar();
-        int vidaFinalDelCastillo = castillo.getVida();
+        int oroRecolectado = aldeano.recolectarOro();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCastilloLuegoDeReparacion, vidaFinalDelCastillo);
+        Assert.assertEquals(oroEsperado, oroRecolectado);
 
     }
 
     @Test
-    public void reparar_PlazaCentralUnaVez_VidaDePlazaCentralNoSuperaElMaximo(){
+    public void estaConstruyendo_LuegoDeIniciarConstruccion_DevuelveTrue(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDePlazaCentral = 450;
-        int vidaInicialDePlazaCentral = 440;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
-        int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 450;
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(plazaCentral);
-        int vidaFinalDePlazaCentral = plazaCentral.getVida();
+        aldeano.iniciarConstruccionDeCuartel();
+        boolean estaConstruyendo = aldeano.estaConstruyendo();
 
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDePlazaCentralLuegoDeReparacion, vidaFinalDePlazaCentral);
+        // Asert
+        Assert.assertEquals(true, estaConstruyendo);
     }
 
     @Test
-    public void reparar_CuartelUnaVez_VidaDeCuartelNoSuperaElMaximo(){
+    public void estaRecolectando_LuegoDeIniciarConstruccion_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDeCuartel = 250;
-        int vidaInicialDeCuartel = 230;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
-        int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 250;
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(cuartel);
-        int vidaFinalDelCuartel = cuartel.getVida();
+        aldeano.iniciarConstruccionDeCuartel();
+        boolean estaRecolectando = aldeano.estaRecolectandoOro();
 
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCuartelLuegoDeReparacion, vidaFinalDelCuartel);
+        // Asert
+        Assert.assertEquals(false, estaRecolectando);
     }
 
     @Test
-    public void reparar_CastilloUnaVez_VidaDeCastilloNoSuperaElMaximo(){
+    public void estaReparando_LuegoDeIniciarConstruccion_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDelCastillo = 800;
-        int vidaInicialDelCastillo = 795;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
-        int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 800;
+        Aldeano aldeano = this.crearAldeano();
 
         // Act
-        aldeano.reparar(castillo);
-        int vidaFinalDelCastillo = castillo.getVida();
+        aldeano.iniciarConstruccionDeCuartel();
+        boolean estaReparando = aldeano.estaReparando();
 
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCastilloLuegoDeReparacion, vidaFinalDelCastillo);
-
+        // Asert
+        Assert.assertEquals(false, estaReparando);
     }
 
+
     @Test
-    public void reparar_PlazaCentralConMaximoDeVida_VidaDePlazaCentralNoSuperaElMaximo(){
+    public void estaReparando_LuegoDeIniciarReparacion_DevuelveTrue(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDePlazaCentral = 450;
-        int vidaInicialDePlazaCentral = 450;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
-        int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 450;
+        Aldeano aldeano = this.crearAldeano();
+        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
 
         // Act
-        aldeano.reparar(plazaCentral);
-        int vidaFinalDePlazaCentral = plazaCentral.getVida();
+        aldeano.iniciarReparacion(edificioReparable);
+        boolean estaReparando = aldeano.estaReparando();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDePlazaCentralLuegoDeReparacion, vidaFinalDePlazaCentral);
+        Assert.assertEquals(true, estaReparando);
+
     }
 
     @Test
-    public void reparar_CuartelConMaximoDeVida_VidaDeCuartelNoSuperaElMaximo(){
+    public void estaRecolectando_LuegoDeIniciarReparacion_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDeCuartel = 250;
-        int vidaInicialDeCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
-        int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 250;
+        Aldeano aldeano = this.crearAldeano();
+        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
 
         // Act
-        aldeano.reparar(cuartel);
-        int vidaFinalDelCuartel = cuartel.getVida();
+        aldeano.iniciarReparacion(edificioReparable);
+        boolean estaRecolectandoOro = aldeano.estaRecolectandoOro();
 
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCuartelLuegoDeReparacion, vidaFinalDelCuartel);
+        // Asert
+        Assert.assertEquals(false, estaRecolectandoOro);
     }
 
     @Test
-    public void reparar_CastilloConMaximoDeVida_VidaDeCastilloNoSuperaElMaximo(){
+    public void estaConstruyendo_LuegoDeIniciarReparacion_DevuelveFalse(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
-
-        int vidaMaximaDelCastillo = 800;
-        int vidaInicialDelCastillo = 800;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
-        int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 800;
+        Aldeano aldeano = this.crearAldeano();
+        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
 
         // Act
-        aldeano.reparar(castillo);
-        int vidaFinalDelCastillo = castillo.getVida();
+        aldeano.iniciarReparacion(edificioReparable);
+        boolean estaConstruyendo = aldeano.estaConstruyendo();
 
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCastilloLuegoDeReparacion, vidaFinalDelCastillo);
-
+        // Asert
+        Assert.assertEquals(false, estaConstruyendo);
     }
 
     @Test
-    public void reparar_PlazaCentralConDosAldeanosDistintos_PlazaCentralRecuperaSolo25DeVida(){
+    public void recolectarOro_CuandoEstaConstruyendo_DevuelveCero(){
 
         // Arrange
-        Aldeano aldeano1 = new Aldeano();
-        Aldeano aldeano2 = new Aldeano();
-
-        int vidaMaximaDePlazaCentral = 450;
-        int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
-
-        int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
+        Aldeano aldeano = this.crearAldeano();
+        int oroEsperado = 0;
 
         // Act
-        aldeano1.reparar(plazaCentral);
-        aldeano2.reparar(plazaCentral);
-        int vidaFinalDePlazaCentral = plazaCentral.getVida();
+        aldeano.iniciarConstruccionDePlazaCentral();
+        int oroRecolectado = aldeano.recolectarOro();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDePlazaCentralLuegoDeReparacion, vidaFinalDePlazaCentral);
+        Assert.assertEquals(oroEsperado, oroRecolectado);
     }
 
     @Test
-    public void reparar_CuartelConDosAldeanosDistintos_CuartelRecuperaSolo50DeVida(){
+    public void recolectarOro_CuandoEstaReparando_DevuelveCero(){
 
         // Arrange
-        Aldeano aldeano1 = new Aldeano();
-        Aldeano aldeano2 = new Aldeano();
-
-        int vidaMaximaDeCuartel = 250;
-        int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
-        int vidaFinalEsperadaDelCuartelLuegoDeReparacion = 140;
+        Aldeano aldeano = this.crearAldeano();
+        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
+        int oroEsperado = 0;
 
         // Act
-        aldeano1.reparar(cuartel);
-        aldeano2.reparar(cuartel);
-        int vidaFinalDelCuartel = cuartel.getVida();
+        aldeano.iniciarReparacion(edificioReparable);
+        int oroRecolectado = aldeano.recolectarOro();
 
         // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCuartelLuegoDeReparacion, vidaFinalDelCuartel);
-
-    }
-
-    @Test
-    public void reparar_CastilloConDosAldeanosDistintos_CastilloRecuperaSolo15DeVida(){
-
-        // Arrange
-        Aldeano aldeano1 = new Aldeano();
-        Aldeano aldeano2 = new Aldeano();
-
-        int vidaMaximaDelCastillo = 800;
-        int vidaInicialDelCastillo = 560;
-        Castillo castillo = new Castillo(vidaMaximaDelCastillo, vidaInicialDelCastillo);
-        int vidaFinalEsperadaDelCastilloLuegoDeReparacion = 575;
-
-        // Act
-        aldeano1.reparar(castillo);
-        aldeano2.reparar(castillo);
-        int vidaFinalDelCastillo = castillo.getVida();
-
-        // Assert
-        Assert.assertEquals(vidaFinalEsperadaDelCastilloLuegoDeReparacion, vidaFinalDelCastillo);
-
-    }
-
-    @Test
-    public void reparar_SinHaberReparadoPreviamentePasandoElEdificio_NoLanzaError(){
-
-        Aldeano reparador = new Aldeano();
-
-        int vidaMaximaDeCuartel = 450;
-        int vidaInicialDeCuartel = 300;
-        IEdificioReparable cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
-
-        reparador.reparar();
-        Assert.assertTrue(true);
+        Assert.assertEquals(oroEsperado, oroRecolectado);
     }
 
     @Test
     public void reparar_PlazaCentralYLuegoCuartel_ReparaSoloUnaVezALaPlazaCentral(){
 
         // Arrange
-
-        Aldeano reparador = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -353,11 +231,12 @@ public class AldeanoTest {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel, Mockito.mock(UnidadesFabrica.class));
 
         // Act
-        reparador.reparar(plazaCentral);
-        reparador.reparar(cuartel);
+        aldeano.iniciarReparacion(plazaCentral);
+        aldeano.iniciarReparacion(cuartel);
         int vidaFinalDePlazaCentral = plazaCentral.getVida();
 
         // Assert
@@ -369,7 +248,7 @@ public class AldeanoTest {
     public void reparar_PlazaCentralYLuegoCuartel_ReparaSoloUnaVezAlCuartel(){
 
         // Arrange
-        Aldeano reparador = new Aldeano();
+        Aldeano reparador = this.crearAldeano();
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
@@ -377,60 +256,23 @@ public class AldeanoTest {
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
-        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel);
+        Cuartel cuartel = new Cuartel(vidaMaximaDeCuartel, vidaInicialDeCuartel, Mockito.mock(UnidadesFabrica.class));
         int vidaFinalEsperadaDeCuartelLuegoDeReparacion = 140;
 
         // Act
-        reparador.reparar(plazaCentral);
-        reparador.reparar(cuartel);
+        reparador.iniciarReparacion(plazaCentral);
+        reparador.iniciarReparacion(cuartel);
         int vidaFinalDeCuartel = cuartel.getVida();
 
         // Assert
         Assert.assertEquals(vidaFinalEsperadaDeCuartelLuegoDeReparacion, vidaFinalDeCuartel);
-
-    }
-
-    @Test
-    public void recolectarOro_CuandoNoEstaConstruyendoNiReparando_Devuelve20(){
-
-        // Arrange
-        Aldeano aldeano = new Aldeano();
-        int oroEsperado = 20;
-
-        // Act
-        int oroRecolectado = aldeano.recolectarOro();
-
-        // Assert
-        Assert.assertEquals(oroEsperado, oroRecolectado);
-
-    }
-
-    @Test
-    public void recolectarOro_CuandoEstaReparando_DevuelveCero(){
-
-        // Arrange
-        Aldeano aldeano = new Aldeano();
-        int oroEsperado = 0;
-
-        int vidaMaximaDePlazaCentral = 450;
-        int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
-
-
-        // Act
-        aldeano.reparar(plazaCentral);
-        int oroRecolectado = aldeano.recolectarOro();
-
-
-        // Assert
-        Assert.assertEquals(oroEsperado, oroRecolectado);
     }
 
     @Test
     public void recolectarOro_LuegoDeTerminarDeReparar_Devuelve20(){
 
         // Arrange
-        Aldeano aldeano = new Aldeano();
+        Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 20;
 
         int vidaMaximaDePlazaCentral = 450;
@@ -438,13 +280,129 @@ public class AldeanoTest {
         PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
 
         // Act
-        aldeano.reparar(plazaCentral);
-        aldeano.reparar();
-        aldeano.reparar();
+        aldeano.iniciarReparacion(plazaCentral);
+        aldeano.continuarReparando();
+        aldeano.continuarReparando();
 
         int oroRecolectado = aldeano.recolectarOro();
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
+
+    @Test
+    public void estaConstruyendo_LuegoDeContinuarConstruyendoUnaVezUnCuartel_DevuelveTrue(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel();
+        aldeano.continuarConstruyendo();
+        boolean estaConstruyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertEquals(true, estaConstruyendo);
+
+    }
+
+    @Test
+    public void estaConstruyendo_LuegoDeContinuarConstruyendoDosVecesUnCuartel_DevuelveFalse(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel();
+        aldeano.continuarConstruyendo();
+        aldeano.continuarConstruyendo();
+        Boolean esta_construyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertFalse(esta_construyendo);
+
+    }
+
+    @Test
+    public void estaConstruyendo_CuandoEstaRecolectando_DevuelveFalse(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        // Act
+        Boolean esta_construyendo = aldeano.estaConstruyendo();
+
+        // Assert
+        Assert.assertFalse(esta_construyendo);
+
+    }
+
+
+    @Test
+    public void inicicarConstruccionDeCuartel_AlTerminarLaConstruccion_SeEjecutaLaAccion(){
+
+        // Arragnge
+        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
+        Aldeano aldeano = this.crearAldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
+        aldeano.continuarConstruyendo();
+        aldeano.continuarConstruyendo();
+
+        // Assert
+        Assert.assertFalse(cuarteles.isEmpty());
+    }
+
+    @Test
+    public void inicicarConstruccionDeCuartel_AntesDeTerminarLaConstruccion_NoSeEjecutaLaAccion(){
+
+        // Arragnge
+        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
+        Aldeano aldeano = this.crearAldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
+        aldeano.continuarConstruyendo();
+
+        // Assert
+        Assert.assertTrue(cuarteles.isEmpty());
+    }
+
+    @Test
+    public void recolectarOro_LuegoDeTerminarDeConstruir_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        aldeano.iniciarConstruccionDeCuartel();
+        aldeano.continuarConstruyendo();
+        aldeano.continuarConstruyendo();
+
+        int oroEsperado = 20;
+
+        // Act
+        int oroRecolectado = aldeano.recolectarOro();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+
+    }
+
+    @Test
+    public void recolectarOro_LuegoDeComenzarAConstruir_Devuelve0(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+        aldeano.iniciarConstruccionDeCuartel();
+
+        int oroEsperado = 0;
+
+        // Act
+        int oroRecolectado = aldeano.recolectarOro();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+
     }
 }

@@ -1,19 +1,11 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Espadachin implements IPosicionable {
+public class Espadachin {
 
-    private int vida = 100;
-    private int costo = 50;
+    private final int _vidaMaxima;
 
-    public Espadachin(){
+    public Espadachin(int vidaMaxima){
+        _vidaMaxima = vidaMaxima;
     }
 
-    public int getVida(){
-        return vida;
-
-    }
-
-    public int getCosto() {
-        return costo;
-    }
 }
