@@ -1,16 +1,33 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class ArmaDeAsedio implements IPosicionable {
+public class ArmaDeAsedio {
 
-    private int vida = 150;
-    private int costo = 200;
+    private int _vidaMaxima;
+    private IEstadoArmaDeAsedio _estado = new EstadoArmaDeAsedioDesmontada();
 
-    public int getVida(){
-        return vida;
+
+    public ArmaDeAsedio(int vidaMaxima){
+
+        _vidaMaxima = vidaMaxima;
     }
 
-    public int getCosto(){
-        return costo;
+    public boolean estaMontada() {
+        return _estado.estaMontada();
     }
-    
+
+    public void montar() {
+      _estado = new EstadoArmaDeAsedioMontada();
+    }
+
+    public void desmontar() {
+       _estado = new EstadoArmaDeAsedioDesmontada();
+    }
+
+    public void atacar() {
+        _estado.atacar();
+    }
+
+    public void mover() {
+        _estado.mover();
+    }
 }

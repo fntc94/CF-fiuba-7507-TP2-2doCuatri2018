@@ -1,40 +1,37 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Cuartel implements  IEdificioReparable, IPosicionable {
+public class Cuartel extends EdificioReparable implements IEdificioReparable {
 
-    private int _vidaMaxima;
-    private int _vidaActual;
-    private IReparadorDeEdificios _reparadorActivo;
+    private final int VELOCIDAD_DE_REPARACION = 50;
+    private UnidadesFabrica _fabricaDeUnidades;
 
-    public Cuartel(int vidaMaxima, int vidaInicial) {
-
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaInicial;
+    public Cuartel(int vidaMaxima, int vidaInicial, UnidadesFabrica fabricaDeUnidades) {
+        super(vidaMaxima, vidaInicial);
+        _fabricaDeUnidades = fabricaDeUnidades;
     }
 
-    public int getVida() {
-        return _vidaActual;
-    }
-
-    private int getRecuperoDeVida() {
-        return 50;
+    public Cuartel(int vidaMaxima, UnidadesFabrica fabricaDeUnidades){
+        this(vidaMaxima, vidaMaxima, fabricaDeUnidades);
     }
 
     @Override
-    public void recibirReparador(IReparadorDeEdificios reparador) {
+    protected int getVelocidadDeReparacion() {
+        return VELOCIDAD_DE_REPARACION;
+    }
 
-        if(_reparadorActivo == null){
-            _reparadorActivo = reparador;
-        }
+    public int obtenerCostoArquero(){
+        return _fabricaDeUnidades.obtenerCostoEnOroArquero();
+    }
 
-        else if (_reparadorActivo != reparador){
-            return;
-        }
+    public Arquero crearArquero(){
+        return _fabricaDeUnidades.crearArquero();
+    }
 
-        this._vidaActual += getRecuperoDeVida();
+    public int obtenerCostoEspadachin(){
+        return _fabricaDeUnidades.obtenerCostoEspadachin();
+    }
 
-        if(_vidaActual > _vidaMaxima){
-            _vidaActual = _vidaMaxima;
-        }
+    public Espadachin crearEspadachin(){
+        return _fabricaDeUnidades.crearEspadachin();
     }
 }
