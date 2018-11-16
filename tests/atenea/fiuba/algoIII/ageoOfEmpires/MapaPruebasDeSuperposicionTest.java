@@ -4,7 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-public class MapaPruebasDeSuperposicion {
+public class MapaPruebasDeSuperposicionTest {
 
     public int alto = 20;
     public int ancho = 30;

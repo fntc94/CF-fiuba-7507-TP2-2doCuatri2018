@@ -48,7 +48,7 @@ public class Mapa {
     }
 
     private boolean estaDentroDelMapa(Posicion posicion) {
-        for(Casillero casillero : posicion.getPosicionesOcupadas())
+        for(Casillero casillero : posicion.getCasillerosOcupados())
             if(!estaDentro(casillero))
                 return false;
 
@@ -57,8 +57,11 @@ public class Mapa {
 
     private boolean estaDentro(Casillero casillero){
 
-        boolean esValidoEnX = (casillero.getEjeX() <= this.ancho) && (casillero.getEjeX() > 0);
-        boolean esValidoEnY = (casillero.getEjeY() <= this.alto) && (casillero.getEjeY() > 0);
+        int x = casillero.getCoordenadaEnX();
+        int y = casillero.getCoordendadaEnY();
+
+        boolean esValidoEnX = (x <= this.ancho) && (x > 0);
+        boolean esValidoEnY = (y <= this.alto) && (y > 0);
 
         return (esValidoEnX && esValidoEnY);
     }

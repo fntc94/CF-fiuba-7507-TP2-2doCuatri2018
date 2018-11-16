@@ -1,20 +1,20 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class Casillero {
-    private int ejeX;
-    private int ejeY;
+    private int coordenadaEnX;
+    private int coordenadaEnY;
 
     public Casillero(int x, int y) {
-        this.ejeX = x;
-        this.ejeY = y;
+        this.coordenadaEnX = x;
+        this.coordenadaEnY = y;
     }
 
-    public int getEjeX() {
-        return this.ejeX;
+    public int getCoordenadaEnX() {
+        return this.coordenadaEnX;
     }
 
-    public int getEjeY(){
-        return this.ejeY;
+    public int getCoordendadaEnY(){
+        return this.coordenadaEnY;
     }
 
     @Override
@@ -31,6 +31,9 @@ public class Casillero {
 
         Casillero other = (Casillero) obj;
 
-        return (this.ejeX == other.getEjeX() && this.ejeY == other.getEjeY());
+        int x = other.getCoordenadaEnX();
+        int y = other.getCoordendadaEnY();
+
+        return (this.coordenadaEnX == x && this.coordenadaEnY == y);
     }
 }

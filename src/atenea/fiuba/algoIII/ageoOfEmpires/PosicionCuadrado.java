@@ -7,6 +7,6 @@ public class PosicionCuadrado extends Posicion {
 
         for(int j = yInicial; j >= yFinal; j--)
             for(int i = xInicial; i <= xFinal; i++)
-                this.posicionesOcupadas.add(new Casillero(i, j));
+                this.casillerosOcupados.add(new Casillero(i, j));
     }
 }
