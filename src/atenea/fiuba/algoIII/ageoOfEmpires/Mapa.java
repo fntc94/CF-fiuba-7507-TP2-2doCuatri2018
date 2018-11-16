@@ -32,7 +32,9 @@ public class Mapa {
         return this._posicionables.isEmpty();
     }
 
-    public void colocarPosicionable(Posicion posicion, IPosicionable posicionable) {
+    public void posicionar(IPosicionable posicionable) {
+
+        Posicion posicion = posicionable.getPosicion();
 
         if(!posicionEstaDentroDelMapa(posicion)){
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();

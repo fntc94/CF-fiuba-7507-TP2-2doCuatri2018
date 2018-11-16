@@ -1,5 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -16,140 +17,172 @@ public class MapaPruebasDeColocacionTest {
         return new Mapa(alto, ancho);
     }
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    private IPosicionable mockPosicionable(Posicion posicion){
+        IPosicionable posicionable = Mockito.mock(IPosicionable.class);
+        Mockito.when(posicionable.getPosicion()).thenReturn(posicion);
+        return posicionable;
+    }
 
     @Test
-    public void testMapaSeCreaVacioSinIPosicionables() {
-        Mapa mapa = new Mapa(alto, ancho);
+    public void estaVacio_LuegoDeLaCreacion_DevuelveTrue() {
 
+        // Arrange
+        Mapa mapa = this.crearMapa();
+
+        // Act
         boolean estaVacio = mapa.estaVacio();
 
+        // Assert
         assertEquals(true, estaVacio);
     }
 
     @Test
-    public void testColocarUnidadDentroDelMapaNoLanzaException(){
+    public void estaVacio_LuegoDeAgregarUnaUnidad_DevuelveFalse(){
 
-        Mapa mapa = new Mapa(alto,ancho);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
         Posicion posicion = new PosicionDeUnCasillero(5,5);
-        IPosicionable unidad = Mockito.mock(IPosicionable.class);
+        IPosicionable unidad = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, unidad);
+        // Act
+        mapa.posicionar(unidad);
+
+        // Assert
+        Assert.assertEquals(false, mapa.estaVacio());
     }
 
-    @Test
-    public void testColocarUnidadFueraDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_UnidadFueraDelMapa_LanzaException(){
 
-        Mapa mapa = new Mapa(alto,ancho);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
         Posicion posicion = new PosicionDeUnCasillero(90,95);
-        IPosicionable posicionable = Mockito.mock(IPosicionable.class);
+        IPosicionable posicionable = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, posicionable);
+        // Act
+        mapa.posicionar(posicionable);
     }
 
     @Test
-    public void testColocarUnidadEnElBordeInternoDelMapaNoLanzaException(){
-        Mapa mapa = new Mapa(alto,ancho);
+    public void posicionar_UnidadEnElBordeInternoDelMapa_NoLanzaException(){
 
-        Posicion posicion = new PosicionDeUnCasillero(30,20); // Esquina superior derecha
-        IPosicionable posicionable = Mockito.mock(IPosicionable.class);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        mapa.colocarPosicionable(posicion, posicionable);
+        // Esquina superior derecha
+        Posicion posicion = new PosicionDeUnCasillero(ancho, alto);
+        IPosicionable posicionable = this.mockPosicionable(posicion);
+
+        // Act
+        mapa.posicionar(posicionable);
+    }
+
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_UnidadEnElBordeExternoDelMapa_LanzaException(){
+
+        // Arrange
+        Mapa mapa = this.crearMapa();
+
+        // Esquina superior derecha
+        Posicion posicion = new PosicionDeUnCasillero(31,20);
+        IPosicionable unidad = this.mockPosicionable(posicion);
+
+        // Act
+        mapa.posicionar(unidad);
     }
 
     @Test
-    public void testColocarUnidadEnElBordeExternoDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
-        Mapa mapa = new Mapa(alto,ancho);
+    public void posicionar_EdificioDentroDelMapa_NoLanzaException(){
 
-        Posicion posicion = new PosicionDeUnCasillero(31,20); // Esquina superior derecha
-        IPosicionable unidad = Mockito.mock(IPosicionable.class);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        mapa.colocarPosicionable(posicion, unidad);
-    }
-
-    @Test
-    public void testColocarEdificioDentroDelMapaNoLanzaException(){
-        Mapa mapa = new Mapa(alto,ancho);
-
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
         Posicion posicion = new PosicionCuadrado(10,20,11,19);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, edificio);
+        // Act
+        mapa.posicionar(edificio);
     }
 
-    @Test
-    public void testColocarEdificioFueraDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_EdificioFueraDelMapa_LanzaException(){
 
-        Mapa mapa = new Mapa(alto,ancho);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
         Posicion posicion = new PosicionCuadrado(35,50,36,49);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, edificio);
+        // Act
+        mapa.posicionar(edificio);
     }
 
     @Test
-    public void testColocarEdificioEnElBordeInternoDelMapaNoLanzaException(){
-        Mapa mapa = new Mapa(alto,ancho);
+    public void posicionar_EdificioEnElBordeInternoDelMapa_NoLanzaException(){
 
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
+        // Arrange
+        Mapa mapa = this.crearMapa();
+
         Posicion posicion = new PosicionCuadrado(29,20,30,19);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, edificio);
+        // Act
+        mapa.posicionar(edificio);
     }
 
-    @Test
-    public void testColocarEdificioEnElBordeExternoDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
-        Mapa mapa = new Mapa(alto,ancho);
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_EdificioEnElBordeExternoDelMapa_LanzaException(){
 
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
+        // Arrange
+        Mapa mapa = this.crearMapa();
+
         Posicion posicion = new PosicionCuadrado(31,20,32,19);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, edificio);
+        // Act
+        mapa.posicionar(edificio);
     }
 
-    @Test
-    public void testColocarEdificioDejando2CasillerosFueraDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_EdificioDejando2CasillerosFueraDelMapa_LanzaException(){
 
-        Mapa mapa = new Mapa(alto,ancho);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
         Posicion posicion = new PosicionCuadrado(30,10,31,9);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, edificio);
+        // Act
+        mapa.posicionar(edificio);
     }
 
 
-    @Test
-    public void testColocarEdificioDejandoUnaFilaFueraDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_EdificioDejandoUnaFilaFueraDelMapa_LanzaException(){
 
-        Mapa mapa = new Mapa(alto,ancho);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable castillo = Mockito.mock(IPosicionable.class);
         Posicion posicion = new PosicionCuadrado(28,10,31,7);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, castillo);
+        // Act
+        mapa.posicionar(edificio);
     }
 
-    @Test
-    public void testColocarEdificioDejandoDosFilasFueraDelMapaLanzaException(){
-        thrown.expect(NoPuedeColocarPosicionablesFueraDelMapaException.class);
+    @Test(expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
+    public void posicionar_EdificioDejandoDosFilasFueraDelMapa_LanzaException(){
 
-        Mapa mapa = new Mapa(alto,ancho);
+        // Arrange
+        Mapa mapa = this.crearMapa();
 
-        IPosicionable edificio = Mockito.mock(IPosicionable.class);
         Posicion posicion = new PosicionCuadrado(29,10,32,7);
+        IPosicionable edificio = this.mockPosicionable(posicion);
 
-        mapa.colocarPosicionable(posicion, edificio);
+        // Act
+        mapa.posicionar(edificio);
     }
 
 }
