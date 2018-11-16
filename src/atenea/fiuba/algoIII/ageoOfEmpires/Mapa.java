@@ -5,63 +5,82 @@ import java.util.Map;
 
 public class Mapa {
 
-    private static final int alto_max = 50;
-    private static final int ancho_max = 100;
-    private static final int alto_min = 20;
-    private static final int ancho_min = 30;
+    private static final int ANCHO_MIN = 30;
+    private static final int ANCHO_MAX = 100;
+    private static final int ALTO_MIN = 20;
+    private static final int ALTO_MAX = 50;
 
-    private int alto;
-    private int ancho;
+    private int _alto;
+    private int _ancho;
 
-    private Map<Posicion, IPosicionable> listaPosicionables;
+    private Map<Posicion, IPosicionable> _posicionables = new HashMap<>();
 
     public Mapa(int alto, int ancho) {
-        if((alto < alto_min) || (alto >  alto_max) || (ancho < ancho_min) || (ancho > ancho_max))
-            throw new DimensionDelMapaInvalidaException("Ancho debe estar entre 30 y 100. Alto entre 20 y 50");
 
-        this.alto = alto;
-        this.ancho = ancho;
+        if(!sonDimensionesValidas(alto, ancho)){
 
-        this.listaPosicionables = new HashMap<>();
+            String mensaje = String.format("Ancho debe estar entre %d y %d. Alto entre %d y %d", ANCHO_MIN, ANCHO_MAX, ALTO_MIN, ALTO_MAX);
+            throw new DimensionDelMapaInvalidaException(mensaje);
+        }
+
+        this._alto = alto;
+        this._ancho = ancho;
+
     }
 
     public boolean estaVacio() {
-        return this.listaPosicionables.isEmpty();
+        return this._posicionables.isEmpty();
     }
 
     public void colocarPosicionable(Posicion posicion, IPosicionable posicionable) {
-        if(!estaDentroDelMapa(posicion))
+
+        if(!posicionEstaDentroDelMapa(posicion)){
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
+        }
 
-        if(!posicionLibre(posicion))
+        if(!posicionEstaLibre(posicion)){
             throw new NoPuedeColocar2IPosicionablesEnLaMismaPosicionException();
+        }
 
-        this.listaPosicionables.put(posicion, posicionable);
+        this._posicionables.put(posicion, posicionable);
     }
 
-    private boolean posicionLibre(Posicion posicion) {
-        for(Posicion otraPosicion : this.listaPosicionables.keySet())
-            if(posicion.seSuperponeCon(otraPosicion))
+    private boolean sonDimensionesValidas(int alto, int ancho){
+        return ((alto >= ALTO_MIN) && (alto <= ALTO_MAX) && (ancho >= ANCHO_MIN) && (ancho <= ANCHO_MAX));
+    }
+
+    private boolean posicionEstaDentroDelMapa(Posicion posicion) {
+
+        for(Casillero casillero : posicion.getCasillerosOcupados()){
+
+            if(!estaDentroDelMapa(casillero)){
                 return false;
+            }
+        }
+
 
         return true;
     }
 
-    private boolean estaDentroDelMapa(Posicion posicion) {
-        for(Casillero casillero : posicion.getCasillerosOcupados())
-            if(!estaDentro(casillero))
+    private boolean posicionEstaLibre(Posicion posicion) {
+
+        for(Posicion otraPosicion : this._posicionables.keySet()){
+
+            if(posicion.seSuperponeCon(otraPosicion)){
                 return false;
+            }
+        }
 
         return true;
     }
 
-    private boolean estaDentro(Casillero casillero){
+    private boolean estaDentroDelMapa(Casillero casillero){
 
         int x = casillero.getCoordenadaEnX();
         int y = casillero.getCoordendadaEnY();
 
-        boolean esValidoEnX = (x <= this.ancho) && (x > 0);
-        boolean esValidoEnY = (y <= this.alto) && (y > 0);
+        boolean esValidoEnX = (x <= this._ancho) && (x > 0);
+        boolean esValidoEnY = (y <= this._alto) && (y > 0);
 
         return (esValidoEnX && esValidoEnY);
     }
