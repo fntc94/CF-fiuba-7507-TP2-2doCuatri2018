@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Posicion {
-    protected List<Casillero> casillerosOcupados;
+    protected List<Casillero> listaCasilleros;
 
     public Posicion(){
-        this.casillerosOcupados = new ArrayList<>();
+        this.listaCasilleros = new ArrayList<>();
     }
 
-    public List<Casillero> getCasillerosOcupados(){
-        return this.casillerosOcupados;
+    public List<Casillero> getListaCasilleros(){
+        return this.listaCasilleros;
     }
 
     public boolean seSuperponeCon(Posicion otraPosicion){
-        List<Casillero> lista1 = this.getCasillerosOcupados();
-        List<Casillero> lista2 = otraPosicion.getCasillerosOcupados();
+        List<Casillero> lista1 = this.getListaCasilleros();
+        List<Casillero> lista2 = otraPosicion.getListaCasilleros();
 
         for(Casillero unCasillero : lista1){
             for(Casillero otroCasillero : lista2){
@@ -30,7 +30,7 @@ public abstract class Posicion {
     // Verifica si los todos casilleros de la posicion
     // estan dentro de un area definida por un alto y ancho
     public boolean estaDentroDe(int alto, int ancho){
-        for(Casillero casillero : this.casillerosOcupados){
+        for(Casillero casillero : this.listaCasilleros){
             if(!estaDentroDelRango(alto,ancho, casillero))
                 return false;
         }
