@@ -5,8 +5,8 @@ public class EdificiosFabrica {
     private UnidadesFabrica _fabricaDeUnidades = new UnidadesFabrica();
 
     private final int VIDA_PLAZA_CENTRAL = 450;
-    private final int VIDA_CUARTEL = 450;
-    private final int VIDA_CASTILLO = 450;
+    private final int VIDA_CUARTEL = 250;
+    private final int VIDA_CASTILLO = 1000;
 
 
     public PlazaCentral crearPlazaCentral(){
