@@ -1,0 +1,24 @@
+package atenea.fiuba.algoIII.ageoOfEmpires;
+
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertEquals;
+
+public class PosicionTest {
+
+    @Test
+    public void testDevuelveTrueSiPosicionEstaDentroDeUnAreaDefinidaPorAltoAncho(){
+        Posicion pos = new PosicionDeUnCasillero(5,5);
+        boolean estaDentro = pos.estaDentroDe(10,10);
+
+        assertEquals(true, estaDentro);
+    }
+
+    @Test
+    public void testDevuelveFalseSiPosicionEstaFueraDeUnAreaDefinidaPorAltoAncho(){
+        Posicion pos = new PosicionDeUnCasillero(20,20);
+        boolean estaDentro = pos.estaDentroDe(10,10);
+
+        assertEquals(false, estaDentro);
+    }
+}

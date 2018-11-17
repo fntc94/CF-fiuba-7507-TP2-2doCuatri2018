@@ -36,7 +36,7 @@ public class Mapa {
 
         Posicion posicion = posicionable.getPosicion();
 
-        if(!posicionEstaDentroDelMapa(posicion)){
+        if(!posicion.estaDentroDe(this._alto,this._ancho)){
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
         }
 
@@ -51,19 +51,6 @@ public class Mapa {
         return ((alto >= ALTO_MIN) && (alto <= ALTO_MAX) && (ancho >= ANCHO_MIN) && (ancho <= ANCHO_MAX));
     }
 
-    private boolean posicionEstaDentroDelMapa(Posicion posicion) {
-
-        for(Casillero casillero : posicion.getCasillerosOcupados()){
-
-            if(!estaDentroDelMapa(casillero)){
-                return false;
-            }
-        }
-
-
-        return true;
-    }
-
     private boolean posicionEstaLibre(Posicion posicion) {
 
         for(Posicion otraPosicion : this._posicionables.keySet()){
@@ -75,16 +62,4 @@ public class Mapa {
 
         return true;
     }
-
-    private boolean estaDentroDelMapa(Casillero casillero){
-
-        int x = casillero.getCoordenadaEnX();
-        int y = casillero.getCoordenadaEnY();
-
-        boolean esValidoEnX = (x <= this._ancho) && (x > 0);
-        boolean esValidoEnY = (y <= this._alto) && (y > 0);
-
-        return (esValidoEnX && esValidoEnY);
-    }
-
 }

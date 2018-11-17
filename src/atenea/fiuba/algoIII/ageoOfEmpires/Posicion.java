@@ -27,4 +27,23 @@ public abstract class Posicion {
         return false;
     }
 
+    // Verifica si los todos casilleros de la posicion
+    // estan dentro de un area definida por un alto y ancho
+    public boolean estaDentroDe(int alto, int ancho){
+        for(Casillero casillero : this.casillerosOcupados){
+            if(!estaDentroDelRango(alto,ancho, casillero))
+                return false;
+        }
+        return true;
+    }
+
+    private boolean estaDentroDelRango(int alto, int ancho, Casillero casillero) {
+        int x = casillero.getCoordenadaEnX();
+        int y = casillero.getCoordenadaEnY();
+
+        boolean esValidoEnX = (x <= ancho) && (x > 0);
+        boolean esValidoEnY = (y <= alto) && (y > 0);
+
+        return (esValidoEnX && esValidoEnY);
+    }
 }
