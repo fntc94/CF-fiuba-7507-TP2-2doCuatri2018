@@ -8,70 +8,21 @@ import static org.junit.Assert.assertEquals;
 public class JugadorTest {
 
     @Test
-   public void crearJugadorConPlazaCentral(){
+    public void creaUnJugadorConRecursosBasicosTest(){
         Jugador jugador = new Jugador();
-        jugador.inicializarPlazaCentral();
-        Assert.assertFalse(jugador.tienePlazaCentral());
-   }
-
-    @Test
-    public void crearJugadorContruyePlazaCentralPeroNoEstaTerminado(){
-        Jugador jugador = new Jugador();
-        jugador.inicializarCuartel();
-        Assert.assertFalse( jugador.tieneCuartel());
-    }
-
-    @Test
-    public void crearJugadorAvanzaEnLaConstruccionDeLaPlazaCentralNoEstaTerminado(){
-        Jugador jugador = new Jugador();
-        jugador.inicializarCuartel();
-        Assert.assertFalse(jugador.tieneCuartel());
-    }
-
-    @Test
-    public void crearJugadorAvanzaMuchoEnLaConstruccionDeLaPlazaCentralEstaTerminado(){
-        Jugador jugador = new Jugador();
-        jugador.inicializarPlazaCentral();
-        jugador.avanzarConstruccion();
-        jugador.avanzarConstruccion();
-        jugador.avanzarConstruccion();
+        Assert.assertTrue(jugador.tieneAldeanos(3));
         Assert.assertTrue(jugador.tienePlazaCentral());
+        Assert.assertTrue(jugador.tieneOro(90));
     }
 
     @Test
-    public void crearJugadorContruyeCuartelPeroNoEstaTerminado(){
+    public void creaJugadorOrdenaAUnAldeanoARecolectarOroTestYOroAumentaEn20(){
         Jugador jugador = new Jugador();
-        jugador.inicializarCuartel();
-        Assert.assertFalse( jugador.tieneCuartel());
+        Assert.assertFalse(jugador.tieneOro(120));
+        jugador.ordenarRecolectarOro();
+        Assert.assertTrue(jugador.tieneOro(120));
+
     }
 
-    @Test
-    public void crearJugadorAvanzaEnLaConstruccionDelCuartelNoEstaTerminado(){
-        Jugador jugador = new Jugador();
-        jugador.inicializarCuartel();
-        Assert.assertFalse(jugador.tieneCuartel());
-    }
-
-    @Test
-    public void crearJugadorAvanzaMuchoEnLaConstruccionDelCuartelEstaTerminado(){
-        Jugador jugador = new Jugador();
-        jugador.inicializarCuartel();
-        jugador.avanzarConstruccion();
-        jugador.avanzarConstruccion();
-        jugador.avanzarConstruccion();
-        Assert.assertTrue(jugador.tieneCuartel());
-    }
-
-    @Test
-    public void crearJugadorConstruyeCuartelYPlazaCentralNoEstanTerminadas(){
-        Jugador jugador = new Jugador();
-        jugador.inicializarCuartel();
-        jugador.inicializarPlazaCentral();
-        jugador.avanzarConstruccion();
-        jugador.avanzarConstruccion();
-        jugador.avanzarConstruccion();
-        Assert.assertTrue(jugador.tieneCuartel());
-        Assert.assertTrue(jugador.tienePlazaCentral());
-    }
 
 }
