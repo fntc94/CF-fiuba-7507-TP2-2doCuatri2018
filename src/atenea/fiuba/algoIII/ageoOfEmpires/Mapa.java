@@ -79,7 +79,7 @@ public class Mapa {
     private boolean estaDentroDelMapa(Casillero casillero){
 
         int x = casillero.getCoordenadaEnX();
-        int y = casillero.getCoordendadaEnY();
+        int y = casillero.getCoordenadaEnY();
 
         boolean esValidoEnX = (x <= this._ancho) && (x > 0);
         boolean esValidoEnY = (y <= this._alto) && (y > 0);
