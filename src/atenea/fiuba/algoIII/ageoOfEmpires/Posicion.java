@@ -46,4 +46,6 @@ public abstract class Posicion {
 
         return (esValidoEnX && esValidoEnY);
     }
+
+    public abstract void modificarCoordenada(int i, int i1);
 }

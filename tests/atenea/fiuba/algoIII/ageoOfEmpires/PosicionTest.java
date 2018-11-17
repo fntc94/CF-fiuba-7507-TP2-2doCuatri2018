@@ -21,4 +21,20 @@ public class PosicionTest {
 
         assertEquals(false, estaDentro);
     }
+
+    @Test
+    public void testIncrementaCoordenadaEnX(){
+        Posicion pos = new PosicionDeUnCasillero(1,1);
+        pos.modificarCoordenada(1,0);
+
+        assertEquals(true, pos.seSuperponeCon(new PosicionDeUnCasillero(2,1)));
+    }
+
+    @Test
+    public void testIncrementaCoordenadaEnY(){
+        Posicion pos = new PosicionDeUnCasillero(1,1);
+        pos.modificarCoordenada(0,1);
+
+        assertEquals(true, pos.seSuperponeCon(new PosicionDeUnCasillero(1,2)));
+    }
 }

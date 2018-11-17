@@ -9,4 +9,9 @@ public class PosicionCuadrado extends Posicion {
             for(int i = xInicial; i <= xFinal; i++)
                 this.casillerosOcupados.add(new Casillero(i, j));
     }
+
+    @Override
+    public void modificarCoordenada(int i, int i1) {
+        // Para el TP solo debe implementarlo la clase PosicionDeUnCasillero
+    }
 }

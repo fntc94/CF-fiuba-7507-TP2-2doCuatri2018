@@ -3,9 +3,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 public class ArribaDerecha implements Direccion {
     @Override
     public Posicion desplazarPos(Posicion posicion) {
-        int y = posicion.getCasillerosOcupados().get(0).getCoordenadaEnY();
-        int x = posicion.getCasillerosOcupados().get(0).getCoordenadaEnX();
-
-        return new PosicionDeUnCasillero(x+1,y+1);
+        posicion.modificarCoordenada(1,1);
+        return posicion;
     }
 }
