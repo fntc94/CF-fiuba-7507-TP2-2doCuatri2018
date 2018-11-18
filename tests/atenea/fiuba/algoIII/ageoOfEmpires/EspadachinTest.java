@@ -2,6 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class EspadachinTest {
 
@@ -86,6 +87,29 @@ public class EspadachinTest {
 
         // Assert
         Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
+
+    }
+
+    @Test
+    public void atacar_APlazaCentral_LeProduceDanio15(){
+
+        // Arrange
+        int vidaEspadachin = 100;
+        Espadachin espadachin = new Espadachin(vidaEspadachin);
+
+        int vidaMaximaPlazaCentral = 450;
+        int vidaInicialPlazaCentral = 450;
+        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaPlazaCentral, vidaInicialPlazaCentral, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 15;
+
+        // Act
+        espadachin.atacar(plazaCentral);
+        int vidaFinalPlazaCentral = plazaCentral.getVida();
+        int danioProducido = vidaInicialPlazaCentral - vidaFinalPlazaCentral;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
 
     }
 

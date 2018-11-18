@@ -2,8 +2,8 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public abstract class EdificioReparable implements IEdificioReparable {
 
-    private int _vidaMaxima;
-    private int _vidaActual;
+    protected int _vidaMaxima;
+    protected int _vidaActual;
     private IEstadoReparador _reparadorActivo;
 
     public EdificioReparable(int vidaMaxima, int vidaInicial) {

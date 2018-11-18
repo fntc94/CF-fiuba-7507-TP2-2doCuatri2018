@@ -6,6 +6,7 @@ public class Espadachin {
     private int _vida;
 
     private final int DANIO_A_UNIDAD = 25;
+    private final int DANIO_A_EDIFICIO = 15;
 
     public Espadachin(int vidaMaxima, int vidaInicial){
         _vidaMaxima = vidaMaxima;
@@ -37,5 +38,11 @@ public class Espadachin {
         }
 
         this._vida -= danio;
+    }
+
+    public void atacar(PlazaCentral plazaCentral) {
+
+        plazaCentral.recibirAtaque(DANIO_A_EDIFICIO);
+
     }
 }

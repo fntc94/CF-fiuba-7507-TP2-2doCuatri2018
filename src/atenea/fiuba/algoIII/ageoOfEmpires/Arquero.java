@@ -6,6 +6,7 @@ public class Arquero {
     private int _vida;
 
     private final int DANIO_A_UNIDAD = 15;
+    private final int DANIO_A_EDIFICIO = 10;
 
     public Arquero(int vidaMaxima, int vidaInicial){
         _vidaMaxima = vidaMaxima;
@@ -37,5 +38,11 @@ public class Arquero {
         }
 
         this._vida -= danio;
+    }
+
+    public void atacar(PlazaCentral plazaCentral) {
+
+        plazaCentral.recibirAtaque(DANIO_A_EDIFICIO);
+
     }
 }

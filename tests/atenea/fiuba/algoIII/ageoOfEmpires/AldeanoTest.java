@@ -14,6 +14,10 @@ public class AldeanoTest {
         return new UnidadesFabrica().crearAldeano();
     }
 
+    private PlazaCentral crearPlazaCentral(int vidaMaxima, int vidaInicial){
+        return new PlazaCentral(vidaMaxima, vidaInicial, Mockito.mock(UnidadesFabrica.class));
+    }
+
     @Test
     public void getVida_Devuelve50(){
 
@@ -226,7 +230,7 @@ public class AldeanoTest {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
 
         int vidaMaximaDeCuartel = 250;
@@ -252,7 +256,7 @@ public class AldeanoTest {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
 
         int vidaMaximaDeCuartel = 250;
         int vidaInicialDeCuartel = 90;
@@ -277,7 +281,7 @@ public class AldeanoTest {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 400;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
 
         // Act
         aldeano.iniciarReparacion(plazaCentral);
