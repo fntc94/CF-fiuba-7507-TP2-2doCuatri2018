@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 public class ArqueroTest {
 
     @Test
-    public void atacar_AOtroArquero_LeBaja15DeVida(){
+    public void atacar_AOtroArquero_LeProduceDanio15(){
 
         // Arrange
         int vidaArquero = 75;
@@ -25,7 +25,7 @@ public class ArqueroTest {
     }
 
     @Test
-    public void atacar_AUnEspadachin_LeBaja15DeVida(){
+    public void atacar_AUnEspadachin_LeProduceDanio15(){
 
         // Arrange
         int vidaArquero = 75;
@@ -42,6 +42,28 @@ public class ArqueroTest {
 
         // Assert
         Assert.assertEquals(vidaEspadachinEsperadaLuegoDelAtaque, vidaEspadachinObtenidaLuegoDelAtaque);
+
+    }
+
+    @Test
+    public void atacar_AUnArmaDeAsedio_LeProduceDanio15(){
+
+        // Arrange
+        int vidaArquero = 75;
+        Arquero arquero = new Arquero(vidaArquero);
+
+        int vidaInicialArmaDeAsedio = 150;
+        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(vidaInicialArmaDeAsedio);
+
+        int danioEsperado = 15;
+
+        // Act
+        arquero.atacar(armaDeAsedio);
+        int vidaFinalArmaDeAsedio = armaDeAsedio.getVida();
+        int danioObtenido = vidaInicialArmaDeAsedio - vidaFinalArmaDeAsedio;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioObtenido);
 
     }
 
@@ -67,7 +89,7 @@ public class ArqueroTest {
     }
 
     @Test
-    public void atacar_AUnEspadachinonVida15_LaVidaDelEspadacinEsCeroLuegoDelAtaque(){
+    public void atacar_AUnEspadachinConVida15_LaVidaDelEspadacinEsCeroLuegoDelAtaque(){
 
         // Arrange
         int vidaArquero = 75;
@@ -135,7 +157,7 @@ public class ArqueroTest {
     }
 
     @Test
-    public void atacar_ACastillo_LeProduceDanio15(){
+    public void atacar_ACastillo_LeProduceDanio10(){
 
         // Arrange
         int vidaArquero = 75;

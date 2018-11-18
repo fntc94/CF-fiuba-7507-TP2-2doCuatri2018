@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 public class EspadachinTest {
 
     @Test
-    public void atacar_AOtroEspadachin_LeBaja25DeVida(){
+    public void atacar_AOtroEspadachin_LeProduceDanio25(){
 
         // Arrange
         int vidaMaxima = 100;
@@ -15,19 +15,20 @@ public class EspadachinTest {
         Espadachin atacante = new Espadachin(vidaMaxima);
         Espadachin atacado = new Espadachin(vidaMaxima);
 
-        int vidaEsperadaLuegoDelAtaque = 75;
+        int danioEsperado = 25;
 
         // Act
         atacante.atacar(atacado);
         int vidaObtenidaLuegoDelAtaque = atacado.getVida();
+        int danioProducido = vidaMaxima - vidaObtenidaLuegoDelAtaque;
 
        // Assert
-        Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
+        Assert.assertEquals(danioEsperado, danioProducido);
 
     }
 
     @Test
-    public void atacar_AUnArquero_LeBaja25DeVida(){
+    public void atacar_AUnArquero_LeProduceDanio25(){
 
         // Arrange
         int vidaEspadachin = 100;
@@ -36,14 +37,38 @@ public class EspadachinTest {
         int vidaArquero = 75;
         Arquero arquero = new Arquero(vidaArquero);
 
-        int vidaEsperadaLuegoDelAtaque = 50;
+        int danioEsperado = 25;
 
         // Act
         espadachin.atacar(arquero);
         int vidaObtenidaLuegoDelAtaque = arquero.getVida();
+        int danioProducido = vidaArquero - vidaObtenidaLuegoDelAtaque;
+
 
         // Assert
-        Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
+    @Test
+    public void atacar_AUnArmaDeAsedio_LeProduceDanio25(){
+
+        // Arrange
+        int vidaEspadachin = 100;
+        Espadachin espadachin = new Espadachin(vidaEspadachin);
+
+        int vidaInicialArmaDeAsedio = 150;
+        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(vidaInicialArmaDeAsedio);
+
+        int danioEsperado = 25;
+
+        // Act
+        espadachin.atacar(armaDeAsedio);
+        int vidaFinalArmaDeAsedio = armaDeAsedio.getVida();
+        int danioObtenido = vidaInicialArmaDeAsedio - vidaFinalArmaDeAsedio;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioObtenido);
 
     }
 

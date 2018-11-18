@@ -30,6 +30,10 @@ public class Arquero {
         arquero.recibirAtaque(DANIO_A_UNIDAD);
     }
 
+    public void atacar(ArmaDeAsedio armaDeAsedio){
+        armaDeAsedio.recibirAtaque(DANIO_A_UNIDAD);
+    }
+
     public void recibirAtaque(int danio){
 
         if(danio >= this._vida){
