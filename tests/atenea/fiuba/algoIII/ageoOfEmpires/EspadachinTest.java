@@ -184,4 +184,27 @@ public class EspadachinTest {
 
     }
 
+    @Test
+    public void atacar_Aldeano_LeProduceDanio25(){
+
+        // Arrange
+        int vidaMaximaEspadachin = 75;
+        Espadachin espadachin = new Espadachin(vidaMaximaEspadachin);
+
+        int vidaMaximaAldeano = 50;
+        Aldeano aldeano = new Aldeano(vidaMaximaAldeano, Mockito.mock(EdificiosEnConstruccionFabrica.class));
+        int vidaInicialAldeano = aldeano.getVidaActual();
+
+        int danioEsperado = 25;
+
+        // Act
+        espadachin.atacar(aldeano);
+        int vidaFinalAldeano = aldeano.getVidaActual();
+        int danioProducido = vidaInicialAldeano - vidaFinalAldeano;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
 }

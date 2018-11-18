@@ -178,4 +178,27 @@ public class ArqueroTest {
         Assert.assertEquals(danioEsperado, danioProducido);
 
     }
+
+    @Test
+    public void atacar_Aldeano_LeProduceDanio15(){
+
+        // Arrange
+        int vidaArquero = 75;
+        Arquero arquero = new Arquero(vidaArquero);
+
+        int vidaMaximaAldeano = 50;
+        Aldeano aldeano = new Aldeano(vidaMaximaAldeano, Mockito.mock(EdificiosEnConstruccionFabrica.class));
+        int vidaInicialAldeano = aldeano.getVidaActual();
+
+        int danioEsperado = 15;
+
+        // Act
+        arquero.atacar(aldeano);
+        int vidaFinalAldeano = aldeano.getVidaActual();
+        int danioProducido = vidaInicialAldeano - vidaFinalAldeano;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
 }

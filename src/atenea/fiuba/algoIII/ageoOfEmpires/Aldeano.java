@@ -2,7 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import java.util.function.Consumer;
 
-public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
+public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IUnidadAtacable {
 
     private int _vidaMaxima = 50;
     private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
@@ -88,5 +88,10 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador {
 
     public void iniciarConstruccionDeCuartel(){
         this.iniciarConstruccionDeCuartel(cuartel -> {});
+    }
+
+    @Override
+    public void recibirDanio(int danio) {
+        this._vidaActual -= danio;
     }
 }
