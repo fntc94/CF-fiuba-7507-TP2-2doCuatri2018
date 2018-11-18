@@ -17,5 +17,10 @@ public class EstadoArmaDeAsedioDesmontada implements IEstadoArmaDeAsedio {
         // TODO: implementar movimiento!
     }
 
+    @Override
+    public void atacar(IEdificioAtacable edificioAtacable) {
+        this.atacar();
+    }
+
 
 }
