@@ -20,8 +20,8 @@ public class EstadoArmaDeAsedioMontada implements IEstadoArmaDeAsedio {
     }
 
     @Override
-    public void atacar(PlazaCentral plazaCentral) {
-        plazaCentral.recibirAtaque(DANIO_A_EDIFICIOS);
+    public void atacar(IEdificioAtacable edificioAtacable) {
+        edificioAtacable.recibirAtaque(DANIO_A_EDIFICIOS);
     }
 
 }

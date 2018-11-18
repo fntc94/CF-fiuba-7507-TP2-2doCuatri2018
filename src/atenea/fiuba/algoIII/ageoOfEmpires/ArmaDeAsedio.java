@@ -31,8 +31,8 @@ public class ArmaDeAsedio {
         _estado.mover();
     }
 
-    public void atacar(PlazaCentral plazaCentral) {
-        _estado.atacar(plazaCentral);
+    public void atacar(IEdificioAtacable edificioAtacable) {
+        _estado.atacar(edificioAtacable);
 
     }
 }

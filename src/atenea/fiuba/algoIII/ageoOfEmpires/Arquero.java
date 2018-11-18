@@ -40,9 +40,7 @@ public class Arquero {
         this._vida -= danio;
     }
 
-    public void atacar(PlazaCentral plazaCentral) {
-
-        plazaCentral.recibirAtaque(DANIO_A_EDIFICIO);
-
+    public void atacar(IEdificioAtacable edificioAtacable) {
+        edificioAtacable.recibirAtaque(DANIO_A_EDIFICIO);
     }
 }

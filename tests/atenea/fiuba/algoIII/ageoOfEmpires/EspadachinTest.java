@@ -113,4 +113,50 @@ public class EspadachinTest {
 
     }
 
+    @Test
+    public void atacar_ACuartel_LeProduceDanio15(){
+
+        // Arrange
+        int vidaEspadachin = 100;
+        Espadachin espadachin = new Espadachin(vidaEspadachin);
+
+        int vidaMaximaCuartel = 250;
+        int vidaInicialCuartel = 250;
+        Cuartel cuartel = new Cuartel(vidaMaximaCuartel, vidaInicialCuartel, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 15;
+
+        // Act
+        espadachin.atacar(cuartel);
+        int vidaFinalCuartel = cuartel.getVida();
+        int danioProducido = vidaInicialCuartel- vidaFinalCuartel;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
+    @Test
+    public void atacar_ACastillo_LeProduceDanio15(){
+
+        // Arrange
+        int vidaEspadachin = 100;
+        Espadachin espadachin = new Espadachin(vidaEspadachin);
+
+        int vidaMaximaCastillo = 1000;
+        int vidaInicialCastillo = 1000;
+        Castillo castillo = new Castillo(vidaMaximaCastillo, vidaInicialCastillo, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 15;
+
+        // Act
+        espadachin.atacar(castillo);
+        int vidaFinalCastillo = castillo.getVida();
+        int danioProducido = vidaInicialCastillo- vidaFinalCastillo;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
 }

@@ -109,4 +109,51 @@ public class ArqueroTest {
         Assert.assertEquals(danioEsperado, danioProducido);
 
     }
+
+
+    @Test
+    public void atacar_ACuartel_LeProduceDanio10(){
+
+        // Arrange
+        int vidaArquero = 75;
+        Arquero arquero = new Arquero(vidaArquero);
+
+        int vidaMaximaCuartel = 250;
+        int vidaInicialCuartel = 250;
+        Cuartel cuartel = new Cuartel(vidaMaximaCuartel, vidaInicialCuartel, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 10;
+
+        // Act
+        arquero.atacar(cuartel);
+        int vidaFinalCuartel = cuartel.getVida();
+        int danioProducido = vidaInicialCuartel- vidaFinalCuartel;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
+    @Test
+    public void atacar_ACastillo_LeProduceDanio15(){
+
+        // Arrange
+        int vidaArquero = 75;
+        Arquero arquero = new Arquero(vidaArquero);
+
+        int vidaMaximaCastillo = 1000;
+        int vidaInicialCastillo = 1000;
+        Castillo castillo = new Castillo(vidaMaximaCastillo, vidaInicialCastillo, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 10;
+
+        // Act
+        arquero.atacar(castillo);
+        int vidaFinalCastillo = castillo.getVida();
+        int danioProducido = vidaInicialCastillo- vidaFinalCastillo;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
 }

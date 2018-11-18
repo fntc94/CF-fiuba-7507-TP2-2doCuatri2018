@@ -28,7 +28,4 @@ public class PlazaCentral extends EdificioReparable implements IEdificioReparabl
         return _fabricaDeUnidades.crearAldeano();
     }
 
-    void recibirAtaque(int danio) {
-        this._vidaActual -= danio;
-    }
 }

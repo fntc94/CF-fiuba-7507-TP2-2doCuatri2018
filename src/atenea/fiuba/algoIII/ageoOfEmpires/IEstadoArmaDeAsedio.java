@@ -6,6 +6,6 @@ public interface IEstadoArmaDeAsedio {
     void atacar();
     void mover();
 
-    void atacar(PlazaCentral plazaCentral);
+    void atacar(IEdificioAtacable edificioAtacable);
 
 }

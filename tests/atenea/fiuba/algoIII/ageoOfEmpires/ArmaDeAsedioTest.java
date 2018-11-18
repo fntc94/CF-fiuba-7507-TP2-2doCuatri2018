@@ -119,4 +119,50 @@ public class ArmaDeAsedioTest {
         // Assert
         Assert.assertEquals(danioEsperado, danioProducido);
     }
+
+    @Test
+    public void atacar_ACuartel_LeProduceDanio75(){
+
+        // Arrange
+        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        armaDeAsedio.montar();
+
+        int vidaMaximaCuartel = 250;
+        int vidaInicialCuartel = 250;
+        Cuartel cuartel = new Cuartel(vidaMaximaCuartel, vidaInicialCuartel, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 75;
+
+        // Act
+        armaDeAsedio.atacar(cuartel);
+        int vidaFinalCuartel = cuartel.getVida();
+        int danioProducido = vidaInicialCuartel- vidaFinalCuartel;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
+    @Test
+    public void atacar_ACastillo_LeProduceDanio75(){
+
+        // Arrange
+        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        armaDeAsedio.montar();
+
+        int vidaMaximaCastillo = 1000;
+        int vidaInicialCastillo = 1000;
+        Castillo castillo = new Castillo(vidaMaximaCastillo, vidaInicialCastillo, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 75;
+
+        // Act
+        armaDeAsedio.atacar(castillo);
+        int vidaFinalCastillo = castillo.getVida();
+        int danioProducido = vidaInicialCastillo- vidaFinalCastillo;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
 }

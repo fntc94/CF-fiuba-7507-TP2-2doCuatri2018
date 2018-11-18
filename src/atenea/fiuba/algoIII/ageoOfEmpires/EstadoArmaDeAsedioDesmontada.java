@@ -18,7 +18,7 @@ public class EstadoArmaDeAsedioDesmontada implements IEstadoArmaDeAsedio {
     }
 
     @Override
-    public void atacar(PlazaCentral plazaCentral) {
+    public void atacar(IEdificioAtacable edificioAtacable) {
         this.atacar();
     }
 
