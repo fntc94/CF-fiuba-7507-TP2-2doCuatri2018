@@ -1,9 +1,9 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class Movimiento {
-    private Direccion direccion;
+    private IDireccion direccion;
 
-    public void hacia(Direccion direccion) {
+    public void hacia(IDireccion direccion) {
         this.direccion = direccion;
     }
 
