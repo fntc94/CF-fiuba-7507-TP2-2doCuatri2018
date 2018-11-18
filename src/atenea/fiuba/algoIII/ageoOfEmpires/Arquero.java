@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Arquero {
+public class Arquero implements IUnidadAtacable {
 
     private final int _vidaMaxima;
     private int _vida;
@@ -22,19 +22,16 @@ public class Arquero {
         return _vida;
     }
 
-    public void atacar(Espadachin espadachin){
-       espadachin.recibirAtaque(DANIO_A_UNIDAD);
+    public void atacar(IUnidadAtacable unidad){
+        unidad.recibirDanio(DANIO_A_UNIDAD);
     }
 
-    public void atacar(Arquero arquero){
-        arquero.recibirAtaque(DANIO_A_UNIDAD);
+    public void atacar(IEdificioAtacable edificioAtacable) {
+        edificioAtacable.recibirDanio(DANIO_A_EDIFICIO);
     }
 
-    public void atacar(ArmaDeAsedio armaDeAsedio){
-        armaDeAsedio.recibirAtaque(DANIO_A_UNIDAD);
-    }
-
-    public void recibirAtaque(int danio){
+    @Override // IUnidadAtacable
+    public void recibirDanio(int danio){
 
         if(danio >= this._vida){
             _vida = 0;
@@ -44,7 +41,4 @@ public class Arquero {
         this._vida -= danio;
     }
 
-    public void atacar(IEdificioAtacable edificioAtacable) {
-        edificioAtacable.recibirAtaque(DANIO_A_EDIFICIO);
-    }
 }

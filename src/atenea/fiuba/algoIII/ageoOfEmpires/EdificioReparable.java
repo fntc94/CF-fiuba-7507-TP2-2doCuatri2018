@@ -36,8 +36,8 @@ public abstract class EdificioReparable implements IEdificioReparable, IEdificio
 
     protected abstract int getVelocidadDeReparacion();
 
-    @Override // IEdificioReparable
-    public void recibirAtaque(int danio) {
+    @Override // IEdificioAtacable
+    public void recibirDanio(int danio) {
         this._vidaActual -= danio;
     }
 
