@@ -1,5 +1,5 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public interface Direccion {
+public interface IDireccion {
     Posicion desplazarPos(Posicion posicion);
 }

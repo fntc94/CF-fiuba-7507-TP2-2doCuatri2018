@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class ArribaDerecha implements Direccion {
+public class ArribaDerecha implements IDireccion {
     @Override
     public Posicion desplazarPos(Posicion posicion) {
         int y = posicion.getCasillerosOcupados().get(0).getCoordendadaEnY();
