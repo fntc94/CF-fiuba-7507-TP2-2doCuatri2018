@@ -30,4 +30,9 @@ public class ArmaDeAsedio {
     public void mover() {
         _estado.mover();
     }
+
+    public void atacar(PlazaCentral plazaCentral) {
+        _estado.atacar(plazaCentral);
+
+    }
 }
