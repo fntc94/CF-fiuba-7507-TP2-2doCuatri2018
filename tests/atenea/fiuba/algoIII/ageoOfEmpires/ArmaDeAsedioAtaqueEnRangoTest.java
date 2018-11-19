@@ -41,10 +41,10 @@ public class ArmaDeAsedioAtaqueEnRangoTest {
         Mockito.when(posicionArmaDeAsedio.distanciaA(posicionADistancia3)).thenReturn(DISTANCIA_ATAQUE_3);
 
         Posicion posicionADistancia4 = Mockito.mock(Posicion.class);
-        Mockito.when(posicionArmaDeAsedio.distanciaA(posicionADistancia4)).thenReturn(DISTANCIA_ATAQUE_3);
+        Mockito.when(posicionArmaDeAsedio.distanciaA(posicionADistancia4)).thenReturn(DISTANCIA_ATAQUE_4);
 
         Posicion posicionADistancia5 = Mockito.mock(Posicion.class);
-        Mockito.when(posicionArmaDeAsedio.distanciaA(posicionADistancia5)).thenReturn(DISTANCIA_ATAQUE_3);
+        Mockito.when(posicionArmaDeAsedio.distanciaA(posicionADistancia5)).thenReturn(DISTANCIA_ATAQUE_5);
 
         ArrayList collection = new ArrayList();
 
@@ -99,9 +99,9 @@ public class ArmaDeAsedioAtaqueEnRangoTest {
         collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia4, Mockito.mock(IUnidadesCastilloFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
 
         // Edificios a distancia 5
-        collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia4, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
-        collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia4, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
-        collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia4, Mockito.mock(IUnidadesCastilloFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
+        collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia5, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
+        collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia5, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
+        collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia5, Mockito.mock(IUnidadesCastilloFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
 
         return collection;
 
