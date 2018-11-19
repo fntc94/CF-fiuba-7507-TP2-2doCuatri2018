@@ -2,12 +2,13 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class PlazaCentralTest {
 
     private PlazaCentral crearPlazaCentral(){
         int vidaMaximaDePlazaCentral = 450;
-        return new PlazaCentral( new UnidadesFabrica());
+        return new PlazaCentral(Mockito.mock(Posicion.class), new UnidadesFabrica());
     }
 
     @Test

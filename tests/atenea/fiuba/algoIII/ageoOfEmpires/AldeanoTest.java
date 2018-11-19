@@ -16,7 +16,7 @@ AldeanoTest {
     }
 
     private PlazaCentral crearPlazaCentral(){
-        return new PlazaCentral(Mockito.mock(UnidadesFabrica.class));
+        return new PlazaCentral(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
     }
 
     @Test

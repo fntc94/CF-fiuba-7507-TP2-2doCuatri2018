@@ -2,11 +2,12 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class CuartelTest {
 
     private Cuartel crearCuartel(){
-        return new Cuartel(new UnidadesFabrica());
+        return new Cuartel(Mockito.mock(Posicion.class), new UnidadesFabrica());
     }
 
     @Test
@@ -57,7 +58,7 @@ public class CuartelTest {
 
         // Arrange
         int vidaMaximaCuartel = 250;
-        Cuartel cuartel = new Cuartel(new UnidadesFabrica());
+        Cuartel cuartel = new Cuartel(Mockito.mock(Posicion.class),new UnidadesFabrica());
         int costoEspadachinEsperado = 50;
 
         // Act

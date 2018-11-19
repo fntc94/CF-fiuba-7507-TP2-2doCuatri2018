@@ -13,7 +13,7 @@ import java.util.Collection;
 public class EspadachinAtaqueFueraDeRangoTest {
 
     private Espadachin atacante;
-    private Unidad unidad;
+    private IAtacable unidad;
     private int danioEsperado;
 
     @Parameterized.Parameters
@@ -25,24 +25,30 @@ public class EspadachinAtaqueFueraDeRangoTest {
         Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
         Posicion posicionAtacante = espadachin.getPosicion();
 
-        Posicion posicionADistancia4 = Mockito.mock(Posicion.class);
-        Mockito.when(posicionAtacante.distanciaA(posicionADistancia4)).thenReturn(DISTANCIA_ATAQUE_2);
+        Posicion posicionADistancia2 = Mockito.mock(Posicion.class);
+        Mockito.when(posicionAtacante.distanciaA(posicionADistancia2)).thenReturn(DISTANCIA_ATAQUE_2);
 
         ArrayList collection = new ArrayList();
 
-        collection.add(new Object[]{espadachin, new Aldeano(posicionADistancia4, Mockito.mock(EdificiosEnConstruccionFabrica.class)), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new Espadachin(posicionADistancia4), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new Arquero(posicionADistancia4), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new ArmaDeAsedio(posicionADistancia4), DANIO_ESPERADO});
+        // Unidades a distancia 2
+        collection.add(new Object[]{espadachin, new Aldeano(posicionADistancia2, Mockito.mock(EdificiosEnConstruccionFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Espadachin(posicionADistancia2), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Arquero(posicionADistancia2), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new ArmaDeAsedio(posicionADistancia2), DANIO_ESPERADO});
+
+        // Edificios a distancia 2
+        collection.add(new Object[]{espadachin, new PlazaCentral(posicionADistancia2, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Cuartel(posicionADistancia2, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Castillo(posicionADistancia2, Mockito.mock(IUnidadesCastilloFabrica.class)), DANIO_ESPERADO});
 
         return collection;
 
     }
 
 
-    public EspadachinAtaqueFueraDeRangoTest(Espadachin atacante, Unidad unidad, int danioEsperado){
+    public EspadachinAtaqueFueraDeRangoTest(Espadachin atacante, IAtacable atacable, int danioEsperado){
         this.atacante = atacante;
-        this.unidad = unidad;
+        this.unidad = atacable;
         this.danioEsperado = danioEsperado;
     }
 

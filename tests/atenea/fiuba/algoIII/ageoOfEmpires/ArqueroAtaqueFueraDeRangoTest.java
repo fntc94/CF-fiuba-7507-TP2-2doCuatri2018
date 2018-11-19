@@ -13,7 +13,7 @@ import java.util.Collection;
 public class ArqueroAtaqueFueraDeRangoTest {
 
     private Arquero atacante;
-    private Unidad unidad;
+    private IAtacable unidad;
     private int danioEsperado;
 
     @Parameterized.Parameters
@@ -30,19 +30,25 @@ public class ArqueroAtaqueFueraDeRangoTest {
 
         ArrayList collection = new ArrayList();
 
+        // Unidades a distancia 4
         collection.add(new Object[]{arquero, new Aldeano(posicionADistancia4, Mockito.mock(EdificiosEnConstruccionFabrica.class)), DANIO_ESPERADO});
         collection.add(new Object[]{arquero, new Espadachin(posicionADistancia4), DANIO_ESPERADO});
         collection.add(new Object[]{arquero, new Arquero(posicionADistancia4), DANIO_ESPERADO});
         collection.add(new Object[]{arquero, new ArmaDeAsedio(posicionADistancia4), DANIO_ESPERADO});
+
+        // Edificios a distancia 4
+        collection.add(new Object[]{arquero, new PlazaCentral(posicionADistancia4, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{arquero, new Cuartel(posicionADistancia4, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{arquero, new Castillo(posicionADistancia4, Mockito.mock(IUnidadesCastilloFabrica.class)), DANIO_ESPERADO});
 
         return collection;
 
     }
 
 
-    public ArqueroAtaqueFueraDeRangoTest(Arquero atacante, Unidad unidad, int danioEsperado){
+    public ArqueroAtaqueFueraDeRangoTest(Arquero atacante, IAtacable atacable, int danioEsperado){
         this.atacante = atacante;
-        this.unidad = unidad;
+        this.unidad = atacable;
         this.danioEsperado = danioEsperado;
     }
 

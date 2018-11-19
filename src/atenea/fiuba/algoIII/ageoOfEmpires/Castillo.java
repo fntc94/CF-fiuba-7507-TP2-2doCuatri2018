@@ -6,8 +6,8 @@ public class Castillo extends Edificio implements IEdificioReparable, IAtacable 
     private static final int VELOCIDAD_DE_REPARACION = 15;
     private IUnidadesCastilloFabrica _fabricaDeUnidades;
 
-    public Castillo(IUnidadesCastilloFabrica fabricaDeUnidades) {
-        super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
+    public Castillo(Posicion posicion, IUnidadesCastilloFabrica fabricaDeUnidades) {
+        super(posicion, VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
     }
 

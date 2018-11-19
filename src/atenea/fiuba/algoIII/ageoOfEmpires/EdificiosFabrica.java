@@ -6,15 +6,15 @@ public class EdificiosFabrica {
 
 
     public PlazaCentral crearPlazaCentral(){
-        return new PlazaCentral(_fabricaDeUnidades);
+        return new PlazaCentral(new PosicionDeUnCasillero(0,0),_fabricaDeUnidades);
     }
 
     public Cuartel crearCuartel(){
-        return new Cuartel(_fabricaDeUnidades);
+        return new Cuartel(new PosicionDeUnCasillero(0,0),_fabricaDeUnidades);
     }
 
     public Castillo crearCastillo(){
-        return new Castillo(_fabricaDeUnidades);
+        return new Castillo(new PosicionDeUnCasillero(0,0),_fabricaDeUnidades);
     }
 
 }

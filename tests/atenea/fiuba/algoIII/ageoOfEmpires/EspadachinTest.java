@@ -54,7 +54,7 @@ public class EspadachinTest {
 
         // Arrange
         Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
-        PlazaCentral plazaCentral = new PlazaCentral(Mockito.mock(UnidadesFabrica.class));
+        PlazaCentral plazaCentral = new PlazaCentral(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
 
         int vidaInicialPlazaCentral = plazaCentral.getVida();
         int danioEsperado = 15;
@@ -74,7 +74,7 @@ public class EspadachinTest {
 
         // Arrange
         Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
-        Cuartel cuartel = new Cuartel(Mockito.mock(UnidadesFabrica.class));
+        Cuartel cuartel = new Cuartel(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
 
         int vidaInicialCuartel = cuartel.getVida();
         int danioEsperado = 15;
@@ -94,7 +94,7 @@ public class EspadachinTest {
 
         // Arrange
         Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
-        Castillo castillo = new Castillo(Mockito.mock(UnidadesFabrica.class));
+        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
 
         int vidaInicialCastillo = castillo.getVida();
         int danioEsperado = 15;
