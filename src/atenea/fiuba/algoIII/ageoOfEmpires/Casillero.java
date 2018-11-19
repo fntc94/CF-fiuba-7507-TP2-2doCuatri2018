@@ -13,7 +13,7 @@ public class Casillero {
         return this.coordenadaEnX;
     }
 
-    public int getCoordendadaEnY(){
+    public int getCoordenadaEnY(){
         return this.coordenadaEnY;
     }
 
@@ -32,7 +32,7 @@ public class Casillero {
         Casillero other = (Casillero) obj;
 
         int x = other.getCoordenadaEnX();
-        int y = other.getCoordendadaEnY();
+        int y = other.getCoordenadaEnY();
 
         return (this.coordenadaEnX == x && this.coordenadaEnY == y);
     }
