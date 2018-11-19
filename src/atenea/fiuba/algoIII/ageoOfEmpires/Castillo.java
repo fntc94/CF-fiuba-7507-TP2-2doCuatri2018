@@ -15,10 +15,8 @@ public class Castillo extends Edificio implements IEdificioReparable, IAtacable 
         return _fabricaDeUnidades.obtenerCostoArmaDeAsedio();
     }
 
-    public ArmaDeAsedio crearArmaDeAsedio()
-    {
+    public ArmaDeAsedio crearArmaDeAsedio(){
         return _fabricaDeUnidades.crearArmaDeAsedio();
     }
-
 
 }
