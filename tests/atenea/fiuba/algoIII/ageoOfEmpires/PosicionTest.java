@@ -9,7 +9,7 @@ public class PosicionTest {
     @Test
     public void testDevuelveTrueSiPosicionEstaDentroDeUnAreaDefinidaPorAltoAncho(){
         Posicion pos = new PosicionDeUnCasillero(5,5);
-        boolean estaDentro = pos.estaDentroDe(10,10);
+        boolean estaDentro = pos.estaDentroDelArea(10,10);
 
         assertEquals(true, estaDentro);
     }
@@ -17,7 +17,7 @@ public class PosicionTest {
     @Test
     public void testDevuelveFalseSiPosicionEstaFueraDeUnAreaDefinidaPorAltoAncho(){
         Posicion pos = new PosicionDeUnCasillero(20,20);
-        boolean estaDentro = pos.estaDentroDe(10,10);
+        boolean estaDentro = pos.estaDentroDelArea(10,10);
 
         assertEquals(false, estaDentro);
     }

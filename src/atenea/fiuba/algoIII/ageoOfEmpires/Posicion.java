@@ -29,15 +29,15 @@ public abstract class Posicion {
 
     // Verifica si los todos casilleros de la posicion
     // estan dentro de un area definida por un alto y ancho
-    public boolean estaDentroDe(int alto, int ancho){
+    public boolean estaDentroDelArea(int alto, int ancho){
         for(Casillero casillero : this.listaCasilleros){
-            if(!estaDentroDelRango(alto,ancho, casillero))
+            if(!casilleroEstaDentroDelArea(alto,ancho, casillero))
                 return false;
         }
         return true;
     }
 
-    private boolean estaDentroDelRango(int alto, int ancho, Casillero casillero) {
+    private boolean casilleroEstaDentroDelArea(int alto, int ancho, Casillero casillero) {
         int x = casillero.getCoordenadaEnX();
         int y = casillero.getCoordenadaEnY();
 

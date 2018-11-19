@@ -1,7 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class Mapa {
 
@@ -13,7 +13,7 @@ public class Mapa {
     private int _alto;
     private int _ancho;
 
-    private Map<Posicion, IPosicionable> _posicionables = new HashMap<>();
+    private Collection<IPosicionable> _posicionables = new ArrayList<>();
 
     public Mapa(int alto, int ancho) {
 
@@ -36,7 +36,7 @@ public class Mapa {
 
         Posicion posicion = posicionable.getPosicion();
 
-        if(!posicion.estaDentroDe(this._alto,this._ancho)){
+        if(!posicion.estaDentroDelArea(this._alto,this._ancho)){
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
         }
 
@@ -44,7 +44,7 @@ public class Mapa {
             throw new NoPuedeColocar2IPosicionablesEnLaMismaPosicionException();
         }
 
-        this._posicionables.put(posicion, posicionable);
+        this._posicionables.add(posicionable);
     }
 
     private boolean sonDimensionesValidas(int alto, int ancho){
@@ -53,9 +53,9 @@ public class Mapa {
 
     private boolean posicionEstaLibre(Posicion posicion) {
 
-        for(Posicion otraPosicion : this._posicionables.keySet()){
+        for(IPosicionable otraPosicion : this._posicionables){
 
-            if(posicion.seSuperponeCon(otraPosicion)){
+            if(posicion.seSuperponeCon(otraPosicion.getPosicion())){
                 return false;
             }
         }
