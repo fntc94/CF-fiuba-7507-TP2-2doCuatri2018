@@ -10,8 +10,9 @@ public class PosicionCuadrado extends Posicion {
                 this.listaCasilleros.add(new Casillero(i, j));
     }
 
+    //  Una unidad que ocupa varios casilleros no puede moverse
     @Override
-    public void modificarCoordenada(int i, int i1) {
-        // Para el TP solo debe implementarlo la clase PosicionDeUnCasillero
+    public Posicion modificarCoordenada(int i, int i1) {
+        return new PosicionCuadrado(0,0,0,0);
     }
 }
