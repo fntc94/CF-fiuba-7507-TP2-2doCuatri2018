@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Castillo extends EdificioReparable implements IEdificioReparable, IAtacable {
+public class Castillo extends Edificio implements IEdificioReparable, IAtacable {
 
     private static final int VIDA_MAXIMA = 1000;
     private static final int VELOCIDAD_DE_REPARACION = 15;
@@ -20,15 +20,4 @@ public class Castillo extends EdificioReparable implements IEdificioReparable, I
         return _fabricaDeUnidades.crearArmaDeAsedio();
     }
 
-    @Override // IEdificioAtacable
-    public void recibirAtaque(IAtacante atacante) {
-
-        int danio = atacante.obtenerDanio(this);
-        this.vidaActual -= danio;
-    }
-
-    @Override
-    public Posicion getPosicion() {
-        return null;
-    }
 }

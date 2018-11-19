@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Cuartel extends EdificioReparable implements IEdificioReparable, IAtacable {
+public class Cuartel extends Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
     private static final int VIDA_MAXIMA = 250;
     private static final int VELOCIDAD_DE_REPARACION = 50;
@@ -10,7 +10,6 @@ public class Cuartel extends EdificioReparable implements IEdificioReparable, IA
         super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
     }
-
 
     public int obtenerCostoArquero(){
         return _fabricaDeUnidades.obtenerCostoEnOroArquero();
@@ -28,14 +27,4 @@ public class Cuartel extends EdificioReparable implements IEdificioReparable, IA
         return _fabricaDeUnidades.crearEspadachin();
     }
 
-    @Override // IEdificioAtacable
-    public void recibirAtaque(IAtacante atacante) {
-        int danio = atacante.obtenerDanio(this);
-        this.vidaActual -= danio;
-    }
-
-    @Override
-    public Posicion getPosicion() {
-        return null;
-    }
 }

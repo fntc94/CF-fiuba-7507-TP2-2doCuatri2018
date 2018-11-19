@@ -44,19 +44,8 @@ public class ArmaDeAsedio extends Unidad implements IPosicionable, IAtacable, IA
     }
 
     @Override
-    public int obtenerDanio(PlazaCentral plazaCentral) {
+    public int obtenerDanio(Edificio edificio) {
         return DANIO_A_EDIFICIOS;
     }
-
-    @Override
-    public int obtenerDanio(Cuartel cuartel) {
-        return DANIO_A_EDIFICIOS;
-    }
-
-    @Override
-    public int obtenerDanio(Castillo castillo) {
-        return DANIO_A_EDIFICIOS;
-    }
-
 
 }

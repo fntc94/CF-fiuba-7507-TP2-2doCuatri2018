@@ -12,7 +12,7 @@ public class Espadachin extends Unidad implements IPosicionable, IAtacable, IAta
         super(posicion, VIDA_MAXIMA);
     }
 
-
+    // IAtacante
     public void atacar(IAtacable unidad){
 
         if(!estaDentroDelRangoDeAtaque(unidad)){
@@ -21,30 +21,18 @@ public class Espadachin extends Unidad implements IPosicionable, IAtacable, IAta
         unidad.recibirAtaque(this);
     }
 
-
-    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
-        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
-    }
-
-
-    @Override
-    public int obtenerDanio(PlazaCentral plazaCentral) {
-        return DANIO_A_EDIFICIO;
-    }
-
-    @Override
-    public int obtenerDanio(Cuartel cuartel) {
-        return DANIO_A_EDIFICIO;
-    }
-
-    @Override
-    public int obtenerDanio(Castillo castillo) {
-        return DANIO_A_EDIFICIO;
-    }
-
     @Override
     public int obtenerDanio(Unidad unidad) {
         return DANIO_A_UNIDAD;
     }
 
+    @Override
+    public int obtenerDanio(Edificio edificioReparable) {
+        return DANIO_A_EDIFICIO;
+    }
+    // fin IAtacante
+
+    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
+        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
+    }
 }

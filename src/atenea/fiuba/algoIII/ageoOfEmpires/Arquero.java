@@ -21,19 +21,10 @@ public class Arquero extends Unidad implements IPosicionable, IAtacable, IAtacan
         return DANIO_A_UNIDAD;
     }
 
-
     @Override
-    public int obtenerDanio(PlazaCentral plazaCentral) {
+    public int obtenerDanio(Edificio edificio) {
         return DANIO_A_EDIFICIO;
     }
 
-    @Override
-    public int obtenerDanio(Cuartel cuartel) {
-        return DANIO_A_EDIFICIO;
-    }
 
-    @Override
-    public int obtenerDanio(Castillo castillo) {
-        return DANIO_A_EDIFICIO;
-    }
 }
