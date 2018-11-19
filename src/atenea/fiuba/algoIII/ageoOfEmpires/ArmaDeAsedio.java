@@ -44,26 +44,4 @@ public class ArmaDeAsedio extends UnidadMilitar implements IPosicionable, IAtaca
 
     }
 
-//    @Override
-//    public void atacar(IAtacable atacable) {
-//        if(!estaDentroDelRangoDeAtaque(atacable)){
-//            throw new UnidadFueraDeRangoDeAtaqueExcepcion();
-//        }
-//        atacable.recibirAtaque(this);
-//    }
-//
-//    @Override
-//    public int obtenerDanio(Unidad unidad) {
-//        return DANIO_A_UNIDAD;
-//    }
-//
-//    @Override
-//    public int obtenerDanio(Edificio edificio) {
-//        return DANIO_A_EDIFICIO;
-//    }
-//
-//    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
-//        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
-//    }
-
 }

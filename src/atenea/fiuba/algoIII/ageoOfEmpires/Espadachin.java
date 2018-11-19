@@ -12,27 +12,4 @@ public class Espadachin extends UnidadMilitar implements IPosicionable, IAtacabl
         super(posicion, VIDA_MAXIMA, DANIO_A_UNIDAD, DANIO_A_EDIFICIO, RANGO_DE_ATAQUE);
     }
 
-//    // IAtacante
-//    public void atacar(IAtacable unidad){
-//
-//        if(!estaDentroDelRangoDeAtaque(unidad)){
-//            throw new UnidadFueraDeRangoDeAtaqueExcepcion();
-//        }
-//        unidad.recibirAtaque(this);
-//    }
-//
-//    @Override
-//    public int obtenerDanio(Unidad unidad) {
-//        return DANIO_A_UNIDAD;
-//    }
-//
-//    @Override
-//    public int obtenerDanio(Edificio edificioReparable) {
-//        return DANIO_A_EDIFICIO;
-//    }
-//    // fin IAtacante
-//
-//    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
-//        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
-//    }
 }
