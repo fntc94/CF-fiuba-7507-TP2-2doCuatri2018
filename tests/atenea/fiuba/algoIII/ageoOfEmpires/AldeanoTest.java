@@ -8,7 +8,8 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class AldeanoTest {
+public class
+AldeanoTest {
 
     private Aldeano crearAldeano(){
         return new Aldeano(Mockito.mock(Posicion.class), new EdificiosEnConstruccionFabrica());
@@ -35,7 +36,7 @@ public class AldeanoTest {
         boolean estaRecolectandoOro = aldeano.estaRecolectandoOro();
 
         // Assert
-        Assert.assertEquals(true, estaRecolectandoOro);
+        Assert.assertTrue(estaRecolectandoOro);
 
     }
 
@@ -49,7 +50,7 @@ public class AldeanoTest {
         boolean estaConstruyendo = aldeano.estaConstruyendo();
 
         // Assert
-        Assert.assertEquals(false, estaConstruyendo);
+        Assert.assertFalse(estaConstruyendo);
 
     }
 
@@ -63,7 +64,7 @@ public class AldeanoTest {
         boolean estaReparando = aldeano.estaReparando();
 
         // Assert
-        Assert.assertEquals(false, estaReparando);
+        Assert.assertFalse(estaReparando);
 
     }
 
@@ -113,7 +114,7 @@ public class AldeanoTest {
         boolean estaConstruyendo = aldeano.estaConstruyendo();
 
         // Asert
-        Assert.assertEquals(true, estaConstruyendo);
+        Assert.assertTrue(estaConstruyendo);
     }
 
     @Test
@@ -127,7 +128,7 @@ public class AldeanoTest {
         boolean estaRecolectando = aldeano.estaRecolectandoOro();
 
         // Asert
-        Assert.assertEquals(false, estaRecolectando);
+        Assert.assertFalse(estaRecolectando);
     }
 
     @Test
@@ -141,7 +142,7 @@ public class AldeanoTest {
         boolean estaReparando = aldeano.estaReparando();
 
         // Asert
-        Assert.assertEquals(false, estaReparando);
+        Assert.assertFalse(estaReparando);
     }
 
 
@@ -157,7 +158,7 @@ public class AldeanoTest {
         boolean estaReparando = aldeano.estaReparando();
 
         // Assert
-        Assert.assertEquals(true, estaReparando);
+        Assert.assertTrue(estaReparando);
 
     }
 
@@ -173,7 +174,7 @@ public class AldeanoTest {
         boolean estaRecolectandoOro = aldeano.estaRecolectandoOro();
 
         // Asert
-        Assert.assertEquals(false, estaRecolectandoOro);
+        Assert.assertFalse(estaRecolectandoOro);
     }
 
     @Test
@@ -188,7 +189,7 @@ public class AldeanoTest {
         boolean estaConstruyendo = aldeano.estaConstruyendo();
 
         // Asert
-        Assert.assertEquals(false, estaConstruyendo);
+        Assert.assertFalse(estaConstruyendo);
     }
 
     @Test
@@ -303,7 +304,7 @@ public class AldeanoTest {
         boolean estaConstruyendo = aldeano.estaConstruyendo();
 
         // Assert
-        Assert.assertEquals(true, estaConstruyendo);
+        Assert.assertTrue(estaConstruyendo);
 
     }
 
@@ -347,7 +348,7 @@ public class AldeanoTest {
         Aldeano aldeano = this.crearAldeano();
 
         // Act
-        aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
+        aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
         aldeano.continuarConstruyendo();
         aldeano.continuarConstruyendo();
 
@@ -363,7 +364,7 @@ public class AldeanoTest {
         Aldeano aldeano = this.crearAldeano();
 
         // Act
-        aldeano.iniciarConstruccionDeCuartel(cuartel -> cuarteles.add(cuartel));
+        aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
         aldeano.continuarConstruyendo();
 
         // Assert

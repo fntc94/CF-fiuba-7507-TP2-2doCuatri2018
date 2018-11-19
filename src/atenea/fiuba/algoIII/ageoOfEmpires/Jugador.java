@@ -1,37 +1,40 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Jugador {
     private Castillo castillo;
     private List<PlazaCentral> plazas;
     private List<Cuartel> cuarteles;
-    private List<Aldeano> aldeanos;
+    private LinkedList<Aldeano> aldeanos;
     private List<ArmaDeAsedio> armas;
     private List<Arquero> arqueros;
     private List<Espadachin> espadachines;
+    private ColaDeConstruccion colaDeConstruccion;
+    private int primerPosicion;
     private int bolsaDeOro;
     private static final int  oroInicial = 100;
 
 
     public Jugador (){
-      this.plazas = new ArrayList<PlazaCentral>();
-      this.cuarteles = new ArrayList<Cuartel>();
-      this.aldeanos = new ArrayList<Aldeano>();
-      this.armas = new ArrayList<ArmaDeAsedio>();
-      this.arqueros = new ArrayList<Arquero>();
-      this.espadachines = new ArrayList<Espadachin>();
+      this.plazas = new ArrayList<>();
+      this.cuarteles = new ArrayList<>();
+      this.aldeanos = new LinkedList<>();
+      this.armas = new ArrayList<>();
+      this.arqueros = new ArrayList<>();
+      this.espadachines = new ArrayList<>();
       this.castillo = new EdificiosFabrica().crearCastillo();
+      this.colaDeConstruccion = new ColaDeConstruccion();
       this.bolsaDeOro = 0;
+      this.primerPosicion = 0;
       this.recursosBasicos();
     }
 
     private void recursosBasicos(){
-        this.bolsaDeOro = this.oroInicial;
+        this.bolsaDeOro = oroInicial;
         this.plazas.add(new EdificiosFabrica().crearPlazaCentral());
         for(int cantidad = 1; cantidad<=3;cantidad++){
-            Aldeano aldeano = this.plazas.get(0).construirAldeano();
+            Aldeano aldeano = this.plazas.get(this.primerPosicion).construirAldeano();
             this.aldeanos.add(aldeano);
         }
     }
@@ -40,13 +43,18 @@ public class Jugador {
         return (cantidad <= this.aldeanos.size());
     }
 
-    public boolean tienePlazaCentral(){
-        return (this.aldeanos.size() >= 1);
-    }
 
     public boolean tieneOro(int cantidad){
         return (this.bolsaDeOro >= cantidad );
 
+    }
+
+    public int tieneCuarteles(){
+        return (this.cuarteles.size() );
+    }
+
+    public int tienePlazas(){
+        return (this.plazas.size() );
     }
 
     public void ordenarRecolectarOro(){
@@ -55,13 +63,37 @@ public class Jugador {
         }
     }
 
+    public void ordenarIniciarConstruccionPlazaCentral(){
+        if( this.aldeanos.isEmpty() ){
+            throw new AldeanosOcupadosException();
+        }
+        else {
+            Aldeano aldeano = this.aldeanos.remove();
+            aldeano.iniciarConstruccionDePlazaCentral(plaza ->this.plazas.add(plaza));
+            this.colaDeConstruccion.actualizarColaDeConstruccion(aldeano);
+        }
+    }
 
+   public void ordenarAvanzarConstruccion(){
+       try
+       {
+           this.colaDeConstruccion.avanzarConstruccion(aldeano ->this.aldeanos.add(aldeano));
+       }
+       catch (OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion ex){
+           throw (new NoHayEdificiosEnConstruccionException());
+       }
 
+   }
 
-
-
-
-
-
+   public void ordenarIniciarConstruccionCuartel(){
+        if( this.aldeanos.isEmpty() ){
+            throw new AldeanosOcupadosException();
+        }
+        else {
+            Aldeano aldeano = this.aldeanos.remove();
+            aldeano.iniciarConstruccionDeCuartel(cuartel ->this.cuarteles.add(cuartel));
+            this.colaDeConstruccion.actualizarColaDeConstruccion(aldeano);
+        }
+    }
 
 }
