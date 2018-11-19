@@ -4,4 +4,5 @@ public interface IPosicionable {
 
     Posicion getPosicion();
 
+
 }
