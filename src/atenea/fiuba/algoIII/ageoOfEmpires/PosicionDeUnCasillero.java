@@ -1,5 +1,9 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class PosicionDeUnCasillero extends Posicion {
 
     public PosicionDeUnCasillero(int x, int y) {
