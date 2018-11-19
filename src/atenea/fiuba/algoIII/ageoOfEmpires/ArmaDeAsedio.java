@@ -2,33 +2,15 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class ArmaDeAsedio implements IAtacable {
 
-    private int _vidaMaxima;
-    private int _vidaActual;
+    private final int VIDA_MAXIMA = 150;
+    private int _vidaActual = VIDA_MAXIMA;
     private Posicion _posicion;
     private IEstadoArmaDeAsedio _estado = new EstadoArmaDeAsedioDesmontada();
 
 
-    public ArmaDeAsedio(int vidaMaxima, int vidaActual, Posicion posicion){
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaActual;
+    public ArmaDeAsedio(Posicion posicion){
         _posicion = posicion;
     }
-
-    public ArmaDeAsedio(int vidaMaxima, Posicion posicion){
-        this(vidaMaxima, vidaMaxima, posicion);
-    }
-
-    public ArmaDeAsedio(int vidaMaxima, int vidaActual){
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaActual;
-        _posicion = null;
-    }
-
-    public ArmaDeAsedio(int vidaMaxima){
-        this(vidaMaxima, vidaMaxima, null);
-    }
-
-
 
     public int getVida(){
         return _vidaActual;

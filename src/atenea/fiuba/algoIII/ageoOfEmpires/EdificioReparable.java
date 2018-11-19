@@ -2,17 +2,20 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public abstract class EdificioReparable implements IEdificioReparable, IEdificioAtacable {
 
-    protected int _vidaMaxima;
-    protected int _vidaActual;
+    private final int VIDA_MAXIMA;
+    private final int VELOCIDAD_DE_REPARACION;
+
+    protected int vidaActual;
     private IEstadoReparador _reparadorActivo;
 
-    public EdificioReparable(int vidaMaxima, int vidaInicial) {
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaInicial;
+    protected EdificioReparable(int vidaMaxima, int velocidadDeReparacion){
+        this.VIDA_MAXIMA = vidaMaxima;
+        this.vidaActual = VIDA_MAXIMA;
+        this.VELOCIDAD_DE_REPARACION = velocidadDeReparacion;
     }
 
-    public int getVida() {
-        return _vidaActual;
+    public int getVida(){
+        return this.vidaActual;
     }
 
     @Override // IEdificioReparable
@@ -26,19 +29,17 @@ public abstract class EdificioReparable implements IEdificioReparable, IEdificio
             return;
         }
 
-        this._vidaActual += getVelocidadDeReparacion();
+        vidaActual += VELOCIDAD_DE_REPARACION;
 
-        if(_vidaActual > _vidaMaxima){
-            _vidaActual = _vidaMaxima;
+        if(this.vidaActual > this.VIDA_MAXIMA){
+            this.vidaActual = this.VIDA_MAXIMA;
             _reparadorActivo.darPorTerminadaLaReparacion();
         }
     }
 
-    protected abstract int getVelocidadDeReparacion();
-
     @Override // IEdificioAtacable
     public void recibirDanio(int danio) {
-        this._vidaActual -= danio;
+        this.vidaActual -= danio;
     }
 
 }

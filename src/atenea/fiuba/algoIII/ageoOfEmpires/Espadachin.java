@@ -2,30 +2,17 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class Espadachin implements IAtacable, IPosicionable {
 
-    private final int _vidaMaxima;
-    private int _vida;
-    private Posicion _posicion;
+    private final int VIDA_MAXIMA = 100;
+    private int _vida = VIDA_MAXIMA;
 
     private final int DANIO_A_UNIDAD = 25;
     private final int DANIO_A_EDIFICIO = 15;
     private final int RANGO_DE_ATAQUE = 1;
 
-    public Espadachin(int vidaMaxima, int vidaInicial, Posicion posicion){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaInicial;
+    private Posicion _posicion;
+
+    public Espadachin(Posicion posicion){
         _posicion = posicion;
-    }
-
-    public Espadachin(int vidaMaxima, Posicion posicion){
-        this(vidaMaxima, vidaMaxima, posicion);
-    }
-
-    public Espadachin(int vidaMaxima, int vidaInicial){
-        this(vidaMaxima, vidaInicial, null);
-    }
-
-    public Espadachin(int vidaMaxima){
-        this(vidaMaxima, vidaMaxima, null);
     }
 
     public int getVida() {

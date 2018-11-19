@@ -9,8 +9,7 @@ public class CastilloTest {
     public void crearArmaDeAsedio_DevuelveArmaDeAsedio(){
 
         // Arrange
-        int vidaMaximaCastillo = 1000;
-        Castillo castillo = new Castillo(vidaMaximaCastillo, new UnidadesFabrica());
+        Castillo castillo = new Castillo(new UnidadesFabrica());
 
         // Act
         ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio();
@@ -24,8 +23,7 @@ public class CastilloTest {
     public void obtenerCostoArmaDeAsedio_Devuelve200(){
 
         // Arrange
-        int vidaMaximaCastillo = 1000;
-        Castillo castillo = new Castillo(vidaMaximaCastillo, new UnidadesFabrica());
+        Castillo castillo = new Castillo(new UnidadesFabrica());
         int costoEsperado = 200;
 
         // Act

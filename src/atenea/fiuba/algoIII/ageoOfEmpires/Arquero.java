@@ -2,28 +2,16 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public class Arquero implements IAtacable {
 
-    private final int _vidaMaxima;
-    private int _vida;
-    private Posicion _posicion;
+    private final int VIDA_MAXIMA = 75;
+    private int _vida = VIDA_MAXIMA;
 
     private final int DANIO_A_UNIDAD = 15;
     private final int DANIO_A_EDIFICIO = 10;
 
-    public Arquero(int vidaMaxima, int vidaInicial){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaInicial;
-    }
+    private Posicion _posicion;
 
-    public Arquero(int vidaMaxima, Posicion posicion){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaMaxima;
+    public Arquero(Posicion posicion){
         _posicion = posicion;
-    }
-
-    public Arquero(int vidaMaxima){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaMaxima;
-        _posicion = null;
     }
 
     public int getVida() {

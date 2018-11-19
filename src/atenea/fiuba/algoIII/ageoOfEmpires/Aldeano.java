@@ -4,10 +4,12 @@ import java.util.function.Consumer;
 
 public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IAtacable {
 
-    private int _vidaMaxima = 50;
+    private final int VIDA_MAXIMA = 50;
+    private int _vidaActual = VIDA_MAXIMA;
+
     private Posicion _posicion;
     private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
-    private int _vidaActual;
+
     private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
@@ -18,26 +20,9 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IAtaca
         return _vidaActual;
     }
 
-    public Aldeano(int vidaMaxima, int vidaInicial, Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaInicial;
+    public Aldeano(Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
         _posicion = posicion;
         _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
-    }
-
-    public Aldeano(int vidaMaxima, Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificios){
-        this(vidaMaxima, vidaMaxima, posicion, fabricaDeEdificios);
-    }
-
-    public Aldeano(int vidaMaxima, int vidaInicial, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
-        _vidaMaxima = vidaMaxima;
-        _vidaActual = vidaInicial;
-        _posicion = null;
-        _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
-    }
-
-    public Aldeano(int vidaMaxima, EdificiosEnConstruccionFabrica fabricaDeEdificios){
-        this(vidaMaxima, vidaMaxima, null, fabricaDeEdificios);
     }
 
     //IRecolectorDeOro

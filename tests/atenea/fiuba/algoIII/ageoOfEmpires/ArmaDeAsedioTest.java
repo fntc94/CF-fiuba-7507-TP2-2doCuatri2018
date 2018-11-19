@@ -7,9 +7,7 @@ import org.mockito.Mockito;
 public class ArmaDeAsedioTest {
 
     private ArmaDeAsedio crearArmaDeAsedio(){
-
-        int vidaMaxima = 150;
-        return new ArmaDeAsedio(vidaMaxima);
+        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0));
     }
 
     @Test
@@ -19,7 +17,7 @@ public class ArmaDeAsedioTest {
         int vidaMaxima = 150;
 
         // Act
-        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(vidaMaxima);
+        ArmaDeAsedio armaDeAsedio = this.crearArmaDeAsedio();
         boolean estaMontada = armaDeAsedio.estaMontada();
 
         // Assert
@@ -107,9 +105,9 @@ public class ArmaDeAsedioTest {
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
         armaDeAsedio.montar();
 
-        int vidaInicialPlazaCentral = 450;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaInicialPlazaCentral, Mockito.mock(UnidadesFabrica.class));
+        PlazaCentral plazaCentral = new PlazaCentral(Mockito.mock(UnidadesFabrica.class));
 
+        int vidaInicialPlazaCentral = plazaCentral.getVida();
         int danioEsperado = 75;
 
         // Act
@@ -127,10 +125,9 @@ public class ArmaDeAsedioTest {
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
         armaDeAsedio.montar();
 
-        int vidaMaximaCuartel = 250;
-        int vidaInicialCuartel = 250;
-        Cuartel cuartel = new Cuartel(vidaMaximaCuartel, vidaInicialCuartel, Mockito.mock(UnidadesFabrica.class));
+        Cuartel cuartel = new Cuartel(Mockito.mock(UnidadesFabrica.class));
 
+        int vidaInicialCuartel = cuartel.getVida();
         int danioEsperado = 75;
 
         // Act
@@ -150,10 +147,9 @@ public class ArmaDeAsedioTest {
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
         armaDeAsedio.montar();
 
-        int vidaMaximaCastillo = 1000;
-        int vidaInicialCastillo = 1000;
-        Castillo castillo = new Castillo(vidaMaximaCastillo, vidaInicialCastillo, Mockito.mock(UnidadesFabrica.class));
+        Castillo castillo = new Castillo(Mockito.mock(UnidadesFabrica.class));
 
+        int vidaInicialCastillo = castillo.getVida();
         int danioEsperado = 75;
 
         // Act

@@ -3,36 +3,30 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 public class UnidadesFabrica {
 
     private final int _costoEnOroAldeano = 25;
-    private final int _vidaMaximaAldeano = 50;
-
     private final int _costoEnOroArquero = 75;
-    private final int _vidaMaximaArquero = 75;
-
     private final int _costoEnOroEspadachin = 50;
-    private final int _vidaMaximaEspadachin = 100;
-
     private final int _costoEnOroArmaDeAsedio = 200;
-    private final int _vidaMaximaArmaDeAsedio = 100;
 
     public int obtenerCostoEnOroAldeano(){
         return _costoEnOroAldeano;
     }
     public Aldeano crearAldeano() {
-        return new Aldeano(_vidaMaximaAldeano, new EdificiosEnConstruccionFabrica());
+        return new Aldeano(new PosicionDeUnCasillero(0,0), new EdificiosEnConstruccionFabrica());
     }
 
     public int obtenerCostoEnOroArquero() {
         return _costoEnOroArquero;
     }
     public Arquero crearArquero() {
-        return new Arquero(_vidaMaximaArquero, null);
+        return new Arquero(null);
     }
 
     public int obtenerCostoEspadachin(){
         return _costoEnOroEspadachin;
     }
     public Espadachin crearEspadachin(){
-        return new Espadachin(_vidaMaximaEspadachin);
+        return new Espadachin(new PosicionDeUnCasillero(0,0));
+
     }
 
     public int obtenerCostoArmaDeAsedio(){
@@ -40,7 +34,7 @@ public class UnidadesFabrica {
     }
 
     public ArmaDeAsedio crearArmaDeAsedio(){
-        return new ArmaDeAsedio(_vidaMaximaArmaDeAsedio);
+        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0));
     }
 
 }
