@@ -2,26 +2,19 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import java.util.function.Consumer;
 
-public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IAtacable {
+public class Aldeano extends Unidad implements IPosicionable, IRecolectorOro, IConstructor, IReparador, IAtacable {
 
-    private final int VIDA_MAXIMA = 50;
-    private int _vidaActual = VIDA_MAXIMA;
+    private final static int VIDA_MAXIMA = 50;
 
-    private Posicion _posicion;
     private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
-
     private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
         _estadoAldeano = estado;
     }
 
-    int getVidaActual() {
-        return _vidaActual;
-    }
-
     public Aldeano(Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
-        _posicion = posicion;
+        super(posicion, VIDA_MAXIMA);
         _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
     }
 
@@ -86,24 +79,5 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IAtaca
 
     public void iniciarConstruccionDeCuartel(){
         this.iniciarConstruccionDeCuartel(cuartel -> {});
-    }
-
-
-    @Override
-    public Posicion getPosicion() {
-        return _posicion;
-    }
-
-    @Override
-    public void recibirAtaque(IAtacante atacante) {
-
-        int danio = atacante.obtenerDanio(this);
-
-        if(danio >= this._vidaActual){
-            _vidaActual = 0;
-            return;
-        }
-
-        this._vidaActual -= danio;
     }
 }

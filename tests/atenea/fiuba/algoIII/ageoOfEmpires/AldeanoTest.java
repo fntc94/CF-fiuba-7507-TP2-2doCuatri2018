@@ -22,7 +22,7 @@ public class AldeanoTest {
     public void getVida_Devuelve50(){
 
         Aldeano aldeano = this.crearAldeano();
-        assertEquals(50, aldeano.getVidaActual());
+        assertEquals(50, aldeano.getVida());
     }
 
     @Test

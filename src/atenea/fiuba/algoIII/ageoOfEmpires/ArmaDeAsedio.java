@@ -1,20 +1,16 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class ArmaDeAsedio implements IAtacable, IAtacante {
+public class ArmaDeAsedio extends Unidad implements IPosicionable, IAtacable, IAtacante {
 
-    private final int VIDA_MAXIMA = 150;
-    private final int DANIO_A_EDIFICIOS = 75;
-    private int _vidaActual = VIDA_MAXIMA;
-    private Posicion _posicion;
+    private final static int VIDA_MAXIMA = 150;
+    private final static int DANIO_A_UNIDADES = 0;
+    private final static int DANIO_A_EDIFICIOS = 75;
+
     private IEstadoArmaDeAsedio _estado = new EstadoArmaDeAsedioDesmontada();
 
 
     public ArmaDeAsedio(Posicion posicion){
-        _posicion = posicion;
-    }
-
-    public int getVida(){
-        return _vidaActual;
+        super(posicion, VIDA_MAXIMA);
     }
 
     public boolean estaMontada() {
@@ -37,52 +33,14 @@ public class ArmaDeAsedio implements IAtacable, IAtacante {
         _estado.mover();
     }
 
-//    public void atacar(IEdificioAtacable edificioAtacable) {
-//        _estado.atacar(edificioAtacable);
-//
-//    }
-
-    @Override
-    public Posicion getPosicion() {
-        return _posicion;
-    }
-
-    @Override
-    public void recibirAtaque(IAtacante atacante) {
-
-        int danio = atacante.obtenerDanio(this);
-
-        if(danio >= this._vidaActual){
-            _vidaActual = 0;
-            return;
-        }
-
-        this._vidaActual -= danio;
-    }
-
     @Override
     public void atacar(IAtacable atacable) {
         atacable.recibirAtaque(this);
     }
 
     @Override
-    public int obtenerDanio(Aldeano aldeano) {
-        throw new ArmaDeAsedioNoPuedeAtacarUnidadesException();
-    }
-
-    @Override
-    public int obtenerDanio(Espadachin espadachin) {
-        throw new ArmaDeAsedioNoPuedeAtacarUnidadesException();
-    }
-
-    @Override
-    public int obtenerDanio(Arquero arquero) {
-        throw new ArmaDeAsedioNoPuedeAtacarUnidadesException();
-    }
-
-    @Override
-    public int obtenerDanio(ArmaDeAsedio armaDeAsedio) {
-        throw new ArmaDeAsedioNoPuedeAtacarUnidadesException();
+    public int obtenerDanio(Unidad unidad) {
+        return DANIO_A_UNIDADES;
     }
 
     @Override
@@ -99,4 +57,6 @@ public class ArmaDeAsedio implements IAtacable, IAtacante {
     public int obtenerDanio(Castillo castillo) {
         return DANIO_A_EDIFICIOS;
     }
+
+
 }

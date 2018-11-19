@@ -99,12 +99,12 @@ public class EspadachinTest {
         Espadachin espadachin = new Espadachin(posicionEspadachin);
         Aldeano aldeano = new Aldeano(posicionAldeano, Mockito.mock(EdificiosEnConstruccionFabrica.class));
 
-        int vidaInicialAldeano = aldeano.getVidaActual();
+        int vidaInicialAldeano = aldeano.getVida();
         int danioEsperado = 25;
 
         // Act
         espadachin.atacar(aldeano);
-        int vidaFinalAldeano = aldeano.getVidaActual();
+        int vidaFinalAldeano = aldeano.getVida();
         int danioProducido = vidaInicialAldeano - vidaFinalAldeano;
 
         // Assert

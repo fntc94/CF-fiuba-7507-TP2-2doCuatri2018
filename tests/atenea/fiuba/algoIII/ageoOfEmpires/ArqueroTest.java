@@ -179,12 +179,12 @@ public class ArqueroTest {
         Arquero arquero = new Arquero(Mockito.mock(Posicion.class));
         Aldeano aldeano = new Aldeano(Mockito.mock(Posicion.class), Mockito.mock(EdificiosEnConstruccionFabrica.class));
 
-        int vidaInicialAldeano = aldeano.getVidaActual();
+        int vidaInicialAldeano = aldeano.getVida();
         int danioEsperado = 15;
 
         // Act
         arquero.atacar(aldeano);
-        int vidaFinalAldeano = aldeano.getVidaActual();
+        int vidaFinalAldeano = aldeano.getVida();
         int danioProducido = vidaInicialAldeano - vidaFinalAldeano;
 
         // Assert
