@@ -1,68 +1,20 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class ArqueroTest {
 
-    @Test
-    public void atacar_AOtroArquero_LeProduceDanio15(){
 
-        // Arrange
-        Arquero atacante = new Arquero(Mockito.mock(Posicion.class));
-        Arquero atacado = new Arquero(Mockito.mock(Posicion.class));
+    private Arquero arquero;
+    private AtacablesSustitutosFabrica atacablesSustitutosFabrica;
 
-        int vidaInicialAtacado = atacado.getVida();
-        int danioEsperado = 15;
-
-        // Act
-        atacante.atacar(atacado);
-        int vidaFinalAtazado = atacado.getVida();
-        int danioProducido = vidaInicialAtacado - vidaFinalAtazado;
-
-        // Assert
-        Assert.assertEquals(danioEsperado, danioProducido);
-    }
-
-    @Test
-    public void atacar_AUnEspadachin_LeProduceDanio15(){
-
-        // Arrange
-        Arquero arquero = new Arquero(Mockito.mock(Posicion.class));
-        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
-
-        int vidaInicialEspadachin = espadachin.getVida();
-        int danioEsperado = 15;
-
-        // Act
-        arquero.atacar(espadachin);
-        int vidaFinalEspadachin = espadachin.getVida();
-        int danioProducido = vidaInicialEspadachin - vidaFinalEspadachin;
-
-        // Assert
-        Assert.assertEquals(danioEsperado, danioProducido);
-
-    }
-
-    @Test
-    public void atacar_AUnArmaDeAsedio_LeProduceDanio15(){
-
-        // Arrange
-        Arquero arquero = new Arquero(Mockito.mock(Posicion.class));
-        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(Mockito.mock(Posicion.class));
-
-        int vidaInicialArmaDeAsedio = armaDeAsedio.getVida();
-        int danioEsperado = 15;
-
-        // Act
-        arquero.atacar(armaDeAsedio);
-        int vidaFinalArmaDeAsedio = armaDeAsedio.getVida();
-        int danioObtenido = vidaInicialArmaDeAsedio - vidaFinalArmaDeAsedio;
-
-        // Assert
-        Assert.assertEquals(danioEsperado, danioObtenido);
-
+    @Before
+    public void setUp(){
+        arquero = new Arquero(Mockito.mock(Posicion.class));
+        atacablesSustitutosFabrica = new AtacablesSustitutosFabrica(arquero);
     }
 
     @Test
