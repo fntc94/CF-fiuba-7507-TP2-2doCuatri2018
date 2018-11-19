@@ -2,6 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class ArmaDeAsedioTest {
 
@@ -97,5 +98,71 @@ public class ArmaDeAsedioTest {
 
         // Act
         armaDeAsedio.mover();
+    }
+
+    @Test
+    public void atacar_APlazaCentral_LeProduceDanio75(){
+
+        // Arrange
+        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        armaDeAsedio.montar();
+
+        int vidaInicialPlazaCentral = 450;
+        PlazaCentral plazaCentral = new PlazaCentral(vidaInicialPlazaCentral, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 75;
+
+        // Act
+        armaDeAsedio.atacar(plazaCentral);
+        int danioProducido = vidaInicialPlazaCentral - plazaCentral.getVida();
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+    }
+
+    @Test
+    public void atacar_ACuartel_LeProduceDanio75(){
+
+        // Arrange
+        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        armaDeAsedio.montar();
+
+        int vidaMaximaCuartel = 250;
+        int vidaInicialCuartel = 250;
+        Cuartel cuartel = new Cuartel(vidaMaximaCuartel, vidaInicialCuartel, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 75;
+
+        // Act
+        armaDeAsedio.atacar(cuartel);
+        int vidaFinalCuartel = cuartel.getVida();
+        int danioProducido = vidaInicialCuartel- vidaFinalCuartel;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
+    @Test
+    public void atacar_ACastillo_LeProduceDanio75(){
+
+        // Arrange
+        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        armaDeAsedio.montar();
+
+        int vidaMaximaCastillo = 1000;
+        int vidaInicialCastillo = 1000;
+        Castillo castillo = new Castillo(vidaMaximaCastillo, vidaInicialCastillo, Mockito.mock(UnidadesFabrica.class));
+
+        int danioEsperado = 75;
+
+        // Act
+        armaDeAsedio.atacar(castillo);
+        int vidaFinalCastillo = castillo.getVida();
+        int danioProducido = vidaInicialCastillo- vidaFinalCastillo;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
     }
 }

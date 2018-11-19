@@ -2,11 +2,16 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 public class ReparacionDePlazaCentralTests {
 
     private Aldeano crearAldeano(){
         return new UnidadesFabrica().crearAldeano();
+    }
+
+    private PlazaCentral crearPlazaCentral(int vidaMaxima, int vidaInicial){
+        return new PlazaCentral(vidaMaxima, vidaInicial, Mockito.mock(UnidadesFabrica.class));
     }
 
     @Test
@@ -17,7 +22,7 @@ public class ReparacionDePlazaCentralTests {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
 
         // Act
@@ -36,7 +41,7 @@ public class ReparacionDePlazaCentralTests {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 350;
 
         // Act
@@ -57,7 +62,7 @@ public class ReparacionDePlazaCentralTests {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 440;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 450;
 
         // Act
@@ -77,7 +82,7 @@ public class ReparacionDePlazaCentralTests {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 450;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 450;
 
         // Act
@@ -97,7 +102,7 @@ public class ReparacionDePlazaCentralTests {
 
         int vidaMaximaDePlazaCentral = 450;
         int vidaInicialDePlazaCentral = 300;
-        PlazaCentral plazaCentral = new PlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
+        PlazaCentral plazaCentral = this.crearPlazaCentral(vidaMaximaDePlazaCentral, vidaInicialDePlazaCentral);
 
         int vidaFinalEsperadaDePlazaCentralLuegoDeReparacion = 325;
 
