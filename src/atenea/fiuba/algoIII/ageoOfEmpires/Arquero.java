@@ -4,6 +4,7 @@ public class Arquero implements IUnidadAtacable {
 
     private final int _vidaMaxima;
     private int _vida;
+    private Posicion _posicion;
 
     private final int DANIO_A_UNIDAD = 15;
     private final int DANIO_A_EDIFICIO = 10;
@@ -13,9 +14,16 @@ public class Arquero implements IUnidadAtacable {
         _vida = vidaInicial;
     }
 
+    public Arquero(int vidaMaxima, Posicion posicion){
+        _vidaMaxima = vidaMaxima;
+        _vida = vidaMaxima;
+        _posicion = posicion;
+    }
+
     public Arquero(int vidaMaxima){
         _vidaMaxima = vidaMaxima;
         _vida = vidaMaxima;
+        _posicion = null;
     }
 
     public int getVida() {
@@ -41,4 +49,8 @@ public class Arquero implements IUnidadAtacable {
         this._vida -= danio;
     }
 
+    @Override
+    public Posicion getPosicion() {
+        return _posicion;
+    }
 }

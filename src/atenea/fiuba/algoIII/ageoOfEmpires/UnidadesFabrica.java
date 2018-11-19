@@ -25,7 +25,7 @@ public class UnidadesFabrica {
         return _costoEnOroArquero;
     }
     public Arquero crearArquero() {
-        return new Arquero(_vidaMaximaArquero);
+        return new Arquero(_vidaMaximaArquero, null);
     }
 
     public int obtenerCostoEspadachin(){

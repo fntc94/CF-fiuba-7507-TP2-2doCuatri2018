@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public interface IUnidadAtacable {
+public interface IUnidadAtacable extends IPosicionable {
 
     void recibirDanio(int danio);
 

@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IUnidadAtacable {
 
     private int _vidaMaxima = 50;
+    private Posicion _posicion;
     private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
     private int _vidaActual;
     private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
@@ -17,14 +18,26 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IUnida
         return _vidaActual;
     }
 
+    public Aldeano(int vidaMaxima, int vidaInicial, Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
+        _vidaMaxima = vidaMaxima;
+        _vidaActual = vidaInicial;
+        _posicion = posicion;
+        _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
+    }
+
+    public Aldeano(int vidaMaxima, Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificios){
+        this(vidaMaxima, vidaMaxima, posicion, fabricaDeEdificios);
+    }
+
     public Aldeano(int vidaMaxima, int vidaInicial, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
         _vidaMaxima = vidaMaxima;
         _vidaActual = vidaInicial;
+        _posicion = null;
         _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
     }
 
     public Aldeano(int vidaMaxima, EdificiosEnConstruccionFabrica fabricaDeEdificios){
-        this(vidaMaxima, vidaMaxima, fabricaDeEdificios);
+        this(vidaMaxima, vidaMaxima, null, fabricaDeEdificios);
     }
 
     //IRecolectorDeOro
@@ -93,5 +106,10 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IUnida
     @Override
     public void recibirDanio(int danio) {
         this._vidaActual -= danio;
+    }
+
+    @Override
+    public Posicion getPosicion() {
+        return _posicion;
     }
 }

@@ -1,5 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,10 @@ public abstract class Posicion {
             }
         }
         return false;
+    }
+
+    public int distanciaA(Posicion otraPosicion){
+        throw new java.lang.UnsupportedOperationException();
     }
 
 }

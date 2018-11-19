@@ -4,17 +4,31 @@ public class ArmaDeAsedio implements IUnidadAtacable {
 
     private int _vidaMaxima;
     private int _vidaActual;
+    private Posicion _posicion;
     private IEstadoArmaDeAsedio _estado = new EstadoArmaDeAsedioDesmontada();
 
+
+    public ArmaDeAsedio(int vidaMaxima, int vidaActual, Posicion posicion){
+        _vidaMaxima = vidaMaxima;
+        _vidaActual = vidaActual;
+        _posicion = posicion;
+    }
+
+    public ArmaDeAsedio(int vidaMaxima, Posicion posicion){
+        this(vidaMaxima, vidaMaxima, posicion);
+    }
 
     public ArmaDeAsedio(int vidaMaxima, int vidaActual){
         _vidaMaxima = vidaMaxima;
         _vidaActual = vidaActual;
+        _posicion = null;
     }
 
     public ArmaDeAsedio(int vidaMaxima){
-        this(vidaMaxima, vidaMaxima);
+        this(vidaMaxima, vidaMaxima, null);
     }
+
+
 
     public int getVida(){
         return _vidaActual;
@@ -48,5 +62,10 @@ public class ArmaDeAsedio implements IUnidadAtacable {
     @Override // IUnidadAtacable
     public void recibirDanio(int danio){
         this._vidaActual -= danio;
+    }
+
+    @Override
+    public Posicion getPosicion() {
+        return _posicion;
     }
 }

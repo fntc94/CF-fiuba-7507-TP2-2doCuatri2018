@@ -7,20 +7,26 @@ import org.mockito.Mockito;
 public class EspadachinTest {
 
     @Test
-    public void atacar_AOtroEspadachin_LeProduceDanio25(){
+    public void atacar_OtroEspadachinADistancia1_LeProduceDanio25(){
 
         // Arrange
         int vidaMaxima = 100;
 
-        Espadachin atacante = new Espadachin(vidaMaxima);
-        Espadachin atacado = new Espadachin(vidaMaxima);
+        int DISTANCIA_ATAQUE_1 = 1;
+        Posicion posicionAtacante = Mockito.mock(Posicion.class);
+        Posicion posicionAtacado = Mockito.mock(Posicion.class);
+        Mockito.when(posicionAtacante.distanciaA(posicionAtacado)).thenReturn(DISTANCIA_ATAQUE_1);
 
+        Espadachin atacante = new Espadachin(vidaMaxima, posicionAtacante);
+        Espadachin atacado = new Espadachin(vidaMaxima, posicionAtacado);
+
+        int vidaInicialAtacado = atacado.getVida();
         int danioEsperado = 25;
 
         // Act
         atacante.atacar(atacado);
-        int vidaObtenidaLuegoDelAtaque = atacado.getVida();
-        int danioProducido = vidaMaxima - vidaObtenidaLuegoDelAtaque;
+        int vidaFinalAtacado = atacado.getVida();
+        int danioProducido = vidaInicialAtacado - vidaFinalAtacado;
 
        // Assert
         Assert.assertEquals(danioEsperado, danioProducido);
@@ -28,21 +34,27 @@ public class EspadachinTest {
     }
 
     @Test
-    public void atacar_AUnArquero_LeProduceDanio25(){
+    public void atacar_ArqueroADistancia1_LeProduceDanio25(){
 
         // Arrange
         int vidaEspadachin = 100;
-        Espadachin espadachin = new Espadachin(vidaEspadachin);
-
         int vidaArquero = 75;
-        Arquero arquero = new Arquero(vidaArquero);
 
+        int DISTANCIA_ATAQUE_1 = 1;
+        Posicion posicionEspadachin = Mockito.mock(Posicion.class);
+        Posicion posicionArquero = Mockito.mock(Posicion.class);
+        Mockito.when(posicionEspadachin.distanciaA(posicionArquero)).thenReturn(DISTANCIA_ATAQUE_1);
+
+        Espadachin espadachin = new Espadachin(vidaEspadachin, posicionEspadachin);
+        Arquero arquero = new Arquero(vidaArquero, posicionArquero);
+
+        int vidaInicialArquero = arquero.getVida();
         int danioEsperado = 25;
 
         // Act
         espadachin.atacar(arquero);
-        int vidaObtenidaLuegoDelAtaque = arquero.getVida();
-        int danioProducido = vidaArquero - vidaObtenidaLuegoDelAtaque;
+        int vidaFinalArquero = arquero.getVida();
+        int danioProducido = vidaInicialArquero - vidaFinalArquero;
 
 
         // Assert
@@ -51,15 +63,22 @@ public class EspadachinTest {
     }
 
     @Test
-    public void atacar_AUnArmaDeAsedio_LeProduceDanio25(){
+    public void atacar_ArmaDeAsedioADistancia1_LeProduceDanio25(){
 
         // Arrange
         int vidaEspadachin = 100;
-        Espadachin espadachin = new Espadachin(vidaEspadachin);
+        int vidaArmaDeAsedio = 150;
 
-        int vidaInicialArmaDeAsedio = 150;
-        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(vidaInicialArmaDeAsedio);
+        int DISTANCIA_ATAQUE_1 = 1;
+        Posicion posicionEspadachin = Mockito.mock(Posicion.class);
+        Posicion posicionArmaDeAsedio = Mockito.mock(Posicion.class);
+        Mockito.when(posicionEspadachin.distanciaA(posicionArmaDeAsedio)).thenReturn(DISTANCIA_ATAQUE_1);
 
+
+        Espadachin espadachin = new Espadachin(vidaEspadachin, posicionEspadachin);
+        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(vidaArmaDeAsedio, posicionArmaDeAsedio);
+
+        int vidaInicialArmaDeAsedio = armaDeAsedio.getVida();
         int danioEsperado = 25;
 
         // Act
@@ -73,47 +92,166 @@ public class EspadachinTest {
     }
 
     @Test
-    public void atacar_AOtroEspadachinConVida20_LaVidaDelAtacadoEsCeroLuegoDelAtaque(){
+    public void atacar_AldeanoADistancia1_LeProduceDanio25(){
 
         // Arrange
-        int vidaMaximaEspadachin = 100;
-        int vidaInicialAtacante =  vidaMaximaEspadachin;
-        int vidaInicialAtacado = 20;
+        int vidaEspadachin = 75;
+        int vidaMaximaAldeano = 50;
 
-        Espadachin atacante = new Espadachin(vidaMaximaEspadachin);
-        Espadachin atacado = new Espadachin(vidaMaximaEspadachin, vidaInicialAtacado);
+        int DISTANCIA_ATAQUE_1 = 1;
+        Posicion posicionEspadachin = Mockito.mock(Posicion.class);
+        Posicion posicionAldeano = Mockito.mock(Posicion.class);
+        Mockito.when(posicionEspadachin.distanciaA(posicionAldeano)).thenReturn(DISTANCIA_ATAQUE_1);
 
-        int vidaEsperadaLuegoDelAtaque = 0;
+        Espadachin espadachin = new Espadachin(vidaEspadachin, posicionEspadachin);
+        Aldeano aldeano = new Aldeano(vidaMaximaAldeano, posicionAldeano, Mockito.mock(EdificiosEnConstruccionFabrica.class));
+
+        int vidaInicialAldeano = aldeano.getVidaActual();
+        int danioEsperado = 25;
+
+        // Act
+        espadachin.atacar(aldeano);
+        int vidaFinalAldeano = aldeano.getVidaActual();
+        int danioProducido = vidaInicialAldeano - vidaFinalAldeano;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioProducido);
+
+    }
+
+    @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
+    public void atacar_OtroEspadachinADistancia2_LanzaExcepcion(){
+
+        // Arrange
+        int vidaMaxima = 100;
+        int DISTANCIA_ATAQUE_2 = 2;
+
+        Posicion posicionAtacante = Mockito.mock(Posicion.class);
+        Posicion posicionAtacado = Mockito.mock(Posicion.class);
+        Mockito.when(posicionAtacante.distanciaA(posicionAtacado)).thenReturn(DISTANCIA_ATAQUE_2);
+
+        Espadachin atacante = new Espadachin(vidaMaxima, posicionAtacante);
+        Espadachin atacado = new Espadachin(vidaMaxima, posicionAtacado);
 
         // Act
         atacante.atacar(atacado);
-        int vidaObtenidaLuegoDelAtaque = atacado.getVida();
-
-        // Assert
-        Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
 
     }
 
-    @Test
-    public void atacar_AUnArqueroConVida10_LaVidaDelArqueroEsCeroLuegoDelAtaque(){
+    @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
+    public void atacar_ArqueroADistancia2_LanzaExcepcion(){
 
         // Arrange
         int vidaEspadachin = 100;
-        Espadachin espadachin = new Espadachin(vidaEspadachin);
+        int vidaArquero = 75;
 
-        int vidaArquero = 10;
-        Arquero arquero = new Arquero(vidaArquero);
+        int DISTANCIA_ATAQUE_2 = 2;
+        Posicion posicionEspadachin = Mockito.mock(Posicion.class);
+        Posicion posicionArquero = Mockito.mock(Posicion.class);
+        Mockito.when(posicionEspadachin.distanciaA(posicionArquero)).thenReturn(DISTANCIA_ATAQUE_2);
 
-        int vidaEsperadaLuegoDelAtaque = 0;
+        Espadachin espadachin = new Espadachin(vidaEspadachin, posicionEspadachin);
+        Arquero arquero = new Arquero(vidaArquero, posicionArquero);
 
         // Act
         espadachin.atacar(arquero);
-        int vidaObtenidaLuegoDelAtaque = arquero.getVida();
-
-        // Assert
-        Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
 
     }
+
+    @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
+    public void atacar_ArmaDeAsedioADistancia2_LanzaExcepcion(){
+
+        // Arrange
+        int vidaEspadachin = 100;
+        int vidaArmaDeAsedio = 150;
+
+        int DISTANCIA_ATAQUE_2 = 2;
+        Posicion posicionEspadachin = Mockito.mock(Posicion.class);
+        Posicion posicionArmaDeAsedio = Mockito.mock(Posicion.class);
+        Mockito.when(posicionEspadachin.distanciaA(posicionArmaDeAsedio)).thenReturn(DISTANCIA_ATAQUE_2);
+
+
+        Espadachin espadachin = new Espadachin(vidaEspadachin, posicionEspadachin);
+        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(vidaArmaDeAsedio, posicionArmaDeAsedio);
+
+        int vidaInicialArmaDeAsedio = armaDeAsedio.getVida();
+        int danioEsperado = 25;
+
+        // Act
+        espadachin.atacar(armaDeAsedio);
+        int vidaFinalArmaDeAsedio = armaDeAsedio.getVida();
+        int danioObtenido = vidaInicialArmaDeAsedio - vidaFinalArmaDeAsedio;
+
+        // Assert
+        Assert.assertEquals(danioEsperado, danioObtenido);
+
+    }
+
+    @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
+    public void atacar_AldeanoADistancia2_LanzaException(){
+
+        // Arrange
+        int vidaEspadachin = 75;
+        int vidaMaximaAldeano = 50;
+
+        int DISTANCIA_ATAQUE_2 = 2;
+        Posicion posicionEspadachin = Mockito.mock(Posicion.class);
+        Posicion posicionAldeano = Mockito.mock(Posicion.class);
+        Mockito.when(posicionEspadachin.distanciaA(posicionAldeano)).thenReturn(DISTANCIA_ATAQUE_2);
+
+        Espadachin espadachin = new Espadachin(vidaEspadachin, posicionEspadachin);
+        Aldeano aldeano = new Aldeano(vidaMaximaAldeano, posicionAldeano, Mockito.mock(EdificiosEnConstruccionFabrica.class));
+
+        int vidaInicialAldeano = aldeano.getVidaActual();
+        int danioEsperado = 25;
+
+        // Act
+        espadachin.atacar(aldeano);
+
+    }
+
+//    @Test
+//    public void atacar_AOtroEspadachinConVida20_LaVidaDelAtacadoEsCeroLuegoDelAtaque(){
+//
+//        // Arrange
+//        int vidaMaximaEspadachin = 100;
+//        int vidaInicialAtacante =  vidaMaximaEspadachin;
+//        int vidaInicialAtacado = 20;
+//
+//        Espadachin atacante = new Espadachin(vidaMaximaEspadachin);
+//        Espadachin atacado = new Espadachin(vidaMaximaEspadachin, vidaInicialAtacado);
+//
+//        int vidaEsperadaLuegoDelAtaque = 0;
+//
+//        // Act
+//        atacante.atacar(atacado);
+//        int vidaObtenidaLuegoDelAtaque = atacado.getVida();
+//
+//        // Assert
+//        Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
+//
+//    }
+//
+//    @Test
+//    public void atacar_AUnArqueroConVida10_LaVidaDelArqueroEsCeroLuegoDelAtaque(){
+//
+//        // Arrange
+//        int vidaEspadachin = 100;
+//        Espadachin espadachin = new Espadachin(vidaEspadachin);
+//
+//        int vidaArquero = 10;
+//        Arquero arquero = new Arquero(vidaArquero);
+//
+//        int vidaEsperadaLuegoDelAtaque = 0;
+//
+//        // Act
+//        espadachin.atacar(arquero);
+//        int vidaObtenidaLuegoDelAtaque = arquero.getVida();
+//
+//        // Assert
+//        Assert.assertEquals(vidaEsperadaLuegoDelAtaque, vidaObtenidaLuegoDelAtaque);
+//
+//    }
 
     @Test
     public void atacar_APlazaCentral_LeProduceDanio15(){
@@ -184,27 +322,5 @@ public class EspadachinTest {
 
     }
 
-    @Test
-    public void atacar_Aldeano_LeProduceDanio25(){
-
-        // Arrange
-        int vidaMaximaEspadachin = 75;
-        Espadachin espadachin = new Espadachin(vidaMaximaEspadachin);
-
-        int vidaMaximaAldeano = 50;
-        Aldeano aldeano = new Aldeano(vidaMaximaAldeano, Mockito.mock(EdificiosEnConstruccionFabrica.class));
-        int vidaInicialAldeano = aldeano.getVidaActual();
-
-        int danioEsperado = 25;
-
-        // Act
-        espadachin.atacar(aldeano);
-        int vidaFinalAldeano = aldeano.getVidaActual();
-        int danioProducido = vidaInicialAldeano - vidaFinalAldeano;
-
-        // Assert
-        Assert.assertEquals(danioEsperado, danioProducido);
-
-    }
 
 }
