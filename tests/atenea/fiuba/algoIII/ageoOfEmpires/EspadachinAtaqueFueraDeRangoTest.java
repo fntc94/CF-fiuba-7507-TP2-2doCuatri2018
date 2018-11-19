@@ -53,7 +53,7 @@ public class EspadachinAtaqueFueraDeRangoTest {
     }
 
     @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
-    public void atacar_AUnidadFueraDeRangoDeAtaque_LanzaExcepcion(){
+    public void atacar_FueraDeRangoDeAtaque_LanzaExcepcion(){
 
         // Act
         atacante.atacar(unidad);
@@ -61,7 +61,7 @@ public class EspadachinAtaqueFueraDeRangoTest {
     }
 
     @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
-    public void atacar_AUnidadFueraDeRangoDeAtaque_NoProduceDanio(){
+    public void atacar_FueraDeRangoDeAtaque_NoProduceDanio(){
 
         // Arrange
         int vidaInicialAtacado = unidad.getVida();

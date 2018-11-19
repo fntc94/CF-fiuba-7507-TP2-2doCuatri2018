@@ -115,7 +115,7 @@ public class ArmaDeAsedioAtaqueEnRangoTest {
     }
 
     @Test
-    public void atacar_AUnidadDentroDelRangoDeAtaque_ProduceDanio15(){
+    public void atacar_DentroDelRangoDeAtaque_ProduceDanioEsperado(){
 
         // Arrange
         int vidaInicialAtacado = atacado.getVida();
