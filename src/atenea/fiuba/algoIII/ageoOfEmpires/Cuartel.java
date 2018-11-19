@@ -4,15 +4,15 @@ public class Cuartel extends Edificio implements IPosicionable, IEdificioReparab
 
     private static final int VIDA_MAXIMA = 250;
     private static final int VELOCIDAD_DE_REPARACION = 50;
-    private UnidadesFabrica _fabricaDeUnidades;
+    private IUnidadesCuartelFabrica _fabricaDeUnidades;
 
-    public Cuartel(UnidadesFabrica fabricaDeUnidades) {
+    public Cuartel(IUnidadesCuartelFabrica fabricaDeUnidades) {
         super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
     }
 
     public int obtenerCostoArquero(){
-        return _fabricaDeUnidades.obtenerCostoEnOroArquero();
+        return _fabricaDeUnidades.obtenerCostoArquero();
     }
 
     public Arquero crearArquero(){

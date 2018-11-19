@@ -1,20 +1,20 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class UnidadesFabrica {
+public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesCuartelFabrica, IUnidadesCastilloFabrica {
 
     private final int _costoEnOroAldeano = 25;
     private final int _costoEnOroArquero = 75;
     private final int _costoEnOroEspadachin = 50;
     private final int _costoEnOroArmaDeAsedio = 200;
 
-    public int obtenerCostoEnOroAldeano(){
+    public int obtenerCostoAldeano(){
         return _costoEnOroAldeano;
     }
     public Aldeano crearAldeano() {
         return new Aldeano(new PosicionDeUnCasillero(0,0), new EdificiosEnConstruccionFabrica());
     }
 
-    public int obtenerCostoEnOroArquero() {
+    public int obtenerCostoArquero() {
         return _costoEnOroArquero;
     }
     public Arquero crearArquero() {
