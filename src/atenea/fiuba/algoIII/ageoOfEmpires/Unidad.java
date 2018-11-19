@@ -10,9 +10,7 @@ public abstract class Unidad implements IPosicionable, IAtacable {
         this._vida = vida;
     }
 
-    public int getVida() {
-        return _vida;
-    }
+
 
     @Override
     public Posicion getPosicion() {
@@ -31,5 +29,11 @@ public abstract class Unidad implements IPosicionable, IAtacable {
 
         this._vida -= danio;
     }
+
+    @Override
+    public int getVida() {
+        return _vida;
+    }
+    // fin IAtacable
 
 }
