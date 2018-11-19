@@ -88,13 +88,22 @@ public class Aldeano implements IRecolectorOro, IConstructor, IReparador, IAtaca
         this.iniciarConstruccionDeCuartel(cuartel -> {});
     }
 
-    @Override
-    public void recibirDanio(int danio) {
-        this._vidaActual -= danio;
-    }
 
     @Override
     public Posicion getPosicion() {
         return _posicion;
+    }
+
+    @Override
+    public void recibirAtaque(IAtacante atacante) {
+
+        int danio = atacante.obtenerDanio(this);
+
+        if(danio >= this._vidaActual){
+            _vidaActual = 0;
+            return;
+        }
+
+        this._vidaActual -= danio;
     }
 }

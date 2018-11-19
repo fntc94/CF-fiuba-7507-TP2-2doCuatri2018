@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Arquero implements IAtacable {
+public class Arquero implements IAtacable, IAtacante {
 
     private final int VIDA_MAXIMA = 75;
     private int _vida = VIDA_MAXIMA;
@@ -18,27 +18,63 @@ public class Arquero implements IAtacable {
         return _vida;
     }
 
-    public void atacar(IAtacable unidad){
-        unidad.recibirDanio(DANIO_A_UNIDAD);
-    }
 
-    public void atacar(IEdificioAtacable edificioAtacable) {
-        edificioAtacable.recibirDanio(DANIO_A_EDIFICIO);
+    @Override
+    public Posicion getPosicion() {
+        return _posicion;
     }
 
     @Override // IAtacable
-    public void recibirDanio(int danio){
+    public void recibirAtaque(IAtacante atacante) {
+        int danio = atacante.obtenerDanio(this);
 
-        if(danio >= this._vida){
-            _vida = 0;
+        if(this._vida <= danio){
+            this._vida = 0;
             return;
         }
 
         this._vida -= danio;
     }
 
+    // IAtacante
     @Override
-    public Posicion getPosicion() {
-        return _posicion;
+    public void atacar(IAtacable unidad){
+        unidad.recibirAtaque(this);
     }
+
+    @Override
+    public int obtenerDanio(Aldeano aldeano) {
+        return DANIO_A_UNIDAD;
+    }
+
+    @Override
+    public int obtenerDanio(Espadachin espadachin) {
+        return DANIO_A_UNIDAD;
+    }
+
+    @Override
+    public int obtenerDanio(Arquero arquero) {
+        return DANIO_A_UNIDAD;
+    }
+
+    @Override
+    public int obtenerDanio(ArmaDeAsedio armaDeAsedio) {
+        return DANIO_A_UNIDAD;
+    }
+
+    @Override
+    public int obtenerDanio(PlazaCentral plazaCentral) {
+        return DANIO_A_EDIFICIO;
+    }
+
+    @Override
+    public int obtenerDanio(Cuartel cuartel) {
+        return DANIO_A_EDIFICIO;
+    }
+
+    @Override
+    public int obtenerDanio(Castillo castillo) {
+        return DANIO_A_EDIFICIO;
+    }
+    // end IAtacante
 }
