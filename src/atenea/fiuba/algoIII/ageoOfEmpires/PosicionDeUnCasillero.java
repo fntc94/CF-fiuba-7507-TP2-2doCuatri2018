@@ -18,8 +18,9 @@ public class PosicionDeUnCasillero extends Posicion {
 
         //  Si se quiere mover fuera del mapa se queda en la misma posicion
         if(!nuevaPosicion.estaDentroDelArea(this.mapa.getAlto(),this.mapa.getAncho()))
-            return new PosicionDeUnCasillero(valorX, valorY);
+            return this;
 
+        nuevaPosicion.setMapa(this.mapa);
         return nuevaPosicion;
     }
 }

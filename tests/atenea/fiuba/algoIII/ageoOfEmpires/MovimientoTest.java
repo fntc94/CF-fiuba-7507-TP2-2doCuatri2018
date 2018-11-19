@@ -138,7 +138,7 @@ public class MovimientoTest {
         pos.setMapa(mapa);
 
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Derecha());
+        movimiento.hacia(new Izquierda());
 
         Posicion pos_desplazada = movimiento.calcularPosSiguiente(pos);
 

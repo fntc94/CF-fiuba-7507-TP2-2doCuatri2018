@@ -43,8 +43,8 @@ public abstract class Posicion {
         int x = casillero.getCoordenadaEnX();
         int y = casillero.getCoordenadaEnY();
 
-        boolean esValidoEnX = (x <= ancho) && (x > 0);
-        boolean esValidoEnY = (y <= alto) && (y > 0);
+        boolean esValidoEnX = (x <= ancho) && (x >= 0);
+        boolean esValidoEnY = (y <= alto) && (y >= 0);
 
         return (esValidoEnX && esValidoEnY);
     }
