@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class ArmaDeAsedio implements IUnidadAtacable {
+public class ArmaDeAsedio implements IAtacable {
 
     private int _vidaMaxima;
     private int _vidaActual;
@@ -59,7 +59,7 @@ public class ArmaDeAsedio implements IUnidadAtacable {
 
     }
 
-    @Override // IUnidadAtacable
+    @Override // IAtacable
     public void recibirDanio(int danio){
         this._vidaActual -= danio;
     }

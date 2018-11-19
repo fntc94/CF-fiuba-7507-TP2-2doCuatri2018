@@ -1,6 +1,6 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Espadachin implements IUnidadAtacable, IPosicionable {
+public class Espadachin implements IAtacable, IPosicionable {
 
     private final int _vidaMaxima;
     private int _vida;
@@ -32,7 +32,7 @@ public class Espadachin implements IUnidadAtacable, IPosicionable {
         return _vida;
     }
 
-    public void atacar(IUnidadAtacable unidad){
+    public void atacar(IAtacable unidad){
 
         if(!estaDentroDelRangoDeAtaque(unidad)){
             throw new UnidadFueraDeRangoDeAtaqueExcepcion();
