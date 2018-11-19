@@ -1,12 +1,12 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class Posicion {
     protected List<Casillero> listaCasilleros;
+    protected Mapa mapa;
 
     public Posicion(){
         this.listaCasilleros = new ArrayList<>();
@@ -49,7 +49,7 @@ public abstract class Posicion {
         return (esValidoEnX && esValidoEnY);
     }
 
-    public abstract void modificarCoordenada(int valorEnX, int valorEnY);
+    public abstract Posicion modificarCoordenada(int valorEnX, int valorEnY);
 
     // Devuelve la distancia minima
     public int distanciaA(Posicion pos_2){
@@ -80,5 +80,9 @@ public abstract class Posicion {
         Double res = Math.sqrt(x + y);
 
         return res.intValue();
+    }
+
+    public void setMapa(Mapa mapa){
+        this.mapa = mapa;
     }
 }
