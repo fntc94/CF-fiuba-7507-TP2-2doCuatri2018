@@ -1,45 +1,38 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Espadachin implements IUnidadAtacable {
+public class Espadachin extends Unidad implements IPosicionable, IAtacable, IAtacante {
 
-    private final int _vidaMaxima;
-    private int _vida;
+    private final static int VIDA_MAXIMA = 100;
+    private final static int DANIO_A_UNIDAD = 25;
+    private final static int DANIO_A_EDIFICIO = 15;
+    private final static int RANGO_DE_ATAQUE = 1;
 
-    private final int DANIO_A_UNIDAD = 25;
-    private final int DANIO_A_EDIFICIO = 15;
 
-    public Espadachin(int vidaMaxima, int vidaInicial){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaInicial;
+    public Espadachin(Posicion posicion){
+        super(posicion, VIDA_MAXIMA);
     }
 
-    public Espadachin(int vidaMaxima){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaMaxima;
-    }
+    // IAtacante
+    public void atacar(IAtacable unidad){
 
-    public int getVida() {
-        return _vida;
-    }
-
-    public void atacar(IUnidadAtacable unidad){
-        unidad.recibirDanio(DANIO_A_UNIDAD);
-    }
-
-    public void atacar(IEdificioAtacable edificioAtacable) {
-        edificioAtacable.recibirDanio(DANIO_A_EDIFICIO);
+        if(!estaDentroDelRangoDeAtaque(unidad)){
+            throw new UnidadFueraDeRangoDeAtaqueExcepcion();
+        }
+        unidad.recibirAtaque(this);
     }
 
     @Override
-    public void recibirDanio(int danio){
-
-        if(danio >= this._vida){
-            _vida = 0;
-            return;
-        }
-
-        this._vida -= danio;
+    public int obtenerDanio(Unidad unidad) {
+        return DANIO_A_UNIDAD;
     }
 
+    @Override
+    public int obtenerDanio(Edificio edificioReparable) {
+        return DANIO_A_EDIFICIO;
+    }
+    // fin IAtacante
 
+    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
+        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
+    }
 }

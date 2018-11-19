@@ -1,44 +1,30 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Arquero implements IUnidadAtacable {
+public class Arquero extends Unidad implements IPosicionable, IAtacable, IAtacante {
 
-    private final int _vidaMaxima;
-    private int _vida;
+    private static final int VIDA_MAXIMA = 75;
+    private static final int DANIO_A_UNIDAD = 15;
+    private static final int DANIO_A_EDIFICIO = 10;
 
-    private final int DANIO_A_UNIDAD = 15;
-    private final int DANIO_A_EDIFICIO = 10;
-
-    public Arquero(int vidaMaxima, int vidaInicial){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaInicial;
+    public Arquero(Posicion posicion){
+        super(posicion, VIDA_MAXIMA);
     }
 
-    public Arquero(int vidaMaxima){
-        _vidaMaxima = vidaMaxima;
-        _vida = vidaMaxima;
+    // IAtacante
+    @Override
+    public void atacar(IAtacable unidad){
+        unidad.recibirAtaque(this);
     }
 
-    public int getVida() {
-        return _vida;
+    @Override
+    public int obtenerDanio(Unidad unidad) {
+        return DANIO_A_UNIDAD;
     }
 
-    public void atacar(IUnidadAtacable unidad){
-        unidad.recibirDanio(DANIO_A_UNIDAD);
+    @Override
+    public int obtenerDanio(Edificio edificio) {
+        return DANIO_A_EDIFICIO;
     }
 
-    public void atacar(IEdificioAtacable edificioAtacable) {
-        edificioAtacable.recibirDanio(DANIO_A_EDIFICIO);
-    }
-
-    @Override // IUnidadAtacable
-    public void recibirDanio(int danio){
-
-        if(danio >= this._vida){
-            _vida = 0;
-            return;
-        }
-
-        this._vida -= danio;
-    }
 
 }
