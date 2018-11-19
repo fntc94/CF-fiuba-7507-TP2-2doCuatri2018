@@ -4,9 +4,9 @@ public class Castillo extends Edificio implements IEdificioReparable, IAtacable 
 
     private static final int VIDA_MAXIMA = 1000;
     private static final int VELOCIDAD_DE_REPARACION = 15;
-    private UnidadesFabrica _fabricaDeUnidades;
+    private IUnidadesCastilloFabrica _fabricaDeUnidades;
 
-    public Castillo(UnidadesFabrica fabricaDeUnidades) {
+    public Castillo(IUnidadesCastilloFabrica fabricaDeUnidades) {
         super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
     }
@@ -19,5 +19,6 @@ public class Castillo extends Edificio implements IEdificioReparable, IAtacable 
     {
         return _fabricaDeUnidades.crearArmaDeAsedio();
     }
+
 
 }

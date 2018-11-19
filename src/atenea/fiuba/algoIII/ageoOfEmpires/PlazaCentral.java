@@ -4,7 +4,7 @@ public class PlazaCentral extends Edificio implements IPosicionable, IEdificioRe
 
     private static final int VIDA_MAXIMA = 450;
     private static final int VELOCIDAD_DE_REPARACION = 25;
-    private UnidadesFabrica _fabricaDeUnidades;
+    private IUnidadesPlazaCentralFabrica _fabricaDeUnidades;
 
     public PlazaCentral(UnidadesFabrica fabricaDeUnidades) {
         super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
@@ -12,7 +12,7 @@ public class PlazaCentral extends Edificio implements IPosicionable, IEdificioRe
     }
 
     public int obtenerCostoAldeano(){
-        return _fabricaDeUnidades.obtenerCostoEnOroAldeano();
+        return _fabricaDeUnidades.obtenerCostoAldeano();
     }
 
     public Aldeano construirAldeano() {
