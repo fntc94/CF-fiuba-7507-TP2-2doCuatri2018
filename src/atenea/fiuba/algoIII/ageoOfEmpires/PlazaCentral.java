@@ -6,7 +6,7 @@ public class PlazaCentral extends Edificio implements IPosicionable, IEdificioRe
     private static final int VELOCIDAD_DE_REPARACION = 25;
     private IUnidadesPlazaCentralFabrica _fabricaDeUnidades;
 
-    public PlazaCentral(UnidadesFabrica fabricaDeUnidades) {
+    public PlazaCentral(IUnidadesPlazaCentralFabrica fabricaDeUnidades) {
         super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
     }
