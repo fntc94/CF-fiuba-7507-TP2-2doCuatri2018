@@ -12,7 +12,7 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class ArmaDeAsedioAtaqueEnRangoTest {
 
-    private ArmaDeAsedio atacante;
+    private ArmaDeAsedio armaDeAsedio;
     private IAtacable atacado;
     private int danioEsperado;
 
@@ -108,8 +108,8 @@ public class ArmaDeAsedioAtaqueEnRangoTest {
     }
 
     // Constructor
-    public ArmaDeAsedioAtaqueEnRangoTest(ArmaDeAsedio atacante, IAtacable atacado, int danioEsperado){
-        this.atacante = atacante;
+    public ArmaDeAsedioAtaqueEnRangoTest(ArmaDeAsedio armaDeAsedio, IAtacable atacado, int danioEsperado){
+        this.armaDeAsedio = armaDeAsedio;
         this.atacado = atacado;
         this.danioEsperado = danioEsperado;
     }
@@ -118,10 +118,11 @@ public class ArmaDeAsedioAtaqueEnRangoTest {
     public void atacar_DentroDelRangoDeAtaque_ProduceDanioEsperado(){
 
         // Arrange
+        armaDeAsedio.montar();
         int vidaInicialAtacado = atacado.getVida();
 
         // Act
-        atacante.atacar(atacado);
+        armaDeAsedio.atacar(atacado);
         int vidaFinalAtacado = atacado.getVida();
         int danioProducido = vidaInicialAtacado - vidaFinalAtacado;
 

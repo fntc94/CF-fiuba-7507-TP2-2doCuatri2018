@@ -34,6 +34,16 @@ public class ArmaDeAsedio extends UnidadMilitar implements IPosicionable, IAtaca
         _estado.mover();
     }
 
+    @Override
+    public void atacar(IAtacable atacable){
+
+        if(!_estado.estaMontada()){
+            throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+        }
+        super.atacar(atacable);
+
+    }
+
 //    @Override
 //    public void atacar(IAtacable atacable) {
 //        if(!estaDentroDelRangoDeAtaque(atacable)){

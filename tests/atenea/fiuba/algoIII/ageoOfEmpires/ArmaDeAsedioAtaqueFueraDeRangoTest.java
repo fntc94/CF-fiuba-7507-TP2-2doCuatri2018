@@ -1,6 +1,5 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +12,7 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class ArmaDeAsedioAtaqueFueraDeRangoTest {
 
-    private ArmaDeAsedio atacante;
+    private ArmaDeAsedio armaDeAsedio;
     private IAtacable unidad;
     private int danioEsperado;
 
@@ -48,7 +47,7 @@ public class ArmaDeAsedioAtaqueFueraDeRangoTest {
 
 
     public ArmaDeAsedioAtaqueFueraDeRangoTest(ArmaDeAsedio atacante, IAtacable atacable, int danioEsperado){
-        this.atacante = atacante;
+        this.armaDeAsedio = atacante;
         this.unidad = atacable;
         this.danioEsperado = danioEsperado;
     }
@@ -56,8 +55,11 @@ public class ArmaDeAsedioAtaqueFueraDeRangoTest {
     @Test(expected = UnidadFueraDeRangoDeAtaqueExcepcion.class)
     public void atacar_FueraDeRangoDeAtaque_LanzaExcepcion(){
 
+        // Arrange
+        armaDeAsedio.montar();
+
         // Act
-        atacante.atacar(unidad);
+        armaDeAsedio.atacar(unidad);
 
     }
 
@@ -65,10 +67,11 @@ public class ArmaDeAsedioAtaqueFueraDeRangoTest {
     public void atacar_FueraDeRangoDeAtaque_NoProduceDanio(){
 
         // Arrange
+        armaDeAsedio.montar();
         int vidaInicialAtacado = unidad.getVida();
 
         // Act
-        atacante.atacar(unidad);
+        armaDeAsedio.atacar(unidad);
         int vidaFinalAtacado = unidad.getVida();
         int danioProducido = vidaInicialAtacado - vidaFinalAtacado;
 

@@ -61,6 +61,7 @@ public class ArmaDeAsedioTest {
         // Arrange
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
         armaDeAsedio.montar();
+        IAtacable arquero = new Arquero(Mockito.mock(Posicion.class));
 
         // Act
         armaDeAsedio.atacar();
@@ -71,9 +72,10 @@ public class ArmaDeAsedioTest {
 
         // Arrange
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        IAtacable arquero = new Arquero(Mockito.mock(Posicion.class));
 
         // Act
-        armaDeAsedio.atacar();
+        armaDeAsedio.atacar(arquero);
     }
 
 
