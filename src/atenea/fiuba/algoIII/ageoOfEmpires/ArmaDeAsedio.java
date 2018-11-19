@@ -5,6 +5,7 @@ public class ArmaDeAsedio extends Unidad implements IPosicionable, IAtacable, IA
     private final static int VIDA_MAXIMA = 150;
     private final static int DANIO_A_UNIDADES = 0;
     private final static int DANIO_A_EDIFICIOS = 75;
+    private final int RANGO_DE_ATAQUE = 5;
 
     private IEstadoArmaDeAsedio _estado = new EstadoArmaDeAsedioDesmontada();
 
@@ -35,6 +36,9 @@ public class ArmaDeAsedio extends Unidad implements IPosicionable, IAtacable, IA
 
     @Override
     public void atacar(IAtacable atacable) {
+        if(!estaDentroDelRangoDeAtaque(atacable)){
+            throw new UnidadFueraDeRangoDeAtaqueExcepcion();
+        }
         atacable.recibirAtaque(this);
     }
 
@@ -46,6 +50,10 @@ public class ArmaDeAsedio extends Unidad implements IPosicionable, IAtacable, IA
     @Override
     public int obtenerDanio(Edificio edificio) {
         return DANIO_A_EDIFICIOS;
+    }
+
+    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
+        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
     }
 
 }
