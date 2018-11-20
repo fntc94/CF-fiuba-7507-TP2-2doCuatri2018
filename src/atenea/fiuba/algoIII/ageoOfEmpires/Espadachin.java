@@ -1,18 +1,18 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public class Arquero extends Unidad implements IPosicionable, IAtacable, IAtacante {
+public class Espadachin extends Unidad implements IPosicionable, IAtacable, IAtacante {
 
-    private static final int VIDA_MAXIMA = 75;
-    private static final int DANIO_A_UNIDAD = 15;
-    private static final int DANIO_A_EDIFICIO = 10;
-    private static final int RANGO_DE_ATAQUE = 3;
+    private final static int VIDA_MAXIMA = 100;
+    private final static int DANIO_A_UNIDAD = 25;
+    private final static int DANIO_A_EDIFICIO = 15;
+    private final static int RANGO_DE_ATAQUE = 1;
 
-    public Arquero(Posicion posicion){
+
+    public Espadachin(Posicion posicion){
         super(posicion, VIDA_MAXIMA);
     }
 
     // IAtacante
-    @Override
     public void atacar(IAtacable unidad){
 
         if(!estaDentroDelRangoDeAtaque(unidad)){
@@ -27,12 +27,12 @@ public class Arquero extends Unidad implements IPosicionable, IAtacable, IAtacan
     }
 
     @Override
-    public int obtenerDanio(Edificio edificio) {
+    public int obtenerDanio(Edificio edificioReparable) {
         return DANIO_A_EDIFICIO;
     }
+    // fin IAtacante
 
     private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
         return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
     }
-
 }
