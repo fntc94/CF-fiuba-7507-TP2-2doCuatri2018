@@ -1,16 +1,22 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 public class CastilloTest {
 
+    private Castillo crearCastilloParaPrubasDeAtaque(Posicion posicion){
+        IEstrategiaAtaque<Castillo> estrategiaAtaqueCastillo = new EstrategiaAtaqueCastillo();
+        return new Castillo(posicion, Mockito.mock(IUnidadesCastilloFabrica.class),estrategiaAtaqueCastillo);
+    }
+
     @Test
     public void crearArmaDeAsedio_DevuelveArmaDeAsedio(){
 
         // Arrange
-        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), new UnidadesFabrica());
+        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), new UnidadesFabrica(), Mockito.mock(IEstrategiaAtaque.class));
 
         // Act
         ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio();
@@ -24,7 +30,7 @@ public class CastilloTest {
     public void obtenerCostoArmaDeAsedio_Devuelve200(){
 
         // Arrange
-        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), new UnidadesFabrica());
+        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), new UnidadesFabrica(), Mockito.mock(IEstrategiaAtaque.class));
         int costoEsperado = 200;
 
         // Act
@@ -44,8 +50,8 @@ public class CastilloTest {
         Posicion posicionEspadachin = Mockito.mock(Posicion.class);
         Mockito.when(posicionCastillo.distanciaA(posicionEspadachin)).thenReturn(DISTANCIA_DE_ATAQUE);
 
-        Castillo castillo = new Castillo(posicionCastillo, Mockito.mock(IUnidadesCastilloFabrica.class));
-        Espadachin espadachin = new Espadachin(posicionEspadachin);
+        Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
+        Espadachin espadachin = new Espadachin(posicionEspadachin, Mockito.mock(IEstrategiaAtaque.class));
 
         int vidaInicialEspadachin = espadachin.getVida();
         int danioEsperado = 20;
@@ -70,8 +76,8 @@ public class CastilloTest {
         Posicion posicionArquero = Mockito.mock(Posicion.class);
         Mockito.when(posicionCastillo.distanciaA(posicionArquero)).thenReturn(DISTANCIA_DE_ATAQUE);
 
-        Castillo castillo = new Castillo(posicionCastillo, Mockito.mock(IUnidadesCastilloFabrica.class));
-        Arquero arquero = new Arquero(posicionArquero);
+        Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
+        Arquero arquero = new Arquero(posicionArquero, Mockito.mock(IEstrategiaAtaque.class));
 
         int vidaInicialArquero = arquero.getVida();
         int danioEsperado = 20;
@@ -96,7 +102,7 @@ public class CastilloTest {
         Posicion posicionAldeano = Mockito.mock(Posicion.class);
         Mockito.when(posicionCastillo.distanciaA(posicionAldeano)).thenReturn(DISTANCIA_DE_ATAQUE);
 
-        Castillo castillo = new Castillo(posicionCastillo, Mockito.mock(IUnidadesCastilloFabrica.class));
+        Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
         Aldeano aldeano = new Aldeano(posicionAldeano,Mockito.mock(EdificiosEnConstruccionFabrica.class));
 
         int vidaInicialAldeano = aldeano.getVida();
@@ -121,7 +127,7 @@ public class CastilloTest {
         Posicion posicionAldeano = Mockito.mock(Posicion.class);
         Mockito.when(posicionCastillo.distanciaA(posicionAldeano)).thenReturn(DISTANCIA_DE_ATAQUE);
 
-        Castillo castillo = new Castillo(posicionCastillo, Mockito.mock(IUnidadesCastilloFabrica.class));
+        Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
         Aldeano aldeano = new Aldeano(posicionAldeano,Mockito.mock(EdificiosEnConstruccionFabrica.class));
 
 
@@ -139,7 +145,7 @@ public class CastilloTest {
         Posicion posicionCuartel = Mockito.mock(Posicion.class);
         Mockito.when(posicionCastillo.distanciaA(posicionCuartel)).thenReturn(DISTANCIA_DE_ATAQUE);
 
-        Castillo castillo = new Castillo(posicionCastillo, Mockito.mock(IUnidadesCastilloFabrica.class));
+        Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
         Cuartel cuartel = new Cuartel(posicionCuartel, Mockito.mock(IUnidadesCuartelFabrica.class));
 
         int vidaInicialCuartel = cuartel.getVida();

@@ -22,7 +22,8 @@ public class EspadachinAtaqueFueraDeRangoTest {
         final int DANIO_ESPERADO = 0;
         final int DISTANCIA_ATAQUE_2 = 2;
 
-        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
+        IEstrategiaAtaque<Espadachin> estrategiaAtaqueEspadachin = new EstrategiaAtaqueEspadachin();
+        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class), estrategiaAtaqueEspadachin);
         Posicion posicionAtacante = espadachin.getPosicion();
 
         Posicion posicionADistancia2 = Mockito.mock(Posicion.class);
@@ -32,14 +33,14 @@ public class EspadachinAtaqueFueraDeRangoTest {
 
         // Unidades a distancia 2
         collection.add(new Object[]{espadachin, new Aldeano(posicionADistancia2, Mockito.mock(EdificiosEnConstruccionFabrica.class)), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new Espadachin(posicionADistancia2), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new Arquero(posicionADistancia2), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new ArmaDeAsedio(posicionADistancia2), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Espadachin(posicionADistancia2, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Arquero(posicionADistancia2, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new ArmaDeAsedio(posicionADistancia2, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
 
         // Edificios a distancia 2
         collection.add(new Object[]{espadachin, new PlazaCentral(posicionADistancia2, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO});
         collection.add(new Object[]{espadachin, new Cuartel(posicionADistancia2, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO});
-        collection.add(new Object[]{espadachin, new Castillo(posicionADistancia2, Mockito.mock(IUnidadesCastilloFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{espadachin, new Castillo(posicionADistancia2, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
 
         return collection;
 

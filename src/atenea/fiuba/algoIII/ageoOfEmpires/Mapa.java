@@ -62,7 +62,7 @@ public class Mapa {
         return ((alto >= ALTO_MIN) && (alto <= ALTO_MAX) && (ancho >= ANCHO_MIN) && (ancho <= ANCHO_MAX));
     }
 
-    private boolean posicionEstaLibre(Posicion posicion) {
+    public boolean posicionEstaLibre(Posicion posicion) {
 
         for(IPosicionable otraPosicion : this.posicionables){
 

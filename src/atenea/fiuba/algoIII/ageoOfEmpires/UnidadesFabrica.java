@@ -18,14 +18,16 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
         return _costoEnOroArquero;
     }
     public Arquero crearArquero() {
-        return new Arquero(null);
+        IEstrategiaAtaque estrategiaAtaqueArquero = new EstrategiaAtaqueArquero();
+        return new Arquero(null, estrategiaAtaqueArquero);
     }
 
     public int obtenerCostoEspadachin(){
         return _costoEnOroEspadachin;
     }
     public Espadachin crearEspadachin(){
-        return new Espadachin(new PosicionDeUnCasillero(0,0));
+        IEstrategiaAtaque estrategiaAtaqueEspadachin = new EstrategiaAtaqueEspadachin();
+        return new Espadachin(new PosicionDeUnCasillero(0,0),estrategiaAtaqueEspadachin);
 
     }
 
@@ -34,7 +36,8 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
     }
 
     public ArmaDeAsedio crearArmaDeAsedio(){
-        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0));
+        IEstrategiaAtaque estrategiaAtaqueArmaDeAsedio = new EstrategiaAtaqueArmaDeAsedio();
+        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0), estrategiaAtaqueArmaDeAsedio);
     }
 
 }

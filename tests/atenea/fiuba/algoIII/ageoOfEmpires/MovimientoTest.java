@@ -5,10 +5,11 @@ import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
 public class MovimientoTest {
+
+    private Mapa mapa = new Mapa(20,30);
+
     private Posicion obtenerPosicion(){
-        Mapa mapa = new Mapa(20,30);
-        Posicion pos = new PosicionDeUnCasillero(5,5);
-        pos.setMapa(mapa);
+        Posicion pos = new PosicionDeUnCasillero(mapa,5,5);
 
         return pos;
     }
@@ -22,7 +23,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(5,6)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,5,6)));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(5,4)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,5,4)));
     }
 
     @Test
@@ -44,7 +45,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(6,5)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,6,5)));
     }
 
     @Test
@@ -55,7 +56,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(4,5)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,4,5)));
     }
 
     @Test
@@ -66,7 +67,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(6,6)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,6,6)));
     }
 
     @Test
@@ -77,7 +78,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(4,6)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,4,6)));
     }
 
     @Test
@@ -88,7 +89,7 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(6,4)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,6,4)));
     }
 
     @Test
@@ -99,15 +100,14 @@ public class MovimientoTest {
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(4,4)));
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,4,4)));
     }
 
     @Test
     public void testPosicionCambiaAlDesplazarse(){
         //Si no se superpone con la posicion anterior entonces se movio
         Mapa mapa = new Mapa(20,30);
-        Posicion pos = new PosicionDeUnCasillero(30,20);
-        pos.setMapa(mapa);
+        Posicion pos = new PosicionDeUnCasillero(mapa,30,20);
 
         Movimiento movimiento = new Movimiento();
         movimiento.hacia(new Izquierda());
@@ -120,8 +120,7 @@ public class MovimientoTest {
     @Test
     public void testTratarDeMoverseFueraDelMapaHaciaLaDerechaNoCambiaLaPosicion(){
         Mapa mapa = new Mapa(20,30);
-        Posicion pos = new PosicionDeUnCasillero(20,30);
-        pos.setMapa(mapa);
+        Posicion pos = new PosicionDeUnCasillero(mapa,20,30);
 
         Movimiento movimiento = new Movimiento();
         movimiento.hacia(new Derecha());
@@ -134,8 +133,7 @@ public class MovimientoTest {
     @Test
     public void testTratarDeMoverseFueraDelMapaHaciaLaIzquierdaNoCambiaLaPosicion(){
         Mapa mapa = new Mapa(20,30);
-        Posicion pos = new PosicionDeUnCasillero(0,0);
-        pos.setMapa(mapa);
+        Posicion pos = new PosicionDeUnCasillero(mapa,0,0);
 
         Movimiento movimiento = new Movimiento();
         movimiento.hacia(new Izquierda());

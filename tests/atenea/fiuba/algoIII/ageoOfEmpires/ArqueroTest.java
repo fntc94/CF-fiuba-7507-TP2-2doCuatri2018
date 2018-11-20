@@ -9,20 +9,20 @@ public class ArqueroTest {
 
 
     private Arquero arquero;
-    private AtacablesSustitutosFabrica atacablesSustitutosFabrica;
 
     @Before
     public void setUp(){
-        arquero = new Arquero(Mockito.mock(Posicion.class));
-        atacablesSustitutosFabrica = new AtacablesSustitutosFabrica(arquero);
+        IEstrategiaAtaque<Arquero> estrategiaAtaqueArquero = new EstrategiaAtaqueArquero();
+        Arquero arquero = new Arquero(Mockito.mock(Posicion.class), estrategiaAtaqueArquero);
+        this.arquero = arquero;
     }
 
     @Test
     public void atacar_AOtroArquero6Veces_LaVidaDelArqueroAtacadoEsCeroLuegoDelAtaque(){
 
         // Arrange
-        Arquero atacante = new Arquero(Mockito.mock(Posicion.class));
-        Arquero atacado = new Arquero(Mockito.mock(Posicion.class));
+        Arquero atacante = this.arquero;
+        Arquero atacado = new Arquero(Mockito.mock(Posicion.class), Mockito.mock(IEstrategiaAtaque.class));
 
         int vidaFinalEsperada = 0;
 
@@ -43,8 +43,8 @@ public class ArqueroTest {
     public void atacar_AUnEspadachin7Veces_LaVidaDelEspadacinEsCeroLuegoDelAtaque(){
 
         // Arrange
-        Arquero arquero = new Arquero(Mockito.mock(Posicion.class));
-        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
+        Arquero atacante = this.arquero;
+        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class), Mockito.mock(IEstrategiaAtaque.class));
 
         int vidaFinalEsperada = 0;
 

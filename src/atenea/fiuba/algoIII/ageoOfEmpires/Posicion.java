@@ -81,8 +81,4 @@ public abstract class Posicion {
 
         return res.intValue();
     }
-
-    public void setMapa(Mapa mapa){
-        this.mapa = mapa;
-    }
 }
