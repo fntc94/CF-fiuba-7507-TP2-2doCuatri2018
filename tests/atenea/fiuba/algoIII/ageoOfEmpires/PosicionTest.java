@@ -25,16 +25,18 @@ public class PosicionTest {
     @Test
     public void testIncrementaCoordenadaEnX(){
         Posicion pos = new PosicionDeUnCasillero(1,1);
-        pos.modificarCoordenada(1,0);
+        pos.setMapa(new Mapa(20,30));
+        Posicion otraPos = pos.modificarCoordenada(1,0);
 
-        assertEquals(true, pos.seSuperponeCon(new PosicionDeUnCasillero(2,1)));
+        assertEquals(true, otraPos.seSuperponeCon(new PosicionDeUnCasillero(2,1)));
     }
 
     @Test
     public void testIncrementaCoordenadaEnY(){
         Posicion pos = new PosicionDeUnCasillero(1,1);
-        pos.modificarCoordenada(0,1);
+        pos.setMapa(new Mapa(20,30));
+        Posicion otraPos = pos.modificarCoordenada(0,1);
 
-        assertEquals(true, pos.seSuperponeCon(new PosicionDeUnCasillero(1,2)));
+        assertEquals(true, otraPos.seSuperponeCon(new PosicionDeUnCasillero(1,2)));
     }
 }
