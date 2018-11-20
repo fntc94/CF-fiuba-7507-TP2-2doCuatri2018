@@ -7,52 +7,7 @@ import org.mockito.Mockito;
 public class ArmaDeAsedioTest {
 
     private ArmaDeAsedio crearArmaDeAsedio(){
-        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0));
-    }
-
-    @Test
-    public void estaMontada_luegoDeLaCreacion_DevuelveFalse(){
-
-        // Arrange
-        int vidaMaxima = 150;
-
-        // Act
-        ArmaDeAsedio armaDeAsedio = this.crearArmaDeAsedio();
-        boolean estaMontada = armaDeAsedio.estaMontada();
-
-        // Assert
-        Assert.assertEquals(false, estaMontada);
-    }
-
-    @Test
-    public void estaMontada_luegoDeMontarla_DevuelveTrue(){
-
-        // Arrange
-        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
-
-        // Act
-        armaDeAsedio.montar();
-        boolean estaMontada = armaDeAsedio.estaMontada();
-
-        // Assert
-        Assert.assertEquals(true, estaMontada);
-
-    }
-
-    @Test
-    public void estaMontada_luegoDeDesmontarla_DevuelveFalse(){
-
-        // Arrange
-        ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
-        armaDeAsedio.montar();
-
-        // Act
-        armaDeAsedio.desmontar();
-        boolean estaMontada = armaDeAsedio.estaMontada();
-
-        // Assert
-        Assert.assertEquals(false, estaMontada);
-
+        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0), new EstrategiaAtaqueArmaDeAsedio());
     }
 
     @Test
@@ -61,6 +16,7 @@ public class ArmaDeAsedioTest {
         // Arrange
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
         armaDeAsedio.montar();
+        IAtacable arquero = new Arquero(Mockito.mock(Posicion.class), Mockito.mock(IEstrategiaAtaque.class));
 
         // Act
         armaDeAsedio.atacar();
@@ -71,9 +27,10 @@ public class ArmaDeAsedioTest {
 
         // Arrange
         ArmaDeAsedio armaDeAsedio= this.crearArmaDeAsedio();
+        IAtacable arquero = new Arquero(Mockito.mock(Posicion.class), Mockito.mock(IEstrategiaAtaque.class));
 
         // Act
-        armaDeAsedio.atacar();
+        armaDeAsedio.atacar(arquero);
     }
 
 
@@ -97,5 +54,6 @@ public class ArmaDeAsedioTest {
         // Act
         armaDeAsedio.mover();
     }
+
 
 }

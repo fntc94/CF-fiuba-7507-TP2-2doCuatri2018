@@ -12,9 +12,7 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
         this.movimiento = new Movimiento();
     }
 
-    public int getVida() {
-        return _vida;
-    }
+
 
     @Override
     public Posicion getPosicion() {
@@ -33,6 +31,12 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
         this._vida -= danio;
     }
+
+    @Override
+    public int getVida() {
+        return _vida;
+    }
+    // fin IAtacable
 
     public void mover(IDireccion direccion){
         movimiento.hacia(direccion);

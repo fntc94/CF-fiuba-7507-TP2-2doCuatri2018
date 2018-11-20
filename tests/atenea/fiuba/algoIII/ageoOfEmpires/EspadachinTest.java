@@ -6,6 +6,12 @@ import org.mockito.Mockito;
 
 public class EspadachinTest {
 
+    private Espadachin crearEspadachinParaPruebasDeAtaque(Posicion posicion){
+        IEstrategiaAtaque<Espadachin> estrategiaAtaqueEspadachin = new EstrategiaAtaqueEspadachin();
+        Espadachin espadachin = new Espadachin(posicion, estrategiaAtaqueEspadachin);
+        return espadachin;
+    }
+
 //    @Test
 //    public void atacar_AOtroEspadachinConVida20_LaVidaDelAtacadoEsCeroLuegoDelAtaque(){
 //
@@ -53,7 +59,7 @@ public class EspadachinTest {
     public void atacar_APlazaCentral_LeProduceDanio15(){
 
         // Arrange
-        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
+        Espadachin espadachin = this.crearEspadachinParaPruebasDeAtaque(Mockito.mock(Posicion.class));
         PlazaCentral plazaCentral = new PlazaCentral(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
 
         int vidaInicialPlazaCentral = plazaCentral.getVida();
@@ -73,7 +79,7 @@ public class EspadachinTest {
     public void atacar_ACuartel_LeProduceDanio15(){
 
         // Arrange
-        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
+        Espadachin espadachin = this.crearEspadachinParaPruebasDeAtaque(Mockito.mock(Posicion.class));
         Cuartel cuartel = new Cuartel(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
 
         int vidaInicialCuartel = cuartel.getVida();
@@ -93,8 +99,8 @@ public class EspadachinTest {
     public void atacar_ACastillo_LeProduceDanio15(){
 
         // Arrange
-        Espadachin espadachin = new Espadachin(Mockito.mock(Posicion.class));
-        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class));
+        Espadachin espadachin = this.crearEspadachinParaPruebasDeAtaque(Mockito.mock(Posicion.class));
+        Castillo castillo = new Castillo(Mockito.mock(Posicion.class), Mockito.mock(UnidadesFabrica.class), Mockito.mock(IEstrategiaAtaque.class));
 
         int vidaInicialCastillo = castillo.getVida();
         int danioEsperado = 15;
