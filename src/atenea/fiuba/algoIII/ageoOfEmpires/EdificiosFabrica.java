@@ -4,6 +4,7 @@ public class EdificiosFabrica {
 
     private UnidadesFabrica _fabricaDeUnidades = new UnidadesFabrica();
 
+    //  ESTAS POSICIONES DEBERIAN RECIBIR UN MAPA. REVISAR
 
     public PlazaCentral crearPlazaCentral(){
         return new PlazaCentral(new PosicionDeUnCasillero(0,0),_fabricaDeUnidades);

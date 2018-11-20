@@ -42,7 +42,7 @@ public class MapaPruebasDeColocacionTest {
         // Arrange
         Mapa mapa = this.crearMapa();
 
-        Posicion posicion = new PosicionDeUnCasillero(5,5);
+        Posicion posicion = new PosicionDeUnCasillero(mapa,5,5);
         IPosicionable unidad = this.mockPosicionable(posicion);
 
         // Act
@@ -58,7 +58,7 @@ public class MapaPruebasDeColocacionTest {
         // Arrange
         Mapa mapa = this.crearMapa();
 
-        Posicion posicion = new PosicionDeUnCasillero(90,95);
+        Posicion posicion = new PosicionDeUnCasillero(mapa,90,95);
         IPosicionable posicionable = this.mockPosicionable(posicion);
 
         // Act
@@ -72,7 +72,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = this.crearMapa();
 
         // Esquina superior derecha
-        Posicion posicion = new PosicionDeUnCasillero(ancho, alto);
+        Posicion posicion = new PosicionDeUnCasillero(mapa,ancho, alto);
         IPosicionable posicionable = this.mockPosicionable(posicion);
 
         // Act
@@ -86,7 +86,7 @@ public class MapaPruebasDeColocacionTest {
         Mapa mapa = this.crearMapa();
 
         // Esquina superior derecha
-        Posicion posicion = new PosicionDeUnCasillero(31,20);
+        Posicion posicion = new PosicionDeUnCasillero(mapa,31,20);
         IPosicionable unidad = this.mockPosicionable(posicion);
 
         // Act

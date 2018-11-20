@@ -12,8 +12,7 @@ public class MovimientoDeUnidadPorMapaTest {
     public void testMoverUnidadHastaOrillaDelMapaYTratarDeSeguirNoCambiaDePosicion(){
         Mapa mapa = new Mapa(20,30);
 
-        Posicion pos = new PosicionDeUnCasillero(26,18);
-        pos.setMapa(mapa);
+        Posicion pos = new PosicionDeUnCasillero(mapa,26,18);
 
         Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
         mapa.posicionar(aldeano);
@@ -23,23 +22,23 @@ public class MovimientoDeUnidadPorMapaTest {
         aldeano.mover(new Derecha());
         aldeano.mover(new Derecha());
 
-        assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(29,18)));
+        assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(mapa,29,18)));
 
         // Al querer moverse mas alla del borde se queda en la misma posicion
         aldeano.mover(new Derecha());
 
         // Esta en el borde
-        assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(30,18)));
+        assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(mapa,30,18)));
 
         // Si se quiere mover mas a la derecha aldeano se queda en el mismo lugar
         aldeano.mover(new Derecha());
         aldeano.mover(new Derecha());
 
-        assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(30,18)));
+        assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(mapa,30,18)));
 
         // Vuelvo un paso para atras y ya no estoy mas en el bode
         aldeano.mover(new Izquierda());
-        assertEquals(false, aldeano.estaEnPosicion(new PosicionDeUnCasillero(30,18)));
+        assertEquals(false, aldeano.estaEnPosicion(new PosicionDeUnCasillero(mapa,30,18)));
 
     }
 
@@ -47,9 +46,8 @@ public class MovimientoDeUnidadPorMapaTest {
     public void testUnidadNoCambiaDePosicionSiSequiereMoverParaArribaODerechaEstandoEnEsquinaSupDerecha(){
         Mapa mapa = new Mapa(20,30);
 
-        Posicion posEsquina = new PosicionDeUnCasillero(30,20);
-        Posicion pos = new PosicionDeUnCasillero(30,20);
-        pos.setMapa(mapa);
+        Posicion posEsquina = new PosicionDeUnCasillero(mapa,30,20);
+        Posicion pos = new PosicionDeUnCasillero(mapa,30,20);
 
         Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
         mapa.posicionar(aldeano);
@@ -76,9 +74,8 @@ public class MovimientoDeUnidadPorMapaTest {
     public void testUnidadNoCambiaDePosicionSiSequiereMoverParaArribaOIzquierdaEstandoEnEsquinaSupIzquierda(){
         Mapa mapa = new Mapa(20,30);
 
-        Posicion posEsquina = new PosicionDeUnCasillero(0,20);
-        Posicion pos = new PosicionDeUnCasillero(0,20);
-        pos.setMapa(mapa);
+        Posicion posEsquina = new PosicionDeUnCasillero(mapa,0,20);
+        Posicion pos = new PosicionDeUnCasillero(mapa,0,20);
 
         Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
         mapa.posicionar(aldeano);
@@ -105,9 +102,8 @@ public class MovimientoDeUnidadPorMapaTest {
     public void testUnidadNoCambiaDePosicionSiSequiereMoverParaAbajoOIzquierdaEstandoEnEsquinaInferiorIzquierda(){
         Mapa mapa = new Mapa(20,30);
 
-        Posicion posEsquina = new PosicionDeUnCasillero(0,0);
-        Posicion pos = new PosicionDeUnCasillero(0,0);
-        pos.setMapa(mapa);
+        Posicion posEsquina = new PosicionDeUnCasillero(mapa,0,0);
+        Posicion pos = new PosicionDeUnCasillero(mapa,0,0);
 
         Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
         mapa.posicionar(aldeano);
@@ -134,9 +130,8 @@ public class MovimientoDeUnidadPorMapaTest {
     public void testUnidadNoCambiaDePosicionSiSequiereMoverParaAbajoODerechaEstandoEnEsquinaInferiorDerecha(){
         Mapa mapa = new Mapa(20,30);
 
-        Posicion posEsquina = new PosicionDeUnCasillero(30,0);
-        Posicion pos = new PosicionDeUnCasillero(30,0);
-        pos.setMapa(mapa);
+        Posicion posEsquina = new PosicionDeUnCasillero(mapa,30,0);
+        Posicion pos = new PosicionDeUnCasillero(mapa,30,0);
 
         Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
         mapa.posicionar(aldeano);

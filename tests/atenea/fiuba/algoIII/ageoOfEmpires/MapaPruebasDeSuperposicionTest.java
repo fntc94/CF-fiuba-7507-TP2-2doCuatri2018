@@ -24,7 +24,7 @@ public class MapaPruebasDeSuperposicionTest {
         // Arrange
         Mapa mapa = this.crearMapa();
 
-        Posicion posicionUnidad = new PosicionDeUnCasillero(6,5);
+        Posicion posicionUnidad = new PosicionDeUnCasillero(mapa,6,5);
         Posicion posicionEdificio = new PosicionCuadrado(6,5,7,4);
 
         IPosicionable unidad = this.crearMock(posicionUnidad);
@@ -42,7 +42,7 @@ public class MapaPruebasDeSuperposicionTest {
         // Arrange
         Mapa mapa = this.crearMapa();
 
-        Posicion posicionUnidad = new PosicionDeUnCasillero(5,5);
+        Posicion posicionUnidad = new PosicionDeUnCasillero(mapa,5,5);
         Posicion posicionEdificio = new PosicionCuadrado(6,5,7,4);
 
         IPosicionable unidad = this.crearMock(posicionUnidad);
@@ -59,10 +59,10 @@ public class MapaPruebasDeSuperposicionTest {
         // Arrange
         Mapa mapa = this.crearMapa();
 
-        Posicion posicionUnidad1 = new PosicionDeUnCasillero(5,15);
+        Posicion posicionUnidad1 = new PosicionDeUnCasillero(mapa,5,15);
         IPosicionable unidad1 = this.crearMock(posicionUnidad1);
 
-        Posicion posicionUnidad2 = new PosicionDeUnCasillero(5,15);
+        Posicion posicionUnidad2 = new PosicionDeUnCasillero(mapa,5,15);
         IPosicionable unidad2 = this.crearMock(posicionUnidad2);
 
         // Act
@@ -76,8 +76,8 @@ public class MapaPruebasDeSuperposicionTest {
         // Arrange
         Mapa mapa = this.crearMapa();
 
-        Posicion posicionUnidad1 = new PosicionDeUnCasillero(4,15);
-        Posicion posicionUnidad2 = new PosicionDeUnCasillero(5,15);
+        Posicion posicionUnidad1 = new PosicionDeUnCasillero(mapa,4,15);
+        Posicion posicionUnidad2 = new PosicionDeUnCasillero(mapa,5,15);
 
         IPosicionable aldeano = this.crearMock(posicionUnidad1);
         IPosicionable arquero = this.crearMock(posicionUnidad2);
