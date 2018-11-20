@@ -19,8 +19,12 @@ public class PosicionDeUnCasillero extends Posicion {
 
         Posicion nuevaPosicion = new PosicionDeUnCasillero(this.mapa,valorX + valorParaX, valorY + valorParaY);
 
-        //  Si se quiere mover fuera del mapa se queda en la misma posicion
-        if(!nuevaPosicion.estaDentroDelArea(this.mapa.getAlto(),this.mapa.getAncho()))
+        // La posicion a la que me quiero mover debe estar dentro del mapa y no debe haber otra unidad/edificio
+        boolean dentroDelArea = nuevaPosicion.estaDentroDelArea(this.mapa.getAlto(),this.mapa.getAncho());
+        boolean posicionLibre = this.mapa.posicionEstaLibre(nuevaPosicion);
+
+        // Si pasa alguna de las cosas anteriores, no cambio la posicion
+        if(!dentroDelArea || !posicionLibre)
             return this;
 
         return nuevaPosicion;
