@@ -9,7 +9,7 @@ public class ColeccionDePosisionables {
         this.ejercito = new Ejercito();
     }
 
-    private void recursosBasicos(){
+    public void recursosBasicos(){
 
     }
 }
