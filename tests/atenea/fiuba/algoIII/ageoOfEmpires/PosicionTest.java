@@ -27,7 +27,6 @@ public class PosicionTest {
     @Test
     public void testIncrementaCoordenadaEnX(){
         Posicion pos = new PosicionDeUnCasillero(mapa,1,1);
-        pos.setMapa(new Mapa(20,30));
         Posicion otraPos = pos.modificarCoordenada(1,0);
 
         assertEquals(true, otraPos.seSuperponeCon(new PosicionDeUnCasillero(mapa,2,1)));
