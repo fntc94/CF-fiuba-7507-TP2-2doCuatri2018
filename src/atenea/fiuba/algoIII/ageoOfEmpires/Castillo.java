@@ -4,42 +4,41 @@ public class Castillo extends Edificio implements IEdificioReparable, IAtacable,
 
     private static final int VIDA_MAXIMA = 1000;
     private static final int VELOCIDAD_DE_REPARACION = 15;
-    private static final int RANGO_DE_ATAQUE = 3;
-    private static final int DANIO = 20;
-    private IUnidadesCastilloFabrica _fabricaDeUnidades;
 
-    public Castillo(Posicion posicion, IUnidadesCastilloFabrica fabricaDeUnidades) {
+    private IUnidadesCastilloFabrica _fabricaDeUnidades;
+    private final IEstrategiaAtaque estrategiaAtaque;
+
+    public Castillo(Posicion posicion, IUnidadesCastilloFabrica fabricaDeUnidades, IEstrategiaAtaque estrategiaAtaque) {
         super(posicion, VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
+        this.estrategiaAtaque = estrategiaAtaque;
     }
 
-    public int obtenerCostoArmaDeAsedio(){
+    public int obtenerCostoArmaDeAsedio() {
         return _fabricaDeUnidades.obtenerCostoArmaDeAsedio();
     }
 
-    public ArmaDeAsedio crearArmaDeAsedio(){
+    public ArmaDeAsedio crearArmaDeAsedio() {
         return _fabricaDeUnidades.crearArmaDeAsedio();
     }
 
 
+    // IAtacante
     @Override
     public void atacar(IAtacable atacable) {
-        if(!estaDentroDelRangoDeAtaque(atacable)){
-            throw new UnidadFueraDeRangoDeAtaqueExcepcion();
-        }
-        atacable.recibirAtaque(this);
+        this.estrategiaAtaque.ejecutarAtaque(this, atacable);
     }
 
     @Override
     public int obtenerDanio(Unidad unidad) {
-        return DANIO;
+        return this.estrategiaAtaque.obtenerDanio(unidad);
     }
 
     @Override
     public int obtenerDanio(Edificio edificio) {
-        return DANIO;
+        return this.estrategiaAtaque.obtenerDanio(edificio);
     }
+    // fin IAtacante
 
-    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
-        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
-    }}
+}
+

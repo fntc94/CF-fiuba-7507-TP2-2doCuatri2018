@@ -2,42 +2,28 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public abstract class UnidadMilitar extends Unidad implements IAtacante {
 
-    private final int DANIO_A_UNIDAD ;
-    private final int DANIO_A_EDIFICIO ;
-    private final int RANGO_DE_ATAQUE;
+    private IEstrategiaAtaque estrategiaAtaque;
 
-    public UnidadMilitar(Posicion posicion, int vida, int danioAUnidad, int danioAEdificio, int rangoDeAtaque){
+    public UnidadMilitar(Posicion posicion, int vida, IEstrategiaAtaque estrategiaAtaque){
         super(posicion, vida);
-        this.DANIO_A_EDIFICIO = danioAEdificio;
-        this.DANIO_A_UNIDAD = danioAUnidad;
-        this.RANGO_DE_ATAQUE = rangoDeAtaque;
-
+        this.estrategiaAtaque = estrategiaAtaque;
     }
 
     // IAtacante
     @Override
-    public void atacar(IAtacable unidad){
-
-        if(!estaDentroDelRangoDeAtaque(unidad)){
-            throw new UnidadFueraDeRangoDeAtaqueExcepcion();
-        }
-        unidad.recibirAtaque(this);
+    public void atacar(IAtacable atacado){
+        this.estrategiaAtaque.ejecutarAtaque(this, atacado);
     }
 
     @Override
     public int obtenerDanio(Unidad unidad) {
-        return DANIO_A_UNIDAD;
+        return estrategiaAtaque.obtenerDanio(unidad);
     }
 
     @Override
     public int obtenerDanio(Edificio edificio) {
-        return DANIO_A_EDIFICIO;
+        return estrategiaAtaque.obtenerDanio(edificio);
     }
     // fin IAtacante
-
-    private boolean estaDentroDelRangoDeAtaque(IPosicionable unidad){
-        return this.getPosicion().distanciaA(unidad.getPosicion()) <= RANGO_DE_ATAQUE;
-    }
-
 
 }

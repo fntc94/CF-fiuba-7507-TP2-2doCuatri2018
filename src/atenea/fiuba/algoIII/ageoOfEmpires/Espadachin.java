@@ -8,8 +8,9 @@ public class Espadachin extends UnidadMilitar implements IPosicionable, IAtacabl
     private final static int RANGO_DE_ATAQUE = 1;
 
 
-    public Espadachin(Posicion posicion){
-        super(posicion, VIDA_MAXIMA, DANIO_A_UNIDAD, DANIO_A_EDIFICIO, RANGO_DE_ATAQUE);
+    public Espadachin(Posicion posicion, IEstrategiaAtaque estrategiaAtaque){
+        super(posicion, VIDA_MAXIMA, estrategiaAtaque);
     }
+
 
 }
