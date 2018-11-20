@@ -9,8 +9,6 @@ addons:
 notifications:
   email:
     recipients:
-    - brandanricardo@yahoo.com.ar
     - camila.15694@gmail.com
     - fntc94@gmail.com
-    - juanmanuelstraus@gmail.com
     on_failure: always
