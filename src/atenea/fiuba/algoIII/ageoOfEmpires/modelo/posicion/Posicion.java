@@ -67,7 +67,7 @@ public abstract class Posicion {
         return listaDistancias.get(0);
     }
 
-    protected int calcularDistancia(Casillero c1, Casillero c2){
+    private int calcularDistancia(Casillero c1, Casillero c2){
         int x1 = c1.getCoordenadaEnX();
         int y1 = c1.getCoordenadaEnY();
 
