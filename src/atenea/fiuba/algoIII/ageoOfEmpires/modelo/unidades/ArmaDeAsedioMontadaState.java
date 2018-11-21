@@ -6,12 +6,11 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.movimiento.IDireccion;
 
 import java.util.function.Consumer;
 
-public class ArmaDeAsedioMontadaState implements IArmaDeAsedioState {
+class ArmaDeAsedioMontadaState implements IArmaDeAsedioState {
 
-    private final int DANIO_A_EDIFICIOS = 75;
     private Consumer<IAtacable> atacarFunc;
 
-    public ArmaDeAsedioMontadaState(Consumer<IAtacable> atacarFunc){
+    ArmaDeAsedioMontadaState(Consumer<IAtacable> atacarFunc){
         this.atacarFunc = atacarFunc;
     }
 
