@@ -9,7 +9,7 @@ public class PosicionDeUnCasillero extends Posicion {
         this.listaCasilleros.add(new Casillero(x,y));
     }
 
-    public PosicionDeUnCasillero(int x, int y){}  // revisar EdificiosFabrica
+    public PosicionDeUnCasillero(int x, int y){}
 
     // Incrementa/Decrementa coordenadas. Para incrementar x seria (1,0), para incrementar y (0,1)
     @Override
