@@ -2,19 +2,19 @@ package atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios;
 
 public class EdificiosEnConstruccionFabrica {
 
-    private EdificiosFabrica _fabricaDeEdificio = new EdificiosFabrica();
+    private EdificiosFabrica fabricaDeEdificio = new EdificiosFabrica();
 
     public EdificioEnConstruccion<PlazaCentral> obtenerPlazaCentralEnConstruccion(){
 
         int turnosEnConstruir = 3;
-        return new EdificioEnConstruccion<>(turnosEnConstruir, _fabricaDeEdificio.crearPlazaCentral());
+        return new EdificioEnConstruccion<>(turnosEnConstruir, this.fabricaDeEdificio.crearPlazaCentral());
 
     }
 
     public EdificioEnConstruccion<Cuartel> obtenerCuartelEnConstruccion(){
 
         int turnosEnConstruir = 3;
-        return new EdificioEnConstruccion<>(turnosEnConstruir, _fabricaDeEdificio.crearCuartel());
+        return new EdificioEnConstruccion<>(turnosEnConstruir, this.fabricaDeEdificio.crearCuartel());
     }
 
 }

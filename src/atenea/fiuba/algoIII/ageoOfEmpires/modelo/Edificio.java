@@ -5,15 +5,15 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.IEstadoReparador;
 
 public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
-    private Posicion _posicion;
+    private Posicion posicion;
     private final int VIDA_MAXIMA;
     private final int VELOCIDAD_DE_REPARACION;
 
     protected int vidaActual;
-    private IEstadoReparador _reparadorActivo;
+    private IEstadoReparador reparadorActivo;
 
     protected Edificio(Posicion posicion, int vidaMaxima, int velocidadDeReparacion){
-        _posicion = posicion;
+        this.posicion = posicion;
         this.VIDA_MAXIMA = vidaMaxima;
         this.vidaActual = VIDA_MAXIMA;
         this.VELOCIDAD_DE_REPARACION = velocidadDeReparacion;
@@ -24,17 +24,17 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     }
 
     public Posicion getPosicion(){
-        return _posicion;
+        return this.posicion;
     }
 
     @Override // IEdificioReparable
     public void recibirReparador(IEstadoReparador reparador) {
 
-        if(_reparadorActivo == null){
-            _reparadorActivo = reparador;
+        if(this.reparadorActivo == null){
+            this.reparadorActivo = reparador;
         }
 
-        else if (_reparadorActivo != reparador){
+        else if (this.reparadorActivo != reparador){
             return;
         }
 
@@ -42,7 +42,7 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
 
         if(this.vidaActual > this.VIDA_MAXIMA){
             this.vidaActual = this.VIDA_MAXIMA;
-            _reparadorActivo.darPorTerminadaLaReparacion();
+            this.reparadorActivo.darPorTerminadaLaReparacion();
         }
     }
 

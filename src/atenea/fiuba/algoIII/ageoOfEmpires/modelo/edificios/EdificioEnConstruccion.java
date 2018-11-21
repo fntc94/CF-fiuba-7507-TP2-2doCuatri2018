@@ -4,21 +4,21 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDa
 
 public class EdificioEnConstruccion<TEdificio> {
 
-    private int _turnosQueTardaEnConstruir;
-    private int _turnosEnConstruccion = 0;
-    private TEdificio _edificioConstruido;
+    private int turnosQueTardaEnConstruir;
+    private int turnosEnConstruccion = 0;
+    private TEdificio edificioConstruido;
 
     EdificioEnConstruccion(int turnosEnConstruir, TEdificio edificioConstruido){
-        _turnosQueTardaEnConstruir = turnosEnConstruir;
-        _edificioConstruido = edificioConstruido;
+        this.turnosQueTardaEnConstruir = turnosEnConstruir;
+        this.edificioConstruido = edificioConstruido;
     }
 
     public void avanzarConstruccion(){
-        _turnosEnConstruccion += 1;
+        this.turnosEnConstruccion += 1;
     }
 
     public boolean estaTerminado(){
-        return _turnosEnConstruccion == _turnosQueTardaEnConstruir;
+        return this.turnosEnConstruccion == this.turnosQueTardaEnConstruir;
     }
 
     public TEdificio obtenerEdificioTerminado(){
@@ -26,7 +26,7 @@ public class EdificioEnConstruccion<TEdificio> {
             throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
         }
 
-        return _edificioConstruido;
+        return this.edificioConstruido;
     }
 
 }

@@ -9,21 +9,21 @@ public class Castillo extends Edificio implements IEdificioReparable, IAtacable,
     private static final int VIDA_MAXIMA = 1000;
     private static final int VELOCIDAD_DE_REPARACION = 15;
 
-    private IUnidadesCastilloFabrica _fabricaDeUnidades;
+    private IUnidadesCastilloFabrica fabricaDeUnidades;
     private final IEstrategiaAtaque estrategiaAtaque;
 
     public Castillo(Posicion posicion, IUnidadesCastilloFabrica fabricaDeUnidades, IEstrategiaAtaque estrategiaAtaque) {
         super(posicion, VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
-        _fabricaDeUnidades = fabricaDeUnidades;
+        this.fabricaDeUnidades = fabricaDeUnidades;
         this.estrategiaAtaque = estrategiaAtaque;
     }
 
     public int obtenerCostoArmaDeAsedio() {
-        return _fabricaDeUnidades.obtenerCostoArmaDeAsedio();
+        return this.fabricaDeUnidades.obtenerCostoArmaDeAsedio();
     }
 
     public ArmaDeAsedio crearArmaDeAsedio() {
-        return _fabricaDeUnidades.crearArmaDeAsedio();
+        return this.fabricaDeUnidades.crearArmaDeAsedio();
     }
 
 

@@ -6,20 +6,20 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.PosicionDeUnCasillero;
 
 public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesCuartelFabrica, IUnidadesCastilloFabrica {
 
-    private final int _costoEnOroAldeano = 25;
-    private final int _costoEnOroArquero = 75;
-    private final int _costoEnOroEspadachin = 50;
-    private final int _costoEnOroArmaDeAsedio = 200;
+    private final int costoEnOroAldeano = 25;
+    private final int costoEnOroArquero = 75;
+    private final int costoEnOroEspadachin = 50;
+    private final int costoEnOroArmaDeAsedio = 200;
 
     public int obtenerCostoAldeano(){
-        return _costoEnOroAldeano;
+        return this.costoEnOroAldeano;
     }
     public Aldeano crearAldeano() {
         return new Aldeano(new PosicionDeUnCasillero(0,0), new EdificiosEnConstruccionFabrica());
     }
 
     public int obtenerCostoArquero() {
-        return _costoEnOroArquero;
+        return this.costoEnOroArquero;
     }
     public Arquero crearArquero() {
         IEstrategiaAtaque estrategiaAtaqueArquero = new EstrategiaAtaqueArquero();
@@ -27,7 +27,7 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
     }
 
     public int obtenerCostoEspadachin(){
-        return _costoEnOroEspadachin;
+        return this.costoEnOroEspadachin;
     }
     public Espadachin crearEspadachin(){
         IEstrategiaAtaque estrategiaAtaqueEspadachin = new EstrategiaAtaqueEspadachin();
@@ -36,7 +36,7 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
     }
 
     public int obtenerCostoArmaDeAsedio(){
-        return _costoEnOroArmaDeAsedio;
+        return this.costoEnOroArmaDeAsedio;
     }
 
     public ArmaDeAsedio crearArmaDeAsedio(){

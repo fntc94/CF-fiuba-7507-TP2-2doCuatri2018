@@ -1,4 +1,4 @@
-package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
+package atenea.fiuba.algoIII.ageoOfEmpires.integrationTests;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Jugador;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.AldeanosOcupadosException;

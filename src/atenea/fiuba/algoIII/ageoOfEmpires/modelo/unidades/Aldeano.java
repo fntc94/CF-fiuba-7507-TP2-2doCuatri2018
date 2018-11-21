@@ -15,64 +15,64 @@ public class Aldeano extends Unidad implements IPosicionable, IRecolectorOro, IC
 
     private final static int VIDA_MAXIMA = 50;
 
-    private EdificiosEnConstruccionFabrica _fabricaDeEdificios;
-    private IEstadoAldeano _estadoAldeano = new EstadoAldeanoRecolector();
+    private EdificiosEnConstruccionFabrica fabricaDeEdificios;
+    private IEstadoAldeano estadoAldeano = new EstadoAldeanoRecolector();
 
     void establecerEstado(IEstadoAldeano estado){
-        _estadoAldeano = estado;
+        this.estadoAldeano = estado;
     }
 
     public Aldeano(Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
         super(posicion, VIDA_MAXIMA);
-        _fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
+        this.fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
     }
 
     //IRecolectorDeOro
     @Override
     public int recolectarOro() {
-        return _estadoAldeano.recolectarOro();
+        return this.estadoAldeano.recolectarOro();
     }
 
     @Override
     public boolean estaRecolectandoOro() {
-        return _estadoAldeano.estaRecolectandoOro();
+        return this.estadoAldeano.estaRecolectandoOro();
     }
     //fin IRecolectorDeOro
 
     //IConstructor
     @Override
     public boolean estaConstruyendo() {
-        return _estadoAldeano.estaConstruyendo();
+        return this.estadoAldeano.estaConstruyendo();
     }
 
     @Override
     public void continuarConstruyendo() {
-        _estadoAldeano.continuarConstruyendo();
+        this.estadoAldeano.continuarConstruyendo();
     }
     //fin IConstructor
 
     //IReparador
     @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable){
-        _estadoAldeano = new EstadoAldeanoReparador(edificioReparable, this);
-        _estadoAldeano.iniciarReparacion(edificioReparable);
+        this.estadoAldeano = new EstadoAldeanoReparador(edificioReparable, this);
+        this.estadoAldeano.iniciarReparacion(edificioReparable);
     }
 
     @Override
     public boolean estaReparando() {
-        return _estadoAldeano.estaReparando();
+        return this.estadoAldeano.estaReparando();
     }
 
     @Override
     public void continuarReparando(){
-        _estadoAldeano.continuarReparando();
+        this.estadoAldeano.continuarReparando();
     }
     //fin IReparador
 
 
     public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
-        _estadoAldeano.iniciarConstruccion();
+        this.estadoAldeano = new EstadoAldeanoConstructor(this.fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        this.estadoAldeano.iniciarConstruccion();
     }
 
     public void iniciarConstruccionDePlazaCentral(){
@@ -81,8 +81,8 @@ public class Aldeano extends Unidad implements IPosicionable, IRecolectorOro, IC
 
     public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
 
-        _estadoAldeano = new EstadoAldeanoConstructor(_fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
-        _estadoAldeano.iniciarConstruccion();
+        this.estadoAldeano = new EstadoAldeanoConstructor(this.fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
+        this.estadoAldeano.iniciarConstruccion();
 
     }
 

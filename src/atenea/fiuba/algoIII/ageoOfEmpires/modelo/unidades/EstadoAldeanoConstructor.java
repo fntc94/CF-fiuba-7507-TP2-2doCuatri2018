@@ -8,16 +8,16 @@ import java.util.function.Consumer;
 
 public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
 
-    private Aldeano _contexto;
-    private EdificioEnConstruccion<TEdificioTerminado> _edificioEnConstruccion;
-    private Consumer<TEdificioTerminado> _accionAlTerminarConstruccion;
+    private Aldeano contexto;
+    private EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion;
+    private Consumer<TEdificioTerminado> accionAlTerminarConstruccion;
 
     public EstadoAldeanoConstructor(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
 
-        _edificioEnConstruccion = edificioEnConstruccion;
-        _accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
+        this.edificioEnConstruccion = edificioEnConstruccion;
+        this.accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
         };
-        _contexto = contexto;
+        this.contexto = contexto;
     }
 
     //IRecolectorDeOro
@@ -34,7 +34,7 @@ public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAlde
     //IConstructor
     @Override
     public void iniciarConstruccion() {
-        _edificioEnConstruccion.avanzarConstruccion();
+        this.edificioEnConstruccion.avanzarConstruccion();
     }
 
     @Override
@@ -45,12 +45,12 @@ public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAlde
     @Override
     public void continuarConstruyendo() {
 
-        _edificioEnConstruccion.avanzarConstruccion();
+        this.edificioEnConstruccion.avanzarConstruccion();
 
-        if (_edificioEnConstruccion.estaTerminado()) {
+        if (this.edificioEnConstruccion.estaTerminado()) {
 
-            _accionAlTerminarConstruccion.accept(_edificioEnConstruccion.obtenerEdificioTerminado());
-            _contexto.establecerEstado(new EstadoAldeanoRecolector());
+            this.accionAlTerminarConstruccion.accept(this.edificioEnConstruccion.obtenerEdificioTerminado());
+            this.contexto.establecerEstado(new EstadoAldeanoRecolector());
 
         }
 

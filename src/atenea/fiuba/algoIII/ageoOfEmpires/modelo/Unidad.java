@@ -6,13 +6,13 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
 
 public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
-    protected int _vida;
+    protected int vida;
     private Posicion posicion;
     private Movimiento movimiento;
 
     protected Unidad(Posicion posicion, int vida){
         this.posicion = posicion;
-        this._vida = vida;
+        this.vida = vida;
         this.movimiento = new Movimiento();
     }
 
@@ -28,17 +28,17 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
         int danio = atacante.obtenerDanio(this);
 
-        if(this._vida <= danio){
-            this._vida = 0;
+        if(this.vida <= danio){
+            this.vida = 0;
             return;
         }
 
-        this._vida -= danio;
+        this.vida -= danio;
     }
 
     @Override
     public int getVida() {
-        return _vida;
+        return vida;
     }
     // fin IAtacable
 
