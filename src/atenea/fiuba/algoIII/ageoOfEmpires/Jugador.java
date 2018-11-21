@@ -3,15 +3,37 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 import java.util.*;
 
 public class Jugador {
-    private int banco;
-    private static final int oroInicial = 100;
     private ColeccionDePosisionables posisionables;
+    private int bolsaDeOro;
+    private static final int  oroInicial = 100;
 
 
     public Jugador (){
-      this.banco = oroInicial;
       this.posisionables = new ColeccionDePosisionables();
-      this.posisionables.recursosBasicos();
+      this.bolsaDeOro = oroInicial;
+    }
+
+
+    public boolean tieneOro(int cantidad){
+        return (this.bolsaDeOro >= cantidad );
+
+    }
+
+
+    public void ordenarRecolectarOro(){
+
+    }
+
+    public void ordenarIniciarConstruccionPlazaCentral(){
+
+    }
+
+   public void ordenarAvanzarConstruccion(){
+
+   }
+
+   public void ordenarIniciarConstruccionCuartel(){
+
     }
 
 }

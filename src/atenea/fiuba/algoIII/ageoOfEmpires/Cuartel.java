@@ -6,8 +6,8 @@ public class Cuartel extends Edificio implements IPosicionable, IEdificioReparab
     private static final int VELOCIDAD_DE_REPARACION = 50;
     private IUnidadesCuartelFabrica _fabricaDeUnidades;
 
-    public Cuartel(Posicion posicion, IUnidadesCuartelFabrica fabricaDeUnidades) {
-        super(posicion, VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
+    public Cuartel(IUnidadesCuartelFabrica fabricaDeUnidades) {
+        super(VIDA_MAXIMA, VELOCIDAD_DE_REPARACION);
         _fabricaDeUnidades = fabricaDeUnidades;
     }
 

@@ -1,15 +1,13 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
+public abstract class Unidad implements IPosicionable, IAtacable {
 
     protected int _vida;
-    private Posicion posicion;
-    private Movimiento movimiento;
+    private Posicion _posicion;
 
     protected Unidad(Posicion posicion, int vida){
-        this.posicion = posicion;
+        _posicion = posicion;
         this._vida = vida;
-        this.movimiento = new Movimiento();
     }
 
     public int getVida() {
@@ -18,7 +16,7 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
     @Override
     public Posicion getPosicion() {
-        return posicion;
+        return _posicion;
     }
 
     @Override // IAtacable
@@ -34,13 +32,4 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
         this._vida -= danio;
     }
 
-    public void mover(IDireccion direccion){
-        movimiento.hacia(direccion);
-
-        this.posicion = movimiento.calcularPosSiguiente(this.posicion);
-    }
-
-    public boolean estaEnPosicion(Posicion pos){
-        return this.posicion.seSuperponeCon(pos);
-    }
 }

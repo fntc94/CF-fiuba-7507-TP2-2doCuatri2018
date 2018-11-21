@@ -16,7 +16,7 @@
         <property name="reports.xml.dir" location="${reports.out.dir}/junit-xml" />
         <property name="reports.html.dir" location="${reports.out.dir}/junit-html" />
 
-        <property name="tests.main" value="tests/jumast.fiuba.algoIII.tp2.Main"></property>
+        <property name="tests.main" value="tests/fntc94.fiuba.algoIII.tp2.Main"></property>
         <property name="jar.dest" value="app.jar"></property>
 
         <path id="classpath">
