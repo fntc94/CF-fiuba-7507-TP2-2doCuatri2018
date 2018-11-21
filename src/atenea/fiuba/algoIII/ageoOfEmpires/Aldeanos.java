@@ -22,6 +22,7 @@ public class Aldeanos {
     }
 
     public void iniciarConstruccionDePlazaCentral(){
+
     }
 
     public void iniciarConstruccionDeCuartel(){

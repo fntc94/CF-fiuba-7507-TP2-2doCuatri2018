@@ -10,10 +10,10 @@ public class Mapa {
     private static final int ALTO_MIN = 20;
     private static final int ALTO_MAX = 50;
 
-    private int alto;
-    private int ancho;
+    private int _alto;
+    private int _ancho;
 
-    private Collection<IPosicionable> posicionables = new ArrayList<>();
+    private Collection<IPosicionable> _posicionables = new ArrayList<>();
 
     public Mapa(int alto, int ancho) {
 
@@ -23,31 +23,20 @@ public class Mapa {
             throw new DimensionDelMapaInvalidaException(mensaje);
         }
 
-        this.alto = alto;
-        this.ancho = ancho;
+        this._alto = alto;
+        this._ancho = ancho;
 
     }
 
     public boolean estaVacio() {
-        return this.posicionables.isEmpty();
+        return this._posicionables.isEmpty();
     }
-
-    //  Estos getters los usa PosicionDeUnCasillero
-    public int getAlto(){
-        return this.alto;
-    }
-
-    public int getAncho(){
-        return this.ancho;
-    }
-
-
 
     public void posicionar(IPosicionable posicionable) {
 
         Posicion posicion = posicionable.getPosicion();
 
-        if(!posicion.estaDentroDelArea(this.alto,this.ancho)){
+        if(!posicion.estaDentroDelArea(this._alto,this._ancho)){
             throw new NoPuedeColocarPosicionablesFueraDelMapaException();
         }
 
@@ -55,7 +44,7 @@ public class Mapa {
             throw new NoPuedeColocar2IPosicionablesEnLaMismaPosicionException();
         }
 
-        this.posicionables.add(posicionable);
+        this._posicionables.add(posicionable);
     }
 
     private boolean sonDimensionesValidas(int alto, int ancho){
@@ -64,7 +53,7 @@ public class Mapa {
 
     private boolean posicionEstaLibre(Posicion posicion) {
 
-        for(IPosicionable otraPosicion : this.posicionables){
+        for(IPosicionable otraPosicion : this._posicionables){
 
             if(posicion.seSuperponeCon(otraPosicion.getPosicion())){
                 return false;

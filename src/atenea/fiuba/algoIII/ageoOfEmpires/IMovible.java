@@ -2,5 +2,5 @@ package atenea.fiuba.algoIII.ageoOfEmpires;
 
 public interface IMovible {
 
-    void mover(IDireccion direccion);
+    void mover(Posicion posicion, IDireccion direccion);
 }

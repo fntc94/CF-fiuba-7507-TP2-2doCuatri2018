@@ -1,16 +1,14 @@
 package atenea.fiuba.algoIII.ageoOfEmpires;
 
-public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable  {
+public abstract class Edificio implements IEdificioReparable, IAtacable  {
 
-    private Posicion _posicion;
     private final int VIDA_MAXIMA;
     private final int VELOCIDAD_DE_REPARACION;
 
     protected int vidaActual;
     private IEstadoReparador _reparadorActivo;
 
-    protected Edificio(Posicion posicion, int vidaMaxima, int velocidadDeReparacion){
-        _posicion = posicion;
+    protected Edificio(int vidaMaxima, int velocidadDeReparacion){
         this.VIDA_MAXIMA = vidaMaxima;
         this.vidaActual = VIDA_MAXIMA;
         this.VELOCIDAD_DE_REPARACION = velocidadDeReparacion;
@@ -21,7 +19,8 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     }
 
     public Posicion getPosicion(){
-        return _posicion;
+        // TODO: recibir en constructor
+        return null;
     }
 
     @Override // IEdificioReparable
