@@ -1,9 +1,22 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IAtacable;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
 
-public class EstadoAldeanoRecolector implements IEstadoAldeano {
+class AldeanoRecolectorState implements IAldeanoState {
+
+    private Aldeano contexto;
+
+    AldeanoRecolectorState(Aldeano contexto){
+        this.contexto = contexto;
+    }
+
+    public void iniciarReparacion(IEdificioReparable edificioReparable) {
+        IAldeanoState estadoReparador = new AldeanoReparadorState(edificioReparable, this.contexto);
+        estadoReparador.reparar();
+        this.contexto.establecerEstado(estadoReparador);
+    }
 
     //IRecolectorDeOro
     @Override
@@ -17,20 +30,14 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
     }
     //fin IRecolectorDeOro
 
-    //IReparador
-    @Override
-    public void iniciarReparacion(IEdificioReparable edificioReparable) {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-
     @Override
     public boolean estaReparando() {
         return false;
     }
 
     @Override
-    public void continuarReparando() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+    public void reparar() {
+//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
@@ -41,8 +48,8 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
 
     //IConstructor
     @Override
-    public void iniciarConstruccion() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+    public void construir() {
+//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
@@ -50,9 +57,5 @@ public class EstadoAldeanoRecolector implements IEstadoAldeano {
         return false;
     }
 
-    @Override
-    public void continuarConstruyendo() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
     // fin IConstructor
 }
