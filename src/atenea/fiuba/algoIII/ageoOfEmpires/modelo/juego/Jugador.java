@@ -15,11 +15,13 @@ public class Jugador {
     private Castillo castillo;
     private List<PlazaCentral> plazas;
     private List<Cuartel> cuarteles;
-    private LinkedList<Aldeano> aldeanos;
+//    private LinkedList<Aldeano> aldeanos;
+
+    Aldeanos aldeanos = new Aldeanos();
+
     private List<ArmaDeAsedio> armas;
     private List<Arquero> arqueros;
     private List<Espadachin> espadachines;
-    private ColaDeConstruccion colaDeConstruccion;
     private int primerPosicion;
     private int bolsaDeOro;
     private static final int  oroInicial = 100;
@@ -28,12 +30,11 @@ public class Jugador {
     public Jugador (){
       this.plazas = new ArrayList<>();
       this.cuarteles = new ArrayList<>();
-      this.aldeanos = new LinkedList<>();
+//      this.aldeanos = new LinkedList<>();
       this.armas = new ArrayList<>();
       this.arqueros = new ArrayList<>();
       this.espadachines = new ArrayList<>();
       this.castillo = new EdificiosFabrica().crearCastillo();
-      this.colaDeConstruccion = new ColaDeConstruccion();
       this.bolsaDeOro = 0;
       this.primerPosicion = 0;
       this.recursosBasicos();
@@ -44,12 +45,12 @@ public class Jugador {
         this.plazas.add(new EdificiosFabrica().crearPlazaCentral());
         for(int cantidad = 1; cantidad<=3;cantidad++){
             Aldeano aldeano = this.plazas.get(this.primerPosicion).construirAldeano();
-            this.aldeanos.add(aldeano);
+            this.aldeanos.agregar(aldeano);
         }
     }
     
     public boolean tieneAldeanos(int cantidad){
-        return (cantidad <= this.aldeanos.size());
+        return aldeanos.cantidad() > 0;
     }
 
 
@@ -68,41 +69,30 @@ public class Jugador {
 
     public void ordenarRecolectarOro(){
         for (Aldeano aldeano: this.aldeanos) {
-            this.bolsaDeOro += aldeano.recolectarOro();
+            this.bolsaDeOro += aldeano.trabajar();
         }
     }
 
-    public void ordenarIniciarConstruccionPlazaCentral(){
-        if( this.aldeanos.isEmpty() ){
-            throw new AldeanosOcupadosException();
-        }
-        else {
-            Aldeano aldeano = this.aldeanos.remove();
-            aldeano.iniciarConstruccionDePlazaCentral(plaza ->this.plazas.add(plaza));
-            this.colaDeConstruccion.actualizarColaDeConstruccion(aldeano);
-        }
-    }
 
-   public void ordenarAvanzarConstruccion(){
-       try
-       {
-           this.colaDeConstruccion.avanzarConstruccion(aldeano ->this.aldeanos.add(aldeano));
-       }
-       catch (OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion ex){
-           throw (new NoHayEdificiosEnConstruccionException());
-       }
 
-   }
-
-   public void ordenarIniciarConstruccionCuartel(){
-        if( this.aldeanos.isEmpty() ){
-            throw new AldeanosOcupadosException();
-        }
-        else {
-            Aldeano aldeano = this.aldeanos.remove();
-            aldeano.iniciarConstruccionDeCuartel(cuartel ->this.cuarteles.add(cuartel));
-            this.colaDeConstruccion.actualizarColaDeConstruccion(aldeano);
-        }
-    }
+//    public void ordenarIniciarConstruccionPlazaCentral(){
+//        if(this.aldeanos.noTieneAldeanos()){
+//            throw new JugadorNoTieneAldeanosExcepcion();
+//        }
+//
+//        Aldeano aldeano = this.aldeanos.get(0);
+//        aldeano.iniciarConstruccionDePlazaCentral(plaza ->this.plazas.add(plaza));
+//    }
+//
+//
+//
+//   public void ordenarIniciarConstruccionCuartel(){
+//       if( this.aldeanos.noTieneAldeanos()){
+//           throw new JugadorNoTieneAldeanosExcepcion();
+//       }
+//
+//       Aldeano aldeano = this.aldeanos.get(0);
+//       aldeano.iniciarConstruccionDeCuartel(cuartel ->this.cuarteles.add(cuartel));
+//    }
 
 }

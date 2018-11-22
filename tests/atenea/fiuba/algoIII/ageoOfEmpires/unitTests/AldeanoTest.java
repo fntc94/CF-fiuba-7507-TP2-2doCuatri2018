@@ -34,127 +34,42 @@ public class AldeanoTest {
     }
 
     @Test
-    public void estaRecolectandoOro_LuegoDeLaCreacion_DevuelveTrue(){
+    public void trabajar_LuegoDeLaCreacion_Devuelve20(){
 
         // Arrange
-        IRecolectorOro aldeano = this.crearAldeano();
-
-        // Act
-        boolean estaRecolectandoOro = aldeano.estaRecolectandoOro();
-
-        // Assert
-        Assert.assertTrue(estaRecolectandoOro);
-
-    }
-
-    @Test
-    public void estaConstruyendo_LuegoDeLaCreacion_DevuelveFalse(){
-
-        // Arrange
-        IConstructor aldeano = this.crearAldeano();
-
-        // Act
-        boolean estaConstruyendo = aldeano.estaConstruyendo();
-
-        // Assert
-        Assert.assertFalse(estaConstruyendo);
-
-    }
-
-    @Test
-    public void estaReparando_LuegoDeLaCreacion_DevuelveFalse(){
-
-        // Arrange
-        IReparador aldeano = this.crearAldeano();
-
-        // Act
-        boolean estaReparando = aldeano.estaReparando();
-
-        // Assert
-        Assert.assertFalse(estaReparando);
-
-    }
-
-    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion.class)
-    public void continuarReparacion_CuandoEstaRecolectando_LanzaExcepcion(){
-
-        // Arrange
-        IReparador aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.continuarReparando();
-    }
-
-    @Test(expected = OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion.class)
-    public void continuarConstruyendo_CuandoEstaRecolectando_LanzaExcepcion(){
-
-        // Arrange
-        IConstructor aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.continuarConstruyendo();
-    }
-
-    @Test
-    public void recolectarOro_LuegoDeLaCreacion_Devuelve20(){
-
-        // Arrange
-        IRecolectorOro aldeano = this.crearAldeano();
+        Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 20;
 
         // Act
-        int oroRecolectado = aldeano.recolectarOro();
+        int oroRecolectado = aldeano.trabajar();
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);
 
     }
 
-    @Test
-    public void estaConstruyendo_LuegoDeIniciarConstruccion_DevuelveTrue(){
+    @Test()
+    public void iniciarConstruccionDePlazaCentral_CuandoEstaRecolectando_NoLanzaExcepcion(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        // Act
+        aldeano.iniciarConstruccionDePlazaCentral();
+    }
+
+    @Test()
+    public void iniciarConstruccionDeCuartel_CuandoEstaRecolectando_NoLanzaExcepcion(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
 
         // Act
         aldeano.iniciarConstruccionDeCuartel();
-        boolean estaConstruyendo = aldeano.estaConstruyendo();
-
-        // Asert
-        Assert.assertTrue(estaConstruyendo);
     }
 
-    @Test
-    public void estaRecolectando_LuegoDeIniciarConstruccion_DevuelveFalse(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel();
-        boolean estaRecolectando = aldeano.estaRecolectandoOro();
-
-        // Asert
-        Assert.assertFalse(estaRecolectando);
-    }
-
-    @Test
-    public void estaReparando_LuegoDeIniciarConstruccion_DevuelveFalse(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel();
-        boolean estaReparando = aldeano.estaReparando();
-
-        // Asert
-        Assert.assertFalse(estaReparando);
-    }
-
-
-    @Test
-    public void estaReparando_LuegoDeIniciarReparacion_DevuelveTrue(){
+    @Test()
+    public void inicarReparacion_CuandoEstaRecolectando_NoLanzaExcepcion(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
@@ -162,45 +77,10 @@ public class AldeanoTest {
 
         // Act
         aldeano.iniciarReparacion(edificioReparable);
-        boolean estaReparando = aldeano.estaReparando();
-
-        // Assert
-        Assert.assertTrue(estaReparando);
-
     }
 
     @Test
-    public void estaRecolectando_LuegoDeIniciarReparacion_DevuelveFalse(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
-
-        // Act
-        aldeano.iniciarReparacion(edificioReparable);
-        boolean estaRecolectandoOro = aldeano.estaRecolectandoOro();
-
-        // Asert
-        Assert.assertFalse(estaRecolectandoOro);
-    }
-
-    @Test
-    public void estaConstruyendo_LuegoDeIniciarReparacion_DevuelveFalse(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
-
-        // Act
-        aldeano.iniciarReparacion(edificioReparable);
-        boolean estaConstruyendo = aldeano.estaConstruyendo();
-
-        // Asert
-        Assert.assertFalse(estaConstruyendo);
-    }
-
-    @Test
-    public void recolectarOro_CuandoEstaConstruyendo_DevuelveCero(){
+    public void trabajar_LuegoDeIniciarConstruccionDePlazaCentral_DevuelveCero(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
@@ -208,14 +88,47 @@ public class AldeanoTest {
 
         // Act
         aldeano.iniciarConstruccionDePlazaCentral();
-        int oroRecolectado = aldeano.recolectarOro();
+        int oroRecolectado = aldeano.trabajar();
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);
     }
 
     @Test
-    public void recolectarOro_CuandoEstaReparando_DevuelveCero(){
+    public void trabajar_CuandoEstaConstruyendoPlazaCentral_DevuelveCero(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+        int oroEsperado = 0;
+
+        // Act
+        aldeano.iniciarConstruccionDePlazaCentral();
+        aldeano.trabajar();
+        int oroRecolectado = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
+
+    @Test
+    public void trabajar_LuegoDeTerminarConstruccionDePlazaCentral_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+        int oroEsperado = 20;
+
+        // Act
+        aldeano.iniciarConstruccionDePlazaCentral();
+        aldeano.trabajar();
+        aldeano.trabajar();
+        int oroRecolectado = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
+
+    @Test
+    public void trabajar_LuegoDeIniciarReparacion_DevuelveCero(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
@@ -224,7 +137,24 @@ public class AldeanoTest {
 
         // Act
         aldeano.iniciarReparacion(edificioReparable);
-        int oroRecolectado = aldeano.recolectarOro();
+        int oroRecolectado = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroRecolectado);
+    }
+
+    @Test
+    public void trabajar_CuandoEstaReparando_DevuelveCero(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+        IEdificioReparable edificioReparable = Mockito.mock(IEdificioReparable.class);
+        int oroEsperado = 0;
+
+        // Act
+        aldeano.iniciarReparacion(edificioReparable);
+        aldeano.trabajar();
+        int oroRecolectado = aldeano.trabajar();
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);
@@ -299,53 +229,6 @@ public class AldeanoTest {
 //        Assert.assertEquals(oroEsperado, oroRecolectado);
 //    }
 
-    @Test
-    public void estaConstruyendo_LuegoDeContinuarConstruyendoUnaVezUnCuartel_DevuelveTrue(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel();
-        aldeano.continuarConstruyendo();
-        boolean estaConstruyendo = aldeano.estaConstruyendo();
-
-        // Assert
-        Assert.assertTrue(estaConstruyendo);
-
-    }
-
-    @Test
-    public void estaConstruyendo_LuegoDeContinuarConstruyendoDosVecesUnCuartel_DevuelveFalse(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel();
-        aldeano.continuarConstruyendo();
-        aldeano.continuarConstruyendo();
-        Boolean esta_construyendo = aldeano.estaConstruyendo();
-
-        // Assert
-        Assert.assertFalse(esta_construyendo);
-
-    }
-
-    @Test
-    public void estaConstruyendo_CuandoEstaRecolectando_DevuelveFalse(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        Boolean esta_construyendo = aldeano.estaConstruyendo();
-
-        // Assert
-        Assert.assertFalse(esta_construyendo);
-
-    }
-
 
     @Test
     public void inicicarConstruccionDeCuartel_AlTerminarLaConstruccion_SeEjecutaLaAccion(){
@@ -356,8 +239,8 @@ public class AldeanoTest {
 
         // Act
         aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
-        aldeano.continuarConstruyendo();
-        aldeano.continuarConstruyendo();
+        aldeano.trabajar();
+        aldeano.trabajar();
 
         // Assert
         Assert.assertFalse(cuarteles.isEmpty());
@@ -372,7 +255,7 @@ public class AldeanoTest {
 
         // Act
         aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
-        aldeano.continuarConstruyendo();
+        aldeano.trabajar();
 
         // Assert
         Assert.assertTrue(cuarteles.isEmpty());
@@ -385,13 +268,13 @@ public class AldeanoTest {
         Aldeano aldeano = this.crearAldeano();
 
         aldeano.iniciarConstruccionDeCuartel();
-        aldeano.continuarConstruyendo();
-        aldeano.continuarConstruyendo();
+        aldeano.trabajar();
+        aldeano.trabajar();
 
         int oroEsperado = 20;
 
         // Act
-        int oroRecolectado = aldeano.recolectarOro();
+        int oroRecolectado = aldeano.trabajar();
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);
@@ -408,7 +291,7 @@ public class AldeanoTest {
         int oroEsperado = 0;
 
         // Act
-        int oroRecolectado = aldeano.recolectarOro();
+        int oroRecolectado = aldeano.trabajar();
 
         // Assert
         Assert.assertEquals(oroEsperado, oroRecolectado);

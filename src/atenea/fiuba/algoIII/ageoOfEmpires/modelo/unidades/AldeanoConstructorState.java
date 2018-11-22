@@ -6,18 +6,22 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificioEnConstruccio
 
 import java.util.function.Consumer;
 
-public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAldeano {
+class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
 
     private Aldeano contexto;
     private EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion;
     private Consumer<TEdificioTerminado> accionAlTerminarConstruccion;
 
-    public EstadoAldeanoConstructor(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
+    AldeanoConstructorState(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
 
         this.edificioEnConstruccion = edificioEnConstruccion;
         this.accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
         };
         this.contexto = contexto;
+    }
+
+    public void iniciarReparacion(IEdificioReparable edificioReparable) {
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     //IRecolectorDeOro
@@ -33,36 +37,23 @@ public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAlde
 
     //IConstructor
     @Override
-    public void iniciarConstruccion() {
-        this.edificioEnConstruccion.avanzarConstruccion();
-    }
-
-    @Override
-    public boolean estaConstruyendo() {
-        return true;
-    }
-
-    @Override
-    public void continuarConstruyendo() {
+    public void construir() {
 
         this.edificioEnConstruccion.avanzarConstruccion();
 
         if (this.edificioEnConstruccion.estaTerminado()) {
 
             this.accionAlTerminarConstruccion.accept(this.edificioEnConstruccion.obtenerEdificioTerminado());
-            this.contexto.establecerEstado(new EstadoAldeanoRecolector());
+            this.contexto.establecerEstado(new AldeanoRecolectorState(this.contexto));
 
         }
+    }
 
+    @Override
+    public boolean estaConstruyendo() {
+        return true;
     }
     // fin IConstructor
-
-
-    //IReparador
-    @Override
-    public void iniciarReparacion(IEdificioReparable edificioReparable) {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
 
     @Override
     public boolean estaReparando() {
@@ -70,8 +61,8 @@ public class EstadoAldeanoConstructor<TEdificioTerminado> implements IEstadoAlde
     }
 
     @Override
-    public void continuarReparando() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+    public void reparar() {
+//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
