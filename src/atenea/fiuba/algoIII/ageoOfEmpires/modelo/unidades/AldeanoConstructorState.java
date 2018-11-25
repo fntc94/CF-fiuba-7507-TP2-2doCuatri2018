@@ -30,11 +30,6 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
         return 0;
     }
 
-    public boolean estaRecolectandoOro() {
-        return false;
-    }
-    //fin IRecolectorDeOro
-
     //IConstructor
     @Override
     public void construir() {
@@ -48,17 +43,7 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
 
         }
     }
-
-    @Override
-    public boolean estaConstruyendo() {
-        return true;
-    }
     // fin IConstructor
-
-    @Override
-    public boolean estaReparando() {
-        return false;
-    }
 
     @Override
     public void reparar() {

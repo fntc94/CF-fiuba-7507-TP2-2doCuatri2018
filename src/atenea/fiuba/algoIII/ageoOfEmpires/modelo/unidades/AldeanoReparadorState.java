@@ -24,10 +24,6 @@ class AldeanoReparadorState implements IAldeanoState {
         return 0;
     }
 
-    @Override
-    public boolean estaRecolectandoOro() {
-        return false;
-    }
     //fin IRecolectorDeOro
 
     //IConstructor
@@ -36,25 +32,12 @@ class AldeanoReparadorState implements IAldeanoState {
 //        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
-    @Override
-    public boolean estaConstruyendo() {
-        return false;
-    }
     //fin IConstructor
 
     // IReparador
     @Override
     public void reparar(){
         this.edificioEnReparacion.recibirReparador(this);
-    }
-
-    @Override
-    public boolean estaReparando() {
-        return true;
-    }
-
-    public boolean estaReparando(IEdificioReparable edificioReparable){
-        return this.edificioEnReparacion == edificioReparable;
     }
 
     @Override

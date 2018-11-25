@@ -24,16 +24,9 @@ class AldeanoRecolectorState implements IAldeanoState {
         return 20;
     }
 
-    @Override
-    public boolean estaRecolectandoOro() {
-        return true;
-    }
+
     //fin IRecolectorDeOro
 
-    @Override
-    public boolean estaReparando() {
-        return false;
-    }
 
     @Override
     public void reparar() {
@@ -52,10 +45,6 @@ class AldeanoRecolectorState implements IAldeanoState {
 //        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
-    @Override
-    public boolean estaConstruyendo() {
-        return false;
-    }
 
     // fin IConstructor
 }

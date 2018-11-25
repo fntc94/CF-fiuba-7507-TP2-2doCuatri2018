@@ -56,6 +56,5 @@ public class Aldeano extends Unidad {
         this.estadoAldeano.construir();
         this.estadoAldeano.reparar();
         return oro;
-
     }
 }
