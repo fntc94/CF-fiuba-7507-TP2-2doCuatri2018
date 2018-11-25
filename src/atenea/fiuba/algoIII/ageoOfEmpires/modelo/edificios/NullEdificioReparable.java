@@ -9,4 +9,9 @@ public class NullEdificioReparable implements IEdificioReparable {
     public void recibirReparador(IEstadoReparador reparador) {
         //hace nada.
     }
+
+    @Override
+    public void onReparacionTerminada(Runnable action) {
+        action.run();
+    }
 }

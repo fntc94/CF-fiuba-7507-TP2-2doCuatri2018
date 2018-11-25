@@ -208,4 +208,43 @@ public class ReparacionDeCastilloTests {
 
     }
 
+    @Test
+    public void trabajar_LuegoDeTerminarLaReparacion_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        final int DANIO = 5;
+        Castillo castillo = this.crearCastilloDaniado(DANIO);
+
+        // Act
+        aldeano.iniciarReparacion(castillo);
+        int oro = aldeano.trabajar();
+
+
+        // Assert
+        Assert.assertEquals(20, oro);
+
+    }
+
+    @Test
+    public void trabajar_AntesDeTerminarLaReparacion_Devuelve0(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        final int DANIO = 20;
+        Castillo castillo = this.crearCastilloDaniado(DANIO);
+
+        // Act
+        aldeano.iniciarReparacion(castillo);
+        int oro = aldeano.trabajar();
+
+
+        // Assert
+        Assert.assertEquals(0, oro);
+
+    }
+
+
 }

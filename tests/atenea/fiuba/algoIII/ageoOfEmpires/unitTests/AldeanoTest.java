@@ -1,6 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Cuartel;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificioReparableParaPruebas;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosEnConstruccionFabrica;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.PlazaCentral;
@@ -297,4 +298,70 @@ public class AldeanoTest {
         Assert.assertEquals(oroEsperado, oroRecolectado);
 
     }
+
+    @Test
+    public void trabajar_LuegoDeTerminarReparacionDeUnTurno_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        final int TURNOS_EN_REPARAR = 1;
+        IEdificioReparable edificio = new EdificioReparableParaPruebas(TURNOS_EN_REPARAR);
+
+        aldeano.iniciarReparacion(edificio);
+
+        int oroEsperado = 20;
+
+        // Act
+        int oroProducido = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroProducido);
+
+    }
+
+
+    @Test
+    public void trabajar_LuegoDeTerminarReparacionDeDosTurnos_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        final int TURNOS_EN_REPARAR = 2;
+        IEdificioReparable edificio = new EdificioReparableParaPruebas(TURNOS_EN_REPARAR);
+
+        aldeano.iniciarReparacion(edificio);
+        aldeano.trabajar();
+
+        int oroEsperado = 20;
+
+        // Act
+        int oroProducido = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroProducido);
+
+    }
+
+    @Test
+    public void trabajar_AntesDeTerminarReparacionDeDosTurnos_Devuelve0(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        final int TURNOS_EN_REPARAR = 2;
+        IEdificioReparable edificio = new EdificioReparableParaPruebas(TURNOS_EN_REPARAR);
+
+        aldeano.iniciarReparacion(edificio);
+
+        int oroEsperado = 0;
+
+        // Act
+        int oroProducido = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroProducido);
+
+    }
+
 }

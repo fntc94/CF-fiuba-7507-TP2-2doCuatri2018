@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
 
-    private Aldeano contexto;
+    private Aldeano aldeano;
     private EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion;
     private Consumer<TEdificioTerminado> accionAlTerminarConstruccion;
     private final int ORO_RECOLECTADO = 0;
@@ -18,34 +18,29 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
         this.edificioEnConstruccion = edificioEnConstruccion;
         this.accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
         };
-        this.contexto = contexto;
+        this.aldeano = contexto;
     }
 
+    @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
         throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
     public void trabajar() {
+        this.construir();
+        this.aldeano.setOro(ORO_RECOLECTADO);
+    }
 
+    private void construir(){
         this.edificioEnConstruccion.avanzarConstruccion();
 
         if (this.edificioEnConstruccion.estaTerminado()) {
 
             this.accionAlTerminarConstruccion.accept(this.edificioEnConstruccion.obtenerEdificioTerminado());
-            this.contexto.establecerEstado(new AldeanoRecolectorState(this.contexto));
+            this.aldeano.setEstado(new AldeanoRecolectorState(this.aldeano));
 
         }
-
     }
 
-    @Override
-    public int obtenerOroRecolectado() {
-        return this.ORO_RECOLECTADO;
-    }
-
-    @Override
-    public void darPorTerminadaLaReparacion() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
 }

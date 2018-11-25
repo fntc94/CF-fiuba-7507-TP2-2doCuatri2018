@@ -6,33 +6,33 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDa
 
 class AldeanoReparadorState implements IAldeanoState {
 
-    private Aldeano contexto;
+    private Aldeano aldeano;
     private IEdificioReparable edificioEnReparacion;
     private final int ORO_RECOLECTADO = 0;
 
     AldeanoReparadorState(IEdificioReparable edificioReparable, Aldeano contexto){
-        this.contexto = contexto;
+        this.aldeano = contexto;
         this.edificioEnReparacion = edificioReparable;
+
+        this.edificioEnReparacion.onReparacionTerminada(() -> {
+                this.edificioEnReparacion = new NullEdificioReparable();
+                this.aldeano.setEstado(new AldeanoRecolectorState(this.aldeano));
+            ;});
     }
 
+    @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
         throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
     public void trabajar(){
+        this.reparar();
+        this.aldeano.setOro(ORO_RECOLECTADO);
+    }
+
+    private void reparar(){
         this.edificioEnReparacion.recibirReparador(this);
-    }
-
-    @Override
-    public int obtenerOroRecolectado() {
-        return this.ORO_RECOLECTADO;
-    }
-
-    @Override
-    public void darPorTerminadaLaReparacion() {
-        this.edificioEnReparacion = new NullEdificioReparable();
-        this.contexto.establecerEstado(new AldeanoRecolectorState(this.contexto));
     }
 
 }

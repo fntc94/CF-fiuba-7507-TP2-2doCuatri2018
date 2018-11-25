@@ -12,6 +12,9 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     protected int vidaActual;
     private IEstadoReparador reparadorActivo;
 
+
+    private Runnable reparacionTerminadaHandler = () -> {};
+
     protected Edificio(Posicion posicion, int vidaMaxima, int velocidadDeReparacion){
         this.posicion = posicion;
         this.VIDA_MAXIMA = vidaMaxima;
@@ -42,9 +45,15 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
 
         if(this.vidaActual > this.VIDA_MAXIMA){
             this.vidaActual = this.VIDA_MAXIMA;
-            this.reparadorActivo.darPorTerminadaLaReparacion();
+            this.reparacionTerminadaHandler.run();
         }
     }
+
+    @Override
+    public void onReparacionTerminada(Runnable reparacionTerminadaHandler){
+        this.reparacionTerminadaHandler = reparacionTerminadaHandler;
+    }
+    // fin IEdificioReparable
 
     @Override // IAtacable
     public void recibirAtaque(IAtacante atacante) {
@@ -58,5 +67,7 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
 
         this.vidaActual -= danio;
     }
+
+
 
 }

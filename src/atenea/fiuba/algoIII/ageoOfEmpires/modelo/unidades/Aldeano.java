@@ -15,8 +15,13 @@ public class Aldeano extends Unidad {
 
     private EdificiosEnConstruccionFabrica fabricaDeEdificios;
     private IAldeanoState aldeanoState;
+    private int oro;
 
-    void establecerEstado(IAldeanoState estado){
+    void setOro(int oro){
+        this.oro = oro;
+    }
+
+    void setEstado(IAldeanoState estado){
         this.aldeanoState = estado;
     }
 
@@ -50,9 +55,8 @@ public class Aldeano extends Unidad {
     }
 
     public int trabajar(){
-        IAldeanoState estado = this.aldeanoState;
-        estado.trabajar();
-        return estado.obtenerOroRecolectado();
+        this.aldeanoState.trabajar();
+        return this.oro;
     }
 
 }
