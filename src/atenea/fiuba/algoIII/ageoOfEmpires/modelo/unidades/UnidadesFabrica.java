@@ -15,7 +15,7 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
         return this.costoEnOroAldeano;
     }
     public Aldeano crearAldeano() {
-        return new Aldeano(new PosicionDeUnCasillero(0,0), new EdificiosEnConstruccionFabrica());
+        return new Aldeano(new PosicionDeUnCasillero(0,0));
     }
 
     public int obtenerCostoArquero() {

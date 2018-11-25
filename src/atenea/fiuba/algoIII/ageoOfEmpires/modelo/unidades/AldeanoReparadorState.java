@@ -1,6 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.NullEdificioReparable;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
 
@@ -17,7 +18,12 @@ class AldeanoReparadorState implements IAldeanoState {
         this.edificioEnReparacion.onReparacionTerminada(() -> {
                 this.edificioEnReparacion = new NullEdificioReparable();
                 this.aldeano.setEstado(new AldeanoRecolectorState(this.aldeano));
-            ;});
+            });
+    }
+
+    @Override
+    public void iniciarConstruccion(IConstruccion edificioEnConstruccion){
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
@@ -32,7 +38,7 @@ class AldeanoReparadorState implements IAldeanoState {
     }
 
     private void reparar(){
-        this.edificioEnReparacion.recibirReparador(this);
+        this.edificioEnReparacion.recibirReparador(this.aldeano);
     }
 
 }

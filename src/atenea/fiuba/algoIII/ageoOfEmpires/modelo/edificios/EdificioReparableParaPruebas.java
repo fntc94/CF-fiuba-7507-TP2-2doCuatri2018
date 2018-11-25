@@ -1,7 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.IEstadoReparador;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
 
 public class EdificioReparableParaPruebas implements IEdificioReparable {
 
@@ -14,7 +14,7 @@ public class EdificioReparableParaPruebas implements IEdificioReparable {
     }
 
     @Override
-    public void recibirReparador(IEstadoReparador reparador) {
+    public void recibirReparador(Aldeano reparador) {
 
         this.turnosReparado += 1;
         if(this.reparacionEstaTerminada()){

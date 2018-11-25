@@ -1,24 +1,27 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificioEnConstruccion;
-
-import java.util.function.Consumer;
 
 class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
 
     private Aldeano aldeano;
-    private EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion;
-    private Consumer<TEdificioTerminado> accionAlTerminarConstruccion;
+    private IConstruccion<TEdificioTerminado> edificioEnConstruccion;
     private final int ORO_RECOLECTADO = 0;
 
-    AldeanoConstructorState(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
-
+    AldeanoConstructorState(IConstruccion<TEdificioTerminado> edificioEnConstruccion, Aldeano contexto) {
         this.edificioEnConstruccion = edificioEnConstruccion;
-        this.accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
-        };
+        this.edificioEnConstruccion.onConstruccionTerminada((edificio) -> {
+            this.aldeano.setEstado(new AldeanoRecolectorState(this.aldeano));
+        });
+
         this.aldeano = contexto;
+    }
+
+    @Override
+    public void iniciarConstruccion(IConstruccion edificioEnConstruccion){
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
     @Override
@@ -33,14 +36,7 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
     }
 
     private void construir(){
-        this.edificioEnConstruccion.avanzarConstruccion();
-
-        if (this.edificioEnConstruccion.estaTerminado()) {
-
-            this.accionAlTerminarConstruccion.accept(this.edificioEnConstruccion.obtenerEdificioTerminado());
-            this.aldeano.setEstado(new AldeanoRecolectorState(this.aldeano));
-
-        }
+        this.edificioEnConstruccion.recibirConstructor(this.aldeano);
     }
 
 }

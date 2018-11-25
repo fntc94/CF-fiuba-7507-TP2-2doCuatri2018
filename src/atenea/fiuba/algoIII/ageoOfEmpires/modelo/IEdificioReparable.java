@@ -1,10 +1,10 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.IEstadoReparador;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
 
 public interface IEdificioReparable {
 
-    void recibirReparador(IEstadoReparador reparador);
+    void recibirReparador(Aldeano reparador);
     void onReparacionTerminada(Runnable action);
 
 }

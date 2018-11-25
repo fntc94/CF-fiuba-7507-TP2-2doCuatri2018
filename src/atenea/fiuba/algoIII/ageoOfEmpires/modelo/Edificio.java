@@ -1,7 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.IEstadoReparador;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
 
 public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
@@ -10,7 +10,7 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     private final int VELOCIDAD_DE_REPARACION;
 
     protected int vidaActual;
-    private IEstadoReparador reparadorActivo;
+    private Aldeano reparador;
 
 
     private Runnable reparacionTerminadaHandler = () -> {};
@@ -31,13 +31,13 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     }
 
     @Override // IEdificioReparable
-    public void recibirReparador(IEstadoReparador reparador) {
+    public void recibirReparador(Aldeano reparador) {
 
-        if(this.reparadorActivo == null){
-            this.reparadorActivo = reparador;
+        if(this.reparador == null){
+            this.reparador = reparador;
         }
 
-        else if (this.reparadorActivo != reparador){
+        else if (this.reparador != reparador){
             return;
         }
 

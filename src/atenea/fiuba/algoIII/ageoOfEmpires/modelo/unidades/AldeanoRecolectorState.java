@@ -1,6 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 
 class AldeanoRecolectorState implements IAldeanoState {
 
@@ -9,6 +10,13 @@ class AldeanoRecolectorState implements IAldeanoState {
 
     AldeanoRecolectorState(Aldeano contexto){
         this.aldeano = contexto;
+    }
+
+    @Override
+    public void iniciarConstruccion(IConstruccion construccion){
+        IAldeanoState estadoConstructor = new AldeanoConstructorState<>(construccion, this.aldeano);
+        this.aldeano.setEstado(estadoConstructor);
+        estadoConstructor.trabajar();
     }
 
     @Override

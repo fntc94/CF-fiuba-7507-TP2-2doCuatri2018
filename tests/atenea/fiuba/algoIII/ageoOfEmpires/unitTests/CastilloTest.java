@@ -109,7 +109,7 @@ public class CastilloTest {
         Mockito.when(posicionCastillo.distanciaA(posicionAldeano)).thenReturn(DISTANCIA_DE_ATAQUE);
 
         Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
-        Aldeano aldeano = new Aldeano(posicionAldeano,Mockito.mock(EdificiosEnConstruccionFabrica.class));
+        Aldeano aldeano = new Aldeano(posicionAldeano);
 
         int vidaInicialAldeano = aldeano.getVida();
         int danioEsperado = 0;
@@ -134,7 +134,7 @@ public class CastilloTest {
         Mockito.when(posicionCastillo.distanciaA(posicionAldeano)).thenReturn(DISTANCIA_DE_ATAQUE);
 
         Castillo castillo = this.crearCastilloParaPrubasDeAtaque(posicionCastillo);
-        Aldeano aldeano = new Aldeano(posicionAldeano,Mockito.mock(EdificiosEnConstruccionFabrica.class));
+        Aldeano aldeano = new Aldeano(posicionAldeano);
 
 
         // Act
