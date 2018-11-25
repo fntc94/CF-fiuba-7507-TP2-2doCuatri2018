@@ -8,6 +8,7 @@ class AldeanoReparadorState implements IAldeanoState {
 
     private Aldeano contexto;
     private IEdificioReparable edificioEnReparacion;
+    private final int ORO_RECOLECTADO = 0;
 
     AldeanoReparadorState(IEdificioReparable edificioReparable, Aldeano contexto){
         this.contexto = contexto;
@@ -18,26 +19,14 @@ class AldeanoReparadorState implements IAldeanoState {
         throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
-    //IRecolectorDeOro
     @Override
-    public int recolectarOro() {
-        return 0;
-    }
-
-    //fin IRecolectorDeOro
-
-    //IConstructor
-    @Override
-    public void construir() {
-//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-
-    //fin IConstructor
-
-    // IReparador
-    @Override
-    public void reparar(){
+    public void trabajar(){
         this.edificioEnReparacion.recibirReparador(this);
+    }
+
+    @Override
+    public int obtenerOroRecolectado() {
+        return this.ORO_RECOLECTADO;
     }
 
     @Override
@@ -45,6 +34,5 @@ class AldeanoReparadorState implements IAldeanoState {
         this.edificioEnReparacion = new NullEdificioReparable();
         this.contexto.establecerEstado(new AldeanoRecolectorState(this.contexto));
     }
-    //fin IReparador
 
 }

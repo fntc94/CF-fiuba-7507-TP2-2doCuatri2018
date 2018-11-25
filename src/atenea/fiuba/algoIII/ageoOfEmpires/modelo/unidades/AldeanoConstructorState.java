@@ -11,6 +11,7 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
     private Aldeano contexto;
     private EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion;
     private Consumer<TEdificioTerminado> accionAlTerminarConstruccion;
+    private final int ORO_RECOLECTADO = 0;
 
     AldeanoConstructorState(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
 
@@ -24,15 +25,8 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
         throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
-    //IRecolectorDeOro
     @Override
-    public int recolectarOro() {
-        return 0;
-    }
-
-    //IConstructor
-    @Override
-    public void construir() {
+    public void trabajar() {
 
         this.edificioEnConstruccion.avanzarConstruccion();
 
@@ -42,17 +36,16 @@ class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
             this.contexto.establecerEstado(new AldeanoRecolectorState(this.contexto));
 
         }
+
     }
-    // fin IConstructor
 
     @Override
-    public void reparar() {
-//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+    public int obtenerOroRecolectado() {
+        return this.ORO_RECOLECTADO;
     }
 
     @Override
     public void darPorTerminadaLaReparacion() {
         throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
-    //fin IReparador
 }

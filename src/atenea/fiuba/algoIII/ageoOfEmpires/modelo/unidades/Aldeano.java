@@ -5,7 +5,6 @@ import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Unidad;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Cuartel;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosEnConstruccionFabrica;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.PlazaCentral;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
 
 import java.util.function.Consumer;
@@ -15,25 +14,25 @@ public class Aldeano extends Unidad {
     private final static int VIDA_MAXIMA = 50;
 
     private EdificiosEnConstruccionFabrica fabricaDeEdificios;
-    private IAldeanoState estadoAldeano;
+    private IAldeanoState aldeanoState;
 
     void establecerEstado(IAldeanoState estado){
-        this.estadoAldeano = estado;
+        this.aldeanoState = estado;
     }
 
     public Aldeano(Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
         super(posicion, VIDA_MAXIMA);
         this.fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
-        this.estadoAldeano = new AldeanoRecolectorState(this);
+        this.aldeanoState = new AldeanoRecolectorState(this);
     }
 
     public void iniciarReparacion(IEdificioReparable edificioReparable){
-        this.estadoAldeano.iniciarReparacion(edificioReparable);
+        this.aldeanoState.iniciarReparacion(edificioReparable);
     }
 
     public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        this.estadoAldeano = new AldeanoConstructorState(this.fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
-        this.estadoAldeano.construir();
+        this.aldeanoState = new AldeanoConstructorState(this.fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
+        this.aldeanoState.trabajar();
     }
 
     public void iniciarConstruccionDePlazaCentral(){
@@ -41,8 +40,8 @@ public class Aldeano extends Unidad {
     }
 
     public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
-        this.estadoAldeano = new AldeanoConstructorState(this.fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
-        this.estadoAldeano.construir();
+        this.aldeanoState = new AldeanoConstructorState(this.fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
+        this.aldeanoState.trabajar();
 
     }
 
@@ -50,11 +49,10 @@ public class Aldeano extends Unidad {
         this.iniciarConstruccionDeCuartel(cuartel -> {});
     }
 
-    public int trabajar() {
-
-        int oro = this.estadoAldeano.recolectarOro();
-        this.estadoAldeano.construir();
-        this.estadoAldeano.reparar();
-        return oro;
+    public int trabajar(){
+        IAldeanoState estado = this.aldeanoState;
+        estado.trabajar();
+        return estado.obtenerOroRecolectado();
     }
+
 }
