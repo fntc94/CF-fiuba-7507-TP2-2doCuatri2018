@@ -1,6 +1,5 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Jugador;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Turno;
 import org.junit.Assert;
 import org.junit.Test;
