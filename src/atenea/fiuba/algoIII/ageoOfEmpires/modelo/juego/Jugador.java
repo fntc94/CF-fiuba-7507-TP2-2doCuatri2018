@@ -1,13 +1,13 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Cuartel;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.PlazaCentral;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Edificio;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Unidad;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.*;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.AldeanosOcupadosException;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.NoHayEdificiosEnConstruccionException;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.*;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Castillo;
 
 import java.util.*;
 
@@ -24,6 +24,7 @@ public class Jugador {
     private List<Espadachin> espadachines;
     private int primerPosicion;
     private int bolsaDeOro;
+    private Mapa mapa;
     private static final int  oroInicial = 100;
 
 
@@ -40,6 +41,72 @@ public class Jugador {
       this.recursosBasicos();
     }
 
+    private void condicionesIniciales(Mapa mapa) {
+        this.bolsaDeOro = oroInicial;
+        this.mapa = mapa;
+
+        // Si ya se puso a un jugador en una posicion predefinida uso la otra
+        if(!colocarPosicionablesEnPosicionA()) {
+            colocarPosicionablesEnPosicionB();
+        }
+    }
+
+    private boolean colocarPosicionablesEnPosicionA(){
+        // Creo los posicionables
+        Posicion posPlazaCentral = new PosicionCuadrado(8,8,9,7);
+        PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
+
+        // Trato de posicionar uno apra ver si ya se uno esta posicion predefinida
+        try{
+            this.mapa.posicionar(plazaCentral);
+
+        }catch(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException e){
+            return false;
+        }
+
+        Posicion posCastillo = new PosicionCuadrado(5,5,8,2);
+        Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,8,10);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,10,8);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,10,6);
+
+        Unidad aldeano1 = new Aldeano(posAldeano1, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano2 = new Aldeano(posAldeano2, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano3 = new Aldeano(posAldeano3, new EdificiosEnConstruccionFabrica());
+
+
+        this.mapa.posicionar(castillo);
+        this.mapa.posicionar(aldeano1);
+        this.mapa.posicionar(aldeano2);
+        this.mapa.posicionar(aldeano3);
+
+        return true;
+    }
+
+    private void colocarPosicionablesEnPosicionB(){
+
+        Posicion posPlazaCentral = new PosicionCuadrado(20,8,21,7);
+        PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
+
+        Posicion posCastillo = new PosicionCuadrado(20,5,23,2);
+        Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,20,10);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,18,8);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,17,7);
+
+        Unidad aldeano1 = new Aldeano(posAldeano1, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano2 = new Aldeano(posAldeano2, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano3 = new Aldeano(posAldeano3, new EdificiosEnConstruccionFabrica());
+
+        this.mapa.posicionar(plazaCentral);
+        this.mapa.posicionar(castillo);
+        this.mapa.posicionar(aldeano1);
+        this.mapa.posicionar(aldeano2);
+        this.mapa.posicionar(aldeano3);
+    }
+
     private void recursosBasicos(){
         this.bolsaDeOro = oroInicial;
         this.plazas.add(new EdificiosFabrica().crearPlazaCentral());
@@ -48,7 +115,7 @@ public class Jugador {
             this.aldeanos.agregar(aldeano);
         }
     }
-    
+
     public boolean tieneAldeanos(int cantidad){
         return aldeanos.cantidad() > 0;
     }
