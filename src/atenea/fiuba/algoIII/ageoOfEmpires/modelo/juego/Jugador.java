@@ -71,9 +71,9 @@ public class Jugador {
         Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,10,8);
         Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,10,6);
 
-        Unidad aldeano1 = new Aldeano(posAldeano1, new EdificiosEnConstruccionFabrica());
-        Unidad aldeano2 = new Aldeano(posAldeano2, new EdificiosEnConstruccionFabrica());
-        Unidad aldeano3 = new Aldeano(posAldeano3, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano1 = new Aldeano(posAldeano1);
+        Unidad aldeano2 = new Aldeano(posAldeano2);
+        Unidad aldeano3 = new Aldeano(posAldeano3);
 
 
         this.mapa.posicionar(castillo);
@@ -96,9 +96,9 @@ public class Jugador {
         Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,18,8);
         Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,17,7);
 
-        Unidad aldeano1 = new Aldeano(posAldeano1, new EdificiosEnConstruccionFabrica());
-        Unidad aldeano2 = new Aldeano(posAldeano2, new EdificiosEnConstruccionFabrica());
-        Unidad aldeano3 = new Aldeano(posAldeano3, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano1 = new Aldeano(posAldeano1);
+        Unidad aldeano2 = new Aldeano(posAldeano2);
+        Unidad aldeano3 = new Aldeano(posAldeano3);
 
         this.mapa.posicionar(plazaCentral);
         this.mapa.posicionar(castillo);
