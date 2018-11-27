@@ -1,15 +1,15 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.integrationTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Unidad;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Cuartel;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Edificio;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosEnConstruccionFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EstrategiaAtaqueArmaDeAsedio;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.movimiento.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.ArmaDeAsedio;
+import modelo.Unidad;
+import modelo.edificios.Cuartel;
+import modelo.Edificio;
+import modelo.edificios.EstrategiaAtaqueArmaDeAsedio;
+import modelo.movimiento.*;
+import modelo.posicion.Mapa;
+import modelo.posicion.Posicion;
+import modelo.posicion.PosicionCuadrado;
+import modelo.posicion.PosicionDeUnCasillero;
+import modelo.unidades.*;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

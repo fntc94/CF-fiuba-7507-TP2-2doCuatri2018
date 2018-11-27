@@ -1,8 +1,8 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.integrationTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OroInsuficienteException;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Jugador;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Mapa;
+import modelo.excepciones.OroInsuficienteException;
+import modelo.juego.Jugador;
+import modelo.posicion.Mapa;
 import org.junit.Test;
 
 public class JugadorTest {

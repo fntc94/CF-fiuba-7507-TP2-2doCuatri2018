@@ -1,7 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Casillero;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.PosicionDeUnCasillero;
+import modelo.posicion.Casillero;
+import modelo.posicion.PosicionDeUnCasillero;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;

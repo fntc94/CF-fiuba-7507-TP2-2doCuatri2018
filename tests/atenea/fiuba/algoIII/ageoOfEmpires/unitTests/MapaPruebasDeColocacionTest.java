@@ -1,11 +1,11 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IPosicionable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.NoPuedeColocarPosicionablesFueraDelMapaException;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Mapa;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.PosicionCuadrado;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.PosicionDeUnCasillero;
+import modelo.IPosicionable;
+import modelo.posicion.NoPuedeColocarPosicionablesFueraDelMapaException;
+import modelo.posicion.Mapa;
+import modelo.posicion.Posicion;
+import modelo.posicion.PosicionCuadrado;
+import modelo.posicion.PosicionDeUnCasillero;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

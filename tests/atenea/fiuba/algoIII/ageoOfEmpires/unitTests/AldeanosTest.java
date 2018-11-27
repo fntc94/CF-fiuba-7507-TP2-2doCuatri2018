@@ -1,10 +1,10 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IUnidadesPlazaCentralFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeanos;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.UnidadesFabrica;
+import modelo.IEdificioReparable;
+import modelo.edificios.IUnidadesPlazaCentralFabrica;
+import modelo.unidades.Aldeano;
+import modelo.unidades.Aldeanos;
+import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

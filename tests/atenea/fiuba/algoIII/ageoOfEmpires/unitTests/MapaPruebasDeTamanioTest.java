@@ -1,7 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.DimensionDelMapaInvalidaException;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Mapa;
+import modelo.posicion.DimensionDelMapaInvalidaException;
+import modelo.posicion.Mapa;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

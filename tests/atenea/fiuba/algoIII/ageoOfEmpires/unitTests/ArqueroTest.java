@@ -1,10 +1,10 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEstrategiaAtaque;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Arquero;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Espadachin;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.EstrategiaAtaqueArquero;
+import modelo.IEstrategiaAtaque;
+import modelo.posicion.Posicion;
+import modelo.unidades.Arquero;
+import modelo.unidades.Espadachin;
+import modelo.unidades.EstrategiaAtaqueArquero;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

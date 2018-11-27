@@ -1,13 +1,11 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.integrationTests;
 
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IAtacable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEstrategiaAtaque;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.ArmaDeAsedio;
+import modelo.IAtacable;
+import modelo.IEstrategiaAtaque;
+import modelo.edificios.*;
+import modelo.posicion.Posicion;
+import modelo.unidades.*;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

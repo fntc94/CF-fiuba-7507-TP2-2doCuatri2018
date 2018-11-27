@@ -1,11 +1,11 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IAtacable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEstrategiaAtaque;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.movimiento.IDireccion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.ArmaDeAsedio;
+import modelo.IAtacable;
+import modelo.IEstrategiaAtaque;
+import modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
+import modelo.movimiento.IDireccion;
+import modelo.posicion.Posicion;
+import modelo.unidades.ArmaDeAsedio;
 import org.junit.Test;
 import org.mockito.Mockito;
 

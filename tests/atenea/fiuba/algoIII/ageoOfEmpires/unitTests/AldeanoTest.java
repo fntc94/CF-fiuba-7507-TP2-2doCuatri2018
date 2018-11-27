@@ -1,12 +1,12 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Edificio;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.UnEdificioNoPuedeSerConstruidoPorDosAldeanosALaVezException;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
+import modelo.Edificio;
+import modelo.UnEdificioNoPuedeSerConstruidoPorDosAldeanosALaVezException;
+import modelo.IEdificioReparable;
+import modelo.edificios.*;
+import modelo.posicion.Posicion;
+import modelo.unidades.Aldeano;
+import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

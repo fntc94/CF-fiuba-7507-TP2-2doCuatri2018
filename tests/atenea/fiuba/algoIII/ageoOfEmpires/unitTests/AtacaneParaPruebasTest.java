@@ -1,12 +1,11 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosEnConstruccionFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IUnidadesPlazaCentralFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.PlazaCentral;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.AtacanteParaPruebas;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Espadachin;
+import modelo.edificios.EdificiosEnConstruccionFabrica;
+import modelo.edificios.IUnidadesPlazaCentralFabrica;
+import modelo.edificios.PlazaCentral;
+import modelo.posicion.Posicion;
+import modelo.unidades.Aldeano;
+import modelo.unidades.AtacanteParaPruebas;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;

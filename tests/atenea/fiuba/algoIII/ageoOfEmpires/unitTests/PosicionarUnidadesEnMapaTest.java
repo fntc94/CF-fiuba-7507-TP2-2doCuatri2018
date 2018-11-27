@@ -1,9 +1,12 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IPosicionable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.*;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.*;
+import modelo.IPosicionable;
+import modelo.edificios.Castillo;
+import modelo.edificios.Cuartel;
+import modelo.edificios.EstrategiaAtaqueArmaDeAsedio;
+import modelo.edificios.EstrategiaAtaqueCastillo;
+import modelo.posicion.*;
+import modelo.unidades.*;
 import org.junit.Test;
 
 public class PosicionarUnidadesEnMapaTest {

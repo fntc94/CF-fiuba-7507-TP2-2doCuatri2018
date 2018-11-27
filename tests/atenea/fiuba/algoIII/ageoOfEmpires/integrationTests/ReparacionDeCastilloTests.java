@@ -1,14 +1,14 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.integrationTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IAtacable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEstrategiaAtaque;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Castillo;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IUnidadesCastilloFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.AtacanteParaPruebas;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.UnidadesFabrica;
+import modelo.IAtacable;
+import modelo.IEstrategiaAtaque;
+import modelo.edificios.Castillo;
+import modelo.edificios.IUnidadesCastilloFabrica;
+import modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
+import modelo.posicion.Posicion;
+import modelo.unidades.Aldeano;
+import modelo.unidades.AtacanteParaPruebas;
+import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
