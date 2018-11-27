@@ -14,8 +14,12 @@
             prefHeight="400.0" prefWidth="600.0">
 
     <center>
-        <GridPane fx:id="mapa">
-        </GridPane>
+
+        <ScrollPane fitToHeight="true" fitToWidth="true">
+            <GridPane fx:id="mapa" alignment="CENTER" ></GridPane>
+        </ScrollPane>
+
+
     </center>
 
     <bottom>
@@ -23,7 +27,7 @@
         <BorderPane>
 
             <center>
-                <Label text="Acá podríamos poner la botonera de acciones" alignment="CENTER">
+                <Label fx:id="botonera" text="Acá podríamos poner la botonera de acciones" alignment="CENTER">
                     <font>
                         <Font size="24"></Font>
                     </font>
