@@ -87,27 +87,27 @@ public class ArmaDeAsedioAtaqueEnRangoTest {
         collection.add(new Object[]{armaDeAsedio, new Arquero(posicionADistancia5, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_UNIDADES});
         collection.add(new Object[]{armaDeAsedio, new ArmaDeAsedio(posicionADistancia5, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_UNIDADES});
 
-        // Edificios a distancia 1
+        // Construcciones a distancia 1
         collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia1, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia1, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia1, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});
 
-        // Edificios a distancia 2
+        // Construcciones a distancia 2
         collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia2, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia2, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia2, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});
 
-        // Edificios a distancia 3
+        // Construcciones a distancia 3
         collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia3, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia3, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia3, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});
 
-        // Edificios a distancia 4
+        // Construcciones a distancia 4
         collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia4, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia4, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia4, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});
 
-        // Edificios a distancia 5
+        // Construcciones a distancia 5
         collection.add(new Object[]{armaDeAsedio, new PlazaCentral(posicionADistancia5, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Cuartel(posicionADistancia5, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{armaDeAsedio, new Castillo(posicionADistancia5, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});

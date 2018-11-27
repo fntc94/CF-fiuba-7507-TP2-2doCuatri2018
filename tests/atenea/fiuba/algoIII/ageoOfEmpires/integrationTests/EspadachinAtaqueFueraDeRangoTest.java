@@ -45,7 +45,7 @@ public class EspadachinAtaqueFueraDeRangoTest {
         collection.add(new Object[]{espadachin, new Arquero(posicionADistancia2, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
         collection.add(new Object[]{espadachin, new ArmaDeAsedio(posicionADistancia2, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
 
-        // Edificios a distancia 2
+        // Construcciones a distancia 2
         collection.add(new Object[]{espadachin, new PlazaCentral(posicionADistancia2, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO});
         collection.add(new Object[]{espadachin, new Cuartel(posicionADistancia2, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO});
         collection.add(new Object[]{espadachin, new Castillo(posicionADistancia2, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
