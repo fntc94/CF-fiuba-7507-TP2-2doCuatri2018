@@ -67,17 +67,17 @@ public class ArqueroAtaqueEnRangoTest {
         collection.add(new Object[]{arquero, new Arquero(posicionADistancia3, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_UNIDADES});
         collection.add(new Object[]{arquero, new ArmaDeAsedio(posicionADistancia3, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_UNIDADES});
 
-        // Edificios a distancia 1
+        // Construcciones a distancia 1
         collection.add(new Object[]{arquero, new PlazaCentral(posicionADistancia1, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{arquero, new Cuartel(posicionADistancia1, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{arquero, new Castillo(posicionADistancia1, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});
 
-        // Edificios a distancia 2
+        // Construcciones a distancia 2
         collection.add(new Object[]{arquero, new PlazaCentral(posicionADistancia2, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{arquero, new Cuartel(posicionADistancia2, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{arquero, new Castillo(posicionADistancia2, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});
 
-        // Edificios a distancia 3
+        // Construcciones a distancia 3
         collection.add(new Object[]{arquero, new PlazaCentral(posicionADistancia3, Mockito.mock(IUnidadesPlazaCentralFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{arquero, new Cuartel(posicionADistancia3, Mockito.mock(IUnidadesCuartelFabrica.class)), DANIO_ESPERADO_EDIFICIOS});
         collection.add(new Object[]{arquero, new Castillo(posicionADistancia3, Mockito.mock(IUnidadesCastilloFabrica.class), Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO_EDIFICIOS});

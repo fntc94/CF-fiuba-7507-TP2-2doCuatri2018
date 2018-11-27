@@ -1,6 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Turno;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Jugador;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class TurnoTest {
         Jugador jugadorJuan = new Jugador();
         Jugador jugadorPablo = new Jugador();
 
-        List<Jugador> listaDeParticipantes = new ArrayList<Jugador>();
+        List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
         listaDeParticipantes.add((jugadorPablo));
 
@@ -30,7 +31,7 @@ public class TurnoTest {
         Jugador jugadorJuan = new Jugador();
         Jugador jugadorPablo = new Jugador();
 
-        List<Jugador> listaDeParticipantes = new ArrayList<Jugador>();
+        List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
         listaDeParticipantes.add((jugadorPablo));
 
