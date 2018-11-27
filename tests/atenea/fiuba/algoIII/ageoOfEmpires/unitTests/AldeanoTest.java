@@ -1,10 +1,9 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Cuartel;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosEnConstruccionFabrica;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Edificio;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.UnEdificioNoPuedeSerConstruidoPorDosAldeanosALaVezException;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.*;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.PlazaCentral;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.*;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
@@ -13,13 +12,14 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public class AldeanoTest {
 
     private Aldeano crearAldeano(){
-        return new Aldeano(Mockito.mock(Posicion.class), new EdificiosEnConstruccionFabrica());
+        return new Aldeano(Mockito.mock(Posicion.class));
     }
 
     private PlazaCentral crearPlazaCentral(){
@@ -49,24 +49,15 @@ public class AldeanoTest {
     }
 
     @Test()
-    public void iniciarConstruccionDePlazaCentral_CuandoEstaRecolectando_NoLanzaExcepcion(){
+    public void iniciarConstruccion_CuandoEstaRecolectando_NoLanzaExcepcion(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
 
         // Act
-        aldeano.iniciarConstruccionDePlazaCentral();
+        aldeano.iniciarConstruccion(Mockito.mock(Construccion.class));
     }
 
-    @Test()
-    public void iniciarConstruccionDeCuartel_CuandoEstaRecolectando_NoLanzaExcepcion(){
-
-        // Arrange
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel();
-    }
 
     @Test()
     public void inicarReparacion_CuandoEstaRecolectando_NoLanzaExcepcion(){
@@ -80,14 +71,14 @@ public class AldeanoTest {
     }
 
     @Test
-    public void trabajar_LuegoDeIniciarConstruccionDePlazaCentral_DevuelveCero(){
+    public void trabajar_LuegoDeIniciarConstruccion_DevuelveCero(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 0;
 
         // Act
-        aldeano.iniciarConstruccionDePlazaCentral();
+        aldeano.iniciarConstruccion(Mockito.mock(Construccion.class));
         int oroRecolectado = aldeano.trabajar();
 
         // Assert
@@ -95,14 +86,18 @@ public class AldeanoTest {
     }
 
     @Test
-    public void trabajar_CuandoEstaConstruyendoPlazaCentral_DevuelveCero(){
+    public void trabajar_CuandoEstaConstruyendo_DevuelveCero(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 0;
 
+        final int TURNOS_EN_CONTRUIR = 3;
+        Posicion posicion = Mockito.mock(Posicion.class);
+        Construccion edificioEnConstruccion = new ConstruccionParaPruebas(posicion, TURNOS_EN_CONTRUIR, aldeano);
+
         // Act
-        aldeano.iniciarConstruccionDePlazaCentral();
+        aldeano.iniciarConstruccion(edificioEnConstruccion);
         aldeano.trabajar();
         int oroRecolectado = aldeano.trabajar();
 
@@ -111,14 +106,18 @@ public class AldeanoTest {
     }
 
     @Test
-    public void trabajar_LuegoDeTerminarConstruccionDePlazaCentral_Devuelve20(){
+    public void trabajar_LuegoDeTerminarConstruccion_Devuelve20(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
         int oroEsperado = 20;
 
+        final int TURNOS_EN_CONTRUIR = 3;
+        Posicion posicion = Mockito.mock(Posicion.class);
+        Construccion edificioEnConstruccion = new ConstruccionParaPruebas(posicion, TURNOS_EN_CONTRUIR, aldeano);
+
         // Act
-        aldeano.iniciarConstruccionDePlazaCentral();
+        aldeano.iniciarConstruccion(edificioEnConstruccion);
         aldeano.trabajar();
         aldeano.trabajar();
         int oroRecolectado = aldeano.trabajar();
@@ -230,71 +229,209 @@ public class AldeanoTest {
 //    }
 
 
+//    @Test
+//    public void inicicarConstruccionDeCuartel_AlTerminarLaConstruccion_SeEjecutaLaAccion(){
+//
+//        // Arragnge
+//        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
+//        Aldeano aldeano = this.crearAldeano();
+//
+//        // Act
+//        aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
+//        aldeano.trabajar();
+//        aldeano.trabajar();
+//
+//        // Assert
+//        Assert.assertFalse(cuarteles.isEmpty());
+//    }
+
+//    @Test
+//    public void inicicarConstruccionDeCuartel_AntesDeTerminarLaConstruccion_NoSeEjecutaLaAccion(){
+//
+//        // Arragnge
+//        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
+//        Aldeano aldeano = this.crearAldeano();
+//
+//        // Act
+//        aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
+//        aldeano.trabajar();
+//
+//        // Assert
+//        Assert.assertTrue(cuarteles.isEmpty());
+//    }
+
+//    @Test
+//    public void recolectarOro_LuegoDeTerminarDeConstruir_Devuelve20(){
+//
+//        // Arrange
+//        Aldeano aldeano = this.crearAldeano();
+//
+//        aldeano.iniciarConstruccionDeCuartel();
+//        aldeano.trabajar();
+//        aldeano.trabajar();
+//
+//        int oroEsperado = 20;
+//
+//        // Act
+//        int oroRecolectado = aldeano.trabajar();
+//
+//        // Assert
+//        Assert.assertEquals(oroEsperado, oroRecolectado);
+//
+//    }
+
+//    @Test
+//    public void recolectarOro_LuegoDeComenzarAConstruir_Devuelve0(){
+//
+//        // Arrange
+//        Aldeano aldeano = this.crearAldeano();
+//        aldeano.iniciarConstruccionDeCuartel();
+//
+//        int oroEsperado = 0;
+//
+//        // Act
+//        int oroRecolectado = aldeano.trabajar();
+//
+//        // Assert
+//        Assert.assertEquals(oroEsperado, oroRecolectado);
+//
+//    }
+
     @Test
-    public void inicicarConstruccionDeCuartel_AlTerminarLaConstruccion_SeEjecutaLaAccion(){
-
-        // Arragnge
-        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
-        aldeano.trabajar();
-        aldeano.trabajar();
-
-        // Assert
-        Assert.assertFalse(cuarteles.isEmpty());
-    }
-
-    @Test
-    public void inicicarConstruccionDeCuartel_AntesDeTerminarLaConstruccion_NoSeEjecutaLaAccion(){
-
-        // Arragnge
-        ArrayList<Cuartel> cuarteles = new ArrayList<>() ;
-        Aldeano aldeano = this.crearAldeano();
-
-        // Act
-        aldeano.iniciarConstruccionDeCuartel(cuarteles::add);
-        aldeano.trabajar();
-
-        // Assert
-        Assert.assertTrue(cuarteles.isEmpty());
-    }
-
-    @Test
-    public void recolectarOro_LuegoDeTerminarDeConstruir_Devuelve20(){
+    public void trabajar_LuegoDeTerminarReparacionDeUnTurno_Devuelve20(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
 
-        aldeano.iniciarConstruccionDeCuartel();
-        aldeano.trabajar();
+        final int TURNOS_EN_REPARAR = 1;
+        IEdificioReparable edificio = new EdificioReparableParaPruebas(TURNOS_EN_REPARAR);
+
+        aldeano.iniciarReparacion(edificio);
+
+        int oroEsperado = 20;
+
+        // Act
+        int oroProducido = aldeano.trabajar();
+
+        // Assert
+        Assert.assertEquals(oroEsperado, oroProducido);
+
+    }
+
+
+    @Test
+    public void trabajar_LuegoDeTerminarReparacionDeDosTurnos_Devuelve20(){
+
+        // Arrange
+        Aldeano aldeano = this.crearAldeano();
+
+        final int TURNOS_EN_REPARAR = 2;
+        IEdificioReparable edificio = new EdificioReparableParaPruebas(TURNOS_EN_REPARAR);
+
+        aldeano.iniciarReparacion(edificio);
         aldeano.trabajar();
 
         int oroEsperado = 20;
 
         // Act
-        int oroRecolectado = aldeano.trabajar();
+        int oroProducido = aldeano.trabajar();
 
         // Assert
-        Assert.assertEquals(oroEsperado, oroRecolectado);
+        Assert.assertEquals(oroEsperado, oroProducido);
 
     }
 
     @Test
-    public void recolectarOro_LuegoDeComenzarAConstruir_Devuelve0(){
+    public void trabajar_AntesDeTerminarReparacionDeDosTurnos_Devuelve0(){
 
         // Arrange
         Aldeano aldeano = this.crearAldeano();
-        aldeano.iniciarConstruccionDeCuartel();
+
+        final int TURNOS_EN_REPARAR = 2;
+        IEdificioReparable edificio = new EdificioReparableParaPruebas(TURNOS_EN_REPARAR);
+
+        aldeano.iniciarReparacion(edificio);
 
         int oroEsperado = 0;
 
         // Act
-        int oroRecolectado = aldeano.trabajar();
+        int oroProducido = aldeano.trabajar();
 
         // Assert
-        Assert.assertEquals(oroEsperado, oroRecolectado);
+        Assert.assertEquals(oroEsperado, oroProducido);
 
     }
+
+    @Test
+    public void construccionDePlazaCentral_EnPrimerTurno_NoSeEjecutaElHandler(){
+
+        List<Edificio> edificios = new ArrayList<>();
+        Aldeano aldeano = this.crearAldeano();
+
+        ConstruccionDePlazaCentral construccionDePlazaCentral = new ConstruccionDePlazaCentral(Mockito.mock(Posicion.class));
+        construccionDePlazaCentral.onConstruccionTerminada(edificios::add);
+
+        // Act
+        aldeano.iniciarConstruccion(construccionDePlazaCentral);
+
+        // Assert
+        Assert.assertTrue(edificios.isEmpty());
+
+
+    }
+
+    @Test
+    public void construccionDePlazaCentral_EnSegundoTurno_NoSeEjecutaElHandler(){
+
+        List<Edificio> edificios = new ArrayList<>();
+        Aldeano aldeano = this.crearAldeano();
+
+        ConstruccionDePlazaCentral construccionDePlazaCentral = new ConstruccionDePlazaCentral(Mockito.mock(Posicion.class));
+        construccionDePlazaCentral.onConstruccionTerminada(edificios::add);
+
+        // Act
+        aldeano.iniciarConstruccion(construccionDePlazaCentral);
+        aldeano.trabajar();
+
+        // Assert
+        Assert.assertTrue(edificios.isEmpty());
+
+
+    }
+
+    @Test
+    public void construccionDePlazaCentral_EnTercerTurno_SeEjecutaElHandler(){
+
+        List<Edificio> edificios = new ArrayList<>();
+        Aldeano aldeano = this.crearAldeano();
+
+        ConstruccionDePlazaCentral construccionDePlazaCentral = new ConstruccionDePlazaCentral(Mockito.mock(Posicion.class));
+        construccionDePlazaCentral.onConstruccionTerminada(edificios::add);
+
+        // Act
+        aldeano.iniciarConstruccion(construccionDePlazaCentral);
+        aldeano.trabajar();
+        aldeano.trabajar();
+
+        // Assert
+        Assert.assertFalse(edificios.isEmpty());
+
+    }
+
+    @Test(expected = UnEdificioNoPuedeSerConstruidoPorDosAldeanosALaVezException.class)
+    public void unEdificioNoPuedeSerConstruidoPorDosAldeanosALaVez(){
+
+        // Arrange
+        Aldeano aldeano1 = this.crearAldeano();
+        Aldeano aldeano2 = this.crearAldeano();
+
+        ConstruccionDePlazaCentral construccionDePlazaCentral = new ConstruccionDePlazaCentral(Mockito.mock(Posicion.class));
+
+        // Act
+        aldeano1.iniciarConstruccion(construccionDePlazaCentral);
+        aldeano2.iniciarConstruccion(construccionDePlazaCentral);
+
+    }
+
+
 }

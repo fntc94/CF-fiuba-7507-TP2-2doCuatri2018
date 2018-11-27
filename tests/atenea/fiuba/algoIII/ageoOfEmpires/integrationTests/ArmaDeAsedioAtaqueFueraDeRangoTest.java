@@ -42,7 +42,7 @@ public class ArmaDeAsedioAtaqueFueraDeRangoTest {
         ArrayList collection = new ArrayList();
 
         // Unidades a distancia 6
-        collection.add(new Object[]{armaDeAsedio, new Aldeano(posicionADistancia6, Mockito.mock(EdificiosEnConstruccionFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{armaDeAsedio, new Aldeano(posicionADistancia6), DANIO_ESPERADO});
         collection.add(new Object[]{armaDeAsedio, new Espadachin(posicionADistancia6, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
         collection.add(new Object[]{armaDeAsedio, new Arquero(posicionADistancia6, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
         collection.add(new Object[]{armaDeAsedio, new ArmaDeAsedio(posicionADistancia6, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});

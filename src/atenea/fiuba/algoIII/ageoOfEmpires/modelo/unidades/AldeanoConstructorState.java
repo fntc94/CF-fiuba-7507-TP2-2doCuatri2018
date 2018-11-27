@@ -1,73 +1,42 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificioEnConstruccion;
-
-import java.util.function.Consumer;
 
 class AldeanoConstructorState<TEdificioTerminado> implements IAldeanoState {
 
-    private Aldeano contexto;
-    private EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion;
-    private Consumer<TEdificioTerminado> accionAlTerminarConstruccion;
+    private Aldeano aldeano;
+    private IConstruccion<TEdificioTerminado> edificioEnConstruccion;
+    private final int ORO_RECOLECTADO = 0;
 
-    AldeanoConstructorState(EdificioEnConstruccion<TEdificioTerminado> edificioEnConstruccion, Consumer<TEdificioTerminado> accionAlTerminarConstruccion, Aldeano contexto) {
-
+    AldeanoConstructorState(IConstruccion<TEdificioTerminado> edificioEnConstruccion, Aldeano contexto) {
         this.edificioEnConstruccion = edificioEnConstruccion;
-        this.accionAlTerminarConstruccion = accionAlTerminarConstruccion != null ? accionAlTerminarConstruccion : edificioTerminado -> {
-        };
-        this.contexto = contexto;
+        this.edificioEnConstruccion.onConstruccionTerminada((edificio) -> {
+            this.aldeano.setEstado(new AldeanoRecolectorState(this.aldeano));
+        });
+
+        this.aldeano = contexto;
     }
 
+    @Override
+    public void iniciarConstruccion(IConstruccion edificioEnConstruccion){
+        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
+    }
+
+    @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
         throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
     }
 
-    //IRecolectorDeOro
     @Override
-    public int recolectarOro() {
-        return 0;
+    public void trabajar() {
+        this.construir();
+        this.aldeano.setOro(ORO_RECOLECTADO);
     }
 
-    public boolean estaRecolectandoOro() {
-        return false;
-    }
-    //fin IRecolectorDeOro
-
-    //IConstructor
-    @Override
-    public void construir() {
-
-        this.edificioEnConstruccion.avanzarConstruccion();
-
-        if (this.edificioEnConstruccion.estaTerminado()) {
-
-            this.accionAlTerminarConstruccion.accept(this.edificioEnConstruccion.obtenerEdificioTerminado());
-            this.contexto.establecerEstado(new AldeanoRecolectorState(this.contexto));
-
-        }
+    private void construir(){
+        this.edificioEnConstruccion.recibirConstructor(this.aldeano);
     }
 
-    @Override
-    public boolean estaConstruyendo() {
-        return true;
-    }
-    // fin IConstructor
-
-    @Override
-    public boolean estaReparando() {
-        return false;
-    }
-
-    @Override
-    public void reparar() {
-//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-
-    @Override
-    public void darPorTerminadaLaReparacion() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-    //fin IReparador
 }

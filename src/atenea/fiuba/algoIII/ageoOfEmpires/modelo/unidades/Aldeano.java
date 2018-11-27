@@ -2,60 +2,40 @@ package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.Unidad;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.Cuartel;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.EdificiosEnConstruccionFabrica;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.PlazaCentral;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-
-import java.util.function.Consumer;
 
 public class Aldeano extends Unidad {
 
     private final static int VIDA_MAXIMA = 50;
 
-    private EdificiosEnConstruccionFabrica fabricaDeEdificios;
-    private IAldeanoState estadoAldeano;
+    private IAldeanoState aldeanoState;
+    private int oro;
 
-    void establecerEstado(IAldeanoState estado){
-        this.estadoAldeano = estado;
+    void setOro(int oro){
+        this.oro = oro;
     }
 
-    public Aldeano(Posicion posicion, EdificiosEnConstruccionFabrica fabricaDeEdificiosEnConstruccion){
+    void setEstado(IAldeanoState estado){
+        this.aldeanoState = estado;
+    }
+
+    public Aldeano(Posicion posicion){
         super(posicion, VIDA_MAXIMA);
-        this.fabricaDeEdificios = fabricaDeEdificiosEnConstruccion;
-        this.estadoAldeano = new AldeanoRecolectorState(this);
+        this.aldeanoState = new AldeanoRecolectorState(this);
+    }
+
+    public void iniciarConstruccion(IConstruccion construccion){
+        this.aldeanoState.iniciarConstruccion(construccion);
     }
 
     public void iniciarReparacion(IEdificioReparable edificioReparable){
-        this.estadoAldeano.iniciarReparacion(edificioReparable);
+        this.aldeanoState.iniciarReparacion(edificioReparable);
     }
 
-    public void iniciarConstruccionDePlazaCentral(Consumer<PlazaCentral> accionAlTerminarConstruccion){
-        this.estadoAldeano = new AldeanoConstructorState(this.fabricaDeEdificios.obtenerPlazaCentralEnConstruccion(), accionAlTerminarConstruccion, this);
-        this.estadoAldeano.construir();
+    public int trabajar(){
+        this.aldeanoState.trabajar();
+        return this.oro;
     }
 
-    public void iniciarConstruccionDePlazaCentral(){
-        this.iniciarConstruccionDePlazaCentral(plazaCentral -> {});
-    }
-
-    public void iniciarConstruccionDeCuartel(Consumer<Cuartel> accionAlTerminarConstruccion){
-        this.estadoAldeano = new AldeanoConstructorState(this.fabricaDeEdificios.obtenerCuartelEnConstruccion(), accionAlTerminarConstruccion, this);
-        this.estadoAldeano.construir();
-
-    }
-
-    public void iniciarConstruccionDeCuartel(){
-        this.iniciarConstruccionDeCuartel(cuartel -> {});
-    }
-
-    public int trabajar() {
-
-        int oro = this.estadoAldeano.recolectarOro();
-        this.estadoAldeano.construir();
-        this.estadoAldeano.reparar();
-        return oro;
-
-    }
 }

@@ -40,7 +40,7 @@ public class ArqueroAtaqueFueraDeRangoTest {
         ArrayList collection = new ArrayList();
 
         // Unidades a distancia 4
-        collection.add(new Object[]{arquero, new Aldeano(posicionADistancia4, Mockito.mock(EdificiosEnConstruccionFabrica.class)), DANIO_ESPERADO});
+        collection.add(new Object[]{arquero, new Aldeano(posicionADistancia4), DANIO_ESPERADO});
         collection.add(new Object[]{arquero, new Espadachin(posicionADistancia4, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
         collection.add(new Object[]{arquero, new Arquero(posicionADistancia4, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});
         collection.add(new Object[]{arquero, new ArmaDeAsedio(posicionADistancia4, Mockito.mock(IEstrategiaAtaque.class)), DANIO_ESPERADO});

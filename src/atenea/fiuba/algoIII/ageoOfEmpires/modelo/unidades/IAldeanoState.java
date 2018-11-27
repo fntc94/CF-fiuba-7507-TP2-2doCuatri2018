@@ -1,11 +1,10 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
-public interface IAldeanoState extends IEstadoReparador {
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 
-    boolean estaRecolectandoOro();
-    int recolectarOro();
-
-    boolean estaConstruyendo();
-    void construir();
-
+public interface IAldeanoState {
+    void iniciarConstruccion(IConstruccion edificioEnConstruccion);
+    void iniciarReparacion(IEdificioReparable edificioReparable);
+    void trabajar();
 }

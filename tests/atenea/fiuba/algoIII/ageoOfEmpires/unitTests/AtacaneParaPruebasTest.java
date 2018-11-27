@@ -29,7 +29,7 @@ public class AtacaneParaPruebasTest {
         AtacanteParaPruebas atacante = new AtacanteParaPruebas(posicionAtacante, RANGO_ATAQUE, DANIO);
 
         EdificiosEnConstruccionFabrica fabrica = Mockito.mock(EdificiosEnConstruccionFabrica.class);
-        Aldeano aldeano = new Aldeano(posicionAtacado, fabrica);
+        Aldeano aldeano = new Aldeano(posicionAtacado);
 
         int vidaInicialAldeano = aldeano.getVida();
 

@@ -26,7 +26,7 @@ public class MovimientoDeUnidadPorMapaTest {
 
         Posicion pos = new PosicionDeUnCasillero(mapa,26,18);
 
-        Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(pos);
         mapa.posicionar(aldeano);
 
         // Muevo aldeano a la derecha hasta la posicion x = 29
@@ -60,7 +60,7 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posEsquina = new PosicionDeUnCasillero(mapa,30,20);
         Posicion pos = new PosicionDeUnCasillero(mapa,30,20);
 
-        Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(pos);
         mapa.posicionar(aldeano);
 
         assertEquals(true, aldeano.estaEnPosicion(posEsquina));
@@ -87,7 +87,7 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posEsquina = new PosicionDeUnCasillero(mapa,0,20);
         Posicion pos = new PosicionDeUnCasillero(mapa,0,20);
 
-        Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(pos);
         mapa.posicionar(aldeano);
 
         assertEquals(true, aldeano.estaEnPosicion(posEsquina));
@@ -114,7 +114,7 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posEsquina = new PosicionDeUnCasillero(mapa,0,0);
         Posicion pos = new PosicionDeUnCasillero(mapa,0,0);
 
-        Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(pos);
         mapa.posicionar(aldeano);
 
         assertEquals(true, aldeano.estaEnPosicion(posEsquina));
@@ -141,7 +141,7 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posEsquina = new PosicionDeUnCasillero(mapa,30,0);
         Posicion pos = new PosicionDeUnCasillero(mapa,30,0);
 
-        Unidad aldeano = new Aldeano(pos, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(pos);
         mapa.posicionar(aldeano);
 
         assertEquals(true, aldeano.estaEnPosicion(posEsquina));
@@ -264,7 +264,7 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posAldeano = new PosicionDeUnCasillero(mapa,5,3);
         Posicion posEspadachin = new PosicionDeUnCasillero(mapa,6,3);
 
-        Unidad aldeano = new Aldeano(posAldeano, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(posAldeano);
         Unidad espadachin = new Espadachin(posEspadachin, new EstrategiaAtaqueEspadachin());
         Edificio cuartel = new Cuartel(posCuartel,new UnidadesFabrica());
 
@@ -304,7 +304,7 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posEspadachin4 = new PosicionDeUnCasillero(mapa,6,1);
         Posicion posEspadachin5 = new PosicionDeUnCasillero(mapa,6,0);
 
-        Unidad aldeano = new Aldeano(posAldeano, new EdificiosEnConstruccionFabrica());
+        Unidad aldeano = new Aldeano(posAldeano);
         Unidad espadachin1 = new Espadachin(posEspadachin1, new EstrategiaAtaqueEspadachin());
         Unidad espadachin2 = new Espadachin(posEspadachin2, new EstrategiaAtaqueEspadachin());
         Unidad espadachin3 = new Espadachin(posEspadachin3, new EstrategiaAtaqueEspadachin());

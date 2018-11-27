@@ -13,7 +13,7 @@ public class PosicionarUnidadesEnMapaTest {
     @Test
     public void testColocarUnidadDentroDelMapaNoLanzaException(){
         Posicion posAldeano = new PosicionDeUnCasillero(mapa,5,5);
-        IPosicionable aldeano = new Aldeano(posAldeano, new EdificiosEnConstruccionFabrica());
+        IPosicionable aldeano = new Aldeano(posAldeano);
 
         mapa.posicionar(aldeano);
     }
@@ -21,7 +21,7 @@ public class PosicionarUnidadesEnMapaTest {
     @Test (expected = NoPuedeColocarPosicionablesFueraDelMapaException.class)
     public void testColocarUnidadFueraDelMapaLanzaException(){
         Posicion posArquero = new PosicionDeUnCasillero(mapa,31,25);
-        IPosicionable arquero = new Aldeano(posArquero, new EdificiosEnConstruccionFabrica());
+        IPosicionable arquero = new Aldeano(posArquero);
 
         mapa.posicionar(arquero);
     }
@@ -29,7 +29,7 @@ public class PosicionarUnidadesEnMapaTest {
     @Test
     public void testColocarUnidadEnEsquinaDelMapaNoLanzaException(){
         Posicion posArquero = new PosicionDeUnCasillero(mapa,0,0);
-        IPosicionable arquero = new Aldeano(posArquero, new EdificiosEnConstruccionFabrica());
+        IPosicionable arquero = new Aldeano(posArquero);
 
         mapa.posicionar(arquero);
     }

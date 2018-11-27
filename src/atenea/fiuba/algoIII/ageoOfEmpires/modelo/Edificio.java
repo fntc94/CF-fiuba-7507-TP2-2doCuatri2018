@@ -1,7 +1,7 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Posicion;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.IEstadoReparador;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades.Aldeano;
 
 public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
@@ -10,7 +10,10 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     private final int VELOCIDAD_DE_REPARACION;
 
     protected int vidaActual;
-    private IEstadoReparador reparadorActivo;
+    private Aldeano reparador;
+
+
+    private Runnable reparacionTerminadaHandler = () -> {};
 
     protected Edificio(Posicion posicion, int vidaMaxima, int velocidadDeReparacion){
         this.posicion = posicion;
@@ -28,13 +31,13 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     }
 
     @Override // IEdificioReparable
-    public void recibirReparador(IEstadoReparador reparador) {
+    public void recibirReparador(Aldeano reparador) {
 
-        if(this.reparadorActivo == null){
-            this.reparadorActivo = reparador;
+        if(this.reparador == null){
+            this.reparador = reparador;
         }
 
-        else if (this.reparadorActivo != reparador){
+        else if (this.reparador != reparador){
             return;
         }
 
@@ -42,9 +45,15 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
 
         if(this.vidaActual > this.VIDA_MAXIMA){
             this.vidaActual = this.VIDA_MAXIMA;
-            this.reparadorActivo.darPorTerminadaLaReparacion();
+            this.reparacionTerminadaHandler.run();
         }
     }
+
+    @Override
+    public void onReparacionTerminada(Runnable reparacionTerminadaHandler){
+        this.reparacionTerminadaHandler = reparacionTerminadaHandler;
+    }
+    // fin IEdificioReparable
 
     @Override // IAtacable
     public void recibirAtaque(IAtacante atacante) {
@@ -58,5 +67,7 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
 
         this.vidaActual -= danio;
     }
+
+
 
 }

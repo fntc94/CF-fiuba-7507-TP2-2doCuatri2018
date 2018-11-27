@@ -1,61 +1,34 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.modelo.unidades;
 
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IAtacable;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.IEdificioReparable;
-import atenea.fiuba.algoIII.ageoOfEmpires.modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.edificios.IConstruccion;
 
 class AldeanoRecolectorState implements IAldeanoState {
 
-    private Aldeano contexto;
+    private Aldeano aldeano;
+    private final int ORO_RECOLECTADO = 20;
 
     AldeanoRecolectorState(Aldeano contexto){
-        this.contexto = contexto;
+        this.aldeano = contexto;
     }
 
+    @Override
+    public void iniciarConstruccion(IConstruccion construccion){
+        IAldeanoState estadoConstructor = new AldeanoConstructorState<>(construccion, this.aldeano);
+        this.aldeano.setEstado(estadoConstructor);
+        estadoConstructor.trabajar();
+    }
+
+    @Override
     public void iniciarReparacion(IEdificioReparable edificioReparable) {
-        IAldeanoState estadoReparador = new AldeanoReparadorState(edificioReparable, this.contexto);
-        estadoReparador.reparar();
-        this.contexto.establecerEstado(estadoReparador);
-    }
-
-    //IRecolectorDeOro
-    @Override
-    public int recolectarOro() {
-        return 20;
+        IAldeanoState estadoReparador = new AldeanoReparadorState(edificioReparable, this.aldeano);
+        this.aldeano.setEstado(estadoReparador);
+        estadoReparador.trabajar();
     }
 
     @Override
-    public boolean estaRecolectandoOro() {
-        return true;
-    }
-    //fin IRecolectorDeOro
-
-    @Override
-    public boolean estaReparando() {
-        return false;
+    public void trabajar(){
+        this.aldeano.setOro(ORO_RECOLECTADO);
     }
 
-    @Override
-    public void reparar() {
-//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-
-    @Override
-    public void darPorTerminadaLaReparacion() {
-        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-    //fin IReparador
-
-    //IConstructor
-    @Override
-    public void construir() {
-//        throw new OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion();
-    }
-
-    @Override
-    public boolean estaConstruyendo() {
-        return false;
-    }
-
-    // fin IConstructor
 }
