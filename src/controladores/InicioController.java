@@ -10,13 +10,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class InicioController {
+
+    @FXML
+    private BorderPane layout;
 
     @FXML
     private TextField nombreJugador1;
@@ -41,13 +41,16 @@ public class InicioController {
         JuegoController juegoController = loader.getController();
         juegoController.init(nombreJugador1.getText(), nombreJugador2.getText());
 
-        Scene scene = new Scene(root);
-        this.stage.setScene(scene);
+        this.stage.setScene(new Scene(root));
 
     }
 
     public void handleCancelarButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
+    }
+
+    public void setImagenDeFondo(BackgroundImage imagenDeFondo){
+        this.layout.setBackground(new Background(imagenDeFondo));
     }
 
 }

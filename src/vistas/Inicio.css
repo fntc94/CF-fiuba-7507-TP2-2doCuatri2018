@@ -1,0 +1,37 @@
+
+.test{
+    -fx-background-image: url("imagenes/inicio.jpeg");
+    -fx-background-size: 150.0 71.0;
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-color:transparent
+}
+
+GridPane{
+    -fx-padding: 200;
+    -fx-background-color: "black"
+}
+
+.nombreJuego{
+    -fx-max-width: "infinity";
+    -fx-alignment: "center";
+    -fx-font-size: 24;
+    -fx-padding: 10;
+    -fx-background-color: "red";
+}
+
+.labelNombreJugador{
+    -fx-font-size: 14;
+    -fx-padding: 5;
+}
+
+.textFieldNombreJugador{
+    -fx-font-size: 14;
+    -fx-padding: 5;
+}
+
+.button{
+    -fx-background-radius: 3,2,1;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
