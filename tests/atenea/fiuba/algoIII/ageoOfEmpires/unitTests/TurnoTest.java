@@ -2,6 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Turno;
 import atenea.fiuba.algoIII.ageoOfEmpires.modelo.juego.Jugador;
+import atenea.fiuba.algoIII.ageoOfEmpires.modelo.posicion.Mapa;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TurnoTest {
-
+    private Mapa mapa = new Mapa(20,30);
     @Test
     public void permaneceEnElTurnoDeUnJugadorHastaQuePase(){
-        Jugador jugadorJuan = new Jugador();
-        Jugador jugadorPablo = new Jugador();
+        Jugador jugadorJuan = new Jugador(mapa);
+        Jugador jugadorPablo = new Jugador(mapa);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -28,8 +29,8 @@ public class TurnoTest {
 
     @Test
     public void alPasarDeTurnoCambiaDeJugador(){
-        Jugador jugadorJuan = new Jugador();
-        Jugador jugadorPablo = new Jugador();
+        Jugador jugadorJuan = new Jugador(mapa);
+        Jugador jugadorPablo = new Jugador(mapa);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
