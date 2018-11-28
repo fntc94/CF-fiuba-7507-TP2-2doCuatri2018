@@ -1,18 +1,25 @@
 package modelo.juego;
 
+import modelo.ListaCircular;
+
 import java.util.List;
+import java.util.Random;
 
 public class Turno {
 
-    private List<Jugador> listaDeParticipantes;
+    private ListaCircular<Jugador> listaDeParticipantes;
     private Jugador jugadorActual;
-    private int posicionInicial;
+    private int cantidadDeParticipantes;
+    private int siguiente;
 
     public Turno(List<Jugador> listaDeParticipantes){
-        this.posicionInicial = 0;
-        this.listaDeParticipantes = listaDeParticipantes;
-        this.jugadorActual = listaDeParticipantes.get(this.posicionInicial);
+        this.listaDeParticipantes = new ListaCircular<>();
+        this.listaDeParticipantes.addAll(listaDeParticipantes);
+        this.cantidadDeParticipantes = listaDeParticipantes.size();
 
+        int randomPosicion = new Random().nextInt(cantidadDeParticipantes);
+        this.jugadorActual = this.listaDeParticipantes.get(randomPosicion);
+        this.siguiente = 0;
     }
 
     public Jugador devolverJugadorActual(){
@@ -20,12 +27,8 @@ public class Turno {
     }
 
     public void cambiarDeTurno(){
-        this.listaDeParticipantes.add(jugadorActual);
-        this.jugadorActual = listaDeParticipantes.get(this.posicionInicial+1);
-        this.posicionInicial++;
-    }
-
-    public void juegoTurno(Jugador jugadorActual){
+        this.jugadorActual = this.listaDeParticipantes.get(this.siguiente+1);
+        this.siguiente++;
 
 
     }
