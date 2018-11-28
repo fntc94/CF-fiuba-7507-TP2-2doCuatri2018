@@ -7,7 +7,7 @@ public class ListaCircular<Jugador> extends LinkedList<Jugador> {
     private int posicionActual = 0;
 
     public Jugador getSiguiente(){
-        if (posicionActual < (this.size()-1)){
+        if (posicionActual < (this.size()-1)& this.size()>1){
             posicionActual = posicionActual + 1;
         }
         else{
