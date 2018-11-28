@@ -7,13 +7,12 @@ public class ListaCircular<Jugador> extends LinkedList<Jugador> {
     private int posicionActual = 0;
 
     public Jugador getSiguiente(){
-        if (posicionActual < this.size()){
+        if (posicionActual < (this.size()-1)){
             posicionActual = posicionActual + 1;
-            return this.get(posicionActual);
         }
-        if (posicionActual == this.size()){
+        else{
             posicionActual = 0;
-            return (this.getFirst());
         }
+        return this.get(posicionActual);
     }
 }
