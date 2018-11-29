@@ -68,6 +68,8 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
         this.vidaActual -= danio;
     }
 
-
+    public boolean sigueEnPie(){
+        return (this.vidaActual != 0);
+    }
 
 }

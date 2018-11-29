@@ -43,4 +43,21 @@ public class TurnoTest {
         Assert.assertNotEquals(jugadorActual1, jugadorActual2);
 
     }
+
+    @Test
+    public void seCreanDosJugadoresYEsElTurnoDelUltimoAlPasarSigueElPrimero(){
+        Jugador jugadorJuan = new Jugador(mapa);
+        Jugador jugadorPablo = new Jugador(mapa);
+
+        List<Jugador> listaDeParticipantes = new ArrayList<>();
+        listaDeParticipantes.add(jugadorJuan);
+        listaDeParticipantes.add((jugadorPablo));
+
+        Turno turno = new Turno(listaDeParticipantes);
+        Jugador jugadorActual1 = turno.devolverJugadorActual();
+        turno.cambiarDeTurno();
+        turno.cambiarDeTurno();
+        Jugador jugadorActual2 = turno.devolverJugadorActual();
+        Assert.assertEquals(jugadorActual1, jugadorActual2);
+    }
 }

@@ -46,10 +46,17 @@ public class Construcciones {
     }
 
 
-    private void incluyeA(Edificio edificio){
+    public void incluyeA(Edificio edificio){
         if (! (this.construcciones.contains(edificio))){
             throw new EdificioNoEsPropioException();
         }
     }
 
+    public void limpiarEscombros(){
+        for(int i=0; i < this.construcciones.size(); i++){
+            if (!this.construcciones.get(i).sigueEnPie()){
+                this.construcciones.remove(i);
+            }
+        }
+    }
 }

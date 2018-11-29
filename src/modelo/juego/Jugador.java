@@ -1,6 +1,7 @@
 package modelo.juego;
 
 import modelo.Edificio;
+import modelo.IPosicionable;
 import modelo.edificios.Castillo;
 import modelo.edificios.Construcciones;
 import modelo.edificios.EstrategiaAtaqueCastillo;
@@ -67,9 +68,9 @@ public class Jugador {
         this.castillo = castillo;
         this.construcciones.agregarEdificio(plazaCentral);
 
-        this.plebe.agregarAldeano(aldeano1);
-        this.plebe.agregarAldeano(aldeano2);
-        this.plebe.agregarAldeano(aldeano3);
+        this.plebe.agregar(aldeano1);
+        this.plebe.agregar(aldeano2);
+        this.plebe.agregar(aldeano3);
 
         return true;
     }
@@ -100,9 +101,9 @@ public class Jugador {
         this.castillo = castillo;
         this.construcciones.agregarEdificio(plazaCentral);
 
-        this.plebe.agregarAldeano(aldeano1);
-        this.plebe.agregarAldeano(aldeano2);
-        this.plebe.agregarAldeano(aldeano3);
+        this.plebe.agregar(aldeano1);
+        this.plebe.agregar(aldeano2);
+        this.plebe.agregar(aldeano3);
     }
 
 
@@ -121,27 +122,35 @@ public class Jugador {
         bolsaDeOro = (bolsaDeOro + oroRecolectado);
     }
 
-
-    public void agregarEdificio(Edificio edificio) {
+    public void agregar(Edificio edificio) {
         this.construcciones.agregarEdificio(edificio);
     }
 
-    public void agregarAldeano(Aldeano aldeano){
-        this.plebe.agregarAldeano(aldeano);
+    public void agregar(Aldeano aldeano){
+        this.plebe.agregar(aldeano);
     }
 
-    public void agregarUnidadMilitar(UnidadMilitar unidadMilitar){
+    public void agregar(UnidadMilitar unidadMilitar){
         this.ejercito.agregarUnidad(unidadMilitar);
     }
 
+    public void esMio(IPosicionable posicionable){ }
 
-    /*
-    //SUJETO A VERIFICACION ! ! ! ! ! ! ! ! ! ! !
-     public void actualizarVidaDePosicionables(){
-        this.ejercito.actualizarVidaDeUnidadesMilitares();
-        this.plebe.actualizarVidaDeAldeanos();
-        this.construcciones.actualizarVidaDeEdificios();
-        this.castillo.actualizarVidaDelCastillo();
+    public void esMio(Aldeano aldeano){
+        this.plebe.incluyeA(aldeano);
     }
-    */
+
+    public void esMio(UnidadMilitar unidadMilitar){
+        this.ejercito.incluyeA(unidadMilitar);
+    }
+
+    public void esMio(Edificio edificio){
+        this.construcciones.incluyeA(edificio);
+    }
+
+    public void recolectorDeCadaveres(){
+        this.plebe.borrarCadaveres();
+        this.ejercito.borrarCadaveres();
+        this.construcciones.limpiarEscombros();
+    }
 }

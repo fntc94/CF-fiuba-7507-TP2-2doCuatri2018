@@ -3,13 +3,13 @@ package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 import modelo.IEdificioReparable;
 import modelo.edificios.IUnidadesPlazaCentralFabrica;
 import modelo.unidades.Aldeano;
-import modelo.unidades.Aldeanos;
+import modelo.unidades.Plebe;
 import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-public class AldeanosTest {
+public class PlebeTest {
 
     private IUnidadesPlazaCentralFabrica unidadesPlazaCentralFabrica = new UnidadesFabrica();
 
@@ -18,7 +18,7 @@ public class AldeanosTest {
 
 
         // Arrange
-        Aldeanos aldeanos = new Aldeanos();
+        Plebe aldeanos = new Plebe();
         Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -41,7 +41,7 @@ public class AldeanosTest {
 //
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -66,7 +66,7 @@ public class AldeanosTest {
 //
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -91,7 +91,7 @@ public class AldeanosTest {
 
 
         // Arrange
-        Aldeanos aldeanos = new Aldeanos();
+        Plebe aldeanos = new Plebe();
         Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -117,7 +117,7 @@ public class AldeanosTest {
 
 
         // Arrange
-        Aldeanos aldeanos = new Aldeanos();
+        Plebe aldeanos = new Plebe();
         Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -145,7 +145,7 @@ public class AldeanosTest {
 //
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -171,7 +171,7 @@ public class AldeanosTest {
 //    public void trabajar_TresAldeanosRecolectandoYUnoConstruyendo_AntesDeTerminarLaConstruccionDevuelve40(){
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -198,7 +198,7 @@ public class AldeanosTest {
 //
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();

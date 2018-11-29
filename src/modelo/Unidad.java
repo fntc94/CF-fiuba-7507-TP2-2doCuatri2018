@@ -51,4 +51,8 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
     public boolean estaEnPosicion(Posicion pos){
         return this.posicion.seSuperponeCon(pos);
     }
+
+    public boolean estaMuerto(){
+        return (this.vida == 0);
+    }
 }

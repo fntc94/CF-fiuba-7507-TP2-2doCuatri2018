@@ -12,7 +12,7 @@ public class Plebe {
         this.aldeanos = new LinkedList<>();
     }
 
-    public void agregarAldeano(Aldeano aldeano){
+    public void agregar(Aldeano aldeano){
         this.aldeanos.addLast(aldeano);
     }
 
@@ -22,15 +22,19 @@ public class Plebe {
         }
     }
 
-    public  boolean cantidad(int cantidad){
-        return (this.aldeanos.size() == cantidad);
-    }
-
     public int trabajar(){
         int oroRecolectado = 0;
         for (Aldeano aldeano : this.aldeanos) {
             oroRecolectado = oroRecolectado + aldeano.trabajar();
         }
         return oroRecolectado;
+    }
+
+    public void borrarCadaveres(){
+        for(int i=0; i < this.aldeanos.size(); i++){
+            if (this.aldeanos.get(i).estaMuerto()){
+                this.aldeanos.remove(i);
+            }
+        }
     }
 }
