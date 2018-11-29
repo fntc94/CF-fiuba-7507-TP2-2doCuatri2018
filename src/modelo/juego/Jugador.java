@@ -134,8 +134,6 @@ public class Jugador {
         this.ejercito.agregarUnidad(unidadMilitar);
     }
 
-    public void esMio(IPosicionable posicionable){ }
-
     public void esMio(Aldeano aldeano){
         this.plebe.incluyeA(aldeano);
     }
