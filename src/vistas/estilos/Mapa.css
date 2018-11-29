@@ -1,5 +1,5 @@
 .fondo{
-    -fx-background-image: url("imagenes/pasto.jpg");
+    -fx-background-image: url("../imagenes/pasto.jpg");
     -fx-background-size: auto;
     -fx-background-repeat: repeat;
     -fx-background-color:transparent

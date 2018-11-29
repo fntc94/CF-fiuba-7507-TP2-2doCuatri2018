@@ -32,7 +32,7 @@
     <ScrollPane prefHeight="514.0" prefWidth="800.0">
       <GridPane fx:id="mapa" alignment="CENTER" styleClass="fondo">
         <stylesheets>
-          <URL value="@Mapa.css" />
+          <URL value="@estilos/Mapa.css" />
         </stylesheets>
       </GridPane>
     </ScrollPane>

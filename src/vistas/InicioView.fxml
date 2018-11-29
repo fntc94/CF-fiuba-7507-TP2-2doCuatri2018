@@ -27,7 +27,7 @@
                     </center>
 
     <stylesheets>
-        <URL value="@Inicio.css" />
+        <URL value="@estilos/Inicio.css" />
     </stylesheets>
 
 </BorderPane>
