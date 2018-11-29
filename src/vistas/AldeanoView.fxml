@@ -9,7 +9,7 @@
             fx:controller="controladores.AldeanoController" onMouseClicked="#handleOnMouseClicked">
 
     <stylesheets>
-        <URL value="@Aldeano.css" />
+        <URL value="@estilos/Aldeano.css" />
     </stylesheets>
 
 </AnchorPane>

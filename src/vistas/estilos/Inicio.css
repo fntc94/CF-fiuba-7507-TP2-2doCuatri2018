@@ -1,8 +1,8 @@
 
-.test{
-    -fx-background-image: url("imagenes/inicio.jpeg");
-    -fx-background-size: 150.0 71.0;
-    -fx-background-repeat: stretch;
+.a{
+    -fx-background-image: url("../imagenes/inicio.jpeg");
+    -fx-background-size: auto;
+    -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
     -fx-background-color:transparent
 }
