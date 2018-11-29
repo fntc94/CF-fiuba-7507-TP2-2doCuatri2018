@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.*?>
@@ -11,7 +12,7 @@
 
 <BorderPane prefHeight="700.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controladores.JuegoController">
   <bottom>
-    <BorderPane prefHeight="136.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+    <BorderPane fx:id="contenedorPrincipal" prefHeight="136.0" prefWidth="800.0" BorderPane.alignment="CENTER">
       <center>
         <Label fx:id="botonera" alignment="CENTER" text="Acá podríamos poner la botonera de acciones" textAlignment="CENTER">
           <font>
@@ -29,7 +30,11 @@
   </bottom>
   <center>
     <ScrollPane prefHeight="514.0" prefWidth="800.0">
-      <GridPane fx:id="mapa" alignment="CENTER" />
+      <GridPane fx:id="mapa" alignment="CENTER" styleClass="fondo">
+        <stylesheets>
+          <URL value="@Mapa.css" />
+        </stylesheets>
+      </GridPane>
     </ScrollPane>
   </center>
 </BorderPane>
