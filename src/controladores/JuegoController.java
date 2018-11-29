@@ -167,5 +167,4 @@ public class JuegoController {
         // AGREGO LOS BOTONES AL CONTENEDOR
         this.contenedorPrincipal.setCenter(contenedorBotones);
     }
-
 }
