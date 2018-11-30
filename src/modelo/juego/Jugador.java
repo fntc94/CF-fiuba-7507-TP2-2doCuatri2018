@@ -1,10 +1,14 @@
 package modelo.juego;
 
 import modelo.Edificio;
+import modelo.IPosicionable;
 import modelo.edificios.*;
 import modelo.excepciones.OroInsuficienteException;
 import modelo.posicion.*;
 import modelo.unidades.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
     private Plebe plebe;
@@ -15,6 +19,8 @@ public class Jugador {
     private static final int oroInicial = 100;
     private String nombre;
 
+    private List<IPosicionable> posicionables = new ArrayList<>();
+
 
     public Jugador(String nombre, Castillo castillo) {
         this.plebe = new Plebe();
@@ -23,6 +29,8 @@ public class Jugador {
         this.nombre = nombre;
         this.castillo = castillo;
         this.bolsaDeOro = oroInicial;
+
+        this.posicionables.add(castillo);
     }
 
     public void pagarCosto(int costo) {
@@ -41,14 +49,17 @@ public class Jugador {
 
     public void agregar(Edificio edificio) {
         this.construcciones.agregarEdificio(edificio);
+        this.posicionables.add(edificio);
     }
 
     public void agregar(Aldeano aldeano){
         this.plebe.agregar(aldeano);
+        this.posicionables.add(aldeano);
     }
 
     public void agregar(UnidadMilitar unidadMilitar){
         this.ejercito.agregarUnidad(unidadMilitar);
+        this.posicionables.add(unidadMilitar);
     }
 
     public void esMio(Aldeano aldeano){
@@ -61,6 +72,11 @@ public class Jugador {
 
     public void esMio(Edificio edificio){
         this.construcciones.incluyeA(edificio);
+    }
+
+    public boolean esMio(IPosicionable posicionable){
+        Boolean esMio =  this.posicionables.contains(posicionable);
+        return esMio;
     }
 
     public void recolectorDeCadaveres(){

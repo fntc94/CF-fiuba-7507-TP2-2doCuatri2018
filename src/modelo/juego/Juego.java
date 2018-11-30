@@ -93,4 +93,12 @@ public class Juego {
     public Mapa getMapa(){
         return this.mapa;
     }
+
+    public Jugador getJugador1(){
+        return jugador1;
+    }
+
+    public Jugador getJugador2(){
+        return jugador2;
+    }
 }

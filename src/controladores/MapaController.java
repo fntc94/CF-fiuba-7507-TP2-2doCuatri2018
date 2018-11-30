@@ -6,9 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import modelo.IPosicionable;
 import modelo.Unidad;
 import modelo.edificios.Castillo;
@@ -30,6 +33,7 @@ public class MapaController implements Initializable {
     private GridPane mapa;
 
     private Mapa modeloMapa;
+    private Juego juego;
 
     public MapaController(){
 
@@ -37,7 +41,8 @@ public class MapaController implements Initializable {
         int anchoMapa = 30;
         Mapa mapa = new Mapa(altoMapa, anchoMapa);
 
-        Juego juego = new Juego("", "");
+        Juego juego = new Juego("J1", "J2");
+        this.juego = juego;
 
         this.modeloMapa = juego.getMapa();
     }
@@ -61,18 +66,32 @@ public class MapaController implements Initializable {
 
         for(IPosicionable posicionable: this.modeloMapa){
 
+
+            String color = "";
+            if(juego.getJugador1().esMio(posicionable)){
+                color = "Rojo";
+            }
+            if(juego.getJugador2().esMio(posicionable)){
+                color = "Azul";
+            }
+
             Posicion posicion = posicionable.getPosicion();
             List<Casillero> casilleros = posicion.getListaCasilleros();
             Casillero abajoIzquierda = posicion.getAbajoIzquierda();
 
             if(posicionable.getClass() == Castillo.class){
 
-                FXMLLoader castilloLoader = new FXMLLoader(getClass().getResource("/vistas/Castillo.fxml"));
-                Parent vistaCastillo = castilloLoader.load();
-                this.mapa.add(vistaCastillo, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
 
-                GridPane.setColumnSpan(vistaCastillo, posicion.getAncho());
-                GridPane.setRowSpan(vistaCastillo, posicion.getAlto());
+                FXMLLoader castilloLoader = new FXMLLoader(getClass().getResource("/vistas/Castillo.fxml"));
+                Parent vista = castilloLoader.load();
+
+                String css = String.format("-fx-background-image: url(/vistas/imagenes/castillo%s.png)", color);
+                vista.setStyle(css);
+
+                this.mapa.add(vista, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
+
+                GridPane.setColumnSpan(vista, posicion.getAncho());
+                GridPane.setRowSpan(vista, posicion.getAlto());
             }
 
             if(posicionable.getClass() == PlazaCentral.class){
@@ -80,6 +99,9 @@ public class MapaController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/PlazaCentral.fxml"));
                 Parent vista = loader.load();
                 this.mapa.add(vista, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
+
+                String css = String.format("-fx-background-image: url(/vistas/imagenes/plazaCentral%s.png)", color);
+                vista.setStyle(css);
 
                 GridPane.setColumnSpan(vista, posicion.getAncho());
                 GridPane.setRowSpan(vista, posicion.getAlto());
@@ -89,6 +111,9 @@ public class MapaController implements Initializable {
                 FXMLLoader aldeanoLoader = new FXMLLoader(getClass().getResource("/vistas/AldeanoView.fxml"));
                 Parent vistaAldeano = aldeanoLoader.load();
                 this.mapa.add(vistaAldeano, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
+
+                String css = String.format("-fx-background-image: url(/vistas/imagenes/aldeano%s.png)", color);
+                vistaAldeano.setStyle(css);
             }
 
         }
