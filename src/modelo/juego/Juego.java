@@ -15,17 +15,18 @@ public class Juego {
     private Jugador jugador1;
     private Jugador jugador2;
 
-    public Juego(){
+    public Juego(String nombreJugador1, String nombreJugador2){
         this.mapa = new Mapa(20,30);
 
-        this.jugador1 = new Jugador();
-        this.jugador2 = new Jugador();
+        Castillo castillo1 = colocarPosicionablesEnEsquinaInferiorIzquierda();
+        Castillo castillo2 = colocarPosicionablesEnEsquinaSuperiorDerecha();
 
-        colocarPosicionablesEnEsquinaInferiorIzquierda();
-        colocarPosicionablesEnEsquinaSuperiorDerecha();
+
+        this.jugador1 = new Jugador(nombreJugador1, castillo1);
+        this.jugador2 = new Jugador(nombreJugador2, castillo2);
     }
 
-    private void colocarPosicionablesEnEsquinaInferiorIzquierda(){
+    private Castillo colocarPosicionablesEnEsquinaInferiorIzquierda(){
         // plaza esta en arriba de castillo
         Posicion posPlazaCentral = new PosicionCuadrado(0,6,1,5);
         PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
@@ -54,9 +55,11 @@ public class Juego {
         this.jugador1.agregar(aldeano1);
         this.jugador1.agregar(aldeano2);
         this.jugador1.agregar(aldeano3);
+
+        return castillo;
     }
 
-    private void colocarPosicionablesEnEsquinaSuperiorDerecha(){
+    private Castillo colocarPosicionablesEnEsquinaSuperiorDerecha(){
 
         // plaza esta debajo del castillo
         Posicion posPlazaCentral = new PosicionCuadrado(27,15,28,14);
@@ -86,5 +89,7 @@ public class Juego {
         this.jugador2.agregar(aldeano1);
         this.jugador2.agregar(aldeano2);
         this.jugador2.agregar(aldeano3);
+
+        return castillo;
     }
 }

@@ -45,13 +45,6 @@ public class JuegoController {
 
        this.setCentro();
        this.agregarAldeanoAlMapa();
-       /*try {
-           this.llenarMapa();
-       }
-       catch (Exception e){
-           new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
-       }*/
-
     }
 
     private void agregarAldeanoAlMapa() throws IOException {
@@ -73,69 +66,6 @@ public class JuegoController {
         this.mapaController = new MapaController();
         mapaController.init(this.mapa);
     }
-
-    /*private void llenarMapa() throws Exception{
-        GridPane gridPane = mapa;
-        mapa = gridPane;
-
-
-        int cantidadFilas = 20;
-        int cantidadColumnas = 30;
-        int dimCasillero = 50;
-
-        for(int fila = 0; fila <= cantidadFilas - 1; fila++){
-            RowConstraints rowConstraints = new RowConstraints(dimCasillero);
-            rowConstraints.setFillHeight(true);
-            gridPane.getRowConstraints().add(rowConstraints);
-        }
-
-        for(int columna = 0; columna <= cantidadColumnas - 1; columna++){
-            ColumnConstraints columnConstraints = new ColumnConstraints(dimCasillero);
-            columnConstraints.setFillWidth(true);
-            gridPane.getColumnConstraints().add(columnConstraints);
-        }
-
-        for(int fila = 0; fila <= cantidadFilas - 1; fila++){
-            for(int columna = 0; columna <= cantidadColumnas - 1; columna++){
-                // agrearCosas
-            }
-        }
-
-        Posicion posicion = new PosicionDeUnCasillero(2,2);
-        Aldeano aldeano = new Aldeano(posicion);
-
-        FXMLLoader aldeanoLoader = new FXMLLoader(getClass().getResource("/vistas/AldeanoView.fxml"));
-        Parent vistaAldeano = aldeanoLoader.load();
-        AldeanoController aldeanoController = aldeanoLoader.getController();
-        aldeanoController.init(this);
-
-
-        for(Casillero casillero: posicion.getListaCasilleros()){
-            int x = casillero.getCoordenadaEnX();
-            int y = casillero.getCoordenadaEnY();
-
-            gridPaneRemove(gridPane, x, y);
-            gridPane.add(vistaAldeano, x, y);
-
-        }
-        this.vistaAldeano = vistaAldeano;
-        gridPane.setGridLinesVisible(false);
-
-
-    }
-
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-        for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-                return node;
-            }
-        }
-        return null;
-    }
-
-    private void gridPaneRemove(GridPane gridPane, int x, int y){
-        gridPane.getChildren().remove(getNodeFromGridPane(gridPane, x, y));
-    }*/
 
     public void setBotonera(String text){
         this.botonera.setText("");

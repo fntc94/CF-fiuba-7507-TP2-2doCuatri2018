@@ -12,16 +12,7 @@ public class Turno {
     private int cantidadDeParticipantes;
 
     public Turno(List<Jugador> listaDeParticipantes){
-        this.cantidadDeParticipantes = listaDeParticipantes.size();
-        this.listaDeParticipantes = new ListaCircular<>();
-        while (this.listaDeParticipantes.size()<listaDeParticipantes.size()){
-            int randomPosicion = new Random().nextInt(cantidadDeParticipantes);
-            Jugador jugador = listaDeParticipantes.get(randomPosicion);
-            if (!this.listaDeParticipantes.contains(jugador)){
-                this.listaDeParticipantes.addLast(jugador);
-            }
-
-        }
+        this.listaDeParticipantes = generarListaDeOrdenAleatorio(listaDeParticipantes);
         jugadorActual = this.listaDeParticipantes.getFirst();
     }
 
@@ -31,5 +22,19 @@ public class Turno {
 
     public void cambiarDeTurno(){
         this.jugadorActual = this.listaDeParticipantes.getSiguiente();
+    }
+
+
+    private ListaCircular<Jugador> generarListaDeOrdenAleatorio(List<Jugador> listaOriginal) {
+        this.cantidadDeParticipantes = listaOriginal.size();
+        ListaCircular listaAleatoria = new ListaCircular<>();
+        while (listaAleatoria.size() < listaOriginal.size()) {
+            int randomPosicion = new Random().nextInt(cantidadDeParticipantes);
+            Jugador jugador = listaOriginal.get(randomPosicion);
+            if (!listaAleatoria.contains(jugador)) {
+                listaAleatoria.addLast(jugador);
+            }
+        }
+        return listaAleatoria;
     }
 }
