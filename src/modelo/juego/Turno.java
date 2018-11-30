@@ -32,4 +32,6 @@ public class Turno {
     public void cambiarDeTurno(){
         this.jugadorActual = this.listaDeParticipantes.getSiguiente();
     }
+
+
 }

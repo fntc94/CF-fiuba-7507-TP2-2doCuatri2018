@@ -19,28 +19,6 @@ public class Construcciones {
     }
 
 
-    public Aldeano crearUnidad(PlazaCentral plazaCentral){
-        this.incluyeA(plazaCentral);
-        return plazaCentral.construirAldeano();
-    }
-
-    public ArmaDeAsedio crearArmaDeAsedio(Castillo castillo){
-        this.incluyeA(castillo);
-        return castillo.crearArmaDeAsedio();
-    }
-
-
-    public Arquero crearArquero(Cuartel cuartel){
-        this.incluyeA(cuartel);
-        return cuartel.crearArquero();
-    }
-
-    public Espadachin crearEspadachin(Cuartel cuartel){
-        this.incluyeA(cuartel);
-        return cuartel.crearEspadachin();
-    }
-
-
     public void agregarEdificio(Edificio edificio){
         this.construcciones.addLast(edificio);
     }
