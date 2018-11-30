@@ -1,11 +1,13 @@
 package modelo.posicion;
 
 import modelo.IPosicionable;
+import modelo.unidades.Aldeano;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
-public class Mapa {
+public class Mapa implements Iterable<IPosicionable> {
 
     private static final int ANCHO_MIN = 30;
     private static final int ANCHO_MAX = 100;
@@ -44,7 +46,6 @@ public class Mapa {
     }
 
 
-
     public void posicionar(IPosicionable posicionable) {
 
         Posicion posicion = posicionable.getPosicion();
@@ -74,5 +75,10 @@ public class Mapa {
         }
 
         return true;
+    }
+
+    @Override
+    public Iterator<IPosicionable> iterator() {
+        return this.posicionables.iterator();
     }
 }

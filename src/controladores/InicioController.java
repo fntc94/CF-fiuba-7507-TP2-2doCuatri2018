@@ -29,22 +29,14 @@ public class InicioController {
 
     private Stage stage;
 
-    public InicioController(Stage stage){
+    public void setStage(Stage stage){
         this.stage = stage;
     }
 
     public void handleAceptarButtonClicked(MouseEvent mouseEvent) throws Exception {
 
         FXMLLoader juegoView = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
-        JuegoController juegoController = new JuegoController();
-        juegoView.setController(juegoController);
         Parent root = juegoView.load();
-
-        String nombreJugador1 = this.nombreJugador1.getText();
-        String nombreJugador2 = this.nombreJugador2.getText();
-
-        juegoController.setNombreJugador1(nombreJugador1);
-        juegoController.setNombreJugador2(nombreJugador2);
 
         this.stage.setScene(new Scene(root));
 
