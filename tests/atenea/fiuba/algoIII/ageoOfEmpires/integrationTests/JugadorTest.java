@@ -7,7 +7,6 @@ import modelo.excepciones.EdificioNoEsPropioException;
 import modelo.excepciones.OroInsuficienteException;
 import modelo.excepciones.UnidadNoEsPropiaException;
 import modelo.juego.Jugador;
-import modelo.posicion.Mapa;
 import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
