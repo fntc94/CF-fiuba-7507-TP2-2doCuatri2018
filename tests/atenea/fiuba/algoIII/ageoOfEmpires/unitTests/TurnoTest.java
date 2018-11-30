@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TurnoTest {
     private Mapa mapa = new Mapa(20,30);
-    @Test
+    /*@Test
     public void permaneceEnElTurnoDeUnJugadorHastaQuePase(){
         Jugador jugadorJuan = new Jugador(mapa);
         Jugador jugadorPablo = new Jugador(mapa);
@@ -59,5 +59,5 @@ public class TurnoTest {
         turno.cambiarDeTurno();
         Jugador jugadorActual2 = turno.devolverJugadorActual();
         Assert.assertEquals(jugadorActual1, jugadorActual2);
-    }
+    }*/
 }
