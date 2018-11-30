@@ -1,32 +1,23 @@
 package controladores;
 
-import javafx.fxml.FXML;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import modelo.Unidad;
 import modelo.posicion.Casillero;
 
-public class MapaController extends GridPane {
+public class MapaController {
 
-    private GridPane mapa;
+    private GridPane gridPane;
 
-    public void init(GridPane mapa){
-        this.mapa = mapa;
-
-        try {
-            this.llenarMapa();
-        }
-        catch (Exception e){
-            new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
-        }
+    public MapaController(GridPane mapa){
+        this.gridPane = mapa;
     }
 
-    private void llenarMapa() {
+    public void llenarMapa() {
 
         int cantidadFilas = 20;
         int cantidadColumnas = 30;
@@ -35,27 +26,32 @@ public class MapaController extends GridPane {
         for(int fila = 0; fila <= cantidadFilas - 1; fila++){
             RowConstraints rowConstraints = new RowConstraints(dimCasillero);
             rowConstraints.setFillHeight(true);
-            this.mapa.getRowConstraints().add(rowConstraints);
+            this.gridPane.getRowConstraints().add(rowConstraints);
         }
 
         for(int columna = 0; columna <= cantidadColumnas - 1; columna++){
             ColumnConstraints columnConstraints = new ColumnConstraints(dimCasillero);
             columnConstraints.setFillWidth(true);
-            this.mapa.getColumnConstraints().add(columnConstraints);
+            this.gridPane.getColumnConstraints().add(columnConstraints);
         }
 
         for(int fila = 0; fila <= cantidadFilas - 1; fila++){
             for(int columna = 0; columna <= cantidadColumnas - 1; columna++){
-                // agrearCosas
+
             }
         }
 
-        this.mapa.setGridLinesVisible(true);
+        this.gridPane.setGridLinesVisible(true);
     }
 
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-        for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+        ObservableList<Node> children = gridPane.getChildren();
+        for (Node node : children){
+
+            boolean colunOk = gridPane.getColumnIndex(node) == col;
+            boolean rowOk = gridPane.getRowIndex(node) == row;
+
+            if (colunOk && rowOk){
                 return node;
             }
         }
@@ -63,7 +59,8 @@ public class MapaController extends GridPane {
     }
 
     private void gridPaneRemove(GridPane gridPane, int x, int y){
-        gridPane.getChildren().remove(getNodeFromGridPane(gridPane, x, y));
+        Node node = getNodeFromGridPane(gridPane, x, y);
+        gridPane.getChildren().remove(node);
     }
 
     public void agregarUnidadAlMapa(Unidad posicionable, Parent vistaUnidad){
@@ -72,8 +69,8 @@ public class MapaController extends GridPane {
             int x = casillero.getCoordenadaEnX();
             int y = casillero.getCoordenadaEnY();
 
-            gridPaneRemove(this, x, y);
-            this.mapa.add(vistaUnidad, x, y);
+//            gridPaneRemove(this.gridPane, x, y);
+            this.gridPane.add(vistaUnidad, x, y);
         }
     }
 }

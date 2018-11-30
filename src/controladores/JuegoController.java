@@ -2,6 +2,7 @@ package controladores;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,9 +16,11 @@ import modelo.posicion.*;
 
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class JuegoController {
+public class JuegoController implements Initializable {
 
     @FXML
     private Label nombreJugador1;
@@ -38,20 +41,36 @@ public class JuegoController {
 
     private Parent vistaAldeano;
 
-    public void init(String nombreJugador1, String nombreJugador2) throws IOException {
 
-       this.nombreJugador1.setText(nombreJugador1);
-       this.nombreJugador2.setText(nombreJugador2);
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-       this.setCentro();
-       this.agregarAldeanoAlMapa();
-       /*try {
-           this.llenarMapa();
-       }
-       catch (Exception e){
-           new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
-       }*/
+        this.mapaController = new MapaController(this.mapa);
 
+
+        try {
+            this.mapaController.llenarMapa();
+            this.agregarAldeanoAlMapa();
+        }
+        catch (Exception e){
+            new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
+        }
+
+    }
+
+    @FXML
+    public void initilize(){
+        this.nombreJugador1.setText("Juan");
+        this.nombreJugador2.setText("Pedo");
+    }
+
+
+    public void setNombreJugador1(String nombreJugador1){
+        this.nombreJugador1.setText(nombreJugador1);
+    }
+
+    public void setNombreJugador2(String nombreJugador2){
+        this.nombreJugador2.setText(nombreJugador2);
     }
 
     private void agregarAldeanoAlMapa() throws IOException {
@@ -68,74 +87,13 @@ public class JuegoController {
         this.mapaController.agregarUnidadAlMapa(aldeano, vistaAldeano);
     }
 
-    // Agrega el mapa
-    public void setCentro(){
-        this.mapaController = new MapaController();
-        mapaController.init(this.mapa);
-    }
+    private void agregarEdificioAlMapa() throws IOException{
 
-    /*private void llenarMapa() throws Exception{
-        GridPane gridPane = mapa;
-        mapa = gridPane;
+        Posicion posicion = new PosicionCuadrado(3,3,6,6);
 
-
-        int cantidadFilas = 20;
-        int cantidadColumnas = 30;
-        int dimCasillero = 50;
-
-        for(int fila = 0; fila <= cantidadFilas - 1; fila++){
-            RowConstraints rowConstraints = new RowConstraints(dimCasillero);
-            rowConstraints.setFillHeight(true);
-            gridPane.getRowConstraints().add(rowConstraints);
-        }
-
-        for(int columna = 0; columna <= cantidadColumnas - 1; columna++){
-            ColumnConstraints columnConstraints = new ColumnConstraints(dimCasillero);
-            columnConstraints.setFillWidth(true);
-            gridPane.getColumnConstraints().add(columnConstraints);
-        }
-
-        for(int fila = 0; fila <= cantidadFilas - 1; fila++){
-            for(int columna = 0; columna <= cantidadColumnas - 1; columna++){
-                // agrearCosas
-            }
-        }
-
-        Posicion posicion = new PosicionDeUnCasillero(2,2);
-        Aldeano aldeano = new Aldeano(posicion);
-
-        FXMLLoader aldeanoLoader = new FXMLLoader(getClass().getResource("/vistas/AldeanoView.fxml"));
-        Parent vistaAldeano = aldeanoLoader.load();
-        AldeanoController aldeanoController = aldeanoLoader.getController();
-        aldeanoController.init(this);
-
-
-        for(Casillero casillero: posicion.getListaCasilleros()){
-            int x = casillero.getCoordenadaEnX();
-            int y = casillero.getCoordenadaEnY();
-
-            gridPaneRemove(gridPane, x, y);
-            gridPane.add(vistaAldeano, x, y);
-
-        }
-        this.vistaAldeano = vistaAldeano;
-        gridPane.setGridLinesVisible(false);
 
 
     }
-
-    private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
-        for (Node node : gridPane.getChildren()) {
-            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-                return node;
-            }
-        }
-        return null;
-    }
-
-    private void gridPaneRemove(GridPane gridPane, int x, int y){
-        gridPane.getChildren().remove(getNodeFromGridPane(gridPane, x, y));
-    }*/
 
     public void setBotonera(String text){
         this.botonera.setText("");
@@ -167,4 +125,6 @@ public class JuegoController {
         // AGREGO LOS BOTONES AL CONTENEDOR
         this.contenedorPrincipal.setCenter(contenedorBotones);
     }
+
+
 }

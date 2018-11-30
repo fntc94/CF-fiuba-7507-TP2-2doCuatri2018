@@ -29,17 +29,22 @@ public class InicioController {
 
     private Stage stage;
 
-    public void init(Stage stage){
+    public InicioController(Stage stage){
         this.stage = stage;
     }
 
     public void handleAceptarButtonClicked(MouseEvent mouseEvent) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
-        Parent root = loader.load();
+        FXMLLoader juegoView = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
+        JuegoController juegoController = new JuegoController();
+        juegoView.setController(juegoController);
+        Parent root = juegoView.load();
 
-        JuegoController juegoController = loader.getController();
-        juegoController.init(nombreJugador1.getText(), nombreJugador2.getText());
+        String nombreJugador1 = this.nombreJugador1.getText();
+        String nombreJugador2 = this.nombreJugador2.getText();
+
+        juegoController.setNombreJugador1(nombreJugador1);
+        juegoController.setNombreJugador2(nombreJugador2);
 
         this.stage.setScene(new Scene(root));
 
@@ -47,9 +52,5 @@ public class InicioController {
 
     public void handleCancelarButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
-    }
-
-    public void setImagenDeFondo(BackgroundImage imagenDeFondo){
-        this.layout.setBackground(new Background(imagenDeFondo));
     }
 }

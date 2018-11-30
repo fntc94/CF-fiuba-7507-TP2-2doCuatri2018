@@ -20,11 +20,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioView.fxml"));
-        Parent root = loader.load();
+        FXMLLoader inicioView = new FXMLLoader(getClass().getResource("InicioView.fxml"));
 
-        InicioController inicioController = loader.getController();
-        inicioController.init(stage);
+        InicioController inicioController = new InicioController(stage);
+        inicioView.setController(inicioController);
+
+        Parent root = inicioView.load();
 
         Scene scene = new Scene(root);
         stage.setTitle("Age ofEmpires II");
