@@ -18,6 +18,16 @@ public class PosicionDeUnCasillero extends Posicion {
         return this.getListaCasilleros().get(0);
     }
 
+    @Override
+    public int getAlto() {
+        return 1;
+    }
+
+    @Override
+    public int getAncho() {
+        return 1;
+    }
+
     // Incrementa/Decrementa coordenadas. Para incrementar x seria (1,0), para incrementar y (0,1)
     @Override
     public Posicion modificarCoordenada(int valorParaX, int valorParaY) {

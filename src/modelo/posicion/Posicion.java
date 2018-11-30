@@ -20,6 +20,9 @@ public abstract class Posicion {
 
     public abstract Casillero getAbajoIzquierda();
 
+    public abstract int getAlto();
+    public abstract int getAncho();
+
     public boolean seSuperponeCon(Posicion otraPosicion){
         List<Casillero> lista1 = this.getListaCasilleros();
         List<Casillero> lista2 = otraPosicion.getListaCasilleros();

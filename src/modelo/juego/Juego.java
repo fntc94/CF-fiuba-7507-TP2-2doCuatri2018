@@ -3,10 +3,7 @@ package modelo.juego;
 import modelo.edificios.Castillo;
 import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
-import modelo.posicion.Mapa;
-import modelo.posicion.Posicion;
-import modelo.posicion.PosicionCuadrado;
-import modelo.posicion.PosicionDeUnCasillero;
+import modelo.posicion.*;
 import modelo.unidades.Aldeano;
 import modelo.unidades.UnidadesFabrica;
 
@@ -16,25 +13,28 @@ public class Juego {
     private Jugador jugador2;
 
     public Juego(String nombreJugador1, String nombreJugador2){
-        this.mapa = new Mapa(20,30);
 
-        colocarPosicionablesEnEsquinaInferiorIzquierda(nombreJugador1);
-        colocarPosicionablesEnEsquinaSuperiorDerecha(nombreJugador2);
+        int alto = 20;
+        int ancho = 30;
+        this.mapa = new Mapa(alto, ancho);
+
+        colocarPosicionablesEnEsquinaSuperiorIzquierda(nombreJugador1);
+        colocarPosicionablesEnEsquinaInferiorDerecha(nombreJugador2);
     }
 
-    private void colocarPosicionablesEnEsquinaInferiorIzquierda(String nombreJugador){
+    private void colocarPosicionablesEnEsquinaSuperiorIzquierda(String nombreJugador){
         // plaza esta en arriba de castillo
-        Posicion posPlazaCentral = new PosicionCuadrado(0,6,1,5);
+        Posicion posPlazaCentral = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(3,3), 3);
         PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
         this.mapa.posicionar(plazaCentral);
 
         // castillo en la esquina inferior izquierda
-        Posicion posCastillo = new PosicionCuadrado(0,3,3,0);
+        Posicion posCastillo = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(0,0), 3);
         Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
 
-        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,0,7);
-        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,1,7);
-        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,2,7);
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,5,1);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,1,5);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,6,6);
 
         Aldeano aldeano1 = new Aldeano(posAldeano1);
         Aldeano aldeano2 = new Aldeano(posAldeano2);
@@ -53,19 +53,24 @@ public class Juego {
         this.jugador1.agregar(aldeano3);
     }
 
-    private void colocarPosicionablesEnEsquinaSuperiorDerecha(String nombreJugador){
+    private void colocarPosicionablesEnEsquinaInferiorDerecha(String nombreJugador){
 
         // plaza esta debajo del castillo
-        Posicion posPlazaCentral = new PosicionCuadrado(27,15,28,14);
+
+
+        int ancho = this.getMapa().getAncho();
+        int alto = this.getMapa().getAlto();
+
+        Posicion posPlazaCentral = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(this.mapa.getAncho() - 6, this.mapa.getAlto() - 6), 3);
         PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
 
         // castillo en la esquina superior derecha
-        Posicion posCastillo = new PosicionCuadrado(27,20,30,17);
+        Posicion posCastillo = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(this.mapa.getAncho() - 3, this.mapa.getAlto() - 3), 3);
         Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
 
-        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,29,13);
-        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,28,13);
-        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,27,13);
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa, ancho - 6, alto - 2);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa, ancho -2, alto - 6);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa, ancho - 7, alto -7);
 
         Aldeano aldeano1 = new Aldeano(posAldeano1);
         Aldeano aldeano2 = new Aldeano(posAldeano2);
@@ -83,5 +88,9 @@ public class Juego {
         this.jugador2.agregar(aldeano1);
         this.jugador2.agregar(aldeano2);
         this.jugador2.agregar(aldeano3);
+    }
+
+    public Mapa getMapa(){
+        return this.mapa;
     }
 }

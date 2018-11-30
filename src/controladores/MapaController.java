@@ -14,6 +14,7 @@ import modelo.Unidad;
 import modelo.edificios.Castillo;
 import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
+import modelo.juego.Juego;
 import modelo.posicion.*;
 import modelo.unidades.Aldeano;
 import modelo.unidades.UnidadesFabrica;
@@ -36,16 +37,9 @@ public class MapaController implements Initializable {
         int anchoMapa = 30;
         Mapa mapa = new Mapa(altoMapa, anchoMapa);
 
-        PosicionCuadrado posicionCastillo = new PosicionCuadrado(1,3,1,3);
-        Castillo castillo = new Castillo(posicionCastillo, new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+        Juego juego = new Juego("", "");
 
-        Posicion posicionAldeano = new PosicionDeUnCasillero(0,0);
-        Aldeano aldeano = new Aldeano(posicionAldeano);
-
-        mapa.posicionar(castillo);
-        mapa.posicionar(aldeano);
-
-        this.modeloMapa = mapa;
+        this.modeloMapa = juego.getMapa();
     }
 
     @Override
@@ -77,8 +71,18 @@ public class MapaController implements Initializable {
                 Parent vistaCastillo = castilloLoader.load();
                 this.mapa.add(vistaCastillo, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
 
-                GridPane.setColumnSpan(vistaCastillo, 3);
-                GridPane.setRowSpan(vistaCastillo, 3);
+                GridPane.setColumnSpan(vistaCastillo, posicion.getAncho());
+                GridPane.setRowSpan(vistaCastillo, posicion.getAlto());
+            }
+
+            if(posicionable.getClass() == PlazaCentral.class){
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/PlazaCentral.fxml"));
+                Parent vista = loader.load();
+                this.mapa.add(vista, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
+
+                GridPane.setColumnSpan(vista, posicion.getAncho());
+                GridPane.setRowSpan(vista, posicion.getAlto());
             }
 
             if(posicionable.getClass() == Aldeano.class){
