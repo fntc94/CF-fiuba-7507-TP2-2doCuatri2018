@@ -1,0 +1,13 @@
+
+.nombreJugador{
+    -fx-font-size: 18;
+    -fx-padding: 5;
+}
+
+#botonera {
+    -fx-background-color: transparent
+}
+
+#infoJugador {
+    -fx-background-color: transparent
+}

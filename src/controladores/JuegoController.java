@@ -36,10 +36,19 @@ public class JuegoController implements Initializable {
 
     private Parent vistaAldeano;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle)  {
-
+    private String nombre1;
+    private String nombre2;
+    public JuegoController(String nombreJugador1, String nombreJugador2){
+        this.nombre1 = nombreJugador1;
+        this.nombre2 = nombreJugador2;
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.nombreJugador1.setText(this.nombre1);
+        this.nombreJugador2.setText(this.nombre2);
+    }
+
 
     public void setBotonera(String text){
         this.botonera.setText("");

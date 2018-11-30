@@ -11,14 +11,13 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml/1"
-            xmlns="http://javafx.com/javafx/2.2"
-            fx:controller="controladores.JuegoController">
+            xmlns="http://javafx.com/javafx/2.2">
 
   <bottom>
-    <BorderPane fx:id="contenedorPrincipal" BorderPane.alignment="CENTER">
+    <BorderPane fx:id="contenedorPrincipal">
 
       <left>
-        <Label fx:id="botonera" alignment="CENTER" text="Acá podríamos poner la botonera de acciones" textAlignment="CENTER">
+        <Label fx:id="botonera" text="Botonera de acciones">
           <font>
             <Font size="24.0" fx:id="x1" />
           </font>
@@ -26,9 +25,12 @@
       </left>
 
       <right>
-        <GridPane alignment="CENTER" prefHeight="136.0" prefWidth="205.0">
-          <Label fx:id="nombreJugador1" font="$x1" GridPane.rowIndex="0" />
-          <Label fx:id="nombreJugador2" font="$x1" GridPane.rowIndex="1" />
+        <GridPane fx:id="infoJugador">
+          <Label styleClass="nombreJugador" text="Nombre jugador 1: " GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+          <Label styleClass="nombreJugador" fx:id="nombreJugador1" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+          <Label styleClass="nombreJugador" text="Nombre jugador 2: " GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+          <Label styleClass="nombreJugador"  fx:id="nombreJugador2" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         </GridPane>
       </right>
     </BorderPane>
@@ -37,5 +39,9 @@
   <center>
       <fx:include fx:id="mapa" source="MapaView.fxml"></fx:include>
   </center>
+
+  <stylesheets>
+    <URL value="@estilos/Juego.css"/>
+  </stylesheets>
 
 </BorderPane>

@@ -35,8 +35,12 @@ public class InicioController {
 
     public void handleAceptarButtonClicked(MouseEvent mouseEvent) throws Exception {
 
-        FXMLLoader juegoView = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
-        Parent root = juegoView.load();
+        FXMLLoader juegoLoader = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
+
+        JuegoController juegoController = new JuegoController(this.nombreJugador1.getText(), this.nombreJugador2.getText());
+        juegoLoader.setController(juegoController);
+
+        Parent root = juegoLoader.load();
 
         this.stage.setScene(new Scene(root));
 
