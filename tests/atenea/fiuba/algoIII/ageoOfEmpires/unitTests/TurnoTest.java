@@ -2,10 +2,8 @@ package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import modelo.edificios.Castillo;
 import modelo.edificios.EdificiosFabrica;
-import modelo.edificios.PlazaCentral;
 import modelo.juego.Turno;
 import modelo.juego.Jugador;
-import modelo.posicion.Mapa;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,9 +15,8 @@ public class TurnoTest {
     @Test
     public void permaneceEnElTurnoDeUnJugadorHastaQuePase(){
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        PlazaCentral plazaCentral = new EdificiosFabrica().crearPlazaCentral();
-        Jugador jugadorJuan =new Jugador("Pablo", castillo, plazaCentral);
-        Jugador jugadorPablo =new Jugador("Pablo", castillo, plazaCentral);
+        Jugador jugadorJuan =new Jugador("Pablo", castillo);
+        Jugador jugadorPablo =new Jugador("Pablo", castillo);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -35,9 +32,8 @@ public class TurnoTest {
     @Test
     public void alPasarDeTurnoCambiaDeJugador(){
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        PlazaCentral plazaCentral = new EdificiosFabrica().crearPlazaCentral();
-        Jugador jugadorJuan =new Jugador("Pablo", castillo, plazaCentral);
-        Jugador jugadorPablo =new Jugador("Pablo", castillo, plazaCentral);
+        Jugador jugadorJuan =new Jugador("Pablo", castillo);
+        Jugador jugadorPablo =new Jugador("Pablo", castillo);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -54,9 +50,8 @@ public class TurnoTest {
     @Test
     public void seCreanDosJugadoresYEsElTurnoDelUltimoAlPasarSigueElPrimero(){
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        PlazaCentral plazaCentral = new EdificiosFabrica().crearPlazaCentral();
-        Jugador jugadorJuan =new Jugador("Pablo", castillo, plazaCentral);
-        Jugador jugadorPablo =new Jugador("Pablo", castillo, plazaCentral);
+        Jugador jugadorJuan =new Jugador("Pablo", castillo);
+        Jugador jugadorPablo =new Jugador("Pablo", castillo);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
