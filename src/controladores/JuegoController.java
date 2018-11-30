@@ -2,10 +2,8 @@ package controladores;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -13,11 +11,12 @@ import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 import modelo.posicion.*;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class JuegoController {
+public class JuegoController implements Initializable {
 
     @FXML
     private Label nombreJugador1;
@@ -25,9 +24,8 @@ public class JuegoController {
     @FXML
     private Label nombreJugador2;
 
-    @FXML
-    private GridPane mapa;
 
+    @FXML
     private MapaController mapaController;
 
     @FXML
@@ -38,34 +36,40 @@ public class JuegoController {
 
     private Parent vistaAldeano;
 
-    public void init(String nombreJugador1, String nombreJugador2) throws IOException {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)  {
 
-       this.nombreJugador1.setText(nombreJugador1);
-       this.nombreJugador2.setText(nombreJugador2);
-
-       this.setCentro();
-       this.agregarAldeanoAlMapa();
+//        try{
+//            this.agregarAldeanoAlMapa();
+//        }
+//        catch (IOException e){
+//            throw new RuntimeException();
+//        }
     }
 
-    private void agregarAldeanoAlMapa() throws IOException {
 
-        Posicion posicion = new PosicionDeUnCasillero(2,2);
-        Aldeano aldeano = new Aldeano(posicion);
-
-        FXMLLoader aldeanoLoader = new FXMLLoader(getClass().getResource("/vistas/AldeanoView.fxml"));
-        Parent vistaAldeano = aldeanoLoader.load();
-
-        AldeanoController aldeanoController = aldeanoLoader.getController();
-        aldeanoController.init(this);
-
-        this.mapaController.agregarUnidadAlMapa(aldeano, vistaAldeano);
+    public void setNombreJugador1(String nombreJugador1){
+        this.nombreJugador1.setText(nombreJugador1);
     }
 
-    // Agrega el mapa
-    public void setCentro(){
-        this.mapaController = new MapaController();
-        mapaController.init(this.mapa);
+    public void setNombreJugador2(String nombreJugador2){
+        this.nombreJugador2.setText(nombreJugador2);
     }
+
+//    private void agregarAldeanoAlMapa() throws IOException {
+//
+//        Posicion posicion = new PosicionDeUnCasillero(4, 4);
+//        Aldeano aldeano = new Aldeano(posicion);
+//
+//        FXMLLoader aldeanoLoader = new FXMLLoader(getClass().getResource("/vistas/AldeanoView.fxml"));
+//        Parent vistaAldeano = aldeanoLoader.load();
+//
+//        AldeanoController aldeanoController = aldeanoLoader.getController();
+//        aldeanoController.init(this);
+//
+//        this.mapaController.agregarUnidadAlMapa(aldeano, vistaAldeano);
+//    }
+
 
     public void setBotonera(String text){
         this.botonera.setText("");
@@ -97,4 +101,7 @@ public class JuegoController {
         // AGREGO LOS BOTONES AL CONTENEDOR
         this.contenedorPrincipal.setCenter(contenedorBotones);
     }
+
+
+
 }

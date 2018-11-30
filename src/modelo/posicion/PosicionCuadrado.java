@@ -12,6 +12,11 @@ public class PosicionCuadrado extends Posicion {
 
 
     @Override
+    public Casillero getAbajoIzquierda() {
+        return this.getListaCasilleros().get(0);
+    }
+
+    @Override
     public Posicion modificarCoordenada(int i, int i1) {
         return new PosicionCuadrado(0,0,0,0);
     }

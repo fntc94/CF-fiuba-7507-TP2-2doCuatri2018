@@ -1,5 +1,7 @@
 package modelo.posicion;
 
+import modelo.edificios.Castillo;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +17,8 @@ public abstract class Posicion {
     public List<Casillero> getListaCasilleros(){
         return this.listaCasilleros;
     }
+
+    public abstract Casillero getAbajoIzquierda();
 
     public boolean seSuperponeCon(Posicion otraPosicion){
         List<Casillero> lista1 = this.getListaCasilleros();

@@ -29,17 +29,14 @@ public class InicioController {
 
     private Stage stage;
 
-    public void init(Stage stage){
+    public void setStage(Stage stage){
         this.stage = stage;
     }
 
     public void handleAceptarButtonClicked(MouseEvent mouseEvent) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
-        Parent root = loader.load();
-
-        JuegoController juegoController = loader.getController();
-        juegoController.init(nombreJugador1.getText(), nombreJugador2.getText());
+        FXMLLoader juegoView = new FXMLLoader(getClass().getResource("/vistas/JuegoView.fxml"));
+        Parent root = juegoView.load();
 
         this.stage.setScene(new Scene(root));
 
@@ -47,9 +44,5 @@ public class InicioController {
 
     public void handleCancelarButtonClicked(MouseEvent mouseEvent) {
         Platform.exit();
-    }
-
-    public void setImagenDeFondo(BackgroundImage imagenDeFondo){
-        this.layout.setBackground(new Background(imagenDeFondo));
     }
 }

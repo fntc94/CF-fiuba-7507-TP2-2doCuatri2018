@@ -1,0 +1,7 @@
+
+AnchorPane{
+    -fx-background-image: url("../imagenes/castilloRojo.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-color: red
+}

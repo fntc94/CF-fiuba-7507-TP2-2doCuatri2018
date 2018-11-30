@@ -12,8 +12,8 @@ public class Turno {
     private int cantidadDeParticipantes;
 
     public Turno(List<Jugador> listaDeParticipantes){
-        this.listaDeParticipantes = generarListaDeOrdenAleatorio(listaDeParticipantes);
-        jugadorActual = this.listaDeParticipantes.getFirst();
+        this.listaDeParticipantes = this.generarListaDeOrdenAleatorio(listaDeParticipantes);
+        this.jugadorActual = this.listaDeParticipantes.getFirst();
     }
 
     public Jugador devolverJugadorActual(){

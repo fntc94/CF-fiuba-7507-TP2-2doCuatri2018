@@ -7,27 +7,33 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controladores.InicioController">
 
-                    <top>
-                        <Label styleClass="nombreJuego" text="Age of Empires II"></Label>
-                    </top>
+    <top>
+        <Label styleClass="nombreJuego" text="Age of Empires II"></Label>
+    </top>
 
-                    <center>
-                        <GridPane styleClass="a" hgap="10" vgap="10" alignment="CENTER">
+    <center>
+        <GridPane styleClass="a" hgap="10" vgap="10" alignment="CENTER">
 
-                            <Label styleClass="labelNombreJugador" text="Nombre jugador 1" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                            <TextField styleClass="textFieldNombreJugador" fx:id="nombreJugador1" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label styleClass="labelNombreJugador" text="Nombre jugador 1" GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"/>
+            <TextField styleClass="textFieldNombreJugador" fx:id="nombreJugador1" GridPane.columnIndex="1"
+                       GridPane.rowIndex="0"/>
 
-                            <Label styleClass="labelNombreJugador" text="Nombre jugador 2" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-                            <TextField styleClass="textFieldNombreJugador" fx:id="nombreJugador2" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label styleClass="labelNombreJugador" text="Nombre jugador 2" GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"/>
+            <TextField styleClass="textFieldNombreJugador" fx:id="nombreJugador2" GridPane.columnIndex="1"
+                       GridPane.rowIndex="1"/>
 
-                            <Button fx:id="aceptarButton"  GridPane.columnIndex="0" GridPane.rowIndex="2" text="Iniciar partida"  defaultButton="true" onMouseClicked="#handleAceptarButtonClicked" />
-                            <Button GridPane.columnIndex="1" GridPane.rowIndex="2"  text="Salir del juego" cancelButton="true"  onMouseClicked="#handleCancelarButtonClicked"/>
+            <Button fx:id="aceptarButton" GridPane.columnIndex="0" GridPane.rowIndex="2" text="Iniciar partida"
+                    defaultButton="true" onMouseClicked="#handleAceptarButtonClicked"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Salir del juego" cancelButton="true"
+                    onMouseClicked="#handleCancelarButtonClicked"/>
 
-                        </GridPane>
-                    </center>
+        </GridPane>
+    </center>
 
     <stylesheets>
-        <URL value="@estilos/Inicio.css" />
+        <URL value="@estilos/Inicio.css"/>
     </stylesheets>
 
 </BorderPane>
