@@ -3,5 +3,5 @@ AnchorPane{
     -fx-background-image: url("../imagenes/aldeanoAzul.png");
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
-    -fx-background-color: red
+    -fx-background-color: red;
 }

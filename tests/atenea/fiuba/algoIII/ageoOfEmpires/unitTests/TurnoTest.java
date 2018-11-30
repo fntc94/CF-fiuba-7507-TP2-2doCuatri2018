@@ -13,8 +13,8 @@ public class TurnoTest {
     private Mapa mapa = new Mapa(20,30);
     @Test
     public void permaneceEnElTurnoDeUnJugadorHastaQuePase(){
-        Jugador jugadorJuan = new Jugador(mapa);
-        Jugador jugadorPablo = new Jugador(mapa);
+        Jugador jugadorJuan = new Jugador();
+        Jugador jugadorPablo = new Jugador();
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -29,8 +29,8 @@ public class TurnoTest {
 
     @Test
     public void alPasarDeTurnoCambiaDeJugador(){
-        Jugador jugadorJuan = new Jugador(mapa);
-        Jugador jugadorPablo = new Jugador(mapa);
+        Jugador jugadorJuan = new Jugador();
+        Jugador jugadorPablo = new Jugador();
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -46,8 +46,8 @@ public class TurnoTest {
 
     @Test
     public void seCreanDosJugadoresYEsElTurnoDelUltimoAlPasarSigueElPrimero(){
-        Jugador jugadorJuan = new Jugador(mapa);
-        Jugador jugadorPablo = new Jugador(mapa);
+        Jugador jugadorJuan = new Jugador();
+        Jugador jugadorPablo = new Jugador();
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);

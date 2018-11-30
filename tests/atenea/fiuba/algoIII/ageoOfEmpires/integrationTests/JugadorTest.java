@@ -11,7 +11,7 @@ public class JugadorTest {
     @Test (expected = OroInsuficienteException.class)
     public void crearUnJugadorGastarOroYQueNoSeaSuficienteTest() {
         Mapa mapa = new Mapa(20,30);
-        Jugador jugador = new Jugador(mapa);
+        Jugador jugador = new Jugador();
         jugador.pagarCosto(120);
     }
 }
