@@ -2,14 +2,16 @@ package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import modelo.IEdificioReparable;
 import modelo.edificios.IUnidadesPlazaCentralFabrica;
+import modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
+import modelo.excepciones.UnidadNoEsPropiaException;
 import modelo.unidades.Aldeano;
-import modelo.unidades.Aldeanos;
+import modelo.unidades.Plebe;
 import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-public class AldeanosTest {
+public class PlebeTest {
 
     private IUnidadesPlazaCentralFabrica unidadesPlazaCentralFabrica = new UnidadesFabrica();
 
@@ -18,7 +20,7 @@ public class AldeanosTest {
 
 
         // Arrange
-        Aldeanos aldeanos = new Aldeanos();
+        Plebe aldeanos = new Plebe();
         Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -36,62 +38,33 @@ public class AldeanosTest {
         Assert.assertEquals(oroEsperado, oroRecolectado);
     }
 
-//    @Test
-//    public void trabajar_DosAldeanosRecolectandoYUnoConstruyendo_Devuelve40(){
-//
-//
-//        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
-//        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
-//        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
-//        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
-//
-//        aldeanos.agregar(aldeano1);
-//        aldeanos.agregar(aldeano2);
-//        aldeanos.agregar(aldeano3);
-//
-//
-//        aldeano3.iniciarConstruccionDeCuartel();
-//        int oroEsperado = 40;
-//
-//        // Act
-//        int oroRecolectado = aldeanos.trabajar();
-//
-//        // Assert
-//        Assert.assertEquals(oroEsperado, oroRecolectado);
-//    }
+    @Test
+    public void siPlebeContieneUnAldeanoMuertoDebeDejarDeContenerloSePruebaTest(){
+        Plebe plebe = new Plebe();
+        Aldeano aldeano = Mockito.mock(Aldeano.class);
+        Mockito.when(aldeano.estaMuerto()).thenReturn(true);
+        Mockito.when(aldeano.trabajar()).thenReturn(20);
+        plebe.agregar(aldeano);
+        Assert.assertEquals(plebe.trabajar(),20);
+        plebe.borrarCadaveres();
+        Assert.assertEquals(plebe.trabajar(), 0);
+    }
 
-//    @Test
-//    public void trabajar_UnAldeanoRecolectandoYDosConstruyendo_Devuelve20(){
-//
-//
-//        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
-//        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
-//        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
-//        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
-//
-//        aldeanos.agregar(aldeano1);
-//        aldeanos.agregar(aldeano2);
-//        aldeanos.agregar(aldeano3);
-//
-//        aldeano2.iniciarConstruccionDeCuartel();
-//        aldeano3.iniciarConstruccionDePlazaCentral();
-//        int oroEsperado = 20;
-//
-//        // Act
-//        int oroRecolectado = aldeanos.trabajar();
-//
-//        // Assert
-//        Assert.assertEquals(oroEsperado, oroRecolectado);
-//    }
+
+    @Test(expected = UnidadNoEsPropiaException.class)
+    public void siSePreguntaAPlebeSiIncluyeAUnAldeanoQueNoLePerteneceDebeLanzarUnidadNoEsPropiaExceptionTest(){
+        Plebe plebe = new Plebe();
+        Aldeano aldeano = Mockito.mock(Aldeano.class);
+        plebe.incluyeA(aldeano);
+    }
+
 
     @Test
     public void trabajar_DosAldeanosRecolectandoYUnoReparando_Devuelve40(){
 
 
         // Arrange
-        Aldeanos aldeanos = new Aldeanos();
+        Plebe aldeanos = new Plebe();
         Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -117,7 +90,7 @@ public class AldeanosTest {
 
 
         // Arrange
-        Aldeanos aldeanos = new Aldeanos();
+        Plebe aldeanos = new Plebe();
         Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
         Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -140,12 +113,66 @@ public class AldeanosTest {
         Assert.assertEquals(oroEsperado, oroRecolectado);
     }
 
+
+
+    //    @Test
+//    public void trabajar_DosAldeanosRecolectandoYUnoConstruyendo_Devuelve40(){
+//
+//
+//        // Arrange
+//        Plebe aldeanos = new Plebe();
+//        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
+//        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
+//        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
+//
+//        aldeanos.agregar(aldeano1);
+//        aldeanos.agregar(aldeano2);
+//        aldeanos.agregar(aldeano3);
+//
+//
+//        aldeano3.iniciarConstruccionDeCuartel();
+//        int oroEsperado = 40;
+//
+//        // Act
+//        int oroRecolectado = aldeanos.trabajar();
+//
+//        // Assert
+//        Assert.assertEquals(oroEsperado, oroRecolectado);
+//    }
+
+//    @Test
+//    public void trabajar_UnAldeanoRecolectandoYDosConstruyendo_Devuelve20(){
+//
+//
+//        // Arrange
+//        Plebe aldeanos = new Plebe();
+//        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
+//        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
+//        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
+//
+//        aldeanos.agregar(aldeano1);
+//        aldeanos.agregar(aldeano2);
+//        aldeanos.agregar(aldeano3);
+//
+//        aldeano2.iniciarConstruccionDeCuartel();
+//        aldeano3.iniciarConstruccionDePlazaCentral();
+//        int oroEsperado = 20;
+//
+//        // Act
+//        int oroRecolectado = aldeanos.trabajar();
+//
+//        // Assert
+//        Assert.assertEquals(oroEsperado, oroRecolectado);
+//    }
+
+
+
 //    @Test
 //    public void trabajar_UnAldeanoRecolectandoOtroConstruyendoYOtroReparando_Devuelve20(){
 //
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -171,7 +198,7 @@ public class AldeanosTest {
 //    public void trabajar_TresAldeanosRecolectandoYUnoConstruyendo_AntesDeTerminarLaConstruccionDevuelve40(){
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
@@ -198,7 +225,7 @@ public class AldeanosTest {
 //
 //
 //        // Arrange
-//        Aldeanos aldeanos = new Aldeanos();
+//        Plebe aldeanos = new Plebe();
 //        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
 //        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();

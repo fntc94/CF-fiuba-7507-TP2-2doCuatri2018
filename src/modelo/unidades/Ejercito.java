@@ -24,11 +24,11 @@ public class Ejercito implements IPerteneciente {
         }
     }
 
-   /*
-    public void actualizarVidaDeUnidadesMilitares(){
-        for (UnidadMilitar unidadMilitar : this.unidadesEjercito) {
-            if (unidadMilitar.);
+    public void borrarCadaveres(){
+        for(int i=0; i < this.unidadesEjercito.size(); i++){
+            if (this.unidadesEjercito.get(i).estaMuerto()){
+                this.unidadesEjercito.remove(i);
+            }
         }
     }
-    */
 }

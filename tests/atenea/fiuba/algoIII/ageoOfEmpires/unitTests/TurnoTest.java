@@ -1,5 +1,8 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
+import modelo.edificios.Castillo;
+import modelo.edificios.EdificiosFabrica;
+import modelo.edificios.PlazaCentral;
 import modelo.juego.Turno;
 import modelo.juego.Jugador;
 import modelo.posicion.Mapa;
@@ -10,11 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TurnoTest {
-    private Mapa mapa = new Mapa(20,30);
+
     @Test
     public void permaneceEnElTurnoDeUnJugadorHastaQuePase(){
-        Jugador jugadorJuan = new Jugador(mapa);
-        Jugador jugadorPablo = new Jugador(mapa);
+        Castillo castillo = new EdificiosFabrica().crearCastillo();
+        PlazaCentral plazaCentral = new EdificiosFabrica().crearPlazaCentral();
+        Jugador jugadorJuan =new Jugador("Pablo", castillo, plazaCentral);
+        Jugador jugadorPablo =new Jugador("Pablo", castillo, plazaCentral);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -29,8 +34,10 @@ public class TurnoTest {
 
     @Test
     public void alPasarDeTurnoCambiaDeJugador(){
-        Jugador jugadorJuan = new Jugador(mapa);
-        Jugador jugadorPablo = new Jugador(mapa);
+        Castillo castillo = new EdificiosFabrica().crearCastillo();
+        PlazaCentral plazaCentral = new EdificiosFabrica().crearPlazaCentral();
+        Jugador jugadorJuan =new Jugador("Pablo", castillo, plazaCentral);
+        Jugador jugadorPablo =new Jugador("Pablo", castillo, plazaCentral);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -42,5 +49,24 @@ public class TurnoTest {
         Jugador jugadorActual2 = turno.devolverJugadorActual();
         Assert.assertNotEquals(jugadorActual1, jugadorActual2);
 
+    }
+
+    @Test
+    public void seCreanDosJugadoresYEsElTurnoDelUltimoAlPasarSigueElPrimero(){
+        Castillo castillo = new EdificiosFabrica().crearCastillo();
+        PlazaCentral plazaCentral = new EdificiosFabrica().crearPlazaCentral();
+        Jugador jugadorJuan =new Jugador("Pablo", castillo, plazaCentral);
+        Jugador jugadorPablo =new Jugador("Pablo", castillo, plazaCentral);
+
+        List<Jugador> listaDeParticipantes = new ArrayList<>();
+        listaDeParticipantes.add(jugadorJuan);
+        listaDeParticipantes.add((jugadorPablo));
+
+        Turno turno = new Turno(listaDeParticipantes);
+        Jugador jugadorActual1 = turno.devolverJugadorActual();
+        turno.cambiarDeTurno();
+        turno.cambiarDeTurno();
+        Jugador jugadorActual2 = turno.devolverJugadorActual();
+        Assert.assertEquals(jugadorActual1, jugadorActual2);
     }
 }

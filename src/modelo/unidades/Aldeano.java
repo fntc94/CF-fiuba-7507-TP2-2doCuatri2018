@@ -37,5 +37,4 @@ public class Aldeano extends Unidad {
         this.aldeanoState.trabajar();
         return this.oro;
     }
-
 }
