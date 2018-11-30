@@ -17,24 +17,13 @@ public class Jugador {
     private String nombre;
 
 
-    public Jugador(String nombre, Castillo castillo, PlazaCentral plazaCentral) {
+    public Jugador(String nombre, Castillo castillo) {
         this.plebe = new Plebe();
         this.construcciones = new Construcciones();
         this.ejercito = new Ejercito();
         this.nombre = nombre;
         this.castillo = castillo;
-        this.condicionesIniciales(plazaCentral);
-    }
-
-    private void condicionesIniciales(PlazaCentral plazaCentral) {
         this.bolsaDeOro = oroInicial;
-
-        int cantidad = 3;
-        for(int i = 0; i < cantidad; i++){
-            Aldeano aldeano = new UnidadesFabrica().crearAldeano();
-            this.plebe.agregar(aldeano);
-        }
-        this.construcciones.agregarEdificio(plazaCentral);
     }
 
     public void pagarCosto(int costo) {
@@ -46,7 +35,7 @@ public class Jugador {
         }
     }
 
-    public void ordenarRecolectarOro() {
+    public void trabajar() {
         int oroRecolectado = this.plebe.trabajar();
         this.bolsaDeOro = (this.bolsaDeOro + oroRecolectado);
     }
