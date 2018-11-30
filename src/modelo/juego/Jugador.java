@@ -30,30 +30,23 @@ public class Jugador {
 
     private void condicionesIniciales() {
         this.bolsaDeOro = oroInicial;
-        if(!colocarPosicionablesEnPosicionA()) {
-            colocarPosicionablesEnPosicionB();
+        //if(!colocarPosicionablesEnPosicionA()) {
+        //    colocarPosicionablesEnPosicionB();
         }
-    }
 
-    private boolean colocarPosicionablesEnPosicionA(){
-        // Creo los posicionables
-        Posicion posPlazaCentral = new PosicionCuadrado(8,8,9,7);
+    private void colocarPosicionablesEnEsquinaInferiorIzquierda(){
+        // plaza esta en arriba de castillo
+        Posicion posPlazaCentral = new PosicionCuadrado(0,6,1,5);
         PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
+        this.mapa.posicionar(plazaCentral);
 
-        try{
-            this.mapa.posicionar(plazaCentral);
-
-        }catch(NoPuedeColocar2IPosicionablesEnLaMismaPosicionException e){
-            return false;
-        }
-
-        // Cre posiciones y le asigno las posiciones a los edificios/aldeanos
-        Posicion posCastillo = new PosicionCuadrado(5,5,8,2);
+        // castillo en la esquina inferior izquierda
+        Posicion posCastillo = new PosicionCuadrado(0,3,3,0);
         Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
 
-        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,8,10);
-        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,10,8);
-        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,10,6);
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,0,7);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,1,7);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,2,7);
 
         Aldeano aldeano1 = new Aldeano(posAldeano1);
         Aldeano aldeano2 = new Aldeano(posAldeano2);
@@ -71,21 +64,21 @@ public class Jugador {
         this.plebe.agregar(aldeano1);
         this.plebe.agregar(aldeano2);
         this.plebe.agregar(aldeano3);
-
-        return true;
     }
 
-    private void colocarPosicionablesEnPosicionB(){
+    private void colocarPosicionablesEnEsquinaSuperiorDerecha(){
 
-        Posicion posPlazaCentral = new PosicionCuadrado(20,8,21,7);
+        // plaza esta debajo del castillo
+        Posicion posPlazaCentral = new PosicionCuadrado(27,15,28,14);
         PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
 
-        Posicion posCastillo = new PosicionCuadrado(20,5,23,2);
+        // castillo en la esquina superior derecha
+        Posicion posCastillo = new PosicionCuadrado(27,20,30,17);
         Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
 
-        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,20,10);
-        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,18,8);
-        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,17,7);
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(this.mapa,29,13);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(this.mapa,28,13);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(this.mapa,27,13);
 
         Aldeano aldeano1 = new Aldeano(posAldeano1);
         Aldeano aldeano2 = new Aldeano(posAldeano2);
@@ -105,7 +98,6 @@ public class Jugador {
         this.plebe.agregar(aldeano2);
         this.plebe.agregar(aldeano3);
     }
-
 
     public void pagarCosto(int costo) {
         if (this.bolsaDeOro >= costo) {
