@@ -36,13 +36,13 @@ public class MapaController implements Initializable {
         int anchoMapa = 30;
         Mapa mapa = new Mapa(altoMapa, anchoMapa);
 
-        PosicionCuadrado posicionCastillo = new PosicionCuadrado(1,1,3,3);
+        PosicionCuadrado posicionCastillo = new PosicionCuadrado(1,3,1,3);
         Castillo castillo = new Castillo(posicionCastillo, new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
 
         Posicion posicionAldeano = new PosicionDeUnCasillero(0,0);
         Aldeano aldeano = new Aldeano(posicionAldeano);
 
-//        mapa.posicionar(castillo);
+        mapa.posicionar(castillo);
         mapa.posicionar(aldeano);
 
         this.modeloMapa = mapa;

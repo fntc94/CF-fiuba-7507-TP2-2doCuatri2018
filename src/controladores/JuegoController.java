@@ -39,37 +39,7 @@ public class JuegoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)  {
 
-//        try{
-//            this.agregarAldeanoAlMapa();
-//        }
-//        catch (IOException e){
-//            throw new RuntimeException();
-//        }
     }
-
-
-    public void setNombreJugador1(String nombreJugador1){
-        this.nombreJugador1.setText(nombreJugador1);
-    }
-
-    public void setNombreJugador2(String nombreJugador2){
-        this.nombreJugador2.setText(nombreJugador2);
-    }
-
-//    private void agregarAldeanoAlMapa() throws IOException {
-//
-//        Posicion posicion = new PosicionDeUnCasillero(4, 4);
-//        Aldeano aldeano = new Aldeano(posicion);
-//
-//        FXMLLoader aldeanoLoader = new FXMLLoader(getClass().getResource("/vistas/AldeanoView.fxml"));
-//        Parent vistaAldeano = aldeanoLoader.load();
-//
-//        AldeanoController aldeanoController = aldeanoLoader.getController();
-//        aldeanoController.init(this);
-//
-//        this.mapaController.agregarUnidadAlMapa(aldeano, vistaAldeano);
-//    }
-
 
     public void setBotonera(String text){
         this.botonera.setText("");
