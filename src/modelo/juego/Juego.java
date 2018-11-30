@@ -18,15 +18,11 @@ public class Juego {
     public Juego(String nombreJugador1, String nombreJugador2){
         this.mapa = new Mapa(20,30);
 
-        Castillo castillo1 = colocarPosicionablesEnEsquinaInferiorIzquierda();
-        Castillo castillo2 = colocarPosicionablesEnEsquinaSuperiorDerecha();
-
-
-        this.jugador1 = new Jugador(nombreJugador1, castillo1);
-        this.jugador2 = new Jugador(nombreJugador2, castillo2);
+        colocarPosicionablesEnEsquinaInferiorIzquierda(nombreJugador1);
+        colocarPosicionablesEnEsquinaSuperiorDerecha(nombreJugador2);
     }
 
-    private Castillo colocarPosicionablesEnEsquinaInferiorIzquierda(){
+    private void colocarPosicionablesEnEsquinaInferiorIzquierda(String nombreJugador){
         // plaza esta en arriba de castillo
         Posicion posPlazaCentral = new PosicionCuadrado(0,6,1,5);
         PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
@@ -49,17 +45,15 @@ public class Juego {
         this.mapa.posicionar(aldeano2);
         this.mapa.posicionar(aldeano3);
 
-        //this.jugador1.agregarCastillo = castillo;
-        this.jugador1.agregar(plazaCentral);
+        this.jugador1 = new Jugador(nombreJugador, castillo);
 
+        this.jugador1.agregar(plazaCentral);
         this.jugador1.agregar(aldeano1);
         this.jugador1.agregar(aldeano2);
         this.jugador1.agregar(aldeano3);
-
-        return castillo;
     }
 
-    private Castillo colocarPosicionablesEnEsquinaSuperiorDerecha(){
+    private void colocarPosicionablesEnEsquinaSuperiorDerecha(String nombreJugador){
 
         // plaza esta debajo del castillo
         Posicion posPlazaCentral = new PosicionCuadrado(27,15,28,14);
@@ -83,13 +77,11 @@ public class Juego {
         this.mapa.posicionar(aldeano2);
         this.mapa.posicionar(aldeano3);
 
-        //this.castillo = castillo;
-        this.jugador2.agregar(plazaCentral);
+        this.jugador2 = new Jugador(nombreJugador, castillo);
 
+        this.jugador2.agregar(plazaCentral);
         this.jugador2.agregar(aldeano1);
         this.jugador2.agregar(aldeano2);
         this.jugador2.agregar(aldeano3);
-
-        return castillo;
     }
 }
