@@ -15,7 +15,7 @@ public class TurnoTest {
     @Test
     public void permaneceEnElTurnoDeUnJugadorHastaQuePase(){
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugadorJuan =new Jugador("Pablo", castillo);
+        Jugador jugadorJuan =new Jugador("Juan", castillo);
         Jugador jugadorPablo =new Jugador("Pablo", castillo);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
@@ -32,8 +32,8 @@ public class TurnoTest {
     @Test
     public void alPasarDeTurnoCambiaDeJugador(){
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugadorJuan =new Jugador("Pablo", castillo);
-        Jugador jugadorPablo =new Jugador("Pablo", castillo);
+        Jugador jugadorJuan = new Jugador("Juan", castillo);
+        Jugador jugadorPablo = new Jugador("Pablo", castillo);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();
         listaDeParticipantes.add(jugadorJuan);
@@ -50,7 +50,7 @@ public class TurnoTest {
     @Test
     public void seCreanDosJugadoresYEsElTurnoDelUltimoAlPasarSigueElPrimero(){
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugadorJuan =new Jugador("Pablo", castillo);
+        Jugador jugadorJuan =new Jugador("Juan", castillo);
         Jugador jugadorPablo =new Jugador("Pablo", castillo);
 
         List<Jugador> listaDeParticipantes = new ArrayList<>();

@@ -10,16 +10,23 @@ import modelo.posicion.PosicionDeUnCasillero;
 import modelo.unidades.Aldeano;
 import modelo.unidades.UnidadesFabrica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Juego {
     private Mapa mapa;
     private Jugador jugador1;
     private Jugador jugador2;
+    private Turno turno;
 
     public Juego(String nombreJugador1, String nombreJugador2){
         this.mapa = new Mapa(20,30);
-
         colocarPosicionablesEnEsquinaInferiorIzquierda(nombreJugador1);
         colocarPosicionablesEnEsquinaSuperiorDerecha(nombreJugador2);
+        List<Jugador> jugadores = new ArrayList<>();
+        jugadores.add(jugador1);
+        jugadores.add(jugador2);
+        this.turno = new Turno(jugadores);
     }
 
     private void colocarPosicionablesEnEsquinaInferiorIzquierda(String nombreJugador){
@@ -83,5 +90,11 @@ public class Juego {
         this.jugador2.agregar(aldeano1);
         this.jugador2.agregar(aldeano2);
         this.jugador2.agregar(aldeano3);
+    }
+
+    public void hayGanador()
+    {
+
+
     }
 }

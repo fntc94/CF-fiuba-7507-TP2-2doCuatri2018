@@ -1,9 +1,11 @@
 package modelo.juego;
 
 import modelo.ListaCircular;
+import modelo.excepciones.UltimoHombreEnPieException;
 
 import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class Turno {
 
@@ -12,7 +14,7 @@ public class Turno {
     private int cantidadDeParticipantes;
 
     public Turno(List<Jugador> listaDeParticipantes){
-        this.listaDeParticipantes = this.generarListaDeOrdenAleatorio(listaDeParticipantes);
+        this.generarListaDeOrdenAleatorio(listaDeParticipantes);
         this.jugadorActual = this.listaDeParticipantes.getFirst();
     }
 
@@ -21,11 +23,17 @@ public class Turno {
     }
 
     public void cambiarDeTurno(){
-        this.jugadorActual = this.listaDeParticipantes.getSiguiente();
+        this.removerJugadoresDerrotados();
+        if(cantidadDeParticipantes > 1){
+            this.jugadorActual = this.listaDeParticipantes.getSiguiente();
+        }
+        else {
+            throw new UltimoHombreEnPieException();
+        }
     }
 
 
-    private ListaCircular<Jugador> generarListaDeOrdenAleatorio(List<Jugador> listaOriginal) {
+    private void generarListaDeOrdenAleatorio(List<Jugador> listaOriginal) {
         this.cantidadDeParticipantes = listaOriginal.size();
         ListaCircular listaAleatoria = new ListaCircular<>();
         while (listaAleatoria.size() < listaOriginal.size()) {
@@ -35,6 +43,15 @@ public class Turno {
                 listaAleatoria.addLast(jugador);
             }
         }
-        return listaAleatoria;
+       this.listaDeParticipantes = listaAleatoria;
+    }
+
+    private void removerJugadoresDerrotados(){
+        for(int i = 0; i < this.listaDeParticipantes.size(); i++){
+            if(this.listaDeParticipantes.get(i).castilloDestruido()){
+                this.listaDeParticipantes.remove(i);
+                this.cantidadDeParticipantes--;
+            }
+        }
     }
 }
