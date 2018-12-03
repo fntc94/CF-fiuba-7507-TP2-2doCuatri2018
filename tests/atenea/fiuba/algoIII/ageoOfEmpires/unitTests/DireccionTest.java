@@ -21,7 +21,7 @@ public class DireccionTest {
     public void testDireccionHaciaArribaIncrementaCoordenadaY(){
         IDireccion arriba = new Arriba();
         Posicion pos = obtenerPosicion();
-        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,5,6);
+        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,5,4);
 
         Posicion posDesplazada = arriba.desplazarPos(pos);
 
@@ -32,7 +32,7 @@ public class DireccionTest {
     public void testDireccionHaciaAbajoDecrementaCoordenadaY(){
         IDireccion arriba = new Abajo();
         Posicion pos = obtenerPosicion();
-        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,5,4);
+        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,5,6);
 
         Posicion posDesplazada = arriba.desplazarPos(pos);
 
@@ -65,7 +65,7 @@ public class DireccionTest {
     public void testDireciconArribaDerechaIncrementaXeY(){
         IDireccion arriba = new DerechaArriba();
         Posicion pos = obtenerPosicion();
-        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,6,6);
+        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,6,4);
 
         Posicion posDesplazada = arriba.desplazarPos(pos);
 
@@ -76,7 +76,7 @@ public class DireccionTest {
     public void testDireccionArribaIzquierdaDecrementaXeIncrementaY(){
         IDireccion arriba = new IzquierdaArriba();
         Posicion pos = obtenerPosicion();
-        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,4,6);
+        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,4,4);
 
         Posicion posDesplazada = arriba.desplazarPos(pos);
 
@@ -87,7 +87,7 @@ public class DireccionTest {
     public void testDireccionAbajoDerechaIncrementaXyDecrementaY(){
         IDireccion arriba = new DerechaAbajo();
         Posicion pos = obtenerPosicion();
-        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,6,4);
+        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,6,6);
 
         Posicion posDesplazada = arriba.desplazarPos(pos);
 
@@ -98,7 +98,7 @@ public class DireccionTest {
     public void testDireccionAbajoIzquierdaDecrementaXeY(){
         IDireccion arriba = new IzquierdaAbajo();
         Posicion pos = obtenerPosicion();
-        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,4,4);
+        Posicion pos_esperada = new PosicionDeUnCasillero(mapa,4,6);
 
         Posicion posDesplazada = arriba.desplazarPos(pos);
 
