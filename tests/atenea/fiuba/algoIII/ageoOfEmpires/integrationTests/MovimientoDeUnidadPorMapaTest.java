@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
 
+
 public class MovimientoDeUnidadPorMapaTest {
 
     private Mapa mapa = new Mapa(20,30);

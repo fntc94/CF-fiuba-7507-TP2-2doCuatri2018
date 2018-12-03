@@ -1,6 +1,5 @@
 package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
-import junit.framework.Assert;
 import modelo.posicion.Casillero;
 import modelo.posicion.Limite;
 import modelo.posicion.Posicion;
@@ -8,6 +7,8 @@ import modelo.posicion.PosicionCuadrado;
 import org.junit.Test;
 
 import java.util.List;
+
+import static junit.framework.TestCase.*;
 
 public class PosicionCuadradaTest {
 
@@ -22,7 +23,7 @@ public class PosicionCuadradaTest {
         Casillero inferiorIzquierdoObtenido = posicion.getAbajoIzquierda();
 
         // Assert
-        Assert.assertEquals(inferiorIzquieroEsperado, inferiorIzquierdoObtenido);
+        assertEquals(inferiorIzquieroEsperado, inferiorIzquierdoObtenido);
     }
 
     @Test
@@ -37,19 +38,19 @@ public class PosicionCuadradaTest {
 
         // Act
 
-        Assert.assertTrue(casilleros.contains(new Casillero(0,0)));
-        Assert.assertTrue(casilleros.contains(new Casillero(0,1)));
-        Assert.assertTrue(casilleros.contains(new Casillero(0,2)));
+        assertTrue(casilleros.contains(new Casillero(0,0)));
+        assertTrue(casilleros.contains(new Casillero(0,1)));
+        assertTrue(casilleros.contains(new Casillero(0,2)));
 
-        Assert.assertTrue(casilleros.contains(new Casillero(1,0)));
-        Assert.assertTrue(casilleros.contains(new Casillero(1,1)));
-        Assert.assertTrue(casilleros.contains(new Casillero(1,2)));
+        assertTrue(casilleros.contains(new Casillero(1,0)));
+        assertTrue(casilleros.contains(new Casillero(1,1)));
+        assertTrue(casilleros.contains(new Casillero(1,2)));
 
-        Assert.assertTrue(casilleros.contains(new Casillero(2,0)));
-        Assert.assertTrue(casilleros.contains(new Casillero(2,1)));
-        Assert.assertTrue(casilleros.contains(new Casillero(2,2)));
+        assertTrue(casilleros.contains(new Casillero(2,0)));
+        assertTrue(casilleros.contains(new Casillero(2,1)));
+        assertTrue(casilleros.contains(new Casillero(2,2)));
 
-        Assert.assertFalse(casilleros.contains(new Casillero(3,3)));
+        assertFalse(casilleros.contains(new Casillero(3,3)));
     }
 
     @Test
@@ -63,19 +64,19 @@ public class PosicionCuadradaTest {
         List<Casillero> casilleros = posicion.getListaCasilleros();
 
         // Act
-        Assert.assertTrue(casilleros.contains(new Casillero(2,0)));
-        Assert.assertTrue(casilleros.contains(new Casillero(2,1)));
-        Assert.assertTrue(casilleros.contains(new Casillero(2,2)));
+        assertTrue(casilleros.contains(new Casillero(2,0)));
+        assertTrue(casilleros.contains(new Casillero(2,1)));
+        assertTrue(casilleros.contains(new Casillero(2,2)));
 
-        Assert.assertTrue(casilleros.contains(new Casillero(3,0)));
-        Assert.assertTrue(casilleros.contains(new Casillero(3,1)));
-        Assert.assertTrue(casilleros.contains(new Casillero(3,2)));
+        assertTrue(casilleros.contains(new Casillero(3,0)));
+        assertTrue(casilleros.contains(new Casillero(3,1)));
+        assertTrue(casilleros.contains(new Casillero(3,2)));
 
-        Assert.assertTrue(casilleros.contains(new Casillero(4,0)));
-        Assert.assertTrue(casilleros.contains(new Casillero(4,1)));
-        Assert.assertTrue(casilleros.contains(new Casillero(4,2)));
+        assertTrue(casilleros.contains(new Casillero(4,0)));
+        assertTrue(casilleros.contains(new Casillero(4,1)));
+        assertTrue(casilleros.contains(new Casillero(4,2)));
 
-        Assert.assertFalse(casilleros.contains(new Casillero(5,5)));
+        assertFalse(casilleros.contains(new Casillero(5,5)));
     }
 
 //    @Test
