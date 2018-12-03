@@ -234,31 +234,32 @@ public class MovimientoDeUnidadPorMapaTest {
         Posicion posEspadachin = new PosicionDeUnCasillero(mapa,5,5);
 
         Unidad espadachin = new Espadachin(posEspadachin, new EstrategiaAtaqueEspadachin());
+        Direccion direccion = new Direccion();
 
         mapa.posicionar(espadachin);
 
-        espadachin.mover(new Arriba());
+        espadachin.mover(direccion.arriba());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,4)));
 
-        espadachin.mover(new Derecha());
+        espadachin.mover(direccion.derecha());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,6,4)));
 
-        espadachin.mover(new Abajo());
+        espadachin.mover(direccion.abajo());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,6,5)));
 
-        espadachin.mover(new Izquierda());
+        espadachin.mover(direccion.izquierda());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,5)));
 
-        espadachin.mover(new DerechaArriba());
+        espadachin.mover(direccion.derechaArriba());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,6,4)));
 
-        espadachin.mover(new IzquierdaArriba());
+        espadachin.mover(direccion.izquierdaArriba());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,3)));
 
-        espadachin.mover(new IzquierdaAbajo());
+        espadachin.mover(direccion.izquierdaAbajo());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,4,4)));
 
-        espadachin.mover(new DerechaAbajo());
+        espadachin.mover(direccion.derechaAbajo());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,5)));
     }
 
