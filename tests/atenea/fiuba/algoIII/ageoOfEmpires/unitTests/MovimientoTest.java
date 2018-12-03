@@ -23,18 +23,8 @@ public class MovimientoTest {
     public void testMovimientoHaciaArribaCorrePosicionHaciaArriba(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Arriba());
-
-        Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
-
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,5,6)));
-    }
-
-    @Test
-    public void testMovimientoHaciaAbajoCorrePosicionHaciaAbajo(){
-        Posicion pos = obtenerPosicion();
-        Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Abajo());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.arriba());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -42,10 +32,23 @@ public class MovimientoTest {
     }
 
     @Test
+    public void testMovimientoHaciaAbajoCorrePosicionHaciaAbajo(){
+        Posicion pos = obtenerPosicion();
+        Movimiento movimiento = new Movimiento();
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.abajo());
+
+        Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
+
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,5,6)));
+    }
+
+    @Test
     public void testMovimientoHaciaDerechaCorrePosicionHaciaDerecha(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Derecha());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.derecha());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -56,7 +59,8 @@ public class MovimientoTest {
     public void testMovimientoHaciaIzquierdaCorrePosicionHaciaIzquierda(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Izquierda());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.izquierda());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -67,29 +71,8 @@ public class MovimientoTest {
     public void testMovimientoHaciaArribaDerCorrePosHaciaEsquinaSupDerecha(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new DerechaArriba());
-
-        Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
-
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,6,6)));
-    }
-
-    @Test
-    public void testMovimientoHaciaArribaIzqCorrePosHaciaEsquinaSupIzquierda(){
-        Posicion pos = obtenerPosicion();
-        Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new IzquierdaArriba());
-
-        Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
-
-        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,4,6)));
-    }
-
-    @Test
-    public void testMovimientoHaciaAbajoDerCorrePosHaciaEsquinaInfDerecha(){
-        Posicion pos = obtenerPosicion();
-        Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new DerechaAbajo());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.derechaArriba());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -97,14 +80,39 @@ public class MovimientoTest {
     }
 
     @Test
-    public void testMovimientoHaciaAbajoIzqCorrePosHaciaEsquinaInfIzquierda(){
+    public void testMovimientoHaciaArribaIzqCorrePosHaciaEsquinaSupIzquierda(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new IzquierdaAbajo());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.izquierdaArriba());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
         assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,4,4)));
+    }
+
+    @Test
+    public void testMovimientoHaciaAbajoDerCorrePosHaciaEsquinaInfDerecha(){
+        Posicion pos = obtenerPosicion();
+        Movimiento movimiento = new Movimiento();
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.derechaAbajo());
+
+        Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
+
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,6,6)));
+    }
+
+    @Test
+    public void testMovimientoHaciaAbajoIzqCorrePosHaciaEsquinaInfIzquierda(){
+        Posicion pos = obtenerPosicion();
+        Movimiento movimiento = new Movimiento();
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.izquierdaAbajo());
+
+        Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
+
+        assertEquals(true, pos_incrementada.seSuperponeCon(new PosicionDeUnCasillero(mapa,4,6)));
     }
 
     @Test
@@ -114,7 +122,8 @@ public class MovimientoTest {
         Posicion pos = new PosicionDeUnCasillero(mapa,30,20);
 
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Izquierda());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.izquierda());
 
         Posicion pos_desplazada = movimiento.calcularPosSiguiente(pos);
 
@@ -127,7 +136,8 @@ public class MovimientoTest {
         Posicion pos = new PosicionDeUnCasillero(mapa,20,30);
 
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Derecha());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.derecha());
 
         Posicion pos_desplazada = movimiento.calcularPosSiguiente(pos);
 
@@ -140,7 +150,8 @@ public class MovimientoTest {
         Posicion pos = new PosicionDeUnCasillero(mapa,0,0);
 
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new Izquierda());
+        Direccion direccion = new Direccion();
+        movimiento.hacia(direccion.izquierda());
 
         Posicion pos_desplazada = movimiento.calcularPosSiguiente(pos);
 
