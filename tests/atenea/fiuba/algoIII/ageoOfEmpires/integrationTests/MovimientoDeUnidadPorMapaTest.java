@@ -176,17 +176,17 @@ public class MovimientoDeUnidadPorMapaTest {
         assertEquals(true, arquero.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,5)));
 
         //Me muevo 3 veces y cambio de posicion
-        arquero.mover(new AbajoIzquierda());
-        arquero.mover(new AbajoIzquierda());
-        arquero.mover(new AbajoIzquierda());
+        arquero.mover(new IzquierdaAbajo());
+        arquero.mover(new IzquierdaAbajo());
+        arquero.mover(new IzquierdaAbajo());
 
         // Ya no estoy en la posicion inicial, ahora estoy en (2,2)
         assertEquals(false, arquero.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,5)));
         assertEquals(true, arquero.estaEnPosicion(new PosicionDeUnCasillero(mapa,2,2)));
 
         // Me muevo 2 veces mas y estoy en la esquina
-        arquero.mover(new AbajoIzquierda());
-        arquero.mover(new AbajoIzquierda());
+        arquero.mover(new IzquierdaAbajo());
+        arquero.mover(new IzquierdaAbajo());
 
         assertEquals(true, arquero.estaEnPosicion(posEsquina));
     }
@@ -242,16 +242,16 @@ public class MovimientoDeUnidadPorMapaTest {
         espadachin.mover(new Izquierda());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,5)));
 
-        espadachin.mover(new ArribaDerecha());
+        espadachin.mover(new DerechaArriba());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,6,6)));
 
-        espadachin.mover(new ArribaIzquierda());
+        espadachin.mover(new IzquierdaArriba());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,7)));
 
-        espadachin.mover(new AbajoIzquierda());
+        espadachin.mover(new IzquierdaAbajo());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,4,6)));
 
-        espadachin.mover(new AbajoDerecha());
+        espadachin.mover(new DerechaAbajo());
         assertEquals(true, espadachin.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,5)));
     }
 
@@ -323,10 +323,10 @@ public class MovimientoDeUnidadPorMapaTest {
         aldeano.mover(new Derecha());
         aldeano.mover(new Arriba());
         aldeano.mover(new Abajo());
-        aldeano.mover(new ArribaIzquierda());
-        aldeano.mover(new ArribaDerecha());
-        aldeano.mover(new AbajoIzquierda());
-        aldeano.mover(new AbajoDerecha());
+        aldeano.mover(new IzquierdaArriba());
+        aldeano.mover(new DerechaArriba());
+        aldeano.mover(new IzquierdaAbajo());
+        aldeano.mover(new DerechaAbajo());
 
         assertEquals(true, aldeano.estaEnPosicion(new PosicionDeUnCasillero(mapa,5,0)));
 

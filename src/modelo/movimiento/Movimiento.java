@@ -12,4 +12,5 @@ public class Movimiento {
     public Posicion calcularPosSiguiente(Posicion pos) {
         return  this.direccion.desplazarPos(pos);
     }
+
 }

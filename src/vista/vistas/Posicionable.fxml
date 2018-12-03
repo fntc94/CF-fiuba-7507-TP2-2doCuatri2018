@@ -7,12 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml">
+
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="vista.controladores.PosicionableController"
+            onMouseClicked="#handleClick">
 
     <stylesheets>
-        <URL value="@estilos/PlazaCentral.css" />
+        <URL value="@../css/Posicionable.css" />
     </stylesheets>
-
 
 </AnchorPane>

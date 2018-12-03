@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<fx:root type="BorderPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+
+    <top>
+        <fx:include source="Menu.fxml"/>
+    </top>
+
+    <bottom>
+        <GridPane fx:id="bottom">
+            <Label>BOTONERA</Label>
+        </GridPane>
+    </bottom>
+
+    <stylesheets>
+        <URL value="@/vista/css/Juego.css"/>
+    </stylesheets>
+
+</fx:root>

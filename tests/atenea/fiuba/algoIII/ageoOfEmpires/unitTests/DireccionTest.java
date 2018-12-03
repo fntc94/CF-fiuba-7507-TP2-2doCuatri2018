@@ -63,7 +63,7 @@ public class DireccionTest {
 
     @Test
     public void testDireciconArribaDerechaIncrementaXeY(){
-        IDireccion arriba = new ArribaDerecha();
+        IDireccion arriba = new DerechaArriba();
         Posicion pos = obtenerPosicion();
         Posicion pos_esperada = new PosicionDeUnCasillero(mapa,6,6);
 
@@ -74,7 +74,7 @@ public class DireccionTest {
 
     @Test
     public void testDireccionArribaIzquierdaDecrementaXeIncrementaY(){
-        IDireccion arriba = new ArribaIzquierda();
+        IDireccion arriba = new IzquierdaArriba();
         Posicion pos = obtenerPosicion();
         Posicion pos_esperada = new PosicionDeUnCasillero(mapa,4,6);
 
@@ -85,7 +85,7 @@ public class DireccionTest {
 
     @Test
     public void testDireccionAbajoDerechaIncrementaXyDecrementaY(){
-        IDireccion arriba = new AbajoDerecha();
+        IDireccion arriba = new DerechaAbajo();
         Posicion pos = obtenerPosicion();
         Posicion pos_esperada = new PosicionDeUnCasillero(mapa,6,4);
 
@@ -96,7 +96,7 @@ public class DireccionTest {
 
     @Test
     public void testDireccionAbajoIzquierdaDecrementaXeY(){
-        IDireccion arriba = new AbajoIzquierda();
+        IDireccion arriba = new IzquierdaAbajo();
         Posicion pos = obtenerPosicion();
         Posicion pos_esperada = new PosicionDeUnCasillero(mapa,4,4);
 

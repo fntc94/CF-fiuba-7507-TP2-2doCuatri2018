@@ -67,7 +67,7 @@ public class MovimientoTest {
     public void testMovimientoHaciaArribaDerCorrePosHaciaEsquinaSupDerecha(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new ArribaDerecha());
+        movimiento.hacia(new DerechaArriba());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -78,7 +78,7 @@ public class MovimientoTest {
     public void testMovimientoHaciaArribaIzqCorrePosHaciaEsquinaSupIzquierda(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new ArribaIzquierda());
+        movimiento.hacia(new IzquierdaArriba());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -89,7 +89,7 @@ public class MovimientoTest {
     public void testMovimientoHaciaAbajoDerCorrePosHaciaEsquinaInfDerecha(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new AbajoDerecha());
+        movimiento.hacia(new DerechaAbajo());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
@@ -100,7 +100,7 @@ public class MovimientoTest {
     public void testMovimientoHaciaAbajoIzqCorrePosHaciaEsquinaInfIzquierda(){
         Posicion pos = obtenerPosicion();
         Movimiento movimiento = new Movimiento();
-        movimiento.hacia(new AbajoIzquierda());
+        movimiento.hacia(new IzquierdaAbajo());
 
         Posicion pos_incrementada = movimiento.calcularPosSiguiente(pos);
 
