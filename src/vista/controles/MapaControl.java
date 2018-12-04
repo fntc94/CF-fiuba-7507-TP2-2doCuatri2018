@@ -168,13 +168,13 @@ public class MapaControl extends ScrollPane {
     private String obtenerColorPara(IPosicionable posicionable) {
 
 
-        if (this.jugador1.esMio(posicionable)) {
+       /* if (this.jugador1.esMio(posicionable)) {
             return "Rojo";
         }
 
         if (this.jugador2.esMio(posicionable)) {
             return "Azul";
-        }
+        }*/
 
         throw new RuntimeException();
     }

@@ -114,13 +114,13 @@ public class MiniMapaController implements Initializable {
     private String obtenerColorPara(IPosicionable posicionable) {
 
 
-        if (this.jugador1.esMio(posicionable)) {
+       /* if (this.jugador1.esMio(posicionable)) {
             return "red";
         }
 
         if (this.jugador2.esMio(posicionable)) {
             return "blue";
-        }
+        }*/
 
         throw new RuntimeException();
     }

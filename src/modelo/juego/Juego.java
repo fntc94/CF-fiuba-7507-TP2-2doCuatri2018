@@ -45,7 +45,7 @@ public class Juego {
         this.mapa.posicionar(aldeano2);
         this.mapa.posicionar(aldeano3);
 
-        this.jugador1 = new Jugador(nombreJugador, castillo);
+        this.jugador1 = new Jugador(nombreJugador, castillo, "Red");
 
         this.jugador1.agregar(plazaCentral);
         this.jugador1.agregar(aldeano1);
@@ -82,7 +82,7 @@ public class Juego {
         this.mapa.posicionar(aldeano2);
         this.mapa.posicionar(aldeano3);
 
-        this.jugador2 = new Jugador(nombreJugador, castillo);
+        this.jugador2 = new Jugador(nombreJugador, castillo, "Blue");
 
         this.jugador2.agregar(plazaCentral);
         this.jugador2.agregar(aldeano1);

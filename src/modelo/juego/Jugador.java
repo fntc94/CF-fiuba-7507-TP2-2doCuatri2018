@@ -18,19 +18,16 @@ public class Jugador {
     private int bolsaDeOro;
     private static final int oroInicial = 100;
     private String nombre;
+    private String color;
 
-    private List<IPosicionable> posicionables = new ArrayList<>();
-
-
-    public Jugador(String nombre, Castillo castillo) {
+    public Jugador(String nombre, Castillo castillo, String color) {
         this.plebe = new Plebe();
         this.construcciones = new Construcciones();
         this.ejercito = new Ejercito();
         this.nombre = nombre;
+        this.color = color;
         this.castillo = castillo;
         this.bolsaDeOro = oroInicial;
-
-        this.posicionables.add(castillo);
     }
 
     public void pagarCosto(int costo) {
@@ -49,17 +46,14 @@ public class Jugador {
 
     public void agregar(Edificio edificio) {
         this.construcciones.agregarEdificio(edificio);
-        this.posicionables.add(edificio);
     }
 
     public void agregar(Aldeano aldeano){
         this.plebe.agregar(aldeano);
-        this.posicionables.add(aldeano);
     }
 
     public void agregar(UnidadMilitar unidadMilitar){
         this.ejercito.agregarUnidad(unidadMilitar);
-        this.posicionables.add(unidadMilitar);
     }
 
     public void esMio(Aldeano aldeano){
@@ -74,11 +68,6 @@ public class Jugador {
         this.construcciones.incluyeA(edificio);
     }
 
-    public boolean esMio(IPosicionable posicionable){
-        Boolean esMio =  this.posicionables.contains(posicionable);
-        return esMio;
-    }
-
     public void recolectorDeCadaveres(){
         this.plebe.borrarCadaveres();
         this.ejercito.borrarCadaveres();
@@ -87,5 +76,9 @@ public class Jugador {
 
     public boolean castilloDestruido(){
         return !(this.castillo.sigueEnPie());
+    }
+
+    public String obtenerColor(){
+        return this.color;
     }
 }
