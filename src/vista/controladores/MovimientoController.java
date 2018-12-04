@@ -64,4 +64,5 @@ public class MovimientoController {
         this.unidad.mover(Direccion.derechaAbajo());
         this.mapa.actualizar(this.unidad);
     }
+
 }

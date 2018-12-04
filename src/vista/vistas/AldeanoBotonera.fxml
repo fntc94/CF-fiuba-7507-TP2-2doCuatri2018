@@ -10,7 +10,7 @@
 
 
     <GridPane>
-        <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml"/>
+        <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
     </GridPane>
 
 </fx:root>

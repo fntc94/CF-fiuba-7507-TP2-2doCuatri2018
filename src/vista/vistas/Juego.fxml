@@ -12,7 +12,18 @@
 
     <bottom>
         <GridPane fx:id="bottom">
-            <Label>BOTONERA</Label>
+
+            <columnConstraints>
+                <ColumnConstraints percentWidth="20.0"/>
+                <ColumnConstraints percentWidth="80.0"/>
+            </columnConstraints>
+
+            <fx:include fx:id="miniMapa" source="MiniMapa.fxml" GridPane.columnIndex="0"/>
+            <GridPane fx:id="botonera" GridPane.columnIndex="1">
+                <Label>BOTONERA</Label>
+            </GridPane>
+
+
         </GridPane>
     </bottom>
 

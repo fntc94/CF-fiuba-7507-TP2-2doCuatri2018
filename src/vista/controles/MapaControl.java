@@ -22,6 +22,7 @@ import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 import vista.controladores.AldeanoController;
+import vista.controladores.MiniMapaController;
 import vista.controladores.PosicionableController;
 
 import java.io.IOException;
@@ -36,19 +37,21 @@ public class MapaControl extends ScrollPane {
     private Mapa mapa;
     private Jugador jugador1;
     private Jugador jugador2;
+    private MiniMapaController miniMapaController;
 
     private Map<IPosicionable, Node> cosas = new HashMap();
 
     @FXML
     private GridPane gridPane;
 
-    public MapaControl(JuegoControl juegoControl, Mapa mapa, Jugador jugador1, Jugador jugador2) {
+    public MapaControl(JuegoControl juegoControl, Mapa mapa, Jugador jugador1, Jugador jugador2, MiniMapaController miniMapaController) {
 
         this.juegoControl = juegoControl;
 
         this.mapa = mapa;
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
+        this.miniMapaController = miniMapaController;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Mapa.fxml"));
         loader.setRoot(this);
@@ -86,6 +89,8 @@ public class MapaControl extends ScrollPane {
         catch (IOException e){
             throw new RuntimeException(e);
         }
+
+        this.miniMapaController.actualizar(unidad);
 
     }
 
