@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import modelo.unidades.Aldeano;
+import vista.controladores.ConstruccionController;
 import vista.controladores.MovimientoController;
 import java.io.IOException;
 
@@ -26,6 +27,8 @@ public class AldeanoBotonera extends GridPane {
 
             if(type.equals(MovimientoController.class)){
                 return new MovimientoController(aldeano, mapa);
+            }else if(type.equals(ConstruccionController.class)){
+                return new ConstruccionController(mapa);
             }
 
             else {
