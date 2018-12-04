@@ -3,3 +3,14 @@ AnchorPane{
     -fx-background-repeat: stretch;
     -fx-background-position: center center;
 }
+
+
+AnchorPane:hover{
+    -fx-border-width: 2;
+    -fx-border-color: black;
+}
+
+AnchorPane:pressed{
+    -fx-border-width: 2;
+    -fx-border-color: green;
+}

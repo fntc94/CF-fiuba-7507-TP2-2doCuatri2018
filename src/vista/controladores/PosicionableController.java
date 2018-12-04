@@ -1,5 +1,6 @@
 package vista.controladores;
 
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +16,7 @@ public class PosicionableController {
     private IPosicionable posicionable;
     private JuegoControl juegoControl;
     private MapaControl mapaControl;
+    private Parent scene;
 
     public PosicionableController(MapaControl mapaControl){
         this.mapaControl = mapaControl;
@@ -36,6 +38,7 @@ public class PosicionableController {
         else{
             new Alert(Alert.AlertType.CONFIRMATION, className).show();
         }
+
 
     }
 

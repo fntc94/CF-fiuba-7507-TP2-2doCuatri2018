@@ -112,7 +112,7 @@ public class MapaControl extends ScrollPane {
             this.gridPane.getColumnConstraints().add(columnConstraints);
         }
 
-        for (int fila = 0; fila <= cantidadFilas - 1; fila++) {
+        for (int fila = 0; fila <= cantidadFilas; fila++) {
             for (int columna = 0; columna <= cantidadColumnas - 1; columna++) {
 
             }
@@ -149,7 +149,6 @@ public class MapaControl extends ScrollPane {
         });
 
         Parent vista = loader.load();
-
         PosicionableController controller = loader.getController();
         controller.setPosicionable(posicionable);
         controller.setJuego(this.juegoControl);

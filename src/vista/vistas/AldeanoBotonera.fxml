@@ -6,10 +6,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <fx:root type="GridPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
 
     <GridPane>
+
+        <!--<columnConstraints>-->
+            <!--<ColumnConstraints percentWidth="50.0"/>-->
+            <!--<ColumnConstraints percentWidth="50.0"/>-->
+        <!--</columnConstraints>-->
+
+        <!--<ImageView fitHeight="50" fitWidth="50">-->
+            <!--<Image url="/vista/imagenes/AldeanoAzul.png"/>-->
+        <!--</ImageView>-->
         <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
     </GridPane>
 

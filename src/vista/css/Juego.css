@@ -1,3 +1,6 @@
+#bottom{
+    -fx-padding: 10;
+}
 
 .nombreJugador{
     -fx-font-size: 18;
