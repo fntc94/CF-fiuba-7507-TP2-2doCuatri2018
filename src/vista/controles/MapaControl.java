@@ -15,10 +15,7 @@ import modelo.Edificio;
 import modelo.IPosicionable;
 import modelo.edificios.PlazaCentral;
 import modelo.juego.Jugador;
-import modelo.posicion.Casillero;
-import modelo.posicion.Mapa;
-import modelo.posicion.Posicion;
-import modelo.posicion.PosicionDeUnCasillero;
+import modelo.posicion.*;
 import modelo.unidades.UnidadesFabrica;
 import vista.controladores.PosicionableController;
 
@@ -205,7 +202,7 @@ public class MapaControl extends ScrollPane {
         Dragboard db = event.getDragboard();
         boolean success = false;
         if (db.hasImage()) {
-            IPosicionable plaza = new PlazaCentral(new PosicionDeUnCasillero(9,9), new UnidadesFabrica());
+                IPosicionable plaza = new PlazaCentral(new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(9,9), 3), new UnidadesFabrica());
             this.jugador2.agregar((Edificio) plaza);
             this.mapa.posicionar(plaza);
             this.dibujar(plaza);
