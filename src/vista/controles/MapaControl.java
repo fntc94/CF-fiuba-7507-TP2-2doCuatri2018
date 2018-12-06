@@ -206,8 +206,6 @@ public class MapaControl extends ScrollPane {
         Double x = event.getX() / 48;
         Double y = (event.getY() / 46) - 0.5;
 
-        System.out.println("Soltado en: " + "(" + x.intValue() + "," + y.intValue() + ")");
-
         //Texto recibido con la imagen
         String textoRecibidoConImagen = (String) db.getContent(DataFormat.PLAIN_TEXT);
 
