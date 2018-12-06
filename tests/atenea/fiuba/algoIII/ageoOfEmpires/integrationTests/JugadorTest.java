@@ -21,42 +21,42 @@ public class JugadorTest {
 
     @Test (expected = OroInsuficienteException.class)
     public void crearUnJugadorCon100DeOroGastarOroYQueNoSeaSuficienteTest() {
-        Jugador jugador = new Jugador("Pablo", null, null);
+        Jugador jugador = new Jugador("Pablo", null);
         jugador.pagarCosto(120);
     }
 
     @Test
     public void jugadorCreadoConCastilloEnPieTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugador = new Jugador("Pablo", castillo, null);
+        Jugador jugador = new Jugador("Pablo", castillo);
         Assert.assertFalse(jugador.castilloDestruido());
     }
 
     @Test (expected = UnidadNoEsPropiaException.class)
     public void AJugadorCreadoPreguntaSiAldeanoLePerteneceLanzaExcepcionTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugador = new Jugador("Pablo", castillo, null);
+        Jugador jugador = new Jugador("Pablo", castillo);
         jugador.esMio(new UnidadesFabrica().crearAldeano());
     }
 
     @Test (expected = UnidadNoEsPropiaException.class)
     public void AJugadorCreadoPreguntaSiAqueroLePerteneceLanzaExcepcionTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugador = new Jugador("Pablo", castillo, null);
+        Jugador jugador = new Jugador("Pablo", castillo);
         jugador.esMio(new UnidadesFabrica().crearArquero());
     }
 
     @Test (expected = EdificioNoEsPropioException.class)
     public void AJugadorCreadoPreguntaSiCastilloLePerteneceLanzaExcepcionTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugador = new Jugador("Pablo", castillo, null);
+        Jugador jugador = new Jugador("Pablo", castillo);
         jugador.esMio(new EdificiosFabrica().crearCastillo());
     }
 
     @Test (expected = OroInsuficienteException.class)
     public void jugadorCreadoAgregaAldeanoYNoRecolectaOroTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
-        Jugador jugador = new Jugador("Pablo", castillo, null);
+        Jugador jugador = new Jugador("Pablo", castillo);
         jugador.agregar(new UnidadesFabrica().crearAldeano());
         jugador.pagarCosto(180);
     }
@@ -65,14 +65,14 @@ public class JugadorTest {
     public void jugadorCreadoPierdeCastilloTest() {
         Castillo castillo = Mockito.mock(Castillo.class);
         Mockito.when(castillo.sigueEnPie()).thenReturn(false);
-        Jugador jugador = new Jugador("Pablo", castillo, null);
+        Jugador jugador = new Jugador("Pablo", castillo);
         Assert.assertTrue(jugador.castilloDestruido());
     }
 
     @Test
     public void jugadorCreadoAgregaUnidadMilitarTest() {
         ArmaDeAsedio armaDeAsedio = new UnidadesFabrica().crearArmaDeAsedio();
-        Jugador jugador = new Jugador("Pablo", null, null);
+        Jugador jugador = new Jugador("Pablo", null);
         jugador.agregar(armaDeAsedio);
         jugador.esMio(armaDeAsedio);
     }
@@ -80,13 +80,13 @@ public class JugadorTest {
     @Test (expected = UnidadNoEsPropiaException.class)
     public void jugadorCreadoSeFijaSiTieneUnaUnidadMilitarSinHaberlaAgregadoTest() {
         ArmaDeAsedio armaDeAsedio = new UnidadesFabrica().crearArmaDeAsedio();
-        Jugador jugador = new Jugador("Pablo", null, null);
+        Jugador jugador = new Jugador("Pablo", null);
         jugador.esMio(armaDeAsedio);
     }
 
     @Test
     public void jugadorCreadoCon3AldeanosY100DeOroHaceTrabajarALosAldeanosYPaga160Test() {
-        Jugador jugador = new Jugador("Pablo", null, null);
+        Jugador jugador = new Jugador("Pablo", null);
         jugador.agregar(new UnidadesFabrica().crearAldeano());
         jugador.agregar(new UnidadesFabrica().crearAldeano());
         jugador.agregar(new UnidadesFabrica().crearAldeano());
@@ -96,7 +96,7 @@ public class JugadorTest {
 
     @Test (expected = OroInsuficienteException.class)
     public void jugadorCreadoCon3AldeanosY100DeOroHaceTrabajarALosAldeanosYPaga190Test() {
-        Jugador jugador = new Jugador("Pablo", null, null);
+        Jugador jugador = new Jugador("Pablo", null);
         jugador.agregar(new UnidadesFabrica().crearAldeano());
         jugador.agregar(new UnidadesFabrica().crearAldeano());
         jugador.agregar(new UnidadesFabrica().crearAldeano());
@@ -106,7 +106,7 @@ public class JugadorTest {
 
     @Test (expected = UnidadNoEsPropiaException.class)
     public void jugadorCreadoRecolectaCadaveresTest() {
-        Jugador jugador = new Jugador("Pablo", null, null);
+        Jugador jugador = new Jugador("Pablo", null);
         Aldeano aldeano = Mockito.mock(Aldeano.class);
         Mockito.when(aldeano.estaMuerto()).thenReturn(true);
         jugador.agregar(aldeano);
@@ -114,9 +114,4 @@ public class JugadorTest {
         jugador.esMio(aldeano);
     }
 
-    @Test
-    public void jugadorCreadoDevuelveSuColorTest() {
-        Jugador jugador = new Jugador("Pablo", null, "Red");
-        Assert.assertEquals("Red", jugador.obtenerColor());
-    }
 }

@@ -8,9 +8,7 @@
 
 <?import java.net.URL?>
 
-<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="vista.controladores.PosicionableController"
-            onMouseClicked="#handleClick">
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#handleClick">
 
     <stylesheets>
         <URL value="@../css/Posicionable.css" />

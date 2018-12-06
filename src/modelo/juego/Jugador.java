@@ -18,14 +18,12 @@ public class Jugador {
     private int bolsaDeOro;
     private static final int oroInicial = 100;
     private String nombre;
-    private String color;
 
-    public Jugador(String nombre, Castillo castillo, String color) {
+    public Jugador(String nombre, Castillo castillo) {
         this.plebe = new Plebe();
         this.construcciones = new Construcciones();
         this.ejercito = new Ejercito();
         this.nombre = nombre;
-        this.color = color;
         this.castillo = castillo;
         this.bolsaDeOro = oroInicial;
     }
@@ -78,7 +76,4 @@ public class Jugador {
         return !(this.castillo.sigueEnPie());
     }
 
-    public String obtenerColor(){
-        return this.color;
-    }
 }

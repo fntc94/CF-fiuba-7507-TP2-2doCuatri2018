@@ -9,13 +9,13 @@
         <ImageView  onDragDetected="#dragginPlaza" fx:id="plazaCentral" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0"
                    GridPane.rowIndex="0">
             <image>
-                <Image url="@../imagenes/PlazaCentralAzul.png"/>
+                <Image url="@../imagenes/PlazaCentral_blue.png"/>
             </image>
         </ImageView>
         <ImageView fx:id="cuartel" onDragDetected="#dragginCuartel" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1"
                    GridPane.rowIndex="0">
             <image>
-                <Image url="@../imagenes/CuartelAzul.png"/>
+                <Image url="@../imagenes/Cuartel_blue.png"/>
             </image>
         </ImageView>
     </children>

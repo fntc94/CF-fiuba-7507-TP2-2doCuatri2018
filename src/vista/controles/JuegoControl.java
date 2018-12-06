@@ -6,18 +6,32 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import modelo.edificios.Castillo;
+import modelo.edificios.EstrategiaAtaqueCastillo;
+import modelo.edificios.PlazaCentral;
 import modelo.juego.Juego;
-import vista.controladores.MiniMapaController;
+import modelo.juego.Jugador;
+import modelo.posicion.*;
+import modelo.unidades.Aldeano;
+import modelo.unidades.Espadachin;
+import modelo.unidades.EstrategiaAtaqueEspadachin;
+import modelo.unidades.UnidadesFabrica;
+import vista.PosicionableControllerFactory;
+import vista.controladores.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class JuegoControl extends BorderPane implements Initializable {
+public class JuegoControl extends BorderPane implements Initializable, IJuegoController {
 
 
     private Stage primaryStage;
+    private Juego juego;
+
+    private MapaControl mapaControl;
 
     @FXML private GridPane botonera;
 
@@ -26,8 +40,10 @@ public class JuegoControl extends BorderPane implements Initializable {
         this.primaryStage = primaryStage;
 
         Juego juego = new Juego(nombreJugador1, nombreJugador2);
-        MiniMapaController miniMapaController = new MiniMapaController(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2());
+        this.juego = juego;
+        MiniMapaController miniMapaController = new MiniMapaController(this, juego.getMapa());
         MapaControl mapaControl = new MapaControl(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2(), miniMapaController);
+        this.mapaControl =  mapaControl;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Juego.fxml"));
         loader.setRoot(this);
@@ -59,11 +75,15 @@ public class JuegoControl extends BorderPane implements Initializable {
         }
 
 
+        this.inicializarJugador1("Juan");
+        this.inicializarJugador2("Pedro");
 
-        mapaControl.dibujar();
+//        mapaControl.dibujar();
         this.centerProperty().setValue(mapaControl);
 
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,5 +95,97 @@ public class JuegoControl extends BorderPane implements Initializable {
         this.botonera.add(node, 1, 0);
     }
 
+    private void inicializarJugador1(String nombreJugador){
+        Mapa mapa = this.juego.getMapa();
+
+        Posicion posicionCastillo = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(0,0), 3);
+        Posicion posicionPlazaCentral = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(3,3), 2);
+        Posicion posicionAldeano1 = new PosicionDeUnCasillero(mapa,5,1);
+        Posicion posicionAldeano2 = new PosicionDeUnCasillero(mapa,1,5);
+        Posicion posicionAldeano3 = new PosicionDeUnCasillero(mapa,5,5);
+
+        Castillo castillo = new Castillo(posicionCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+        PlazaCentral plazaCentral = new PlazaCentral(posicionPlazaCentral, new UnidadesFabrica());
+        Aldeano aldeano1 = new Aldeano(posicionAldeano1);
+        Aldeano aldeano2 = new Aldeano(posicionAldeano2);
+        Aldeano aldeano3 = new Aldeano(posicionAldeano3);
+
+        mapa.posicionar(castillo);
+        mapa.posicionar(plazaCentral);
+        mapa.posicionar(aldeano1);
+        mapa.posicionar(aldeano2);
+        mapa.posicionar(aldeano3);
+
+        Jugador jugador = new Jugador(nombreJugador, castillo);
+        jugador.agregar(plazaCentral);
+        jugador.agregar(aldeano1);
+        jugador.agregar(aldeano2);
+        jugador.agregar(aldeano3);
+
+        PosicionableControllerFactory controllerFactory = new PosicionableControllerFactory(this, this.mapaControl, "red");
+        IPosicionableController castilloController = controllerFactory.crearControlador(castillo);
+        IPosicionableController plazaCentralController = controllerFactory.crearControlador(plazaCentral);
+        IPosicionableController aldeano1Controller = controllerFactory.crearControlador(aldeano1);
+        IPosicionableController aldeano2Controller = controllerFactory.crearControlador(aldeano2);
+        IPosicionableController aldeano3Controller = controllerFactory.crearControlador(aldeano3);
+
+
+        this.mapaControl.agregar(castilloController);
+        this.mapaControl.agregar(plazaCentralController);
+        this.mapaControl.agregar(aldeano1Controller);
+        this.mapaControl.agregar(aldeano2Controller);
+        this.mapaControl.agregar(aldeano3Controller);
+
+        //
+        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 7,7);
+        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
+        mapa.posicionar(espadachin);
+
+        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
+        this.mapaControl.agregar(espadachinController);
+    }
+
+    private void inicializarJugador2(String nombreJugador2){
+        Mapa mapa = this.juego.getMapa();
+        int ancho = mapa.getAncho();
+        int alto = mapa.getAlto();
+
+        Posicion posCastillo = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(mapa.getAncho() - 3, mapa.getAlto() - 3), 3);
+        Posicion posPlazaCentral = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(mapa.getAncho() - 5, mapa.getAlto() - 5), 2);
+        Posicion posAldeano1 =  new PosicionDeUnCasillero(mapa, ancho - 6, alto - 2);
+        Posicion posAldeano2 = new PosicionDeUnCasillero(mapa, ancho -2, alto - 6);
+        Posicion posAldeano3 = new PosicionDeUnCasillero(mapa, ancho - 6, alto -6);
+
+        Castillo castillo = new Castillo(posCastillo,new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+        PlazaCentral plazaCentral = new PlazaCentral(posPlazaCentral, new UnidadesFabrica());
+        Aldeano aldeano1 = new Aldeano(posAldeano1);
+        Aldeano aldeano2 = new Aldeano(posAldeano2);
+        Aldeano aldeano3 = new Aldeano(posAldeano3);
+
+        mapa.posicionar(plazaCentral);
+        mapa.posicionar(castillo);
+        mapa.posicionar(aldeano1);
+        mapa.posicionar(aldeano2);
+        mapa.posicionar(aldeano3);
+
+        Jugador jugador = new Jugador(nombreJugador2, castillo);
+        jugador.agregar(plazaCentral);
+        jugador.agregar(aldeano1);
+        jugador.agregar(aldeano2);
+        jugador.agregar(aldeano3);
+
+        PosicionableControllerFactory controllerFactory = new PosicionableControllerFactory(this, this.mapaControl, "blue");
+        IPosicionableController castilloController = controllerFactory.crearControlador(castillo);
+        IPosicionableController plazaCentralController = controllerFactory.crearControlador(plazaCentral);
+        IPosicionableController aldeano1Controller = controllerFactory.crearControlador(aldeano1);
+        IPosicionableController aldeano2Controller = controllerFactory.crearControlador(aldeano2);
+        IPosicionableController aldeano3Controller = controllerFactory.crearControlador(aldeano3);
+
+        this.mapaControl.agregar(castilloController);
+        this.mapaControl.agregar(plazaCentralController);
+        this.mapaControl.agregar(aldeano1Controller);
+        this.mapaControl.agregar(aldeano2Controller);
+        this.mapaControl.agregar(aldeano3Controller);
+    }
 
 }

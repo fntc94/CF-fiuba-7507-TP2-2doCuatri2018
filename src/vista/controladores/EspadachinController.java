@@ -1,22 +1,25 @@
 package vista.controladores;
 
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
+import modelo.unidades.Espadachin;
 import vista.controles.AldeanoBotonera;
+import vista.controles.EspadachinBotonera;
 import vista.controles.MapaControl;
 
+public class EspadachinController implements IPosicionableController {
 
-public class AldeanoController implements IPosicionableController {
-
-    private Aldeano aldeano;
+    private Espadachin espadachin;
     private String color;
     private MapaControl mapaControl;
     private IJuegoController juegoController;
 
-    public AldeanoController(Aldeano aldeano, String color, MapaControl mapaControl, IJuegoController juegoController){
-        this.aldeano = aldeano;
+    public EspadachinController(Espadachin espadachin, String color, MapaControl mapaControl, IJuegoController juegoController){
+        this.espadachin = espadachin;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
@@ -24,12 +27,12 @@ public class AldeanoController implements IPosicionableController {
 
     @Override
     public IPosicionable getPosicionable() {
-        return this.aldeano;
+        return this.espadachin;
     }
 
     @Override
     public Posicion getPosicion() {
-        return aldeano.getPosicion();
+        return espadachin.getPosicion();
     }
 
     @Override
@@ -38,7 +41,7 @@ public class AldeanoController implements IPosicionableController {
     }
 
     public void handleClick(MouseEvent mouseEvent) {
-        AldeanoBotonera botonera = new AldeanoBotonera(aldeano, mapaControl);
+        Parent botonera = new EspadachinBotonera(espadachin, mapaControl);
         this.juegoController.setBotonera(botonera);
     }
 
