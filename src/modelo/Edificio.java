@@ -3,7 +3,9 @@ package modelo;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 
-public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
+import java.io.Serializable;
+
+public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable, Serializable {
 
     private Posicion posicion;
     private final int VIDA_MAXIMA;

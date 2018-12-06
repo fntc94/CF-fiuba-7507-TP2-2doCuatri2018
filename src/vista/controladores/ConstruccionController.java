@@ -1,9 +1,12 @@
 package vista.controladores;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.text.Text;
 import modelo.Edificio;
+import modelo.IPosicionable;
 import modelo.edificios.Cuartel;
 import modelo.edificios.PlazaCentral;
 import modelo.posicion.Casillero;
@@ -12,6 +15,10 @@ import modelo.posicion.PosicionCuadrado;
 import modelo.posicion.PosicionDeUnCasillero;
 import modelo.unidades.UnidadesFabrica;
 import vista.controles.MapaControl;
+
+import javax.xml.crypto.Data;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConstruccionController{
     private MapaControl mapa;
@@ -22,26 +29,27 @@ public class ConstruccionController{
         this.mapa = mapa;
     }
 
-    public void dragginPlaza(MouseEvent mouseEvent){
+    public void dragginPlaza(MouseEvent event){
         Dragboard db = plazaCentral.startDragAndDrop(TransferMode.ANY);
-
-        /* Put a string on a dragboard */
         ClipboardContent content = new ClipboardContent();
-        content.putImage(this.plazaCentral.getImage());
+
+        content.put(DataFormat.IMAGE, this.plazaCentral.getImage());
+        content.put(DataFormat.PLAIN_TEXT, "plaza");    // Esto es para reconocer que recibe el mapa
         db.setContent(content);
 
-        mouseEvent.consume();
+        event.consume();
     }
 
-    public void dragginCuartel(MouseEvent mouseEvent){
+    public void dragginCuartel(MouseEvent event){
         Dragboard db = cuartel.startDragAndDrop(TransferMode.ANY);
 
-        /* Put a string on a dragboard */
         ClipboardContent content = new ClipboardContent();
-        content.putImage(this.cuartel.getImage());
+
+        content.put(DataFormat.IMAGE, this.cuartel.getImage());
+        content.put(DataFormat.PLAIN_TEXT, "cuartel");  // Esto es para reconocer que recibe el mapa
         db.setContent(content);
 
-        mouseEvent.consume();
+        event.consume();
     }
 
 }

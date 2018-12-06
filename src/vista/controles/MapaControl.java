@@ -1,7 +1,8 @@
 package vista.controles;
 
-
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,13 +14,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import modelo.Edificio;
 import modelo.IPosicionable;
+import modelo.edificios.Castillo;
+import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
 import modelo.juego.Jugador;
 import modelo.posicion.*;
 import modelo.unidades.UnidadesFabrica;
 import vista.controladores.PosicionableController;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -200,12 +202,35 @@ public class MapaControl extends ScrollPane {
 
     public void dragDropped(DragEvent event) throws IOException {
         Dragboard db = event.getDragboard();
+
+        Double x = event.getX() / 48;
+        Double y = (event.getY() / 46) - 0.5;
+
+        System.out.println("Soltado en: " + "(" + x.intValue() + "," + y.intValue() + ")");
+
+        //Texto recibido con la imagen
+        String textoRecibidoConImagen = (String) db.getContent(DataFormat.PLAIN_TEXT);
+
         boolean success = false;
-        if (db.hasImage()) {
-                IPosicionable plaza = new PlazaCentral(new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(9,9), 3), new UnidadesFabrica());
-            this.jugador2.agregar((Edificio) plaza);
-            this.mapa.posicionar(plaza);
-            this.dibujar(plaza);
+        // Si el texto es plaza entonces pongo una plaza, de lo contrario un cuartel
+        if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
+
+            Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
+            IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
+
+            this.jugador2.agregar((Edificio) nuevaPlaza);
+            this.mapa.posicionar(nuevaPlaza);
+            this.dibujar(nuevaPlaza);
+
+            success = true;
+        }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
+            Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
+            IPosicionable nuevoCuartel = new Castillo(posCuartel, new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+
+            this.jugador2.agregar((Edificio) nuevoCuartel);
+            this.mapa.posicionar(nuevoCuartel);
+            this.dibujar(nuevoCuartel);
+
             success = true;
         }
         /* let the source know whether the string was successfully
@@ -213,11 +238,10 @@ public class MapaControl extends ScrollPane {
         event.setDropCompleted(success);
 
         event.consume();
-
     }
 
     public void dragOver(DragEvent event){
-        if(event.getDragboard().hasImage()) {
+        if(event.getDragboard().hasString()) {
             event.acceptTransferModes(TransferMode.ANY);
         }
     }
