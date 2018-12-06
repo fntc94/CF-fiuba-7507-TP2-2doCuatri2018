@@ -15,7 +15,7 @@
         <ImageView fx:id="cuartel" onDragDetected="#dragginCuartel" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1"
                    GridPane.rowIndex="0">
             <image>
-                <Image url="@../imagenes/CastilloAzul.png"/>
+                <Image url="@../imagenes/CuartelAzul.png"/>
             </image>
         </ImageView>
     </children>

@@ -15,6 +15,7 @@ import javafx.scene.layout.RowConstraints;
 import modelo.Edificio;
 import modelo.IPosicionable;
 import modelo.edificios.Castillo;
+import modelo.edificios.Cuartel;
 import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
 import modelo.juego.Jugador;
@@ -223,7 +224,7 @@ public class MapaControl extends ScrollPane {
             success = true;
         }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
             Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
-            IPosicionable nuevoCuartel = new Castillo(posCuartel, new UnidadesFabrica(), new EstrategiaAtaqueCastillo());
+            IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
 
             this.jugador2.agregar((Edificio) nuevoCuartel);
             this.mapa.posicionar(nuevoCuartel);
