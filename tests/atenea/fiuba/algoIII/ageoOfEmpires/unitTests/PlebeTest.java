@@ -2,8 +2,6 @@ package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import modelo.IEdificioReparable;
 import modelo.edificios.IUnidadesPlazaCentralFabrica;
-import modelo.excepciones.OperacionInvalidaDadoElEstadoActualDelObjetoExcepcion;
-import modelo.excepciones.UnidadNoEsPropiaException;
 import modelo.unidades.Aldeano;
 import modelo.unidades.Plebe;
 import modelo.unidades.UnidadesFabrica;
@@ -48,14 +46,6 @@ public class PlebeTest {
         Assert.assertEquals(plebe.trabajar(),20);
         plebe.borrarCadaveres();
         Assert.assertEquals(plebe.trabajar(), 0);
-    }
-
-
-    @Test(expected = UnidadNoEsPropiaException.class)
-    public void siSePreguntaAPlebeSiIncluyeAUnAldeanoQueNoLePerteneceDebeLanzarUnidadNoEsPropiaExceptionTest(){
-        Plebe plebe = new Plebe();
-        Aldeano aldeano = Mockito.mock(Aldeano.class);
-        plebe.incluyeA(aldeano);
     }
 
 

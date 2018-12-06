@@ -1,12 +1,8 @@
 package modelo.unidades;
 
-import modelo.IPerteneciente;
-import modelo.excepciones.UnidadNoEsPropiaException;
-import modelo.Unidad;
-
 import java.util.LinkedList;
 
-public class Ejercito implements IPerteneciente {
+public class Ejercito {
 
     LinkedList<UnidadMilitar> unidadesEjercito;
 
@@ -16,12 +12,6 @@ public class Ejercito implements IPerteneciente {
 
     public void agregarUnidad(UnidadMilitar unidadMilitar){
         this.unidadesEjercito.addLast(unidadMilitar);
-    }
-
-    public void incluyeA(Unidad unidadMilitar){
-        if (! (this.unidadesEjercito.contains(unidadMilitar))){
-            throw new UnidadNoEsPropiaException();
-        }
     }
 
     public void borrarCadaveres(){

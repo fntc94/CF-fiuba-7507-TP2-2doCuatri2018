@@ -1,17 +1,26 @@
 package vista.controles;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import modelo.IAtacante;
+
+import modelo.Edificio;
+import modelo.IPosicionable;
+import modelo.edificios.Castillo;
+import modelo.edificios.Cuartel;
+import modelo.edificios.EstrategiaAtaqueCastillo;
+import modelo.edificios.PlazaCentral;
+
 import modelo.IPosicionable;
 import modelo.juego.Jugador;
+
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
@@ -20,6 +29,10 @@ import vista.PosicionableControllerFactory;
 import vista.controladores.IPosicionController;
 import vista.controladores.IPosicionableController;
 import vista.controladores.MiniMapaController;
+
+import modelo.posicion.*;
+import modelo.unidades.UnidadesFabrica;
+import vista.controladores.PosicionableController;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -63,7 +76,6 @@ public class MapaControl extends ScrollPane {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 
@@ -177,4 +189,62 @@ public class MapaControl extends ScrollPane {
             controller.estadoSeleccionable();
         }
     }
+    public void dragDropped(DragEvent event) throws IOException {
+        Dragboard db = event.getDragboard();
+
+        Double x = event.getX() / 48;
+        Double y = (event.getY() / 46) - 0.5;
+
+        //Texto recibido con la imagen
+        String textoRecibidoConImagen = (String) db.getContent(DataFormat.PLAIN_TEXT);
+
+        boolean success = false;
+        // Si el texto es plaza entonces pongo una plaza, de lo contrario un cuartel
+        if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
+
+            // Creo posicion, posicionable, controlador y vista
+            Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),2);
+            IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
+            IPosicionableController nuevaPlazaController = new PosicionableController(nuevaPlaza, "red");
+            //Node nuevaPlazaVista = this.crearVista(nuevaPlazaController);
+
+            //Los agrego
+            //this.vistas.put(nuevaPlaza,nuevaPlazaVista);
+            this.mapa.posicionar(nuevaPlaza);
+            this.controladores.put(nuevaPlaza, nuevaPlazaController);
+
+            this.agregar(nuevaPlazaController);
+
+            //this.jugador2.agregar((Edificio) nuevaPlaza);
+            this.dibujar(nuevaPlaza);
+
+            success = true;
+        }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
+            Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),2);
+            IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
+            IPosicionableController nuevoCuartelController = new PosicionableController(nuevoCuartel, "red");
+
+            this.mapa.posicionar(nuevoCuartel);
+            this.controladores.put(nuevoCuartel, nuevoCuartelController);
+
+            this.agregar(nuevoCuartelController);
+
+            //this.jugador2.agregar((Edificio) nuevoCuartel);
+            this.dibujar(nuevoCuartel);
+
+            success = true;
+        }
+        /* let the source know whether the string was successfully
+         * transferred and used */
+        event.setDropCompleted(success);
+
+        event.consume();
+    }
+
+    public void dragOver(DragEvent event){
+        if(event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
 }

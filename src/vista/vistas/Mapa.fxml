@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.net.URL?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import java.net.URL?>
-
-
-    <fx:root type="ScrollPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-
-        <GridPane fx:id="mapaGrandeGridPane" alignment="CENTER" styleClass="fondo">
-
-            <stylesheets>
-                <URL value="@/vista/css/Mapa.css" />
-            </stylesheets>
-
-        </GridPane>
-    </fx:root>
-
+<fx:root type="ScrollPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <GridPane fx:id="mapaGrandeGridPane" alignment="CENTER" onDragDropped="#dragDropped" onDragOver="#dragOver" styleClass="fondo" />
+  <stylesheets>
+    <URL value="@../css/Mapa.css" />
+  </stylesheets>
+</fx:root>

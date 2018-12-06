@@ -3,6 +3,8 @@ package modelo;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 
+import java.io.Serializable;
+
 public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
     private Posicion posicion;
