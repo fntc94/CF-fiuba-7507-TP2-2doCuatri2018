@@ -16,7 +16,6 @@ public class Main extends Application {
         InicioControl inicioControl = new InicioControl(primaryStage);
         primaryStage.setTitle("Age ofEmpires II");
         primaryStage.setScene(new Scene(inicioControl));
-        //primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 
