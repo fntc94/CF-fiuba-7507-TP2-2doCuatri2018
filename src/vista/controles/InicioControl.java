@@ -57,6 +57,7 @@ public class InicioControl extends BorderPane {
             String nombreJugador2 = this.nombreJugador2.getText();
             JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
             this.primaryStage.setScene(new Scene(juegoControl));
+            this.primaryStage.setMaximized(true);
         }
 
     }
