@@ -1,28 +1,33 @@
 package vista.controles;
 
-
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventTarget;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.*;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import javafx.stage.Stage;
-import modelo.IMovible;
+import modelo.Edificio;
 import modelo.IPosicionable;
 import modelo.edificios.Castillo;
+import modelo.edificios.Cuartel;
+import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
 import modelo.juego.Jugador;
+
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 import vista.controladores.AldeanoController;
 import vista.controladores.MiniMapaController;
+import modelo.posicion.*;
+import modelo.unidades.UnidadesFabrica;
 import vista.controladores.PosicionableController;
 
 import java.io.IOException;
@@ -64,7 +69,6 @@ public class MapaControl extends ScrollPane {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void dibujar() {
@@ -121,7 +125,7 @@ public class MapaControl extends ScrollPane {
         this.gridPane.setGridLinesVisible(true);
     }
 
-    private void dibujar(IPosicionable posicionable) throws IOException {
+    public void dibujar(IPosicionable posicionable) throws IOException {
 
 
         String color = this.obtenerColorPara(posicionable);
@@ -205,6 +209,50 @@ public class MapaControl extends ScrollPane {
     private void gridPaneRemove(GridPane gridPane, int x, int y) {
         Node node = getNodeFromGridPane(gridPane, x, y);
         gridPane.getChildren().remove(node);
+    }
+
+    public void dragDropped(DragEvent event) throws IOException {
+        Dragboard db = event.getDragboard();
+
+        Double x = event.getX() / 48;
+        Double y = (event.getY() / 46) - 0.5;
+
+        //Texto recibido con la imagen
+        String textoRecibidoConImagen = (String) db.getContent(DataFormat.PLAIN_TEXT);
+
+        boolean success = false;
+        // Si el texto es plaza entonces pongo una plaza, de lo contrario un cuartel
+        if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
+
+            Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
+            IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
+
+            this.jugador2.agregar((Edificio) nuevaPlaza);
+            this.mapa.posicionar(nuevaPlaza);
+            this.dibujar(nuevaPlaza);
+
+            success = true;
+        }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
+            Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
+            IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
+
+            this.jugador2.agregar((Edificio) nuevoCuartel);
+            this.mapa.posicionar(nuevoCuartel);
+            this.dibujar(nuevoCuartel);
+
+            success = true;
+        }
+        /* let the source know whether the string was successfully
+         * transferred and used */
+        event.setDropCompleted(success);
+
+        event.consume();
+    }
+
+    public void dragOver(DragEvent event){
+        if(event.getDragboard().hasString()) {
+            event.acceptTransferModes(TransferMode.ANY);
+        }
     }
 
 }
