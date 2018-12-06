@@ -5,7 +5,7 @@ import modelo.unidades.Aldeano;
 
 import java.io.Serializable;
 
-public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable, Serializable {
+public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
     private Posicion posicion;
     private final int VIDA_MAXIMA;
