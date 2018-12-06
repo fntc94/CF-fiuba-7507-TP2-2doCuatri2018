@@ -9,12 +9,15 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.juego.Jugador;
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
+import modelo.unidades.Espadachin;
 import vista.PosicionableControllerFactory;
+import vista.controladores.IPosicionController;
 import vista.controladores.IPosicionableController;
 import vista.controladores.MiniMapaController;
 
@@ -161,4 +164,17 @@ public class MapaControl extends ScrollPane {
         GridPane.setRowSpan(vista, posicion.getAlto());
     }
 
+    public void estadoAtaque(IAtacante atacante) {
+
+        for(IPosicionableController controller: this.controladores.values()){
+            controller.estadoAtaquePotencial(atacante);
+        }
+    }
+
+    public void estadoSeleccionable() {
+
+        for(IPosicionableController controller: this.controladores.values()){
+            controller.estadoSeleccionable();
+        }
+    }
 }

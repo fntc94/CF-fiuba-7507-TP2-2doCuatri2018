@@ -136,7 +136,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(aldeano2Controller);
         this.mapaControl.agregar(aldeano3Controller);
 
-        //
+        // Espadachín
         Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 7,7);
         Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
         mapa.posicionar(espadachin);
@@ -186,6 +186,14 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(aldeano1Controller);
         this.mapaControl.agregar(aldeano2Controller);
         this.mapaControl.agregar(aldeano3Controller);
+
+        // Espadachín
+        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 10,7);
+        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
+        mapa.posicionar(espadachin);
+
+        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
+        this.mapaControl.agregar(espadachinController);
     }
 
 }

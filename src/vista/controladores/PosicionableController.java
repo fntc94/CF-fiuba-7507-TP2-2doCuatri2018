@@ -2,6 +2,7 @@ package vista.controladores;
 
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
 
@@ -50,5 +51,15 @@ public class PosicionableController implements IPosicionableController {
 
         // just for usability
 //        node.requestFocus();
+    }
+
+    @Override
+    public void estadoAtaquePotencial(IAtacante atacante) {
+
+    }
+
+    @Override
+    public void estadoSeleccionable() {
+
     }
 }

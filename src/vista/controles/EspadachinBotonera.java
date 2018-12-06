@@ -19,6 +19,7 @@ public class EspadachinBotonera extends GridPane implements Initializable {
 
     private final Espadachin espadachin;
     private double vidaInicial;
+    private MapaControl mapa;
 
     @FXML private ProgressBar vidaProgressBar;
     @FXML private Label vidaLabel;
@@ -29,6 +30,7 @@ public class EspadachinBotonera extends GridPane implements Initializable {
         super();
         this.espadachin = espadachin;
         this.vidaInicial = espadachin.getVida();
+        this.mapa = mapa;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/EspadachinBotonera.fxml"));
         loader.setRoot(this);
@@ -62,15 +64,35 @@ public class EspadachinBotonera extends GridPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String vida = String.valueOf(this.espadachin.getVida());
-        this.vidaLabel.setText("Vida: " + vida);
+        this.setVidaLabel();
         this.vidaProgressBar.setProgress(this.obtenerProgresoDeVida());
-
         this.nombreLabel.setText(this.espadachin.getClass().getSimpleName());
+    }
+
+
+    public void handleAtaque(){
+        mapa.estadoAtaque(this.espadachin);
+    }
+
+    public void handleCancelar(){
+        mapa.estadoSeleccionable();
     }
 
     private double obtenerProgresoDeVida(){
         return this.espadachin.getVida() / this.vidaInicial;
+    }
+    private void setVidaLabel(){
+        String vidaInicial = String.valueOf((int)this.vidaInicial);
+        String vidaActual = String.valueOf(this.espadachin.getVida());
+        String texto = String.format("Vida: %s/%s", vidaActual, vidaInicial);
+
+        this.vidaLabel.setText(texto);
+
+    }
+
+    public void actualizarUI(){
+        this.vidaProgressBar.setProgress(this.obtenerProgresoDeVida());
+        this.setVidaLabel();
     }
 
 

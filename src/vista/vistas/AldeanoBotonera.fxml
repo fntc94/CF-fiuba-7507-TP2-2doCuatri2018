@@ -20,10 +20,10 @@
 
         <GridPane GridPane.valignment="CENTER" fx:id="botoneraGridPane">
 
-            <columnConstraints>
-                <ColumnConstraints percentWidth="50.0" halignment="center"/>
-                <ColumnConstraints percentWidth="50.0" halignment="center"/>
-            </columnConstraints>
+            <!--<columnConstraints>-->
+                <!--<ColumnConstraints percentWidth="50.0" halignment="center"/>-->
+                <!--<ColumnConstraints percentWidth="50.0" halignment="center"/>-->
+            <!--</columnConstraints>-->
 
             <GridPane GridPane.columnIndex="0" GridPane.halignment="center">
 
