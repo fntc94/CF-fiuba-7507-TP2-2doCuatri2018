@@ -54,17 +54,6 @@ public class Jugador {
         this.ejercito.agregarUnidad(unidadMilitar);
     }
 
-    public void esMio(Aldeano aldeano){
-        this.plebe.incluyeA(aldeano);
-    }
-
-    public void esMio(UnidadMilitar unidadMilitar){
-        this.ejercito.incluyeA(unidadMilitar);
-    }
-
-    public void esMio(Edificio edificio){
-        this.construcciones.incluyeA(edificio);
-    }
 
     public void recolectorDeCadaveres(){
         this.plebe.borrarCadaveres();

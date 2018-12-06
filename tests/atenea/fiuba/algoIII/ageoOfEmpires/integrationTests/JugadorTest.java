@@ -36,21 +36,21 @@ public class JugadorTest {
     public void AJugadorCreadoPreguntaSiAldeanoLePerteneceLanzaExcepcionTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
         Jugador jugador = new Jugador("Pablo", castillo);
-        jugador.esMio(new UnidadesFabrica().crearAldeano());
+
     }
 
     @Test (expected = UnidadNoEsPropiaException.class)
     public void AJugadorCreadoPreguntaSiAqueroLePerteneceLanzaExcepcionTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
         Jugador jugador = new Jugador("Pablo", castillo);
-        jugador.esMio(new UnidadesFabrica().crearArquero());
+
     }
 
     @Test (expected = EdificioNoEsPropioException.class)
     public void AJugadorCreadoPreguntaSiCastilloLePerteneceLanzaExcepcionTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
         Jugador jugador = new Jugador("Pablo", castillo);
-        jugador.esMio(new EdificiosFabrica().crearCastillo());
+
     }
 
     @Test (expected = OroInsuficienteException.class)
@@ -74,14 +74,14 @@ public class JugadorTest {
         ArmaDeAsedio armaDeAsedio = new UnidadesFabrica().crearArmaDeAsedio();
         Jugador jugador = new Jugador("Pablo", null);
         jugador.agregar(armaDeAsedio);
-        jugador.esMio(armaDeAsedio);
+
     }
 
     @Test (expected = UnidadNoEsPropiaException.class)
     public void jugadorCreadoSeFijaSiTieneUnaUnidadMilitarSinHaberlaAgregadoTest() {
         ArmaDeAsedio armaDeAsedio = new UnidadesFabrica().crearArmaDeAsedio();
         Jugador jugador = new Jugador("Pablo", null);
-        jugador.esMio(armaDeAsedio);
+
     }
 
     @Test
@@ -111,7 +111,7 @@ public class JugadorTest {
         Mockito.when(aldeano.estaMuerto()).thenReturn(true);
         jugador.agregar(aldeano);
         jugador.recolectorDeCadaveres();
-        jugador.esMio(aldeano);
+
     }
 
 }
