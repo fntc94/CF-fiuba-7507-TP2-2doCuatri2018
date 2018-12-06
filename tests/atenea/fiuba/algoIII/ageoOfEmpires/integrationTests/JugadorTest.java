@@ -2,19 +2,13 @@ package atenea.fiuba.algoIII.ageoOfEmpires.integrationTests;
 
 import modelo.edificios.Castillo;
 import modelo.edificios.EdificiosFabrica;
-import modelo.edificios.PlazaCentral;
-import modelo.excepciones.EdificioNoEsPropioException;
 import modelo.excepciones.OroInsuficienteException;
-import modelo.excepciones.UnidadNoEsPropiaException;
 import modelo.juego.Jugador;
-import modelo.unidades.Aldeano;
 import modelo.unidades.ArmaDeAsedio;
 import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import java.util.AbstractList;
 
 public class JugadorTest {
 
