@@ -25,20 +25,17 @@ public class MiniMapaController implements Initializable {
 
     private final JuegoControl juegoControl;
     private final Mapa mapa;
-    private final Jugador jugador1;
-    private final Jugador jugador2;
-    private Map<IPosicionable, Node> cosas = new HashMap();
+
+    private Map<IPosicionable, Node> vistas = new HashMap();
+    private Map<IPosicionable, String> colores = new HashMap();
 
     @FXML
     private GridPane gridPane;
 
-    public MiniMapaController(JuegoControl juegoControl, Mapa mapa, Jugador jugador1, Jugador jugador2) {
+    public MiniMapaController(JuegoControl juegoControl, Mapa mapa){
 
         this.juegoControl = juegoControl;
-
         this.mapa = mapa;
-        this.jugador1 = jugador1;
-        this.jugador2 = jugador2;
 
     }
 
@@ -75,31 +72,29 @@ public class MiniMapaController implements Initializable {
         this.gridPane.setGridLinesVisible(true);
     }
 
+    public void agregar(IPosicionable posicionable, String color){
+        this.colores.put(posicionable,color);
+        this.dibujar(posicionable);
+    }
+
     public void dibujar() {
+
+        this.gridPane.getChildren().removeAll(this.vistas.values());
 
         for (IPosicionable posicionable : this.mapa) {
             this.dibujar(posicionable);
         }
-    }
-
-    public void actualizar(IPosicionable unidad) {
-
-        Node nodo = this.cosas.get(unidad);
-        this.gridPane.getChildren().remove(nodo);
-        this.dibujar(unidad);
 
     }
 
     private void dibujar(IPosicionable posicionable) {
 
 
-        String color = this.obtenerColorPara(posicionable);
-
         Posicion posicion = posicionable.getPosicion();
         Casillero abajoIzquierda = posicion.getAbajoIzquierda();
 
         AnchorPane vista = new AnchorPane();
-        String css = String.format("-fx-background-color: %s", color);
+        String css = String.format("-fx-background-color: %s", this.colores.get(posicionable));
         vista.setStyle(css);
 
         this.gridPane.add(vista, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
@@ -107,23 +102,8 @@ public class MiniMapaController implements Initializable {
         GridPane.setColumnSpan(vista, posicion.getAncho());
         GridPane.setRowSpan(vista, posicion.getAlto());
 
-        this.cosas.put(posicionable, vista);
+        this.vistas.put(posicionable, vista);
 
     }
-
-    private String obtenerColorPara(IPosicionable posicionable) {
-
-
-        if (this.jugador1.esMio(posicionable)) {
-            return "red";
-        }
-
-        if (this.jugador2.esMio(posicionable)) {
-            return "blue";
-        }
-
-        throw new RuntimeException();
-    }
-
 
 }

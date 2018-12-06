@@ -8,7 +8,7 @@
 
     <fx:root type="ScrollPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
-        <GridPane fx:id="gridPane" alignment="CENTER" styleClass="fondo">
+        <GridPane fx:id="mapaGrandeGridPane" alignment="CENTER" styleClass="fondo">
 
             <stylesheets>
                 <URL value="@/vista/css/Mapa.css" />

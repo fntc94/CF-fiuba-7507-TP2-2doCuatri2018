@@ -18,51 +18,51 @@ public class MovimientoController {
     }
 
     @FXML
-    private void handleIzquierdaArriba(MouseEvent mouseEvent) {
+    private void handleIzquierdaArriba() {
         this.unidad.mover(Direccion.izquierdaArriba());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleArriba(MouseEvent mouseEvent) {
+    private void handleArriba() {
         this.unidad.mover(Direccion.arriba());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleDerechaArriba(MouseEvent mouseEvent) {
+    private void handleDerechaArriba() {
         this.unidad.mover(Direccion.derechaArriba());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleIzquierda(MouseEvent mouseEvent) {
+    private void handleIzquierda() {
         this.unidad.mover(Direccion.izquierda());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleDerecha(MouseEvent mouseEvent) {
+    private void handleDerecha() {
         this.unidad.mover(Direccion.derecha());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleIzquierdaAbajo(MouseEvent mouseEvent) {
+    private void handleIzquierdaAbajo() {
         this.unidad.mover(Direccion.izquierdaAbajo());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleAbajo(MouseEvent mouseEvent) {
+    private void handleAbajo() {
         this.unidad.mover(Direccion.abajo());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
     @FXML
-    private void handleDerechaAbajo(MouseEvent mouseEvent) {
+    private void handleDerechaAbajo() {
         this.unidad.mover(Direccion.derechaAbajo());
-        this.mapa.actualizar(this.unidad);
+        this.mapa.dibujar();
     }
 
 }

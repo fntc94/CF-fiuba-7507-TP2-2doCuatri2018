@@ -18,8 +18,8 @@ public class Juego {
         int ancho = 30;
         this.mapa = new Mapa(alto, ancho);
 
-        colocarPosicionablesEnEsquinaSuperiorIzquierda(nombreJugador1);
-        colocarPosicionablesEnEsquinaInferiorDerecha(nombreJugador2);
+//        colocarPosicionablesEnEsquinaSuperiorIzquierda(nombreJugador1);
+//        colocarPosicionablesEnEsquinaInferiorDerecha(nombreJugador2);
     }
 
     private void colocarPosicionablesEnEsquinaSuperiorIzquierda(String nombreJugador){
