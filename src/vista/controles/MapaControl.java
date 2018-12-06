@@ -187,13 +187,20 @@ public class MapaControl extends ScrollPane {
         // Si el texto es plaza entonces pongo una plaza, de lo contrario un cuartel
         if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
 
-            // Creo posicion, posicionable y controlador
+            // Creo posicion, posicionable, controlador y vista
             Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
             IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
             IPosicionableController nuevaPlazaController = new PosicionableController(nuevaPlaza, "red");
+            //Node nuevaPlazaVista = this.crearVista(nuevaPlazaController);
 
+            //Los agrego
+            //this.vistas.put(nuevaPlaza,nuevaPlazaVista);
+            this.mapa.posicionar(nuevaPlaza);
             this.controladores.put(nuevaPlaza, nuevaPlazaController);
 
+            this.agregar(nuevaPlazaController);
+
+            //this.jugador2.agregar((Edificio) nuevaPlaza);
             this.dibujar(nuevaPlaza);
 
             success = true;
@@ -202,8 +209,12 @@ public class MapaControl extends ScrollPane {
             IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
             IPosicionableController nuevoCuartelController = new PosicionableController(nuevoCuartel, "red");
 
+            this.mapa.posicionar(nuevoCuartel);
             this.controladores.put(nuevoCuartel, nuevoCuartelController);
 
+            this.agregar(nuevoCuartelController);
+
+            //this.jugador2.agregar((Edificio) nuevoCuartel);
             this.dibujar(nuevoCuartel);
 
             success = true;
