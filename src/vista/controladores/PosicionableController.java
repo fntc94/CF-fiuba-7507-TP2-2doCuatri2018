@@ -1,5 +1,6 @@
 package vista.controladores;
 
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
@@ -8,6 +9,8 @@ public class PosicionableController implements IPosicionableController {
 
     private IPosicionable posicionable;
     private String color;
+
+    private ScrollPane scrollPane;
 
     public PosicionableController(IPosicionable posicionable, String color){
 
@@ -33,6 +36,19 @@ public class PosicionableController implements IPosicionableController {
 
     @Override
     public void handleClick(MouseEvent mouseEvent) {
+        ScrollPane pane = this.scrollPane;
 
+        double width = pane.getContent().getBoundsInLocal().getWidth();
+        double height = pane.getContent().getBoundsInLocal().getHeight();
+
+        double x = posicionable.getPosicion().getAbajoIzquierda().getCoordenadaEnX();
+        double y = posicionable.getPosicion().getAbajoIzquierda().getCoordenadaEnY();
+
+        // scrolling values range from 0 to 1
+        pane.setVvalue(y/height);
+        pane.setHvalue(x/width);
+
+        // just for usability
+//        node.requestFocus();
     }
 }

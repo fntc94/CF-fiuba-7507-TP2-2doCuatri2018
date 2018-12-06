@@ -6,20 +6,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="vista.controladores.MovimientoController">
+<?import java.net.URL?>
+<BorderPane fx:id="rootMovimiento" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="vista.controladores.MovimientoController">
+
+    <top>
+        <Label fx:id="posicionLabel" BorderPane.alignment="center" minWidth="120" maxWidth="Infinity"/>
+    </top>
+
+    <bottom>
+        <GridPane GridPane.rowIndex="1" BorderPane.alignment="center" alignment="CENTER">
+
+            <Button text="↖" GridPane.rowIndex="0" GridPane.columnIndex="0" onMouseClicked="#handleIzquierdaArriba"/>
+            <Button text="⬆" GridPane.rowIndex="0" GridPane.columnIndex="1" onMouseClicked="#handleArriba"/>
+            <Button text="↗" GridPane.rowIndex="0" GridPane.columnIndex="2" onMouseClicked="#handleDerechaArriba"/>
+
+            <Button text="⬅" GridPane.rowIndex="1" GridPane.columnIndex="0" onMouseClicked="#handleIzquierda"/>
+            <Button text="➡" GridPane.rowIndex="1" GridPane.columnIndex="2" onMouseClicked="#handleDerecha"/>
+
+            <Button text="↙" GridPane.rowIndex="2" GridPane.columnIndex="0" onMouseClicked="#handleIzquierdaAbajo"/>
+            <Button text="⬇" GridPane.rowIndex="2" GridPane.columnIndex="1" onMouseClicked="#handleAbajo"/>
+            <Button text="↘" GridPane.rowIndex="2" GridPane.columnIndex="2" onMouseClicked="#handleDerechaAbajo"/>
+
+        </GridPane>
+    </bottom>
 
 
-
-        <Button text="↖" GridPane.rowIndex="0" GridPane.columnIndex="0" onMouseClicked="#handleIzquierdaArriba"/>
-        <Button text="⬆" GridPane.rowIndex="0" GridPane.columnIndex="1" onMouseClicked="#handleArriba"/>
-        <Button text="↗" GridPane.rowIndex="0" GridPane.columnIndex="2" onMouseClicked="#handleDerechaArriba"/>
-
-        <Button text="⬅" GridPane.rowIndex="1" GridPane.columnIndex="0" onMouseClicked="#handleIzquierda"/>
-        <Button text="➡" GridPane.rowIndex="1" GridPane.columnIndex="2" onMouseClicked="#handleDerecha"/>
-
-        <Button text="↙" GridPane.rowIndex="2" GridPane.columnIndex="0" onMouseClicked="#handleIzquierdaAbajo"/>
-        <Button text="⬇" GridPane.rowIndex="2" GridPane.columnIndex="1" onMouseClicked="#handleAbajo"/>
-        <Button text="↘" GridPane.rowIndex="2" GridPane.columnIndex="2" onMouseClicked="#handleDerechaAbajo"/>
+    <stylesheets>
+        <URL value="@../css/Movimiento.css"/>
+    </stylesheets>
 
 
-</GridPane>
+</BorderPane>

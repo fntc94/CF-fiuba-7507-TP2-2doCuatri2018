@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -94,6 +96,7 @@ public class MiniMapaController implements Initializable {
         Casillero abajoIzquierda = posicion.getAbajoIzquierda();
 
         AnchorPane vista = new AnchorPane();
+
         String css = String.format("-fx-background-color: %s", this.colores.get(posicionable));
         vista.setStyle(css);
 
@@ -105,5 +108,6 @@ public class MiniMapaController implements Initializable {
         this.vistas.put(posicionable, vista);
 
     }
+
 
 }

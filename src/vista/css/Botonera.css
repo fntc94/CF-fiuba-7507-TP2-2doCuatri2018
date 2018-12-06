@@ -1,0 +1,24 @@
+
+#root{
+    -fx-alignment: center;
+    -fx-background-color: darkgray;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+    -fx-padding: 5;
+}
+
+#nombreLabel{
+    -fx-font-size: 14;
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-width: 2;
+    -fx-border-color: white;
+;
+}
+
+#botoneraGridPane{
+    -fx-background-color: cyan;
+    -fx-padding: 5,0,0,0;
+    -fx-border-color: white;
+    -fx-border-width: 2,2,2,2;
+}

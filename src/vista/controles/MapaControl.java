@@ -161,5 +161,4 @@ public class MapaControl extends ScrollPane {
         GridPane.setRowSpan(vista, posicion.getAlto());
     }
 
-
 }

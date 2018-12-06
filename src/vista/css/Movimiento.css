@@ -1,0 +1,12 @@
+
+#rootMovimiento{
+    -fx-alignment: center;
+    -fx-background-color: darkgray;
+    -fx-padding: 2,0,0,0;
+}
+
+#posicionLabel{
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+    /*-fx-text-fill: white;*/
+}

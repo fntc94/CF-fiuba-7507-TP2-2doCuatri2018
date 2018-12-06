@@ -19,9 +19,7 @@
             </columnConstraints>
 
             <fx:include fx:id="miniMapa" source="MiniMapa.fxml" GridPane.columnIndex="0"/>
-            <GridPane fx:id="botonera" GridPane.columnIndex="1">
-                <Label>BOTONERA</Label>
-            </GridPane>
+            <GridPane fx:id="botonera" GridPane.columnIndex="1"/>
 
 
         </GridPane>

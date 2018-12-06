@@ -3,11 +3,12 @@ package vista.controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class MovimientoBotonera extends GridPane {
+public class MovimientoBotonera extends BorderPane {
 
     public MovimientoBotonera(){
 
