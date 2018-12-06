@@ -188,7 +188,7 @@ public class MapaControl extends ScrollPane {
         if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
 
             // Creo posicion, posicionable, controlador y vista
-            Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
+            Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),2);
             IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
             IPosicionableController nuevaPlazaController = new PosicionableController(nuevaPlaza, "red");
             //Node nuevaPlazaVista = this.crearVista(nuevaPlazaController);
@@ -205,7 +205,7 @@ public class MapaControl extends ScrollPane {
 
             success = true;
         }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
-            Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),3);
+            Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),2);
             IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
             IPosicionableController nuevoCuartelController = new PosicionableController(nuevoCuartel, "red");
 
