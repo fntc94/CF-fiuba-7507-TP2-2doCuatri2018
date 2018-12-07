@@ -5,16 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.EventListener;
 
 public class InicioControl extends BorderPane {
 
@@ -56,10 +54,10 @@ public class InicioControl extends BorderPane {
             String nombreJugador1 = this.nombreJugador1.getText();
             String nombreJugador2 = this.nombreJugador2.getText();
             JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
+
             this.primaryStage.setScene(new Scene(juegoControl));
             this.primaryStage.setMaximized(true);
         }
-
     }
 
     @FXML
