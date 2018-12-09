@@ -1,15 +1,13 @@
 package vista.controles;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modelo.edificios.Castillo;
 import modelo.edificios.EstrategiaAtaqueCastillo;
@@ -25,8 +23,6 @@ import modelo.unidades.UnidadesFabrica;
 import vista.PosicionableControllerFactory;
 import javafx.scene.control.Button;
 import vista.controladores.*;
-
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,19 +39,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private Turno turno;
 
     @FXML private GridPane botonera;
+    @FXML private Button pasarTurno;
+    @FXML private Text fichaTecnica;
 
     JuegoControl(Stage primaryStage, String nombreJugador1, String nombreJugador2) {
         this.listaDeParticipantes = new ArrayList();
 
         this.primaryStage = primaryStage;
-
-        Button button = new Button("Paso");
-        Scene scene = this.primaryStage.getScene();
-        StackPane root = new StackPane();
-        root.getChildren().add(button);
-        scene.setRoot(root);
-
-        this.primaryStage.setScene(scene);
 
         Juego juego = new Juego(nombreJugador1, nombreJugador2);
         this.juego = juego;
@@ -93,12 +83,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         }
 
 
-        this.inicializarJugador1("Juan");
-        this.inicializarJugador2("Pedro");
+        this.inicializarJugador1(nombreJugador1);
+        this.inicializarJugador2(nombreJugador2);
 
-         this.turno = new Turno(this.listaDeParticipantes);
+        this.turno = new Turno(this.listaDeParticipantes);
+        this.fichaTecnica.setText(this.turno.devolverJugadorActual());
 
-//        mapaControl.dibujar();
+//      mapaControl.dibujar();
         this.centerProperty().setValue(mapaControl);
 
     }
@@ -219,8 +210,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(espadachinController);
     }
 
-    public void cambioDeTurno(){
 
+    public void cambioDeTurno(){
         this.turno.cambiarDeTurno();
+        this.fichaTecnica.setText(this.turno.devolverJugadorActual());
+
     }
 }
