@@ -6,8 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import modelo.unidades.Arquero;
-import modelo.unidades.Espadachin;
 import vista.controladores.MovimientoController;
 
 import java.io.IOException;
@@ -72,6 +72,24 @@ public class ArqueroBotonera extends GridPane implements Initializable {
 
     public void handleAtaque(){
         mapa.estadoAtaque(this.arquero);
+        this.playSound();
+    }
+
+    private void playSound(){
+
+        try
+        {
+
+            String file = "/vista/sonidos/ataque_arquero.wav";
+            URL path = getClass().getResource(file);
+            AudioClip ac = new AudioClip(path.toString());
+            ac.play();
+
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public void handleCancelar(){
@@ -94,6 +112,8 @@ public class ArqueroBotonera extends GridPane implements Initializable {
         this.vidaProgressBar.setProgress(this.obtenerProgresoDeVida());
         this.setVidaLabel();
     }
+
+
 
 
 }

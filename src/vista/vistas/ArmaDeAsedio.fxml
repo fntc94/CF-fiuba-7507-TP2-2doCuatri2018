@@ -7,10 +7,13 @@
 <?import javafx.scene.layout.*?>
 
 <?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <fx:root type="AnchorPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#handleClick">
 
+
     <stylesheets>
-        <URL value="@../css/Posicionable.css" />
+        <URL value="@/vista/css/ArmaDeAsedio.css" />
     </stylesheets>
 
 </fx:root>

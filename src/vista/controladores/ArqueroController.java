@@ -1,17 +1,28 @@
 package vista.controladores;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
 import modelo.unidades.Arquero;
-import modelo.unidades.Espadachin;
 import vista.controles.ArqueroBotonera;
-import vista.controles.EspadachinBotonera;
 import vista.controles.MapaControl;
 
-public class ArqueroController implements IPosicionableController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ArqueroController implements IPosicionableController, Initializable {
+
+
+    @FXML
+    private GridPane root;
+    @FXML private ImageView imageView;
 
     private final ArqueroBotonera botonera;
     private Arquero arquero;
@@ -30,6 +41,12 @@ public class ArqueroController implements IPosicionableController {
 
 
         this.botonera = new ArqueroBotonera(arquero, mapaControl);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.root.getStylesheets().add(this.getClass().getResource("/vista/css/Arquero.css").toExternalForm());
+        this.imageView.getStyleClass().add(color);
     }
 
     @Override
@@ -57,6 +74,7 @@ public class ArqueroController implements IPosicionableController {
             try {
                 this.atacante.atacar(this.arquero);
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
+                this.playSound();
                 this.botonera.actualizarUI();
             }
             catch (Exception e){
@@ -69,6 +87,24 @@ public class ArqueroController implements IPosicionableController {
             }
         }
     }
+
+    private void playSound(){
+
+        try
+        {
+
+            String file = "/vista/sonidos/recibir_ataque_asedio.wav";
+            URL path = getClass().getResource(file);
+            AudioClip ac = new AudioClip(path.toString());
+            ac.play();
+
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     @Override
     public void estadoAtaquePotencial(IAtacante atacante) {

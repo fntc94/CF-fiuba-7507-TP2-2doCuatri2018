@@ -5,16 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class InicioControl extends BorderPane {
 
@@ -22,6 +20,13 @@ public class InicioControl extends BorderPane {
 
     @FXML private TextField nombreJugador1 = new TextField();
     @FXML private TextField nombreJugador2 = new TextField();
+
+
+    private Runnable onAceptarAction = () -> {};
+
+    public void onAceptar(Runnable onAceptarAction){
+        this.onAceptarAction = onAceptarAction;
+    }
 
 
     public InicioControl(Stage primaryStage){
@@ -58,13 +63,39 @@ public class InicioControl extends BorderPane {
             JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
             this.primaryStage.setScene(new Scene(juegoControl));
             this.primaryStage.setMaximized(true);
+
+            this.playSound();
+            this.onAceptarAction.run();
         }
 
+
+
+    }
+
+    private void playSound(){
+
+        try
+        {
+
+            String file = "/vista/sonidos/juegoo.wav";
+            URL path = getClass().getResource(file);
+            AudioClip ac = new AudioClip(path.toString());
+            ac.setVolume(0.5);
+            ac.setCycleCount(AudioClip.INDEFINITE);
+            ac.play();
+
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void handleCancelar(MouseEvent mouseEvent) {
         Platform.exit();
     }
+
+
 
 }

@@ -32,7 +32,7 @@
 
                 <ImageView fx:id="imagenPosicionable" GridPane.rowIndex="1" fitHeight="60" fitWidth="40"
                            style="-fx-padding: 5" GridPane.halignment="CENTER">
-                    <Image url="/vista/imagenes/ArmaDeAsedio_blue.png"/>
+                    <Image url="/vista/imagenes/ArmaDeAsedio_desmontada_blue.png"/>
                 </ImageView>
 
             </GridPane>

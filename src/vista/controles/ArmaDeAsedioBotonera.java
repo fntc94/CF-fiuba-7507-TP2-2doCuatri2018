@@ -8,8 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import modelo.unidades.ArmaDeAsedio;
 import modelo.unidades.Espadachin;
+import vista.controladores.ArmaDeAsedioController;
 import vista.controladores.MovimientoController;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class ArmaDeAsedioBotonera extends GridPane implements Initializable {
     private final ArmaDeAsedio armaDeAsedio;
     private double vidaInicial;
     private MapaControl mapa;
+    private ArmaDeAsedioController controller;
 
     @FXML
     private ProgressBar vidaProgressBar;
@@ -33,12 +36,13 @@ public class ArmaDeAsedioBotonera extends GridPane implements Initializable {
 
     private Boolean montada = false;
 
-    public ArmaDeAsedioBotonera(ArmaDeAsedio armaDeAsedio, MapaControl mapa){
+    public ArmaDeAsedioBotonera(ArmaDeAsedio armaDeAsedio, MapaControl mapa, ArmaDeAsedioController controller){
 
         super();
         this.armaDeAsedio = armaDeAsedio;
         this.vidaInicial = armaDeAsedio.getVida();
         this.mapa = mapa;
+        this.controller = controller;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/ArmaDeAsedioBotonera.fxml"));
         loader.setRoot(this);
@@ -84,6 +88,25 @@ public class ArmaDeAsedioBotonera extends GridPane implements Initializable {
 
     public void handleAtaque(){
         mapa.estadoAtaque(this.armaDeAsedio);
+        this.playSound();
+
+    }
+
+    private void playSound(){
+
+        try
+        {
+
+            String file = "/vista/sonidos/ataque_arma_asedio.wav";
+            URL path = getClass().getResource(file);
+            AudioClip ac = new AudioClip(path.toString());
+            ac.play();
+
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public void handleCancelar(){
@@ -98,6 +121,8 @@ public class ArmaDeAsedioBotonera extends GridPane implements Initializable {
         this.buttonMontar.setDisable(true);
         this.buttonDesmontar.setDisable(false);
         this.buttonAtacar.setDisable(false);
+
+        this.controller.montar();
     }
 
     public void handleDesmontar(){
@@ -107,6 +132,8 @@ public class ArmaDeAsedioBotonera extends GridPane implements Initializable {
         this.buttonMontar.setDisable(false);
         this.buttonDesmontar.setDisable(true);
         this.buttonAtacar.setDisable(true);
+
+        controller.desmontar();
     }
 
 

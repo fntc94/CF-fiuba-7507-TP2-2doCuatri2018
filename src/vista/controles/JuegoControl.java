@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import modelo.edificios.Castillo;
@@ -85,8 +86,9 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
+
+
 
     public void setBotonera(Node node){
         this.botonera.getChildren().clear();

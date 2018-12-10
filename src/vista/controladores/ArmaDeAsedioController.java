@@ -1,17 +1,29 @@
 package vista.controladores;
 
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
 import modelo.unidades.ArmaDeAsedio;
-import modelo.unidades.Arquero;
 import vista.controles.ArmaDeAsedioBotonera;
-import vista.controles.ArqueroBotonera;
 import vista.controles.MapaControl;
 
-public class ArmaDeAsedioController implements IPosicionableController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ArmaDeAsedioController implements IPosicionableController, Initializable {
+
+
+    @FXML
+    private GridPane root;
+    @FXML private ImageView imageView;
+
 
     private final ArmaDeAsedioBotonera botonera;
     private ArmaDeAsedio armaDeAsedio;
@@ -29,7 +41,13 @@ public class ArmaDeAsedioController implements IPosicionableController {
         this.juegoController = juegoController;
 
 
-        this.botonera = new ArmaDeAsedioBotonera(armaDeAsedio, mapaControl);
+        this.botonera = new ArmaDeAsedioBotonera(armaDeAsedio, mapaControl, this);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.root.getStylesheets().add(this.getClass().getResource("/vista/css/ArmaDeAsedio.css").toExternalForm());
+        this.imageView.getStyleClass().add("red-desmontada");
     }
 
     @Override
@@ -57,6 +75,7 @@ public class ArmaDeAsedioController implements IPosicionableController {
             try {
                 this.atacante.atacar(this.armaDeAsedio);
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
+                this.playSound();
                 this.botonera.actualizarUI();
             }
             catch (Exception e){
@@ -70,6 +89,23 @@ public class ArmaDeAsedioController implements IPosicionableController {
         }
     }
 
+    private void playSound(){
+
+        try
+        {
+
+            String file = "/vista/sonidos/asedio.wav";
+            URL path = getClass().getResource(file);
+            AudioClip ac = new AudioClip(path.toString());
+            ac.play();
+
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void estadoAtaquePotencial(IAtacante atacante) {
         this.estado = "ataquePotencial";
@@ -79,4 +115,16 @@ public class ArmaDeAsedioController implements IPosicionableController {
     public void estadoSeleccionable(){
         this.estado = "seleccionable";
     }
+
+    public void montar(){
+        this.imageView.getStyleClass().clear();
+        this.imageView.getStyleClass().add(String.format("%s-montada", this.color));
+    }
+
+    public void desmontar() {
+        this.imageView.getStyleClass().clear();
+        this.imageView.getStyleClass().add(String.format("%s-desmontada", this.color));
+    }
+
+
 }

@@ -137,6 +137,18 @@ public class MapaControl extends ScrollPane {
             return new ArmaDeAsedioVista(controller);
         }
 
+        if(controller.getClass().equals(AldeanoController.class)){
+            return new AldeanoVista(controller);
+        }
+
+        if(controller.getClass().equals(ArqueroController.class)){
+            return new ArqueroVista(controller);
+        }
+
+        if(controller.getClass().equals(EspadachinController.class)){
+            return new EspadachinVista(controller);
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Posicionable.fxml"));
         loader.setController(controller);
 
@@ -161,7 +173,15 @@ public class MapaControl extends ScrollPane {
         Posicion posicion = posicionable.getPosicion();
 
         IPosicionableController controller = this.controladores.get(posicionable);
-        Node vista = this.crearVista(controller);
+
+        Node vista;
+        if(this.vistas.containsKey(posicionable)){
+           vista = this.vistas.get(posicionable);
+        }
+        else{
+            vista = this.crearVista(controller);
+        }
+//        Node vista = this.crearVista(controller);
 
         this.agregar(vista, posicion, posicionable);
         this.vistas.put(posicionable, vista);
@@ -181,9 +201,12 @@ public class MapaControl extends ScrollPane {
     public void estadoAtaque(IAtacante atacante) {
 
         for(IPosicionableController controller: this.controladores.values()){
+
             controller.estadoAtaquePotencial(atacante);
+
         }
     }
+
 
     public void estadoSeleccionable() {
 
