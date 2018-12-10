@@ -18,8 +18,8 @@ public class Turno {
         this.jugadorActual = this.listaDeParticipantes.getFirst();
     }
 
-    public Jugador devolverJugadorActual(){
-        return jugadorActual;
+    public String devolverJugadorActual(){
+        return jugadorActual.devolverNombre();
     }
 
     public void cambiarDeTurno(){

@@ -39,7 +39,6 @@ public class Main extends Application {
 
         primaryStage.setTitle("Age ofEmpires II");
         primaryStage.setScene(new Scene(inicioControl));
-        //primaryStage.setFullScreen(true);
         primaryStage.show();
         this.playSound();
     }

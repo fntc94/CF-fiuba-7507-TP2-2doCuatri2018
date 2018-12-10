@@ -13,6 +13,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.EventListener;
 
 public class InicioControl extends BorderPane {
 
@@ -61,6 +66,7 @@ public class InicioControl extends BorderPane {
             String nombreJugador1 = this.nombreJugador1.getText();
             String nombreJugador2 = this.nombreJugador2.getText();
             JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
+
             this.primaryStage.setScene(new Scene(juegoControl));
             this.primaryStage.setMaximized(true);
 

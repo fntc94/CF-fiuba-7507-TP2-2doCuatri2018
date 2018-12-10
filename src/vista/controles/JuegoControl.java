@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import modelo.edificios.Castillo;
 import modelo.edificios.EstrategiaAtaqueArmaDeAsedio;
@@ -15,13 +17,16 @@ import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
+import modelo.juego.Turno;
 import modelo.posicion.*;
 import modelo.unidades.*;
 import vista.PosicionableControllerFactory;
+import javafx.scene.control.Button;
 import vista.controladores.*;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class JuegoControl extends BorderPane implements Initializable, IJuegoController {
@@ -29,12 +34,16 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     private Stage primaryStage;
     private Juego juego;
-
+    private List<Jugador> listaDeParticipantes;
     private MapaControl mapaControl;
+    private Turno turno;
 
     @FXML private GridPane botonera;
+    @FXML private Button pasarTurno;
+    @FXML private Text fichaTecnica;
 
     JuegoControl(Stage primaryStage, String nombreJugador1, String nombreJugador2) {
+        this.listaDeParticipantes = new ArrayList();
 
         this.primaryStage = primaryStage;
 
@@ -74,10 +83,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         }
 
 
-        this.inicializarJugador1("Juan");
-        this.inicializarJugador2("Pedro");
+        this.inicializarJugador1(nombreJugador1);
+        this.inicializarJugador2(nombreJugador2);
 
-//        mapaControl.dibujar();
+        this.turno = new Turno(this.listaDeParticipantes);
+        this.fichaTecnica.setText(this.turno.devolverJugadorActual());
+
+//      mapaControl.dibujar();
         this.centerProperty().setValue(mapaControl);
 
     }
@@ -97,7 +109,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     private void inicializarJugador1(String nombreJugador){
         Mapa mapa = this.juego.getMapa();
-
         Posicion posicionCastillo = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(0,0), 3);
         Posicion posicionPlazaCentral = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(3,3), 2);
         Posicion posicionAldeano1 = new PosicionDeUnCasillero(mapa,5,1);
@@ -121,6 +132,8 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         jugador.agregar(aldeano1);
         jugador.agregar(aldeano2);
         jugador.agregar(aldeano3);
+
+        this.listaDeParticipantes.add(jugador);
 
         PosicionableControllerFactory controllerFactory = new PosicionableControllerFactory(this, this.mapaControl, "red");
         IPosicionableController castilloController = controllerFactory.crearControlador(castillo);
@@ -190,6 +203,8 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         jugador.agregar(aldeano2);
         jugador.agregar(aldeano3);
 
+        this.listaDeParticipantes.add(jugador);
+
         PosicionableControllerFactory controllerFactory = new PosicionableControllerFactory(this, this.mapaControl, "blue");
         IPosicionableController castilloController = controllerFactory.crearControlador(castillo);
         IPosicionableController plazaCentralController = controllerFactory.crearControlador(plazaCentral);
@@ -212,4 +227,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(espadachinController);
     }
 
+
+    public void cambioDeTurno(){
+        this.turno.cambiarDeTurno();
+        this.fichaTecnica.setText(this.turno.devolverJugadorActual());
+
+    }
 }

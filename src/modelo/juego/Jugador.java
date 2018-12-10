@@ -37,6 +37,10 @@ public class Jugador {
         }
     }
 
+    public String devolverNombre(){
+        return this.nombre;
+    }
+
     public void trabajar() {
         int oroRecolectado = this.plebe.trabajar();
         this.bolsaDeOro = (this.bolsaDeOro + oroRecolectado);
