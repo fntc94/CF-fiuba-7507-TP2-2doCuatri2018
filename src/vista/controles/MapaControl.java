@@ -26,13 +26,10 @@ import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
 import modelo.unidades.Espadachin;
 import vista.PosicionableControllerFactory;
-import vista.controladores.IPosicionController;
-import vista.controladores.IPosicionableController;
-import vista.controladores.MiniMapaController;
+import vista.controladores.*;
 
 import modelo.posicion.*;
 import modelo.unidades.UnidadesFabrica;
-import vista.controladores.PosicionableController;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -135,6 +132,11 @@ public class MapaControl extends ScrollPane {
 
 
     private Node crearVista(IPosicionableController controller){
+
+        if(controller.getClass().equals(ArmaDeAsedioController.class)){
+            return new ArmaDeAsedioVista(controller);
+        }
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Posicionable.fxml"));
         loader.setController(controller);
 

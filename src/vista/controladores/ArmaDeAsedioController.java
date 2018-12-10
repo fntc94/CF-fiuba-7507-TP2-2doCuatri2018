@@ -5,14 +5,16 @@ import javafx.scene.input.MouseEvent;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
-import modelo.unidades.Espadachin;
-import vista.controles.EspadachinBotonera;
+import modelo.unidades.ArmaDeAsedio;
+import modelo.unidades.Arquero;
+import vista.controles.ArmaDeAsedioBotonera;
+import vista.controles.ArqueroBotonera;
 import vista.controles.MapaControl;
 
-public class EspadachinController implements IPosicionableController {
+public class ArmaDeAsedioController implements IPosicionableController {
 
-    private final EspadachinBotonera botonera;
-    private Espadachin espadachin;
+    private final ArmaDeAsedioBotonera botonera;
+    private ArmaDeAsedio armaDeAsedio;
     private String color;
     private MapaControl mapaControl;
     private IJuegoController juegoController;
@@ -20,24 +22,24 @@ public class EspadachinController implements IPosicionableController {
 
     private String estado = "seleccionable";
 
-    public EspadachinController(Espadachin espadachin, String color, MapaControl mapaControl, IJuegoController juegoController){
-        this.espadachin = espadachin;
+    public ArmaDeAsedioController(ArmaDeAsedio armaDeAsedio, String color, MapaControl mapaControl, IJuegoController juegoController){
+        this.armaDeAsedio = armaDeAsedio;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
 
 
-        this.botonera = new EspadachinBotonera(espadachin, mapaControl);
+        this.botonera = new ArmaDeAsedioBotonera(armaDeAsedio, mapaControl);
     }
 
     @Override
     public IPosicionable getPosicionable() {
-        return this.espadachin;
+        return this.armaDeAsedio;
     }
 
     @Override
     public Posicion getPosicion() {
-        return espadachin.getPosicion();
+        return armaDeAsedio.getPosicion();
     }
 
     @Override
@@ -53,7 +55,7 @@ public class EspadachinController implements IPosicionableController {
         if(this.estado.equals("ataquePotencial")){
 
             try {
-                this.atacante.atacar(this.espadachin);
+                this.atacante.atacar(this.armaDeAsedio);
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
                 this.botonera.actualizarUI();
             }
@@ -77,5 +79,4 @@ public class EspadachinController implements IPosicionableController {
     public void estadoSeleccionable(){
         this.estado = "seleccionable";
     }
-
 }

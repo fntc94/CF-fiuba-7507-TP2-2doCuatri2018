@@ -5,14 +5,16 @@ import javafx.scene.input.MouseEvent;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
+import modelo.unidades.Arquero;
 import modelo.unidades.Espadachin;
+import vista.controles.ArqueroBotonera;
 import vista.controles.EspadachinBotonera;
 import vista.controles.MapaControl;
 
-public class EspadachinController implements IPosicionableController {
+public class ArqueroController implements IPosicionableController {
 
-    private final EspadachinBotonera botonera;
-    private Espadachin espadachin;
+    private final ArqueroBotonera botonera;
+    private Arquero arquero;
     private String color;
     private MapaControl mapaControl;
     private IJuegoController juegoController;
@@ -20,24 +22,24 @@ public class EspadachinController implements IPosicionableController {
 
     private String estado = "seleccionable";
 
-    public EspadachinController(Espadachin espadachin, String color, MapaControl mapaControl, IJuegoController juegoController){
-        this.espadachin = espadachin;
+    public ArqueroController(Arquero arquero, String color, MapaControl mapaControl, IJuegoController juegoController){
+        this.arquero = arquero;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
 
 
-        this.botonera = new EspadachinBotonera(espadachin, mapaControl);
+        this.botonera = new ArqueroBotonera(arquero, mapaControl);
     }
 
     @Override
     public IPosicionable getPosicionable() {
-        return this.espadachin;
+        return this.arquero;
     }
 
     @Override
     public Posicion getPosicion() {
-        return espadachin.getPosicion();
+        return arquero.getPosicion();
     }
 
     @Override
@@ -53,7 +55,7 @@ public class EspadachinController implements IPosicionableController {
         if(this.estado.equals("ataquePotencial")){
 
             try {
-                this.atacante.atacar(this.espadachin);
+                this.atacante.atacar(this.arquero);
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
                 this.botonera.actualizarUI();
             }
