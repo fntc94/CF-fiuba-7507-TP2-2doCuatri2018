@@ -91,6 +91,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
 //      mapaControl.dibujar();
         this.centerProperty().setValue(mapaControl);
+        this.autosize();
 
     }
 

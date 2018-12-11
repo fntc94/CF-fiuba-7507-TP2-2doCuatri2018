@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.EventListener;
 
-public class InicioControl extends BorderPane {
+public class InicioControl extends GridPane {
 
     private Stage primaryStage;
 
@@ -68,7 +69,7 @@ public class InicioControl extends BorderPane {
             JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
 
             this.primaryStage.setScene(new Scene(juegoControl));
-            this.primaryStage.setMaximized(true);
+            this.primaryStage.setFullScreen(true);
 
             this.playSound();
             this.onAceptarAction.run();
