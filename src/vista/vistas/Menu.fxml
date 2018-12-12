@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-
-    <columnConstraints>
-        <ColumnConstraints percentWidth="100.0"/>
-    </columnConstraints>
-
-    <Label GridPane.halignment="CENTER" text="Menu"/>
-
+<GridPane id="menuContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <columnConstraints>
+    <ColumnConstraints percentWidth="100.0" />
+  </columnConstraints>
+  <Label contentDisplay="CENTER" text="Menu" GridPane.halignment="CENTER" />
+  <stylesheets>
+    <URL value="@../css/Menu.css" />
+  </stylesheets>
 </GridPane>
