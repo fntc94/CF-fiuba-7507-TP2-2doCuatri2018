@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ArmaDeAsedioBotonera extends GridPane implements Initializable {
+public class ArmaDeAsedioBotonera extends Botonera implements Initializable {
 
     private final ArmaDeAsedio armaDeAsedio;
     private double vidaInicial;

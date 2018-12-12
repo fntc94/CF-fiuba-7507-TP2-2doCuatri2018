@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ArqueroBotonera extends GridPane implements Initializable {
+public class ArqueroBotonera extends Botonera implements Initializable {
 
     private final Arquero arquero;
     private double vidaInicial;

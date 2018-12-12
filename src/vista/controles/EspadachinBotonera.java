@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EspadachinBotonera extends GridPane implements Initializable {
+public class EspadachinBotonera extends Botonera implements Initializable {
 
     private final Espadachin espadachin;
     private double vidaInicial;

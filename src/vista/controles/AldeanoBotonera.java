@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class AldeanoBotonera extends GridPane implements Initializable {
+public class AldeanoBotonera extends Botonera implements Initializable {
 
 
     @FXML private ProgressBar vidaProgressBar;
