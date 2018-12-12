@@ -32,11 +32,11 @@ public class PosicionableControllerFactory {
     }
 
     public IPosicionableController crearControlador(Castillo castillo){
-        return new CastilloController(castillo, this.color, mapaControl);
+        return new CastilloController(castillo, this.color, mapaControl, this.juegoControl);
     }
 
     public IPosicionableController crearControlador(PlazaCentral plazaCentral){
-        return new PlazaCentralController(plazaCentral, this.color, mapaControl);
+        return new PlazaCentralController(plazaCentral, this.color, mapaControl, this.juegoControl);
     }
 
     public IPosicionableController crearControlador(Espadachin espadachin){

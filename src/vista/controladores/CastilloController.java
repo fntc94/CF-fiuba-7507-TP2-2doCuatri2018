@@ -7,57 +7,23 @@ import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.edificios.Castillo;
 import modelo.posicion.Posicion;
+import vista.controles.Botonera;
+import vista.controles.CastilloBotonera;
 import vista.controles.MapaControl;
 
-public class CastilloController implements IPosicionableController {
+public class CastilloController extends EdificioController<Castillo, CastilloBotonera> {
 
-    private MapaControl mapaControl;
+    private CastilloBotonera botonera;
 
-    private Castillo castillo;
-    private String color;
+    public CastilloController(Castillo edificio, String color, MapaControl mapaControl, IJuegoController juegoController) {
+        super(edificio, color, mapaControl, juegoController);
 
-    private String estado = "seleccionable";
-
-    private IAtacante atacante;
-    public void estadoAtaquePotencial(IAtacante atacante){
-        this.atacante = atacante;
-        this.estado = "ataquePotencial";
-    }
-    public void estadoSeleccionable(){
-        this.estado = "seleccionable";
-    }
-
-    public CastilloController(Castillo castillo, String color, MapaControl mapaControl){
-        this.castillo = castillo;
-        this.color = color;
-        this.mapaControl = mapaControl;
+        this.botonera = new CastilloBotonera(edificio, mapaControl);
     }
 
     @Override
-    public IPosicionable getPosicionable() {
-        return this.castillo;
+    Botonera getBotonera() {
+        return this.botonera;
     }
-
-    @Override
-    public Posicion getPosicion() {
-        return castillo.getPosicion();
-    }
-
-    @Override
-    public String getColor() {
-        return this.color;
-    }
-
-    public void handleClick(MouseEvent mouseEvent) {
-        if(this.estado.equals("seleccionable")){
-            new Alert(Alert.AlertType.CONFIRMATION, "Castillo seleccionado!").show();
-
-        }
-        if(this.estado.equals("ataquePotencial")){
-            new Alert(Alert.AlertType.CONFIRMATION, "Castillo atacado!").show();
-            this.mapaControl.estadoSeleccionable();
-        }
-    }
-
-
 }
+

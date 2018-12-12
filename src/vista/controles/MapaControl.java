@@ -139,41 +139,7 @@ public class MapaControl extends ScrollPane {
 
 
     private Node crearVista(IPosicionableController controller){
-
-        if(controller.getClass().equals(ArmaDeAsedioController.class)){
-            return new ArmaDeAsedioVista(controller);
-        }
-
-        if(controller.getClass().equals(AldeanoController.class)){
-            return new AldeanoVista(controller);
-        }
-
-        if(controller.getClass().equals(ArqueroController.class)){
-            return new ArqueroVista(controller);
-        }
-
-        if(controller.getClass().equals(EspadachinController.class)){
-            return new EspadachinVista(controller);
-        }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Posicionable.fxml"));
-        loader.setController(controller);
-
-        Parent vista = null;
-        try {
-            vista = loader.load();
-        }
-        catch (IOException e){
-            throw new RuntimeException(e);
-        }
-
-        String color = controller.getColor();
-        String classSimpleName = controller.getPosicionable().getClass().getSimpleName();
-        String css = String.format("-fx-background-image: url(/vista/imagenes/%s_%s.png)", classSimpleName, color);
-        vista.setStyle(css);
-
-
-        return vista;
+        return new PosicionableVista(controller);
     }
 
     private void dibujar(IPosicionable posicionable) throws IOException {
