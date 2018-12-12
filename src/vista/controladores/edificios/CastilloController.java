@@ -3,8 +3,8 @@ package vista.controladores.edificios;
 import modelo.edificios.Castillo;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.Botonera;
-import vista.controles.CastilloBotonera;
+import vista.controles.botoneras.Botonera;
+import vista.controles.botoneras.edificios.CastilloBotonera;
 import vista.controles.MapaControl;
 
 public class CastilloController extends AtacableController<Castillo> {

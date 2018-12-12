@@ -7,18 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.EventListener;
 
 public class InicioControl extends GridPane {
 
@@ -71,7 +65,7 @@ public class InicioControl extends GridPane {
             this.primaryStage.setScene(new Scene(juegoControl));
             this.primaryStage.setFullScreen(true);
 
-//            this.playSound();
+            this.playSound();
             this.onAceptarAction.run();
         }
 

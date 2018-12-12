@@ -3,8 +3,8 @@ package vista.controladores.unidades;
 import modelo.unidades.Arquero;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.ArqueroBotonera;
-import vista.controles.Botonera;
+import vista.controles.botoneras.unidades.ArqueroBotonera;
+import vista.controles.botoneras.Botonera;
 import vista.controles.MapaControl;
 
 

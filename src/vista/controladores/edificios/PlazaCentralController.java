@@ -3,9 +3,9 @@ package vista.controladores.edificios;
 import modelo.edificios.PlazaCentral;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.Botonera;
+import vista.controles.botoneras.Botonera;
 import vista.controles.MapaControl;
-import vista.controles.PlazaCentralBotonera;
+import vista.controles.botoneras.edificios.PlazaCentralBotonera;
 
 
 public class PlazaCentralController extends AtacableController<PlazaCentral> {

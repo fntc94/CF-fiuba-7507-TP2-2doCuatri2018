@@ -3,8 +3,8 @@ package vista.controladores.unidades;
 import modelo.unidades.Aldeano;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.AldeanoBotonera;
-import vista.controles.Botonera;
+import vista.controles.botoneras.unidades.AldeanoBotonera;
+import vista.controles.botoneras.Botonera;
 import vista.controles.MapaControl;
 
 

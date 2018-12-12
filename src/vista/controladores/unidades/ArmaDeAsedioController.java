@@ -3,8 +3,8 @@ package vista.controladores.unidades;
 import modelo.unidades.ArmaDeAsedio;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.ArmaDeAsedioBotonera;
-import vista.controles.Botonera;
+import vista.controles.botoneras.unidades.ArmaDeAsedioBotonera;
+import vista.controles.botoneras.Botonera;
 import vista.controles.MapaControl;
 import vista.utilidades.ReproductorDeSonido;
 

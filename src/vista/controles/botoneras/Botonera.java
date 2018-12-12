@@ -1,4 +1,4 @@
-package vista.controles;
+package vista.controles.botoneras;
 
 import javafx.scene.layout.GridPane;
 

@@ -11,7 +11,7 @@ import modelo.IAtacable;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
-import vista.controles.Botonera;
+import vista.controles.botoneras.Botonera;
 import vista.controles.MapaControl;
 
 import java.net.URL;

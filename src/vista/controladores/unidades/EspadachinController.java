@@ -3,8 +3,8 @@ package vista.controladores.unidades;
 import modelo.unidades.Espadachin;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.Botonera;
-import vista.controles.EspadachinBotonera;
+import vista.controles.botoneras.Botonera;
+import vista.controles.botoneras.unidades.EspadachinBotonera;
 import vista.controles.MapaControl;
 
 public class EspadachinController extends AtacableController<Espadachin> {

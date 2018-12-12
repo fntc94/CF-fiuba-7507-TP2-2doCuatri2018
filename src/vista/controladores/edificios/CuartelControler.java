@@ -3,8 +3,8 @@ package vista.controladores.edificios;
 import modelo.edificios.Cuartel;
 import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controles.Botonera;
-import vista.controles.CuartelBotonera;
+import vista.controles.botoneras.Botonera;
+import vista.controles.botoneras.edificios.CuartelBotonera;
 import vista.controles.MapaControl;
 
 public class CuartelControler extends AtacableController<Cuartel> {
