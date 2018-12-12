@@ -4,3 +4,7 @@
     -fx-background-repeat: repeat;
     -fx-background-color:transparent;
 }
+
+.scroll-pane:focused{
+    -fx-focus-color: none;
+}
