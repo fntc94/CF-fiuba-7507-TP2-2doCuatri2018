@@ -12,16 +12,25 @@
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml" fx:controller="vista.controladores.edificios.CreacionUnidadesCuartelController">
 
+    <VBox>
+        <Label alignment="CENTER" maxWidth="Infinity" text="Unidades"/>
 
-    <ImageView fx:id="espadachinImageView" onDragDetected="#dragEspadachin" GridPane.rowIndex="0" GridPane.columnIndex="0">
-        <image>
-            <Image url="@/vista/imagenes/Espadachin_blue.png"/>
-        </image>
-    </ImageView>
+        <GridPane>
+            <ImageView fx:id="espadachinImageView" styleClass="drag-source" onDragDetected="#dragEspadachin"
+                       GridPane.rowIndex="0" GridPane.columnIndex="0">
 
-    <ImageView fx:id="arqueroImageView" onDragDetected="#dragArquero" GridPane.rowIndex="0" GridPane.columnIndex="1">
-        <image>
-            <Image url="@/vista/imagenes/Arquero_blue.png"/>
-        </image>
-    </ImageView>
+                <Image url="@/vista/imagenes/Espadachin_blue.png"/>
+            </ImageView>
+
+            <ImageView fx:id="arqueroImageView" styleClass="drag-source" onDragDetected="#dragArquero"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1">
+
+                <Image url="@/vista/imagenes/Arquero_blue.png"/>
+            </ImageView>
+        </GridPane>
+    </VBox>
+
+
+
+
 </GridPane>

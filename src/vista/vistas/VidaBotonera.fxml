@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="vista.controles.botoneras.VidaController">
+
+    <top>
+        <GridPane GridPane.rowIndex="0" style="-fx-background-color: blue">
+            <ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>
+            <Label fx:id="vidaLabel" GridPane.rowIndex="0" textAlignment="CENTER" GridPane.halignment="center"/>
+        </GridPane>
+    </top>
+
+    <center>
+        <ImageView fx:id="imagen" fitHeight="50" preserveRatio="true">
+            <!--<Image url="/vista/imagenes/Aldeano_blue.png"/>-->
+        </ImageView>
+    </center>
+
+</BorderPane>

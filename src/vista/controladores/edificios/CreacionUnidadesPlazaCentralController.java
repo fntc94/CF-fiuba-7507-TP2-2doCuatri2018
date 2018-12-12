@@ -1,6 +1,8 @@
 package vista.controladores.edificios;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
@@ -37,6 +39,7 @@ public class CreacionUnidadesPlazaCentralController {
         ClipboardContent content = new ClipboardContent();
 
         content.put(DataFormat.IMAGE, this.aldeanoImageView.getImage());
+//        content.put(DataFormat.IMAGE, new ImageView(new Image("/vista/imagenes/Aldeano_blue.png")));
         content.put(DataFormat.PLAIN_TEXT, "Aldeano");
         db.setContent(content);
 

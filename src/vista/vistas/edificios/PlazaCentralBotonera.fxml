@@ -15,17 +15,21 @@
         <ColumnConstraints percentWidth="100.0"/>
     </columnConstraints>
 
-    <VBox GridPane.valignment="CENTER">
-        <Label fx:id="nombreLabel" GridPane.rowIndex="0" alignment="CENTER" maxWidth="Infinity"/>
+    <rowConstraints>
+        <RowConstraints prefHeight="100"/>
+    </rowConstraints>
 
-        <GridPane GridPane.valignment="CENTER" fx:id="botoneraGridPane">
+    <VBox GridPane.valignment="CENTER">
+
+        <Label fx:id="nombreLabel" alignment="CENTER" maxWidth="Infinity"/>
+
+        <GridPane fx:id="botoneraGridPane" GridPane.valignment="CENTER" >
 
             <GridPane GridPane.columnIndex="0" GridPane.halignment="center">
 
                 <GridPane GridPane.rowIndex="0">
                     <ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>
                     <Label fx:id="vidaLabel" GridPane.rowIndex="0" textAlignment="CENTER" GridPane.halignment="center"/>
-
                 </GridPane>
 
                 <ImageView fx:id="imagenPosicionable" GridPane.rowIndex="1" fitHeight="60" fitWidth="40"
@@ -35,7 +39,9 @@
 
             </GridPane>
 
-            <fx:include source="CreacionUnidadesPlazaCentral.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <fx:include source="CreacionUnidadesPlazaCentral.fxml" alignment="CENTER"
+                        GridPane.rowIndex="0" GridPane.columnIndex="1"
+                        GridPane.valignment="CENTER"/>
 
         </GridPane>
 

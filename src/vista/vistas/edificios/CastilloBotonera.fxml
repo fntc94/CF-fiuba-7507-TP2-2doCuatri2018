@@ -35,7 +35,7 @@
 
             </GridPane>
 
-            <fx:include source="CreacionUnidadesCastillo.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <fx:include source="CreacionUnidadesCastillo.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="center"/>
 
         </GridPane>
 

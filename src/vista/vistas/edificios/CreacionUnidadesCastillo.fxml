@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml" fx:controller="vista.controladores.edificios.CreacionUnidadesCastilloController">
 
 
-    <ImageView fx:id="armaDeAsedioImageView" onDragDetected="#dragArmaDeAsedio" GridPane.rowIndex="0" GridPane.columnIndex="0">
-        <image>
+    <VBox>
+        <Label alignment="CENTER" maxWidth="Infinity" text="Unidades"/>
+
+        <ImageView fx:id="armaDeAsedioImageView" styleClass="drag-source" onDragDetected="#dragArmaDeAsedio">
+
             <Image url="@/vista/imagenes/ArmaDeAsedio_desmontada_blue.png"/>
-        </image>
-    </ImageView>
+        </ImageView>
+    </VBox>
+
+
 
 
 </GridPane>

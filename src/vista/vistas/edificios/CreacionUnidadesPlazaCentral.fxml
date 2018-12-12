@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml" fx:controller="vista.controladores.edificios.CreacionUnidadesPlazaCentralController">
 
+    <VBox alignment="CENTER">
+        <Label alignment="CENTER" maxWidth="Infinity" text="Unidades"/>
 
-    <ImageView fx:id="aldeanoImageView" onDragDetected="#dragAldeano" GridPane.rowIndex="0" GridPane.columnIndex="0">
-        <image>
+        <ImageView fx:id="aldeanoImageView" styleClass="drag-source" onDragDetected="#dragAldeano" >
+
             <Image url="@/vista/imagenes/Aldeano_blue.png"/>
-        </image>
-    </ImageView>
+
+        </ImageView>
+    </VBox>
+
+
 
 
 </GridPane>

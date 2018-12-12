@@ -17,8 +17,14 @@
 }
 
 #botoneraGridPane{
-    -fx-background-color: cyan;
+    /*-fx-background-color: cyan;*/
     -fx-padding: 5,0,0,0;
     -fx-border-color: white;
     -fx-border-width: 2,2,2,2;
+}
+
+.drag-source{
+    -fx-cursor: hand;
+    -fx-border-width: 4;
+    -fx-border-color: black;
 }

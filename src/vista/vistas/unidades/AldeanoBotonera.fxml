@@ -20,24 +20,28 @@
 
         <GridPane GridPane.valignment="CENTER" fx:id="botoneraGridPane">
 
-            <GridPane GridPane.columnIndex="0" GridPane.halignment="center">
+            <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
 
-                <GridPane GridPane.rowIndex="0">
-                    <ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>
-                    <Label fx:id="vidaLabel" GridPane.rowIndex="0" textAlignment="CENTER" GridPane.halignment="center"/>
+            <!--<BorderPane GridPane.columnIndex="0" GridPane.halignment="center">-->
 
-                </GridPane>
+                <!--<top>-->
+                    <!--<GridPane GridPane.rowIndex="0" style="-fx-background-color: blue">-->
+                        <!--<ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>-->
+                        <!--<Label fx:id="vidaLabel" GridPane.rowIndex="0" textAlignment="CENTER" GridPane.halignment="center"/>-->
+                    <!--</GridPane>-->
+                <!--</top>-->
 
-                <ImageView fx:id="imagenPosicionable" GridPane.rowIndex="1" fitHeight="60" fitWidth="40"
-                           GridPane.halignment="CENTER">
-                    <Image url="/vista/imagenes/Aldeano_blue.png"/>
-                </ImageView>
+                <!--<center>-->
+                    <!--<ImageView fx:id="imagenPosicionable" fitHeight="50" preserveRatio="true">-->
+                        <!--<Image url="/vista/imagenes/Aldeano_blue.png"/>-->
+                    <!--</ImageView>-->
+                <!--</center>-->
 
-            </GridPane>
+            <!--</BorderPane>-->
 
             <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
 
-            <fx:include fx:id="botoneraConstruccion" source="ConstruccionBotonera.fxml" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <fx:include fx:id="botoneraConstruccion" source="ConstruccionBotonera.fxml" GridPane.columnIndex="2"/>
 
         </GridPane>
 
