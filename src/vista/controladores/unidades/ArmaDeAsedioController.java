@@ -1,21 +1,23 @@
 package vista.controladores.unidades;
 
 import modelo.unidades.ArmaDeAsedio;
+import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
 import vista.controles.ArmaDeAsedioBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
+import vista.utilidades.ReproductorDeSonido;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ArmaDeAsedioController extends UnidadController<ArmaDeAsedio> {
+public class ArmaDeAsedioController extends AtacableController<ArmaDeAsedio> {
 
 
     ArmaDeAsedioBotonera botonera;
 
     @Override
-    Botonera getBotonera() {
+    protected Botonera getBotonera() {
         return this.botonera;
     }
 
@@ -32,37 +34,22 @@ public class ArmaDeAsedioController extends UnidadController<ArmaDeAsedio> {
     }
 
     @Override
-    String getWavFile(){
-        return "asedio.wav";
+    protected String getWavFile(){
+        return "arma_asedio_atacada.wav";
     }
-
-//    @Override
-//    protected void playSound(){
-//
-//        try
-//        {
-//
-//            String file = "/vista/sonidos/asedio.wav";
-//            URL path = getClass().getResource(file);
-//            AudioClip ac = new AudioClip(path.toString());
-//            ac.play();
-//
-//        }
-//        catch (Exception e)
-//        {
-//            throw new RuntimeException(e);
-//        }
-//    }
 
 
     public void montar(){
         this.imageView.getStyleClass().clear();
         this.imageView.getStyleClass().add(String.format("%s-montada", this.color));
+
+        new ReproductorDeSonido("montar_asedio.wav").reproducirSonido();
     }
 
     public void desmontar() {
         this.imageView.getStyleClass().clear();
         this.imageView.getStyleClass().add(String.format("%s-desmontada", this.color));
+        new ReproductorDeSonido("montar_asedio.wav").reproducirSonido();
     }
 
 

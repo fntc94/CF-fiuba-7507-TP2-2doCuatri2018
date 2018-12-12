@@ -1,12 +1,13 @@
 package vista.controladores.unidades;
 
 import modelo.unidades.Espadachin;
+import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
 import vista.controles.Botonera;
 import vista.controles.EspadachinBotonera;
 import vista.controles.MapaControl;
 
-public class EspadachinController extends UnidadController<Espadachin> {
+public class EspadachinController extends AtacableController<Espadachin> {
 
     private EspadachinBotonera botonera;
 
@@ -17,12 +18,12 @@ public class EspadachinController extends UnidadController<Espadachin> {
     }
 
     @Override
-    Botonera getBotonera() {
+    protected Botonera getBotonera() {
         return this.botonera;
     }
 
     @Override
-    String getWavFile() {
-        return "recibir_ataque_asedio.wav";
+    protected String getWavFile() {
+        return "unidad_atacada.wav";
     }
 }

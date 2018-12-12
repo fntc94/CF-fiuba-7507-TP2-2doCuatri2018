@@ -1,13 +1,14 @@
 package vista.controladores.unidades;
 
 import modelo.unidades.Arquero;
+import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
 import vista.controles.ArqueroBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 
 
-public class ArqueroController extends UnidadController<Arquero> {
+public class ArqueroController extends AtacableController<Arquero> {
 
     private ArqueroBotonera botonera;
 
@@ -18,13 +19,13 @@ public class ArqueroController extends UnidadController<Arquero> {
     }
 
     @Override
-    Botonera getBotonera() {
+    protected Botonera getBotonera() {
         return this.botonera;
     }
 
     @Override
-    String getWavFile(){
-        return "recibir_ataque_asedio.wav";
+    protected String getWavFile(){
+        return "unidad_atacada.wav";
     }
 }
 

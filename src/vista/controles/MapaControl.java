@@ -3,7 +3,6 @@ package vista.controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.ColumnConstraints;
@@ -11,21 +10,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import modelo.IAtacante;
 
-import modelo.Edificio;
 import modelo.IPosicionable;
-import modelo.edificios.Castillo;
 import modelo.edificios.Cuartel;
-import modelo.edificios.EstrategiaAtaqueCastillo;
 import modelo.edificios.PlazaCentral;
 
-import modelo.IPosicionable;
 import modelo.juego.Jugador;
 
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
-import modelo.unidades.Espadachin;
-import vista.PosicionableControllerFactory;
 import vista.controladores.*;
 
 import modelo.posicion.*;
@@ -203,7 +196,7 @@ public class MapaControl extends ScrollPane {
             // Creo posicion, posicionable, controlador y vista
             Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),2);
             IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
-            IPosicionableController nuevaPlazaController = new PosicionableController(nuevaPlaza, "red");
+            IPosicionableController nuevaPlazaController = new PosicionableControllerObsolete(nuevaPlaza, "red");
             //Node nuevaPlazaVista = this.crearVista(nuevaPlazaController);
 
             //Los agrego
@@ -220,7 +213,7 @@ public class MapaControl extends ScrollPane {
         }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
             Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(x.intValue(),y.intValue()),2);
             IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
-            IPosicionableController nuevoCuartelController = new PosicionableController(nuevoCuartel, "red");
+            IPosicionableController nuevoCuartelController = new PosicionableControllerObsolete(nuevoCuartel, "red");
 
             this.mapa.posicionar(nuevoCuartel);
             this.controladores.put(nuevoCuartel, nuevoCuartelController);

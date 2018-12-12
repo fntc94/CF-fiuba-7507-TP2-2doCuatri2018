@@ -1,12 +1,13 @@
 package vista.controladores.edificios;
 
 import modelo.edificios.Castillo;
+import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
 import vista.controles.Botonera;
 import vista.controles.CastilloBotonera;
 import vista.controles.MapaControl;
 
-public class CastilloController extends EdificioController<Castillo> {
+public class CastilloController extends AtacableController<Castillo> {
 
     private CastilloBotonera botonera;
 
@@ -17,7 +18,12 @@ public class CastilloController extends EdificioController<Castillo> {
     }
 
     @Override
-    Botonera getBotonera() {
+    protected String getWavFile() {
+        return "edificio_atacado.wav";
+    }
+
+    @Override
+    protected Botonera getBotonera() {
         return this.botonera;
     }
 }

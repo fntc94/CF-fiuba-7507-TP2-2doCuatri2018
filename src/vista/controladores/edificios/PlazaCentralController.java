@@ -1,14 +1,14 @@
 package vista.controladores.edificios;
 
 import modelo.edificios.PlazaCentral;
+import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
-import vista.controladores.edificios.EdificioController;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 import vista.controles.PlazaCentralBotonera;
 
 
-public class PlazaCentralController extends EdificioController<PlazaCentral> {
+public class PlazaCentralController extends AtacableController<PlazaCentral> {
 
 
     private PlazaCentralBotonera botonera;
@@ -20,7 +20,12 @@ public class PlazaCentralController extends EdificioController<PlazaCentral> {
     }
 
     @Override
-    Botonera getBotonera() {
+    protected Botonera getBotonera() {
         return this.botonera;
+    }
+
+    @Override
+    protected String getWavFile() {
+        return "edificio_atacado.wav";
     }
 }

@@ -6,14 +6,14 @@ import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
 
-public class PosicionableController implements IPosicionableController {
+public class PosicionableControllerObsolete implements IPosicionableController {
 
     private IPosicionable posicionable;
     private String color;
 
     private ScrollPane scrollPane;
 
-    public PosicionableController(IPosicionable posicionable, String color){
+    public PosicionableControllerObsolete(IPosicionable posicionable, String color){
 
         this.posicionable = posicionable;
         this.color = color;

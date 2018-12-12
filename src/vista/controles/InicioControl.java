@@ -71,7 +71,7 @@ public class InicioControl extends GridPane {
             this.primaryStage.setScene(new Scene(juegoControl));
             this.primaryStage.setFullScreen(true);
 
-            this.playSound();
+//            this.playSound();
             this.onAceptarAction.run();
         }
 

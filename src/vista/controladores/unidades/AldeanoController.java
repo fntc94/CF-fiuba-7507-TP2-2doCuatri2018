@@ -1,13 +1,14 @@
 package vista.controladores.unidades;
 
 import modelo.unidades.Aldeano;
+import vista.controladores.AtacableController;
 import vista.controladores.IJuegoController;
 import vista.controles.AldeanoBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 
 
-public class AldeanoController extends UnidadController<Aldeano> {
+public class AldeanoController extends AtacableController<Aldeano> {
 
 
     private AldeanoBotonera botonera;
@@ -19,13 +20,13 @@ public class AldeanoController extends UnidadController<Aldeano> {
     }
 
     @Override
-    Botonera getBotonera() {
+    protected Botonera getBotonera() {
         return this.botonera;
     }
 
     @Override
-    String getWavFile(){
-        return "recibir_ataque_asedio.wav";
+    protected String getWavFile(){
+        return "unidad_atacada.wav";
     }
 }
 

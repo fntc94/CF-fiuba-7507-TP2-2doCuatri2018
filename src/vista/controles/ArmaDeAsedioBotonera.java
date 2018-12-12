@@ -11,6 +11,7 @@ import javafx.scene.media.AudioClip;
 import modelo.unidades.ArmaDeAsedio;
 import vista.controladores.unidades.ArmaDeAsedioController;
 import vista.controladores.MovimientoController;
+import vista.utilidades.ReproductorDeSonido;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +50,7 @@ public class ArmaDeAsedioBotonera extends Botonera implements Initializable {
         loader.setControllerFactory(type -> {
 
             if(type.equals(MovimientoController.class)){
-                return new MovimientoController(armaDeAsedio, mapa);
+                return new MovimientoController(armaDeAsedio, mapa, new ReproductorDeSonido("movimiento_asedio_2.wav"));
             }
 
             else {

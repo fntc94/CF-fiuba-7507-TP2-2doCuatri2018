@@ -1,4 +1,4 @@
-package vista.controladores.edificios;
+package vista.controladores;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -6,32 +6,27 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import modelo.Edificio;
+import javafx.scene.media.AudioClip;
+import modelo.IAtacable;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
-import vista.controladores.IJuegoController;
-import vista.controladores.IPosicionableController;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class EdificioController<TEdificio extends Edificio> implements IPosicionableController, Initializable {
-
+public abstract class AtacableController<TAtacable extends IAtacable> implements IPosicionableController, Initializable {
 
     @FXML
-    private GridPane root;
-    @FXML private ImageView imageView;
+    protected GridPane root;
+    @FXML protected ImageView imageView;
 
-//    private TBotonera botonera;
-    private TEdificio edificio;
-    private String color;
-    private MapaControl mapaControl;
-    private IJuegoController juegoController;
-
+    //    Botonera botonera;
+    abstract protected Botonera getBotonera();
     private String estado = "seleccionable";
+
     private IAtacante atacante;
     public void estadoAtaquePotencial(IAtacante atacante){
         this.atacante = atacante;
@@ -41,34 +36,27 @@ public abstract class EdificioController<TEdificio extends Edificio> implements 
         this.estado = "seleccionable";
     }
 
-    public EdificioController(TEdificio edificio, String color, MapaControl mapaControl, IJuegoController juegoController){
-        this.edificio = edificio;
+    private TAtacable unidad;
+    protected String color;
+    private MapaControl mapaControl;
+    private IJuegoController juegoController;
+
+    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController){
+        this.unidad = unidad;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
 
-//        PlazaCentralBotonera plazaCentralBotonera = new PlazaCentralBotonera(plazaCentral, mapaControl);
-//        this.botonera = plazaCentralBotonera;
-    }
-
-    abstract Botonera getBotonera();
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        String classSimpleName = this.edificio.getClass().getSimpleName();
-        String resourcePath = String.format("/vista/css/%s.css", classSimpleName);
-        this.root.getStylesheets().add(this.getClass().getResource(resourcePath).toExternalForm());
-        this.imageView.getStyleClass().add(color);
     }
 
     @Override
     public IPosicionable getPosicionable() {
-        return this.edificio;
+        return this.unidad;
     }
 
     @Override
     public Posicion getPosicion() {
-        return edificio.getPosicion();
+        return unidad.getPosicion();
     }
 
     @Override
@@ -85,10 +73,10 @@ public abstract class EdificioController<TEdificio extends Edificio> implements 
         if(this.estado.equals("ataquePotencial")){
 
             try {
-                this.atacante.atacar(this.edificio);
+                this.atacante.atacar(this.unidad);
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
                 this.getBotonera().actualizarUI();
-
+                this.playSound();
             }
             catch (Exception e){
                 new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
@@ -98,6 +86,37 @@ public abstract class EdificioController<TEdificio extends Edificio> implements 
                 this.mapaControl.estadoSeleccionable();
             }
 
+        }
+
+
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String className = this.unidad.getClass().getSimpleName();
+        String resource = String.format("/vista/css/%s.css", className);
+        this.root.getStylesheets().add(this.getClass().getResource(resource).toExternalForm());
+        this.imageView.getStyleClass().add(color);
+    }
+
+
+    protected abstract String getWavFile();
+
+    private void playSound(){
+
+        try
+        {
+
+            String f = String.format("/vista/sonidos/%s", this.getWavFile());
+            URL path = getClass().getResource(f);
+            AudioClip ac = new AudioClip(path.toString());
+            ac.play();
+
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
         }
     }
 
