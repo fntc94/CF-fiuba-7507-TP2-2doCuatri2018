@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml" fx:controller="vista.controladores.edificios.CreacionUnidadesPlazaCentralController">
+
+
+    <ImageView fx:id="aldeanoImageView" onDragDetected="#dragAldeano" GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <image>
+            <Image url="@/vista/imagenes/Aldeano_blue.png"/>
+        </image>
+    </ImageView>
+
+
+</GridPane>

@@ -15,6 +15,7 @@ import modelo.Edificio;
 import modelo.IAtacante;
 
 import modelo.IPosicionable;
+import modelo.edificios.Castillo;
 import modelo.edificios.Cuartel;
 import modelo.edificios.PlazaCentral;
 
@@ -23,11 +24,16 @@ import modelo.juego.Jugador;
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
-import modelo.unidades.Aldeano;
+import modelo.unidades.*;
 import vista.controladores.*;
 
 import modelo.posicion.*;
-import modelo.unidades.UnidadesFabrica;
+import vista.controladores.edificios.CuartelControler;
+import vista.controladores.edificios.PlazaCentralController;
+import vista.controladores.unidades.AldeanoController;
+import vista.controladores.unidades.ArmaDeAsedioController;
+import vista.controladores.unidades.ArqueroController;
+import vista.controladores.unidades.EspadachinController;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -46,10 +52,10 @@ public class MapaControl extends ScrollPane {
     private Map<IPosicionable, Node> vistas = new HashMap();
     private Map<IPosicionable, IPosicionableController> controladores = new HashMap();
 
-    private Aldeano dragSource = null;
+    private Object dragSource = null;
 
-    public void setDragSource(Aldeano aldeano){
-        this.dragSource = aldeano;
+    public void setDragSource(Object object){
+        this.dragSource = object;
     }
 
 
@@ -202,32 +208,72 @@ public class MapaControl extends ScrollPane {
     }
     public void dragDropped(DragEvent event) throws IOException {
 
-        Aldeano dragSource = this.dragSource;
-
         Dragboard db = event.getDragboard();
 
         Node node = event.getPickResult().getIntersectedNode();
         int columna = this.mapaGrandeGridPane.getColumnIndex(node);
         int fila = this.mapaGrandeGridPane.getRowIndex(node);
-        int tamanioEdificio = 2;
+
 
 
         String textoRecibidoConImagen = (String) db.getContent(DataFormat.PLAIN_TEXT);
         boolean success = false;
-        Posicion posicionEdificioEnContruccion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
 
-        IPosicionable edificio;
+
         IPosicionableController controller = null;
         if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
-            edificio = new PlazaCentral(posicionEdificioEnContruccion, new UnidadesFabrica());
-            controller = new EdificioEnConstruccionController(edificio, "PlazaCentral", "red");
+            int tamanioEdificio = 2;
+            Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
+            PlazaCentral plazaCentral = new PlazaCentral(posicion, new UnidadesFabrica());
+            controller = new PlazaCentralController(plazaCentral, "red", this, this.juegoControl);
             success = true;
 
-        }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
-            edificio = new Cuartel(posicionEdificioEnContruccion, new UnidadesFabrica());
-            controller = new EdificioEnConstruccionController(edificio, "Cuartel", "red");
+        }
+
+        else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
+            int tamanioEdificio = 2;
+            Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
+            Cuartel cuartel = new Cuartel(posicion, new UnidadesFabrica());
+            controller = new CuartelControler(cuartel, "red", this, this.juegoControl);
             success = true;
         }
+
+        else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "Aldeano"){
+            int tamanioEdificio = 1;
+            Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
+            PlazaCentral plazaCentral = (PlazaCentral)this.dragSource;
+            Aldeano aldeano = plazaCentral.construirAldeano(posicion);
+            controller = new AldeanoController(aldeano, "red", this, this.juegoControl);
+            success = true;
+        }
+
+        else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen.equals(Espadachin.class.getSimpleName())){
+            int tamanioEdificio = 1;
+            Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
+            Cuartel cuartel = (Cuartel)this.dragSource;
+            Espadachin espadachin = cuartel.crearEspadachin(posicion);
+            controller = new EspadachinController(espadachin, "red", this, this.juegoControl);
+            success = true;
+        }
+
+        else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen.equals(Arquero.class.getSimpleName())){
+            int tamanioEdificio = 1;
+            Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
+            Cuartel cuartel = (Cuartel)this.dragSource;
+            Arquero arquero = cuartel.crearArquero(posicion);
+            controller = new ArqueroController(arquero, "red", this, this.juegoControl);
+            success = true;
+        }
+
+        else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen.equals(ArmaDeAsedio.class.getSimpleName())){
+            int tamanioEdificio = 1;
+            Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
+            Castillo castillo = (Castillo)this.dragSource;
+            ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio(posicion);
+            controller = new ArmaDeAsedioController(armaDeAsedio, "red", this, this.juegoControl);
+            success = true;
+        }
+
 
         this.agregar(controller);
         /* let the source know whether the string was successfully

@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 public class ReparacionDeCastilloTests {
 
     private Aldeano crearAldeano(){
-        return new UnidadesFabrica().crearAldeano();
+        return new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class));
     }
 
     private AtacanteParaPruebas crearAtacante(IAtacable atacable, int danio){

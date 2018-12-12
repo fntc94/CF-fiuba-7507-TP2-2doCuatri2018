@@ -35,6 +35,8 @@
 
             </GridPane>
 
+            <fx:include source="CreacionUnidadesCastillo.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
         </GridPane>
 
     </VBox>

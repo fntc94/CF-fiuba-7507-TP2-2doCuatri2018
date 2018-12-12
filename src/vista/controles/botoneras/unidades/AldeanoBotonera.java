@@ -13,7 +13,7 @@ public class AldeanoBotonera extends UnidadBotonera<Aldeano> {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(getClass().getResource("/vista/vistas/AldeanoBotonera.fxml"));
+        return new FXMLLoader(getClass().getResource("/vista/vistas/unidades/AldeanoBotonera.fxml"));
     }
 
     @Override

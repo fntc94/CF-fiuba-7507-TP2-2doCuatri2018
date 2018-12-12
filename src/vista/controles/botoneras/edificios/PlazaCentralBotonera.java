@@ -2,8 +2,9 @@ package vista.controles.botoneras.edificios;
 
 import javafx.fxml.FXMLLoader;
 import modelo.edificios.PlazaCentral;
+import vista.controladores.edificios.CreacionUnidadesPlazaCentralController;
 import vista.controles.MapaControl;
-import vista.controles.botoneras.edificios.EdificioBotonera;
+
 
 public class PlazaCentralBotonera extends EdificioBotonera<PlazaCentral> {
 
@@ -14,6 +15,19 @@ public class PlazaCentralBotonera extends EdificioBotonera<PlazaCentral> {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(getClass().getResource("/vista/vistas/PlazaCentralBotonera.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/edificios/PlazaCentralBotonera.fxml"));
+        loader.setController(this);
+
+        loader.setControllerFactory(type -> {
+            if(type == CreacionUnidadesPlazaCentralController.class){
+                return new CreacionUnidadesPlazaCentralController(this.edificio, this.mapa);
+            }
+            else{
+                return null;
+            }
+        });
+        return loader;
     }
+
+
 }

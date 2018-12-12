@@ -9,6 +9,7 @@ import modelo.Edificio;
 import vista.controles.MapaControl;
 import vista.controles.botoneras.Botonera;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,7 @@ public abstract class EdificioBotonera<TEdificio extends Edificio> extends Boton
     @FXML private Label nombreLabel;
     TEdificio edificio;
     private double vidaInicial;
+    protected MapaControl mapa;
 
     protected abstract FXMLLoader getLoader();
 
@@ -30,10 +32,11 @@ public abstract class EdificioBotonera<TEdificio extends Edificio> extends Boton
         super();
         this.edificio = edificio;
         this.vidaInicial = edificio.getVida();
+        this.mapa = mapa;
 
         FXMLLoader loader = this.getLoader();
         loader.setRoot(this);
-        loader.setController(this);
+//        loader.setController(this);
 
         try {
             loader.load();

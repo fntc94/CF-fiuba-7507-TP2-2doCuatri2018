@@ -147,37 +147,37 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(aldeano2Controller);
         this.mapaControl.agregar(aldeano3Controller);
 
-        // Espadachín
-        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 7,7);
-        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
-        mapa.posicionar(espadachin);
-
-        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
-        this.mapaControl.agregar(espadachinController);
-
-        // Arquero
-        Posicion posicionArquero = new PosicionDeUnCasillero(mapa, 8,8);
-        Arquero arquero = new Arquero(posicionArquero, new EstrategiaAtaqueArquero());
-        mapa.posicionar(arquero);
-
-        IPosicionableController arqueroController = controllerFactory.crearControlador(arquero);
-        this.mapaControl.agregar(arqueroController);
-
-        // ArmaDeAsedio
-        Posicion posicionArmaDeAsedio = new PosicionDeUnCasillero(mapa, 8,9);
-        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(posicionArmaDeAsedio, new EstrategiaAtaqueArmaDeAsedio());
-        mapa.posicionar(armaDeAsedio);
-
-        IPosicionableController armaDeAsedioController = controllerFactory.crearControlador(armaDeAsedio);
-        this.mapaControl.agregar(armaDeAsedioController);
-
-        // Cuartel
-        Posicion posicionCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(10,1), 2);
-        Cuartel cuartel = new Cuartel(posicionCuartel, new UnidadesFabrica());
-        mapa.posicionar(cuartel);
-
-        IPosicionableController cuartelController = controllerFactory.crearControlador(cuartel);
-        this.mapaControl.agregar(cuartelController);
+//        // Espadachín
+//        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 7,7);
+//        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
+//        mapa.posicionar(espadachin);
+//
+//        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
+//        this.mapaControl.agregar(espadachinController);
+//
+//        // Arquero
+//        Posicion posicionArquero = new PosicionDeUnCasillero(mapa, 8,8);
+//        Arquero arquero = new Arquero(posicionArquero, new EstrategiaAtaqueArquero());
+//        mapa.posicionar(arquero);
+//
+//        IPosicionableController arqueroController = controllerFactory.crearControlador(arquero);
+//        this.mapaControl.agregar(arqueroController);
+//
+//        // ArmaDeAsedio
+//        Posicion posicionArmaDeAsedio = new PosicionDeUnCasillero(mapa, 8,9);
+//        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(posicionArmaDeAsedio, new EstrategiaAtaqueArmaDeAsedio());
+//        mapa.posicionar(armaDeAsedio);
+//
+//        IPosicionableController armaDeAsedioController = controllerFactory.crearControlador(armaDeAsedio);
+//        this.mapaControl.agregar(armaDeAsedioController);
+//
+//        // Cuartel
+//        Posicion posicionCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(10,1), 2);
+//        Cuartel cuartel = new Cuartel(posicionCuartel, new UnidadesFabrica());
+//        mapa.posicionar(cuartel);
+//
+//        IPosicionableController cuartelController = controllerFactory.crearControlador(cuartel);
+//        this.mapaControl.agregar(cuartelController);
     }
 
     private void inicializarJugador2(String nombreJugador2){
@@ -224,13 +224,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(aldeano2Controller);
         this.mapaControl.agregar(aldeano3Controller);
 
-        // Espadachín
-        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 10,7);
-        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
-        mapa.posicionar(espadachin);
-
-        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
-        this.mapaControl.agregar(espadachinController);
+//        // Espadachín
+//        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 10,7);
+//        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
+//        mapa.posicionar(espadachin);
+//
+//        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
+//        this.mapaControl.agregar(espadachinController);
     }
 
 

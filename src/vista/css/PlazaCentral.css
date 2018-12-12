@@ -1,13 +1,19 @@
 
 .red{
     -fx-image: url("/vista/imagenes/PlazaCentral_red.png");
-    /*-fx-alignment: center;*/
 
 }
 
 .blue{
     -fx-image: url("/vista/imagenes/PlazaCentral_blue.png");
-    -fx-alignment: center;
+}
+
+.red-construccion{
+    -fx-image: url("/vista/imagenes/PlazaCentral_red.png");
+}
+
+.blue-construccion{
+    -fx-image: url("/vista/imagenes/PlazaCentral_blue.png");
 }
 
 ImageView{
