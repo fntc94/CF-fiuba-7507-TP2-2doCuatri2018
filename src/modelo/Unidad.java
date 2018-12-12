@@ -42,6 +42,8 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
     }
     // fin IAtacable
 
+
+    @Override
     public void mover(IDireccion direccion){
         movimiento.hacia(direccion);
 
