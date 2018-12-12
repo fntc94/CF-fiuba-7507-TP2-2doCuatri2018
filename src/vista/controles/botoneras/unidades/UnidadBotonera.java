@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import modelo.Unidad;
-import vista.controladores.ConstruccionController;
 import vista.controladores.MovimientoController;
 import vista.controles.MapaControl;
 import vista.controles.botoneras.Botonera;
@@ -23,38 +22,21 @@ public abstract class UnidadBotonera<TUnidad extends Unidad> extends Botonera im
     @FXML private Label nombreLabel;
     protected TUnidad unidad;
     private double vidaInicial;
+    protected MapaControl mapa;
 
-    protected abstract FXMLLoader getLoader();
+
 
     public UnidadBotonera(TUnidad unidad, MapaControl mapa){
 
         super();
         this.unidad = unidad;
         this.vidaInicial = unidad.getVida();
+        this.mapa = mapa;
 
         FXMLLoader loader = this.getLoader();
         loader.setRoot(this);
         loader.setController(this);
-
-        loader.setControllerFactory(type -> {
-
-            if(type.equals(MovimientoController.class)){
-                return new MovimientoController(unidad, mapa);
-            }else if(type.equals(ConstruccionController.class)){
-                return new ConstruccionController(mapa);
-            }
-
-            else {
-                try {
-                    return type.newInstance();
-                } catch (Exception exc) {
-                    exc.printStackTrace();
-                    throw new RuntimeException(exc);
-                }
-            }
-
-        });
-
+        loader.setControllerFactory(this::getController);
 
         try {
             loader.load();
@@ -69,6 +51,24 @@ public abstract class UnidadBotonera<TUnidad extends Unidad> extends Botonera im
         this.setVidaLabel();
         this.vidaProgressBar.setProgress(this.obtenerProgresoDeVida());
         this.nombreLabel.setText(this.unidad.getClass().getSimpleName());
+    }
+
+    protected abstract FXMLLoader getLoader();
+
+    protected Object getController(Class<?> type){
+
+        if(type.equals(MovimientoController.class)){
+            return new MovimientoController(unidad, mapa);
+        }
+
+        else {
+            try {
+                return type.newInstance();
+            } catch (Exception exc) {
+                exc.printStackTrace();
+                throw new RuntimeException(exc);
+            }
+        }
     }
 
     private double obtenerProgresoDeVida(){

@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import modelo.Edificio;
 import modelo.IAtacante;
 
 import modelo.IPosicionable;
@@ -22,6 +23,7 @@ import modelo.juego.Jugador;
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
+import modelo.unidades.Aldeano;
 import vista.controladores.*;
 
 import modelo.posicion.*;
@@ -44,6 +46,11 @@ public class MapaControl extends ScrollPane {
     private Map<IPosicionable, Node> vistas = new HashMap();
     private Map<IPosicionable, IPosicionableController> controladores = new HashMap();
 
+    private Aldeano dragSource = null;
+
+    public void setDragSource(Aldeano aldeano){
+        this.dragSource = aldeano;
+    }
 
 
     @FXML
@@ -70,12 +77,6 @@ public class MapaControl extends ScrollPane {
             throw new RuntimeException(e);
         }
 
-//        this.setFitToHeight(true);
-//        this.setFitToWidth(true);
-//
-//        this.prefHeight(this.mapa.getAlto() * 50);
-//        this.prefWidth(this.mapa.getAncho() * 50);
-
     }
 
 
@@ -100,6 +101,7 @@ public class MapaControl extends ScrollPane {
         for (int fila = 0; fila <= cantidadFilas - 1; fila++) {
             for (int columna = 0; columna <= cantidadColumnas - 1; columna++) {
                 this.mapaGrandeGridPane.add(new AnchorPane(), columna, fila);
+                // requerido para drag and drop;
             }
         }
 
@@ -199,46 +201,42 @@ public class MapaControl extends ScrollPane {
         }
     }
     public void dragDropped(DragEvent event) throws IOException {
+
+        Aldeano dragSource = this.dragSource;
+
         Dragboard db = event.getDragboard();
 
         Node node = event.getPickResult().getIntersectedNode();
-        int column = this.mapaGrandeGridPane.getColumnIndex(node);
-        int row = this.mapaGrandeGridPane.getRowIndex(node);
+        int columna = this.mapaGrandeGridPane.getColumnIndex(node);
+        int fila = this.mapaGrandeGridPane.getRowIndex(node);
+        int tamanioEdificio = 2;
 
-        Double x = event.getX() / 48;
-        Double y = (event.getY() / 46) - 0.5;
 
-        //Texto recibido con la imagen
         String textoRecibidoConImagen = (String) db.getContent(DataFormat.PLAIN_TEXT);
-
         boolean success = false;
-        // Si el texto es plaza entonces pongo una plaza, de lo contrario un cuartel
-        if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
-            // Creo posicion, posicionable, controlador y vista
-            Posicion posPlaza = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(column, row),2);
-            IPosicionable nuevaPlaza = new PlazaCentral(posPlaza, new UnidadesFabrica());
-            IPosicionableController nuevaPlazaController = new EdificioEnConstruccionController(nuevaPlaza, "PlazaCentral", "red");
-            //Node nuevaPlazaVista = this.crearVista(nuevaPlazaController);
+        Posicion posicionEdificioEnContruccion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
 
-            this.agregar(nuevaPlazaController);
-//            //this.jugador2.agregar((Edificio) nuevaPlaza);
+        IPosicionable edificio;
+        IPosicionableController controller = null;
+        if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
+            edificio = new PlazaCentral(posicionEdificioEnContruccion, new UnidadesFabrica());
+            controller = new EdificioEnConstruccionController(edificio, "PlazaCentral", "red");
             success = true;
 
         }else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
-            Posicion posCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(column, row),2);
-            IPosicionable nuevoCuartel = new Cuartel(posCuartel, new UnidadesFabrica());
-            IPosicionableController nuevoCuartelController = new EdificioEnConstruccionController(nuevoCuartel, "Cuartel", "red");
-
-
-            this.agregar(nuevoCuartelController);
-            //this.jugador2.agregar((Edificio) nuevoCuartel);plaza
+            edificio = new Cuartel(posicionEdificioEnContruccion, new UnidadesFabrica());
+            controller = new EdificioEnConstruccionController(edificio, "Cuartel", "red");
             success = true;
         }
+
+        this.agregar(controller);
         /* let the source know whether the string was successfully
          * transferred and used */
         event.setDropCompleted(success);
 
         event.consume();
+
+        this.dragSource = null;
     }
 
     public void dragOver(DragEvent event){

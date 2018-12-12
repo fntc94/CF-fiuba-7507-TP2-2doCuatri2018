@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <GridPane prefHeight="119.0" prefWidth="210.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-          fx:controller="vista.controladores.ConstruccionController">
+          fx:controller="vista.controladores.ConstruccionEdificiosController">
     <children>
         <ImageView  onDragDetected="#dragginPlaza" fx:id="plazaCentral" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0"
                    GridPane.rowIndex="0">
