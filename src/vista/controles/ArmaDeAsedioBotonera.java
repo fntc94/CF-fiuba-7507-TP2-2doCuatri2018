@@ -7,11 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.GridPane;
 import javafx.scene.media.AudioClip;
 import modelo.unidades.ArmaDeAsedio;
-import modelo.unidades.Espadachin;
-import vista.controladores.ArmaDeAsedioController;
+import vista.controladores.unidades.ArmaDeAsedioController;
 import vista.controladores.MovimientoController;
 
 import java.io.IOException;

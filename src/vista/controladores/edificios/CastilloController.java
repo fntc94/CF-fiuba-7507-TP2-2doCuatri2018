@@ -1,17 +1,12 @@
-package vista.controladores;
+package vista.controladores.edificios;
 
-import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
-import modelo.IAtacante;
-import modelo.IPosicionable;
 import modelo.edificios.Castillo;
-import modelo.posicion.Posicion;
+import vista.controladores.IJuegoController;
 import vista.controles.Botonera;
 import vista.controles.CastilloBotonera;
 import vista.controles.MapaControl;
 
-public class CastilloController extends EdificioController<Castillo, CastilloBotonera> {
+public class CastilloController extends EdificioController<Castillo> {
 
     private CastilloBotonera botonera;
 

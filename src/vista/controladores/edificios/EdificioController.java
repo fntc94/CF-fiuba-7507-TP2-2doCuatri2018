@@ -1,4 +1,4 @@
-package vista.controladores;
+package vista.controladores.edificios;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,13 +10,15 @@ import modelo.Edificio;
 import modelo.IAtacante;
 import modelo.IPosicionable;
 import modelo.posicion.Posicion;
+import vista.controladores.IJuegoController;
+import vista.controladores.IPosicionableController;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class EdificioController<TEdificio extends Edificio, TBotonera extends Botonera> implements IPosicionableController, Initializable {
+public abstract class EdificioController<TEdificio extends Edificio> implements IPosicionableController, Initializable {
 
 
     @FXML

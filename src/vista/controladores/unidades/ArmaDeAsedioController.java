@@ -1,16 +1,7 @@
-package vista.controladores;
+package vista.controladores.unidades;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.media.AudioClip;
-import modelo.IAtacante;
-import modelo.IPosicionable;
-import modelo.posicion.Posicion;
 import modelo.unidades.ArmaDeAsedio;
+import vista.controladores.IJuegoController;
 import vista.controles.ArmaDeAsedioBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;

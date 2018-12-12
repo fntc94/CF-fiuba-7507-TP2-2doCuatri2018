@@ -1,4 +1,4 @@
-package vista.controladores;
+package vista.controladores.unidades;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +12,8 @@ import modelo.IPosicionable;
 import modelo.Unidad;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
+import vista.controladores.IJuegoController;
+import vista.controladores.IPosicionableController;
 import vista.controles.AldeanoBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;

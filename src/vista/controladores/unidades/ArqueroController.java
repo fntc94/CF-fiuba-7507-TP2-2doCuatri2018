@@ -1,6 +1,7 @@
-package vista.controladores;
+package vista.controladores.unidades;
 
 import modelo.unidades.Arquero;
+import vista.controladores.IJuegoController;
 import vista.controles.ArqueroBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;

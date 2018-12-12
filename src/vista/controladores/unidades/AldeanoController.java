@@ -1,12 +1,13 @@
-package vista.controladores;
+package vista.controladores.unidades;
 
 import modelo.unidades.Aldeano;
+import vista.controladores.IJuegoController;
 import vista.controles.AldeanoBotonera;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 
 
-public class AldeanoController extends UnidadController<Aldeano>{
+public class AldeanoController extends UnidadController<Aldeano> {
 
 
     private AldeanoBotonera botonera;

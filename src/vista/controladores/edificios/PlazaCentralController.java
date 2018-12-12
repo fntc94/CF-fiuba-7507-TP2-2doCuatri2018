@@ -1,12 +1,14 @@
-package vista.controladores;
+package vista.controladores.edificios;
 
 import modelo.edificios.PlazaCentral;
+import vista.controladores.IJuegoController;
+import vista.controladores.edificios.EdificioController;
 import vista.controles.Botonera;
 import vista.controles.MapaControl;
 import vista.controles.PlazaCentralBotonera;
 
 
-public class PlazaCentralController extends EdificioController<PlazaCentral, PlazaCentralBotonera>{
+public class PlazaCentralController extends EdificioController<PlazaCentral> {
 
 
     private PlazaCentralBotonera botonera;
