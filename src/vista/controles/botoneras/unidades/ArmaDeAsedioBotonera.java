@@ -9,6 +9,9 @@ import vista.controladores.unidades.ArmaDeAsedioController;
 import vista.controles.MapaControl;
 import vista.utilidades.ReproductorDeSonido;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
 
     private final MapaControl mapa;
@@ -26,6 +29,13 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
         super(armaDeAsedio, mapa);
         this.mapa = mapa;
         this.controller = controller;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
+        this.buttonDesmontar.setDisable(true);
+        this.buttonAtacar.setDisable(true);
     }
 
 
