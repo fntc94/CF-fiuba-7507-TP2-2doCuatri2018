@@ -3,14 +3,23 @@
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <GridPane id="menuContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <columnConstraints>
     <ColumnConstraints percentWidth="100.0" />
   </columnConstraints>
-  <Label contentDisplay="CENTER" text="Menu" GridPane.halignment="CENTER" />
+  <Label id="stat1" alignment="CENTER" contentDisplay="CENTER" minHeight="12.5" prefHeight="25.0" prefWidth="215.0" text="" GridPane.halignment="RIGHT" />
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
   <stylesheets>
     <URL value="@../css/Menu.css" />
   </stylesheets>
+  <ImageView id="statTemporal" fitHeight="25.00009046325431" fitWidth="362.038343900052" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0">
+    <image>
+      <Image url="@../imagenes/stat_temporal.png" />
+    </image>
+  </ImageView>
 </GridPane>
