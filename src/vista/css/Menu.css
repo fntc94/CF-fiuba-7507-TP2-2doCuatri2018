@@ -1,0 +1,4 @@
+#menuContainer{
+    -fx-background-image: url("../imagenes/menu_bg.png");
+    -fx-background-repeat: repeat;
+}
