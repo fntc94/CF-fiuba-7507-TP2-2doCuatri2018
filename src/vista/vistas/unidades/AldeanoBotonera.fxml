@@ -24,8 +24,6 @@
 
     </VBox>
 
-
-
     <stylesheets>
         <URL value="@/vista/css/Botonera.css"/>
     </stylesheets>

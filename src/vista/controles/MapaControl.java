@@ -12,6 +12,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import modelo.Edificio;
+import modelo.IAtacable;
 import modelo.IAtacante;
 
 import modelo.IPosicionable;
@@ -36,9 +37,7 @@ import vista.controladores.unidades.ArqueroController;
 import vista.controladores.unidades.EspadachinController;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SuppressWarnings("ALL")
 public class MapaControl extends ScrollPane {
@@ -49,14 +48,16 @@ public class MapaControl extends ScrollPane {
     private Jugador jugador2;
     private MiniMapaController miniMapaController;
 
-    private Map<IPosicionable, Node> vistas = new HashMap();
-    private Map<IPosicionable, IPosicionableController> controladores = new HashMap();
 
     private Object dragSource = null;
 
     public void setDragSource(Object object){
         this.dragSource = object;
     }
+
+
+
+    public Collection<PosicionableVista> vistas = new ArrayList<>();
 
 
     @FXML
@@ -84,7 +85,6 @@ public class MapaControl extends ScrollPane {
         }
 
     }
-
 
     private void inicializarMapaVacio() {
 
@@ -116,93 +116,58 @@ public class MapaControl extends ScrollPane {
 
     }
 
-    public void agregar(IPosicionableController controlador){
+    private void pAgregar(PosicionableVista vista){
+        IPosicionableController controlador = vista.getController();
         Posicion posicion = controlador.getPosicion();
-
         IPosicionable posicionable = controlador.getPosicionable();
-        Node vista = this.crearVista(controlador);
-        this.agregar(vista, posicion, posicionable);
 
+        List<Casillero> casilleros = posicion.getListaCasilleros();
+        Casillero abajoIzquierda = posicion.getAbajoIzquierda();
+        int columna = abajoIzquierda.getCoordenadaEnX();
+        int fila = abajoIzquierda.getCoordenadaEnY();
 
-        this.vistas.put(posicionable, vista);
-        this.controladores.put(posicionable, controlador);
+        this.mapaGrandeGridPane.add(vista, columna, fila);
+        GridPane.setColumnSpan(vista, posicion.getAncho());
+        GridPane.setRowSpan(vista, posicion.getAlto());
 
         this.miniMapaController.agregar(posicionable, controlador.getColor());
     }
 
+    public void agregar(PosicionableVista vista){
+        this.pAgregar(vista);
+        this.vistas.add(vista);
+    }
 
     public void dibujar(){
 
-        this.mapaGrandeGridPane.getChildren().removeAll(this.vistas.values());
+        this.mapaGrandeGridPane.getChildren().removeAll(this.vistas);
 
-        for(IPosicionable posicionable: this.mapa){
-            try{
-                this.dibujar(posicionable);
-            }
-            catch (IOException e){
-                throw new RuntimeException(e);
-            }
+        for(PosicionableVista vista: this.vistas){
+            this.pAgregar(vista);
         }
-
         this.miniMapaController.dibujar();
 
     }
 
-
-    private Node crearVista(IPosicionableController controller){
-        return new PosicionableVista(controller);
-    }
-
-    private void dibujar(IPosicionable posicionable) throws IOException {
-        Posicion posicion = posicionable.getPosicion();
-
-        IPosicionableController controller = this.controladores.get(posicionable);
-
-        Node vista;
-        if(this.vistas.containsKey(posicionable)){
-           vista = this.vistas.get(posicionable);
-        }
-        else{
-            vista = this.crearVista(controller);
-        }
-//        Node vista = this.crearVista(controller);
-
-        this.agregar(vista, posicion, posicionable);
-        this.vistas.put(posicionable, vista);
-
-    }
-
-    private void agregar(Node vista, Posicion posicion, IPosicionable posicionable){
-        List<Casillero> casilleros = posicion.getListaCasilleros();
-        Casillero abajoIzquierda = posicion.getAbajoIzquierda();
-
-
-        try{
-            this.mapa.posicionar(posicionable);
-        }
-        catch (Exception e){
-            new Alert(Alert.AlertType.INFORMATION, "Posición ocupada");
-        }
-
-        this.mapaGrandeGridPane.add(vista, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
-
-        GridPane.setColumnSpan(vista, posicion.getAncho());
-        GridPane.setRowSpan(vista, posicion.getAlto());
+    public void remover(PosicionableVista vista){
+        this.mapaGrandeGridPane.getChildren().remove(vista);
+        this.vistas.remove(vista);
+        IPosicionable posicionable = vista.getController().getPosicionable();
+        this.dibujar();
     }
 
     public void estadoAtaque(IAtacante atacante) {
 
-        for(IPosicionableController controller: this.controladores.values()){
-
+        for(PosicionableVista vista: this.vistas){
+            IPosicionableController controller = vista.getController();
             controller.estadoAtaquePotencial(atacante);
-
         }
     }
 
-
     public void estadoSeleccionable() {
 
-        for(IPosicionableController controller: this.controladores.values()){
+        for(PosicionableVista vista: this.vistas){
+            IPosicionableController controller = vista.getController();
             controller.estadoSeleccionable();
         }
     }
@@ -225,7 +190,8 @@ public class MapaControl extends ScrollPane {
             int tamanioEdificio = 2;
             Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
             PlazaCentral plazaCentral = new PlazaCentral(posicion, new UnidadesFabrica());
-            controller = new PlazaCentralController(plazaCentral, "red", this, this.juegoControl);
+//            controller = new PlazaCentralController(plazaCentral, "red", this, this.juegoControl);
+            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(plazaCentral));
             success = true;
 
         }
@@ -234,7 +200,8 @@ public class MapaControl extends ScrollPane {
             int tamanioEdificio = 2;
             Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
             Cuartel cuartel = new Cuartel(posicion, new UnidadesFabrica());
-            controller = new CuartelControler(cuartel, "red", this, this.juegoControl);
+//            controller = new CuartelControler(cuartel, "red", this, this.juegoControl);
+            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(cuartel));
             success = true;
         }
 
@@ -243,7 +210,8 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             PlazaCentral plazaCentral = (PlazaCentral)this.dragSource;
             Aldeano aldeano = plazaCentral.construirAldeano(posicion);
-            controller = new AldeanoController(aldeano, "red", this, this.juegoControl);
+//            controller = new AldeanoController(aldeano, "red", this, this.juegoControl);
+            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(aldeano));
             success = true;
         }
 
@@ -252,7 +220,8 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Cuartel cuartel = (Cuartel)this.dragSource;
             Espadachin espadachin = cuartel.crearEspadachin(posicion);
-            controller = new EspadachinController(espadachin, "red", this, this.juegoControl);
+//            controller = new EspadachinController(espadachin, "red", this, this.juegoControl);
+            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(espadachin));
             success = true;
         }
 
@@ -261,7 +230,8 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Cuartel cuartel = (Cuartel)this.dragSource;
             Arquero arquero = cuartel.crearArquero(posicion);
-            controller = new ArqueroController(arquero, "red", this, this.juegoControl);
+//            controller = new ArqueroController(arquero, "red", this, this.juegoControl);
+            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(arquero));
             success = true;
         }
 
@@ -270,12 +240,14 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Castillo castillo = (Castillo)this.dragSource;
             ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio(posicion);
-            controller = new ArmaDeAsedioController(armaDeAsedio, "red", this, this.juegoControl);
+//            controller = new ArmaDeAsedioController(armaDeAsedio, "red", this, this.juegoControl);
+            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(armaDeAsedio));
             success = true;
         }
 
 
-        this.agregar(controller);
+
+//        this.agregar(new PosicionableVista(controller));
         /* let the source know whether the string was successfully
          * transferred and used */
         event.setDropCompleted(success);

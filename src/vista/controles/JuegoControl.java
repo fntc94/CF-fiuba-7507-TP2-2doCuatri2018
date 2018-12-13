@@ -58,12 +58,11 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
             }
 
             else {
-                // default behavior for controllerFactory:
                 try {
                     return type.newInstance();
                 } catch (Exception exc) {
                     exc.printStackTrace();
-                    throw new RuntimeException(exc); // fatal, just bail...
+                    throw new RuntimeException(exc);
                 }
             }
         });
@@ -83,7 +82,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.turno = new Turno(this.listaDeParticipantes);
         this.fichaTecnica.setText(this.turno.devolverJugadorActual());
 
-//      mapaControl.dibujar();
         this.centerProperty().setValue(mapaControl);
         this.autosize();
 
@@ -130,51 +128,15 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
         this.listaDeParticipantes.add(jugador);
 
-        PosicionableControllerFactory controllerFactory = new PosicionableControllerFactory(this, this.mapaControl, "red");
-        IPosicionableController castilloController = controllerFactory.crearControlador(castillo);
-        IPosicionableController plazaCentralController = controllerFactory.crearControlador(plazaCentral);
-        IPosicionableController aldeano1Controller = controllerFactory.crearControlador(aldeano1);
-        IPosicionableController aldeano2Controller = controllerFactory.crearControlador(aldeano2);
-        IPosicionableController aldeano3Controller = controllerFactory.crearControlador(aldeano3);
+        VistaFactory vistaFactory = new VistaFactory(this, this.mapaControl, "red");
+        this.mapaControl.agregar(vistaFactory.crearVista(castillo));
+        this.mapaControl.agregar(vistaFactory.crearVista(plazaCentral));
+        this.mapaControl.agregar(vistaFactory.crearVista(aldeano1));
+        this.mapaControl.agregar(vistaFactory.crearVista(aldeano2));
+        this.mapaControl.agregar(vistaFactory.crearVista(aldeano3));
 
 
-        this.mapaControl.agregar(castilloController);
-        this.mapaControl.agregar(plazaCentralController);
-        this.mapaControl.agregar(aldeano1Controller);
-        this.mapaControl.agregar(aldeano2Controller);
-        this.mapaControl.agregar(aldeano3Controller);
 
-//        // Espadachín
-//        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 7,7);
-//        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
-//        mapa.posicionar(espadachin);
-//
-//        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
-//        this.mapaControl.agregar(espadachinController);
-//
-//        // Arquero
-//        Posicion posicionArquero = new PosicionDeUnCasillero(mapa, 8,8);
-//        Arquero arquero = new Arquero(posicionArquero, new EstrategiaAtaqueArquero());
-//        mapa.posicionar(arquero);
-//
-//        IPosicionableController arqueroController = controllerFactory.crearControlador(arquero);
-//        this.mapaControl.agregar(arqueroController);
-//
-//        // ArmaDeAsedio
-//        Posicion posicionArmaDeAsedio = new PosicionDeUnCasillero(mapa, 8,9);
-//        ArmaDeAsedio armaDeAsedio = new ArmaDeAsedio(posicionArmaDeAsedio, new EstrategiaAtaqueArmaDeAsedio());
-//        mapa.posicionar(armaDeAsedio);
-//
-//        IPosicionableController armaDeAsedioController = controllerFactory.crearControlador(armaDeAsedio);
-//        this.mapaControl.agregar(armaDeAsedioController);
-//
-//        // Cuartel
-//        Posicion posicionCuartel = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(10,1), 2);
-//        Cuartel cuartel = new Cuartel(posicionCuartel, new UnidadesFabrica());
-//        mapa.posicionar(cuartel);
-//
-//        IPosicionableController cuartelController = controllerFactory.crearControlador(cuartel);
-//        this.mapaControl.agregar(cuartelController);
     }
 
     private void inicializarJugador2(String nombreJugador2){
@@ -208,26 +170,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
         this.listaDeParticipantes.add(jugador);
 
-        PosicionableControllerFactory controllerFactory = new PosicionableControllerFactory(this, this.mapaControl, "blue");
-        IPosicionableController castilloController = controllerFactory.crearControlador(castillo);
-        IPosicionableController plazaCentralController = controllerFactory.crearControlador(plazaCentral);
-        IPosicionableController aldeano1Controller = controllerFactory.crearControlador(aldeano1);
-        IPosicionableController aldeano2Controller = controllerFactory.crearControlador(aldeano2);
-        IPosicionableController aldeano3Controller = controllerFactory.crearControlador(aldeano3);
+        VistaFactory vistaFactory = new VistaFactory(this, this.mapaControl, "blue");
+        this.mapaControl.agregar(vistaFactory.crearVista(castillo));
+        this.mapaControl.agregar(vistaFactory.crearVista(plazaCentral));
+        this.mapaControl.agregar(vistaFactory.crearVista(aldeano1));
+        this.mapaControl.agregar(vistaFactory.crearVista(aldeano2));
+        this.mapaControl.agregar(vistaFactory.crearVista(aldeano3));
 
-        this.mapaControl.agregar(castilloController);
-        this.mapaControl.agregar(plazaCentralController);
-        this.mapaControl.agregar(aldeano1Controller);
-        this.mapaControl.agregar(aldeano2Controller);
-        this.mapaControl.agregar(aldeano3Controller);
-
-//        // Espadachín
-//        Posicion posicionEspadachin = new PosicionDeUnCasillero(mapa, 10,7);
-//        Espadachin espadachin = new Espadachin(posicionEspadachin, new EstrategiaAtaqueEspadachin());
-//        mapa.posicionar(espadachin);
-//
-//        IPosicionableController espadachinController = controllerFactory.crearControlador(espadachin);
-//        this.mapaControl.agregar(espadachinController);
     }
 
 

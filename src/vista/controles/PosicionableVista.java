@@ -10,6 +10,9 @@ import java.io.IOException;
 
 public class PosicionableVista extends GridPane {
 
+
+    IPosicionableController controller;
+
     public PosicionableVista(IPosicionableController controller) {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/PosicionableVista.fxml"));
@@ -23,6 +26,12 @@ public class PosicionableVista extends GridPane {
             throw new RuntimeException(e);
         }
 
+        this.controller = controller;
+
+    }
+
+    public IPosicionableController getController(){
+        return this.controller;
     }
 
 }

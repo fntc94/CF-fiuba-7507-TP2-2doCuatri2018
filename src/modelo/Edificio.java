@@ -3,7 +3,7 @@ package modelo;
 import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 
-import java.io.Serializable;
+import java.util.function.Consumer;
 
 public abstract class Edificio implements IPosicionable, IEdificioReparable, IAtacable {
 
@@ -14,6 +14,11 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
     protected int vidaActual;
     private Aldeano reparador;
 
+    private Consumer<IAtacable> onDestruidoEventHanlder = aldeano -> {};
+
+    public void onDestruido(Consumer<IAtacable> eventHanlder){
+        this.onDestruidoEventHanlder = eventHanlder;
+    }
 
     private Runnable reparacionTerminadaHandler = () -> {};
 
@@ -64,6 +69,7 @@ public abstract class Edificio implements IPosicionable, IEdificioReparable, IAt
 
         if(this.vidaActual <= danio){
             this.vidaActual = 0;
+            onDestruidoEventHanlder.accept(this);
             return;
         }
 

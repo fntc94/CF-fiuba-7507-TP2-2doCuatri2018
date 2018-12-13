@@ -23,7 +23,7 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
     protected GridPane root;
     @FXML protected ImageView imageView;
 
-    //    Botonera botonera;
+    //    botonera botonera;
     abstract protected Botonera getBotonera();
     private String estado = "seleccionable";
 
@@ -74,6 +74,12 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
             try {
                 this.atacante.atacar(this.unidad);
+
+                if(this.unidad.getVida() == 0){
+
+
+                }
+
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
                 this.getBotonera().actualizarUI();
                 this.playSound();

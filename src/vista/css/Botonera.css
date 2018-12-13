@@ -27,4 +27,5 @@
     -fx-cursor: hand;
     -fx-border-width: 4;
     -fx-border-color: black;
+    -fx-tooltip-visible: true;
 }
