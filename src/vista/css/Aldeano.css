@@ -8,3 +8,7 @@
     -fx-image: url("/vista/imagenes/Aldeano_blue.png");
     -fx-alignment: center;
 }
+
+.edificio-imagen-drag{
+    -fx-cursor: hand;
+}

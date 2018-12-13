@@ -14,7 +14,7 @@
         <Label fx:id="posicionLabel" BorderPane.alignment="center" minWidth="120" maxWidth="Infinity"/>
     </top>
 
-    <bottom>
+    <center>
         <GridPane GridPane.rowIndex="1" BorderPane.alignment="CENTER" alignment="CENTER">
 
             <columnConstraints>
@@ -41,11 +41,11 @@
             <Button text="↘" GridPane.rowIndex="2" GridPane.columnIndex="2" onMouseClicked="#handleDerechaAbajo"/>
 
         </GridPane>
-    </bottom>
+    </center>
 
 
     <stylesheets>
-        <URL value="@../css/Movimiento.css"/>
+        <URL value="@../../css/Movimiento.css"/>
     </stylesheets>
 
 

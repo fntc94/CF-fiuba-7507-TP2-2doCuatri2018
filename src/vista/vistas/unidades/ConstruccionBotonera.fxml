@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+          fx:controller="vista.controladores.ConstruccionEdificiosController">
+
+    <VBox>
+
+        <Label alignment="CENTER" maxWidth="Infinity" text="Construcción de edificios"/>
+
+        <GridPane>
+            <ImageView fx:id="plazaCentral" styleClass="drag-source" onDragDetected="#dragginPlaza" GridPane.columnIndex="0"
+                       fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+
+                <Image url="@../../imagenes/PlazaCentral_blue.png"/>
+
+            </ImageView>
+
+            <ImageView fx:id="cuartel" styleClass="drag-source" onDragDetected="#dragginCuartel" GridPane.columnIndex="1">
+
+                <Image url="@../../imagenes/Cuartel_blue.png"/>
+            </ImageView>
+
+        </GridPane>
+    </VBox>
+
+
+
+</GridPane>

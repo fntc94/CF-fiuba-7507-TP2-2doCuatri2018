@@ -2,6 +2,7 @@ package atenea.fiuba.algoIII.ageoOfEmpires.unitTests;
 
 import modelo.IEdificioReparable;
 import modelo.edificios.IUnidadesPlazaCentralFabrica;
+import modelo.posicion.Posicion;
 import modelo.unidades.Aldeano;
 import modelo.unidades.Plebe;
 import modelo.unidades.UnidadesFabrica;
@@ -19,9 +20,9 @@ public class PlebeTest {
 
         // Arrange
         Plebe aldeanos = new Plebe();
-        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
-        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
-        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
+        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
+        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
+        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
 
         aldeanos.agregar(aldeano1);
         aldeanos.agregar(aldeano2);
@@ -55,9 +56,9 @@ public class PlebeTest {
 
         // Arrange
         Plebe aldeanos = new Plebe();
-        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
-        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
-        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
+        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
+        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
+        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
 
         aldeanos.agregar(aldeano1);
         aldeanos.agregar(aldeano2);
@@ -81,9 +82,9 @@ public class PlebeTest {
 
         // Arrange
         Plebe aldeanos = new Plebe();
-        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano();
-        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano();
-        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano();
+        Aldeano aldeano1 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
+        Aldeano aldeano2 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
+        Aldeano aldeano3 = unidadesPlazaCentralFabrica.crearAldeano(Mockito.mock(Posicion.class));
 
         aldeanos.agregar(aldeano1);
         aldeanos.agregar(aldeano2);

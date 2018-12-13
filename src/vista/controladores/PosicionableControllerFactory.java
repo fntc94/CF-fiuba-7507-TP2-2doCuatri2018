@@ -1,4 +1,4 @@
-package vista;
+package vista.controladores;
 
 import modelo.edificios.Castillo;
 import modelo.edificios.Cuartel;

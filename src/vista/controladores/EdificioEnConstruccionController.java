@@ -36,7 +36,6 @@ public class EdificioEnConstruccionController implements IPosicionableController
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        String className = this.unidad.getClass().getSimpleName();
         String resource = String.format("/vista/css/%s.css", tipo);
         this.root.getStylesheets().add(this.getClass().getResource(resource).toExternalForm());
         this.imageView.getStyleClass().add(color);

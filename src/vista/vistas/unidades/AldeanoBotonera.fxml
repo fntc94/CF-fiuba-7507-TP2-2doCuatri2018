@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<fx:root fx:id="root" type="GridPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+
+    <columnConstraints>
+        <ColumnConstraints percentWidth="100.0"/>
+    </columnConstraints>
+
+    <VBox GridPane.valignment="CENTER">
+        <Label fx:id="nombreLabel" GridPane.rowIndex="0" alignment="CENTER" maxWidth="Infinity"/>
+
+        <GridPane GridPane.valignment="CENTER" fx:id="botoneraGridPane">
+
+            <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
+
+            <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
+
+            <fx:include fx:id="botoneraConstruccion" source="ConstruccionBotonera.fxml" GridPane.columnIndex="2"/>
+
+        </GridPane>
+
+    </VBox>
+
+
+
+    <stylesheets>
+        <URL value="@/vista/css/Botonera.css"/>
+    </stylesheets>
+
+</fx:root>

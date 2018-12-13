@@ -23,16 +23,16 @@ public class Cuartel extends Edificio implements IPosicionable, IEdificioReparab
         return this.fabricaDeUnidades.obtenerCostoArquero();
     }
 
-    public Arquero crearArquero(){
-        return this.fabricaDeUnidades.crearArquero();
+    public Arquero crearArquero(Posicion posicion){
+        return this.fabricaDeUnidades.crearArquero(posicion);
     }
 
     public int obtenerCostoEspadachin(){
         return this.fabricaDeUnidades.obtenerCostoEspadachin();
     }
 
-    public Espadachin crearEspadachin(){
-        return this.fabricaDeUnidades.crearEspadachin();
+    public Espadachin crearEspadachin(Posicion posicion){
+        return this.fabricaDeUnidades.crearEspadachin(posicion);
     }
 
 }

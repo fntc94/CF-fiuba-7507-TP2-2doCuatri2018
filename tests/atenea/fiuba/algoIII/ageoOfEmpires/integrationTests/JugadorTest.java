@@ -4,6 +4,7 @@ import modelo.edificios.Castillo;
 import modelo.edificios.EdificiosFabrica;
 import modelo.excepciones.OroInsuficienteException;
 import modelo.juego.Jugador;
+import modelo.posicion.Posicion;
 import modelo.unidades.ArmaDeAsedio;
 import modelo.unidades.UnidadesFabrica;
 import org.junit.Assert;
@@ -31,7 +32,7 @@ public class JugadorTest {
     public void jugadorCreadoAgregaAldeanoYNoRecolectaOroTest() {
         Castillo castillo = new EdificiosFabrica().crearCastillo();
         Jugador jugador = new Jugador("Pablo", castillo);
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
         jugador.pagarCosto(180);
     }
 
@@ -45,7 +46,7 @@ public class JugadorTest {
 
     @Test
     public void jugadorCreadoAgregaUnidadMilitarTest() {
-        ArmaDeAsedio armaDeAsedio = new UnidadesFabrica().crearArmaDeAsedio();
+        ArmaDeAsedio armaDeAsedio = new UnidadesFabrica().crearArmaDeAsedio(Mockito.mock(Posicion.class));
         Jugador jugador = new Jugador("Pablo", null);
         jugador.agregar(armaDeAsedio);
 
@@ -55,9 +56,9 @@ public class JugadorTest {
     @Test
     public void jugadorCreadoCon3AldeanosY100DeOroHaceTrabajarALosAldeanosYPaga160Test() {
         Jugador jugador = new Jugador("Pablo", null);
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
         jugador.trabajar();
         jugador.pagarCosto(160);
     }
@@ -65,9 +66,9 @@ public class JugadorTest {
     @Test (expected = OroInsuficienteException.class)
     public void jugadorCreadoCon3AldeanosY100DeOroHaceTrabajarALosAldeanosYPaga190Test() {
         Jugador jugador = new Jugador("Pablo", null);
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
-        jugador.agregar(new UnidadesFabrica().crearAldeano());
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
+        jugador.agregar(new UnidadesFabrica().crearAldeano(Mockito.mock(Posicion.class)));
         jugador.trabajar();
         jugador.pagarCosto(190);
     }

@@ -22,7 +22,7 @@ public class PlazaCentralTest {
         PlazaCentral plazaCentral = this.crearPlazaCentral();
 
         // Act
-        Aldeano aldeano = plazaCentral.construirAldeano();
+        Aldeano aldeano = plazaCentral.construirAldeano(Mockito.mock(Posicion.class));
 
         // Assert
         Assert.assertNotNull(aldeano);

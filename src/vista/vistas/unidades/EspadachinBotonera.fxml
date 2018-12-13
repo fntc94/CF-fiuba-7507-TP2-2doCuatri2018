@@ -17,25 +17,7 @@
 
         <GridPane fx:id="botoneraGridPane" GridPane.valignment="CENTER">
 
-            <!--<columnConstraints>-->
-            <!--<ColumnConstraints percentWidth="50.0"/>-->
-            <!--<ColumnConstraints percentWidth="50.0"/>-->
-            <!--<ColumnConstraints percentWidth="50.0"/>-->
-            <!--</columnConstraints>-->
-
-            <GridPane GridPane.columnIndex="0">
-
-                <GridPane GridPane.rowIndex="0" GridPane.halignment="center">
-                    <ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>
-                    <Label fx:id="vidaLabel" GridPane.halignment="CENTER"/>
-                </GridPane>
-
-                <ImageView fx:id="imagenPosicionable" GridPane.rowIndex="1" fitHeight="60" fitWidth="40"
-                           style="-fx-padding: 5" GridPane.halignment="CENTER">
-                    <Image url="/vista/imagenes/Arquero_blue.png"/>
-                </ImageView>
-
-            </GridPane>
+            <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
 
             <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
 
@@ -44,12 +26,8 @@
                 <Button onMouseClicked="#handleCancelar">Candelar</Button>
             </VBox>
 
-
-
         </GridPane>
     </VBox>
-
-
 
     <stylesheets>
         <URL value="@/vista/css/Botonera.css"/>

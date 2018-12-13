@@ -75,6 +75,6 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(getClass().getResource("/vista/vistas/ArmaDeAsedioBotonera.fxml"));
+        return new FXMLLoader(getClass().getResource("/vista/vistas/unidades/ArmaDeAsedioBotonera.fxml"));
     }
 }

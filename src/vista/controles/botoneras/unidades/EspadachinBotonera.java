@@ -11,7 +11,7 @@ public class EspadachinBotonera extends UnidadBotonera<Espadachin> {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(getClass().getResource("/vista/vistas/ArqueroBotonera.fxml"));
+        return new FXMLLoader(getClass().getResource("/vista/vistas/unidades/ArqueroBotonera.fxml"));
     }
 
     public EspadachinBotonera(Espadachin espadachin, MapaControl mapa) {

@@ -36,9 +36,9 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
         this.estado = "seleccionable";
     }
 
-    private TAtacable unidad;
+    protected TAtacable unidad;
     protected String color;
-    private MapaControl mapaControl;
+    protected MapaControl mapaControl;
     private IJuegoController juegoController;
 
     public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController){

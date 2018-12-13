@@ -12,7 +12,7 @@ public class ArqueroBotonera extends UnidadBotonera<Arquero> {
 
     @Override
     protected FXMLLoader getLoader() {
-        return new FXMLLoader(getClass().getResource("/vista/vistas/ArqueroBotonera.fxml"));
+        return new FXMLLoader(getClass().getResource("/vista/vistas/unidades/ArqueroBotonera.fxml"));
     }
 
     public ArqueroBotonera(Arquero arquero, MapaControl mapa) {
