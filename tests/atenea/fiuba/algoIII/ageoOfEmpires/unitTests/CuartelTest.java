@@ -22,7 +22,7 @@ public class CuartelTest {
         Cuartel cuartel = this.crearCuartel();
 
         // Act
-        Arquero arquero = cuartel.crearArquero();
+        Arquero arquero = cuartel.crearArquero(Mockito.mock(Posicion.class));
 
         // Assert
         Assert.assertNotNull(arquero);
@@ -51,7 +51,7 @@ public class CuartelTest {
         Cuartel cuartel = this.crearCuartel();
 
         // Act
-        Espadachin espadachin = cuartel.crearEspadachin();
+        Espadachin espadachin = cuartel.crearEspadachin(Mockito.mock(Posicion.class));
 
         // Assert
         Assert.assertNotNull(espadachin);

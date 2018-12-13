@@ -4,18 +4,25 @@ import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import modelo.Unidad;
+import modelo.unidades.Aldeano;
 import vista.controles.MapaControl;
 
-public class ConstruccionController{
+public class ConstruccionEdificiosController {
+    private Aldeano aldeano;
     private MapaControl mapa;
     @FXML private ImageView plazaCentral;
     @FXML private ImageView cuartel;
 
-    public ConstruccionController(MapaControl mapa){
+    public ConstruccionEdificiosController(Unidad aldeano, MapaControl mapa){
+        this.aldeano = (Aldeano) aldeano;
         this.mapa = mapa;
     }
 
     public void dragginPlaza(MouseEvent event){
+
+        this.mapa.setDragSource(this.aldeano);
+
         Dragboard db = plazaCentral.startDragAndDrop(TransferMode.ANY);
         ClipboardContent content = new ClipboardContent();
 
@@ -23,7 +30,9 @@ public class ConstruccionController{
         content.put(DataFormat.PLAIN_TEXT, "plaza");    // Esto es para reconocer que recibe el mapa
         db.setContent(content);
 
+
         event.consume();
+
     }
 
     public void dragginCuartel(MouseEvent event){

@@ -5,6 +5,7 @@ import modelo.edificios.EstrategiaAtaqueArmaDeAsedio;
 import modelo.edificios.IUnidadesCastilloFabrica;
 import modelo.edificios.IUnidadesCuartelFabrica;
 import modelo.edificios.IUnidadesPlazaCentralFabrica;
+import modelo.posicion.Posicion;
 import modelo.posicion.PosicionDeUnCasillero;
 
 public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesCuartelFabrica, IUnidadesCastilloFabrica {
@@ -17,24 +18,24 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
     public int obtenerCostoAldeano(){
         return this.costoEnOroAldeano;
     }
-    public Aldeano crearAldeano() {
-        return new Aldeano(new PosicionDeUnCasillero(0,0));
+    public Aldeano crearAldeano(Posicion posicion) {
+        return new Aldeano(posicion);
     }
 
     public int obtenerCostoArquero() {
         return this.costoEnOroArquero;
     }
-    public Arquero crearArquero() {
+    public Arquero crearArquero(Posicion posicion) {
         IEstrategiaAtaque estrategiaAtaqueArquero = new EstrategiaAtaqueArquero();
-        return new Arquero(null, estrategiaAtaqueArquero);
+        return new Arquero(posicion, estrategiaAtaqueArquero);
     }
 
     public int obtenerCostoEspadachin(){
         return this.costoEnOroEspadachin;
     }
-    public Espadachin crearEspadachin(){
+    public Espadachin crearEspadachin(Posicion posicion){
         IEstrategiaAtaque estrategiaAtaqueEspadachin = new EstrategiaAtaqueEspadachin();
-        return new Espadachin(new PosicionDeUnCasillero(0,0),estrategiaAtaqueEspadachin);
+        return new Espadachin(posicion,estrategiaAtaqueEspadachin);
 
     }
 
@@ -42,9 +43,9 @@ public class UnidadesFabrica implements IUnidadesPlazaCentralFabrica, IUnidadesC
         return this.costoEnOroArmaDeAsedio;
     }
 
-    public ArmaDeAsedio crearArmaDeAsedio(){
+    public ArmaDeAsedio crearArmaDeAsedio(Posicion posicion){
         IEstrategiaAtaque estrategiaAtaqueArmaDeAsedio = new EstrategiaAtaqueArmaDeAsedio();
-        return new ArmaDeAsedio(new PosicionDeUnCasillero(0,0), estrategiaAtaqueArmaDeAsedio);
+        return new ArmaDeAsedio(posicion, estrategiaAtaqueArmaDeAsedio);
     }
 
 }

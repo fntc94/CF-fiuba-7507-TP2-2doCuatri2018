@@ -22,8 +22,8 @@ public class PlazaCentral extends Edificio implements IPosicionable, IEdificioRe
         return this.fabricaDeUnidades.obtenerCostoAldeano();
     }
 
-    public Aldeano construirAldeano() {
-        return this.fabricaDeUnidades.crearAldeano();
+    public Aldeano construirAldeano(Posicion posicion) {
+        return this.fabricaDeUnidades.crearAldeano(posicion);
     }
 
 }

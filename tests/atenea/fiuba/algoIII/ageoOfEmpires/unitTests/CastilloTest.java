@@ -23,7 +23,7 @@ public class CastilloTest {
         Castillo castillo = new Castillo(Mockito.mock(Posicion.class), new UnidadesFabrica(), Mockito.mock(IEstrategiaAtaque.class));
 
         // Act
-        ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio();
+        ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio(Mockito.mock(Posicion.class));
 
         // Assert
         Assert.assertNotNull(armaDeAsedio);

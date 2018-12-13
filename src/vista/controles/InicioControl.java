@@ -50,14 +50,14 @@ public class InicioControl extends GridPane {
     @FXML
     private void handleAceptar(MouseEvent mouseEvent) throws Exception {
 
-        if(this.nombreJugador1.getText().isEmpty() || this.nombreJugador2.getText().isEmpty()){
-           Alert alerta = new Alert(Alert.AlertType.ERROR, "Se requieren más jugadores");
-           alerta.setTitle("¡Atención!");
-           alerta.setHeaderText("Error al iniciar juego");
-           alerta.showAndWait();
-
-        }
-        else{
+//        if(this.nombreJugador1.getText().isEmpty() || this.nombreJugador2.getText().isEmpty()){
+//           Alert alerta = new Alert(Alert.AlertType.ERROR, "Se requieren más jugadores");
+//           alerta.setTitle("¡Atención!");
+//           alerta.setHeaderText("Error al iniciar juego");
+//           alerta.showAndWait();
+//
+//        }
+//        else{
             String nombreJugador1 = this.nombreJugador1.getText();
             String nombreJugador2 = this.nombreJugador2.getText();
             JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
@@ -67,7 +67,7 @@ public class InicioControl extends GridPane {
 
             this.playSound();
             this.onAceptarAction.run();
-        }
+//        }
 
 
 

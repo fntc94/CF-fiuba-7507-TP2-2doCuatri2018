@@ -20,20 +20,9 @@
 
         <GridPane GridPane.valignment="CENTER" fx:id="botoneraGridPane">
 
-            <GridPane GridPane.columnIndex="0" GridPane.halignment="center">
+            <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
 
-                <GridPane GridPane.rowIndex="0">
-                    <ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>
-                    <Label fx:id="vidaLabel" GridPane.rowIndex="0" textAlignment="CENTER" GridPane.halignment="center"/>
-
-                </GridPane>
-
-                <ImageView fx:id="imagenPosicionable" GridPane.rowIndex="1" fitHeight="60" fitWidth="40"
-                           GridPane.halignment="CENTER">
-                    <Image url="/vista/imagenes/Castillo_blue.png"/>
-                </ImageView>
-
-            </GridPane>
+            <fx:include source="CreacionUnidadesCuartel.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="center"/>
 
         </GridPane>
 
