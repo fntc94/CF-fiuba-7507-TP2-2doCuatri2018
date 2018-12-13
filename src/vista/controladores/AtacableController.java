@@ -21,18 +21,22 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
     @FXML
     protected GridPane root;
-    @FXML protected ImageView imageView;
+    @FXML
+    protected ImageView imageView;
 
     //    botonera botonera;
     abstract protected Botonera getBotonera();
+
     private String estado = "seleccionable";
 
     private IAtacante atacante;
-    public void estadoAtaquePotencial(IAtacante atacante){
+
+    public void estadoAtaquePotencial(IAtacante atacante) {
         this.atacante = atacante;
         this.estado = "ataquePotencial";
     }
-    public void estadoSeleccionable(){
+
+    public void estadoSeleccionable() {
         this.estado = "seleccionable";
     }
 
@@ -40,12 +44,14 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
     protected String color;
     protected MapaControl mapaControl;
     private IJuegoController juegoController;
+    private String dueño;
 
-    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController){
+    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
         this.unidad = unidad;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
+        this.dueño = dueño;
 
     }
 
@@ -66,35 +72,31 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
     public void handleClick(MouseEvent mouseEvent) {
 
-        if(this.estado.equals("seleccionable")){
+        if (this.juegoController.esDelJugador(this.dueño)) {
             this.juegoController.setBotonera(this.getBotonera());
         }
 
-        if(this.estado.equals("ataquePotencial")){
+        else {
+            if (this.estado.equals("ataquePotencial")) {
 
-            try {
-                this.atacante.atacar(this.unidad);
+                try {
+                    this.atacante.atacar(this.unidad);
 
-                if(this.unidad.getVida() == 0){
-
-
+                    new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
+                    this.getBotonera().actualizarUI();
+                    this.playSound();
                 }
 
-                new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
-                this.getBotonera().actualizarUI();
-                this.playSound();
-            }
-            catch (Exception e){
-                new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
-            }
+                catch (Exception e) {
+                    new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
+                }
 
-            finally {
-                this.mapaControl.estadoSeleccionable();
+                finally {
+                    this.mapaControl.estadoSeleccionable();
+                }
             }
-
+            this.juegoController.cleanBotonera();
         }
-
-
 
     }
 
@@ -110,19 +112,16 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
     protected abstract String getWavFile();
 
 
-    private void playSound(){
+    private void playSound() {
 
-        try
-        {
+        try {
 
             String f = String.format("/vista/sonidos/%s", this.getWavFile());
             URL path = getClass().getResource(f);
             AudioClip ac = new AudioClip(path.toString());
             ac.play();
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

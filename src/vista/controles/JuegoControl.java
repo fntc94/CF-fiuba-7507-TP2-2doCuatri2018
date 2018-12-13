@@ -32,9 +32,12 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private MapaControl mapaControl;
     private Turno turno;
 
-    @FXML private GridPane botonera;
-    @FXML private Button pasarTurno;
-    @FXML private Text fichaTecnica;
+    @FXML
+    private GridPane botonera;
+    @FXML
+    private Button pasarTurno;
+    @FXML
+    private Text fichaTecnica;
 
     JuegoControl(Stage primaryStage, String nombreJugador1, String nombreJugador2) {
         this.listaDeParticipantes = new ArrayList();
@@ -45,7 +48,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.juego = juego;
         MiniMapaController miniMapaController = new MiniMapaController(this, juego.getMapa());
         MapaControl mapaControl = new MapaControl(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2(), miniMapaController);
-        this.mapaControl =  mapaControl;
+        this.mapaControl = mapaControl;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Juego.fxml"));
         loader.setRoot(this);
@@ -53,11 +56,12 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
         loader.setControllerFactory(type -> {
 
-            if(type.equals(MiniMapaController.class)){
+            if (type.equals(MiniMapaController.class)) {
                 return miniMapaController;
             }
 
             else {
+                // default behavior for controllerFactory:
                 try {
                     return type.newInstance();
                 } catch (Exception exc) {
@@ -70,8 +74,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
         try {
             loader.load();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
@@ -80,7 +83,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.inicializarJugador2(nombreJugador2);
 
         this.turno = new Turno(this.listaDeParticipantes);
-        this.fichaTecnica.setText(this.turno.devolverJugadorActual());
+        this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
 
         this.centerProperty().setValue(mapaControl);
         this.autosize();
@@ -88,16 +91,18 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     }
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 
 
-
-    public void setBotonera(Node node){
+    public void setBotonera(Node node) {
         this.botonera.getChildren().clear();
         this.botonera.add(node, 1, 0);
+    }
+
+    public  void cleanBotonera(){
+        this.botonera.getChildren().clear();
     }
 
     private void inicializarJugador1(String nombreJugador){
@@ -114,11 +119,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Aldeano aldeano2 = new Aldeano(posicionAldeano2);
         Aldeano aldeano3 = new Aldeano(posicionAldeano3);
 
-//        mapa.posicionar(castillo);
-//        mapa.posicionar(plazaCentral);
-//        mapa.posicionar(aldeano1);
-//        mapa.posicionar(aldeano2);
-//        mapa.posicionar(aldeano3);
 
         Jugador jugador = new Jugador(nombreJugador, castillo);
         jugador.agregar(plazaCentral);
@@ -134,8 +134,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano1));
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano2));
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano3));
-
-
 
     }
 
@@ -155,12 +153,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Aldeano aldeano1 = new Aldeano(posAldeano1);
         Aldeano aldeano2 = new Aldeano(posAldeano2);
         Aldeano aldeano3 = new Aldeano(posAldeano3);
-
-//        mapa.posicionar(plazaCentral);
-//        mapa.posicionar(castillo);
-//        mapa.posicionar(aldeano1);
-//        mapa.posicionar(aldeano2);
-//        mapa.posicionar(aldeano3);
 
         Jugador jugador = new Jugador(nombreJugador2, castillo);
         jugador.agregar(plazaCentral);
@@ -182,7 +174,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     public void cambioDeTurno(){
         this.turno.cambiarDeTurno();
-        this.fichaTecnica.setText(this.turno.devolverJugadorActual());
+        this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
+        this.cleanBotonera();
 
+    }
+
+
+    public boolean esDelJugador(String dueño){
+        return (this.turno.devolverJugadorActual().devolverNombre() == dueño);
     }
 }

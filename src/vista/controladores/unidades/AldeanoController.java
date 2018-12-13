@@ -13,8 +13,8 @@ public class AldeanoController extends AtacableController<Aldeano> {
 
     private AldeanoBotonera botonera;
 
-    public AldeanoController(Aldeano unidad, String color, MapaControl mapaControl, IJuegoController juegoController) {
-        super(unidad, color, mapaControl, juegoController);
+    public AldeanoController(Aldeano unidad, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
+        super(unidad, color, mapaControl, juegoController, dueño);
 
         this.botonera = new AldeanoBotonera(unidad, mapaControl);
     }
