@@ -1,35 +1,30 @@
 package vista.controladores;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import modelo.IPosicionable;
-import modelo.juego.Jugador;
 import modelo.posicion.Casillero;
 import modelo.posicion.Mapa;
 import modelo.posicion.Posicion;
 import vista.controles.JuegoControl;
+import vista.controles.PosicionableVista;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MiniMapaController implements Initializable {
 
     private final JuegoControl juegoControl;
     private final Mapa mapa;
 
-    private Map<IPosicionable, Node> vistas = new HashMap();
-    private Map<IPosicionable, String> colores = new HashMap();
+
+    Collection<PosicionableVista> vistas = new ArrayList<>();
+    Map<PosicionableVista, Node> vistasSimplificadas = new HashMap<>();
 
     @FXML
     private GridPane gridPane;
@@ -44,7 +39,7 @@ public class MiniMapaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.inicializarMapaVacio();
-        this.dibujar();
+//        this.dibujar();
     }
 
     private void inicializarMapaVacio() {
@@ -74,40 +69,49 @@ public class MiniMapaController implements Initializable {
         this.gridPane.setGridLinesVisible(true);
     }
 
-    public void agregar(IPosicionable posicionable, String color){
-        this.colores.put(posicionable,color);
-        this.dibujar(posicionable);
+
+    public void agregar(PosicionableVista vista){
+        AnchorPane vistaSimplificada = new AnchorPane();
+        String css = String.format("-fx-background-color: %s", vista.getController().getColor());
+        vistaSimplificada.setStyle(css);
+
+        this.vistas.add(vista);
+        this.vistasSimplificadas.put(vista, vistaSimplificada);
+    }
+
+    public void remover(PosicionableVista vista){
+        this.vistas.remove(vista);
+
+        Node vistaSimplificada = this.vistasSimplificadas.get(vista);
+        this.gridPane.getChildren().remove(vistaSimplificada);
+        this.vistasSimplificadas.remove(vista);
+
+
     }
 
     public void dibujar() {
 
-        this.gridPane.getChildren().removeAll(this.vistas.values());
+        this.gridPane.getChildren().removeAll(this.vistasSimplificadas.values());
 
-        for (IPosicionable posicionable : this.mapa) {
-            this.dibujar(posicionable);
+        for(PosicionableVista vista: this.vistas){
+            this.dibujarVistaSimplificada(vista);
         }
 
     }
 
-    private void dibujar(IPosicionable posicionable) {
+    private void dibujarVistaSimplificada(PosicionableVista vista){
 
+        Node vistaSimplificada = this.vistasSimplificadas.get(vista);
 
-        Posicion posicion = posicionable.getPosicion();
+        IPosicionableController controlador = vista.getController();
+        Posicion posicion = controlador.getPosicion();
         Casillero abajoIzquierda = posicion.getAbajoIzquierda();
+        int columna = abajoIzquierda.getCoordenadaEnX();
+        int fila = abajoIzquierda.getCoordenadaEnY();
 
-        AnchorPane vista = new AnchorPane();
-
-        String css = String.format("-fx-background-color: %s", this.colores.get(posicionable));
-        vista.setStyle(css);
-
-        this.gridPane.add(vista, abajoIzquierda.getCoordenadaEnX(), abajoIzquierda.getCoordenadaEnY());
-
-        GridPane.setColumnSpan(vista, posicion.getAncho());
-        GridPane.setRowSpan(vista, posicion.getAlto());
-
-        this.vistas.put(posicionable, vista);
-
+        this.gridPane.add(vistaSimplificada, columna, fila);
+        GridPane.setColumnSpan(vistaSimplificada, posicion.getAncho());
+        GridPane.setRowSpan(vistaSimplificada, posicion.getAlto());
     }
-
 
 }

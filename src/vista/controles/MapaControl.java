@@ -3,16 +3,12 @@ package vista.controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
-import modelo.Edificio;
-import modelo.IAtacable;
 import modelo.IAtacante;
 
 import modelo.IPosicionable;
@@ -29,12 +25,6 @@ import modelo.unidades.*;
 import vista.controladores.*;
 
 import modelo.posicion.*;
-import vista.controladores.edificios.CuartelControler;
-import vista.controladores.edificios.PlazaCentralController;
-import vista.controladores.unidades.AldeanoController;
-import vista.controladores.unidades.ArmaDeAsedioController;
-import vista.controladores.unidades.ArqueroController;
-import vista.controladores.unidades.EspadachinController;
 
 import java.io.IOException;
 import java.util.*;
@@ -116,7 +106,7 @@ public class MapaControl extends ScrollPane {
 
     }
 
-    private void pAgregar(PosicionableVista vista){
+    private void dibujarEnMapa(PosicionableVista vista){
         IPosicionableController controlador = vista.getController();
         Posicion posicion = controlador.getPosicion();
         IPosicionable posicionable = controlador.getPosicionable();
@@ -130,12 +120,14 @@ public class MapaControl extends ScrollPane {
         GridPane.setColumnSpan(vista, posicion.getAncho());
         GridPane.setRowSpan(vista, posicion.getAlto());
 
-        this.miniMapaController.agregar(posicionable, controlador.getColor());
     }
 
     public void agregar(PosicionableVista vista){
-        this.pAgregar(vista);
+        this.dibujarEnMapa(vista);
         this.vistas.add(vista);
+        this.mapa.posicionar(vista.getController().getPosicionable());
+        this.miniMapaController.agregar(vista);
+        this.miniMapaController.dibujar();
     }
 
     public void dibujar(){
@@ -143,8 +135,10 @@ public class MapaControl extends ScrollPane {
         this.mapaGrandeGridPane.getChildren().removeAll(this.vistas);
 
         for(PosicionableVista vista: this.vistas){
-            this.pAgregar(vista);
+            this.dibujarEnMapa(vista);
         }
+
+
         this.miniMapaController.dibujar();
 
     }
@@ -153,7 +147,11 @@ public class MapaControl extends ScrollPane {
         this.mapaGrandeGridPane.getChildren().remove(vista);
         this.vistas.remove(vista);
         IPosicionable posicionable = vista.getController().getPosicionable();
+        this.mapa.remover(posicionable);
         this.dibujar();
+
+        this.miniMapaController.remover(vista);
+        this.miniMapaController.dibujar();
     }
 
     public void estadoAtaque(IAtacante atacante) {

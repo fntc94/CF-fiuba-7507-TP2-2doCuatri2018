@@ -114,11 +114,11 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Aldeano aldeano2 = new Aldeano(posicionAldeano2);
         Aldeano aldeano3 = new Aldeano(posicionAldeano3);
 
-        mapa.posicionar(castillo);
-        mapa.posicionar(plazaCentral);
-        mapa.posicionar(aldeano1);
-        mapa.posicionar(aldeano2);
-        mapa.posicionar(aldeano3);
+//        mapa.posicionar(castillo);
+//        mapa.posicionar(plazaCentral);
+//        mapa.posicionar(aldeano1);
+//        mapa.posicionar(aldeano2);
+//        mapa.posicionar(aldeano3);
 
         Jugador jugador = new Jugador(nombreJugador, castillo);
         jugador.agregar(plazaCentral);
@@ -156,11 +156,11 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Aldeano aldeano2 = new Aldeano(posAldeano2);
         Aldeano aldeano3 = new Aldeano(posAldeano3);
 
-        mapa.posicionar(plazaCentral);
-        mapa.posicionar(castillo);
-        mapa.posicionar(aldeano1);
-        mapa.posicionar(aldeano2);
-        mapa.posicionar(aldeano3);
+//        mapa.posicionar(plazaCentral);
+//        mapa.posicionar(castillo);
+//        mapa.posicionar(aldeano1);
+//        mapa.posicionar(aldeano2);
+//        mapa.posicionar(aldeano3);
 
         Jugador jugador = new Jugador(nombreJugador2, castillo);
         jugador.agregar(plazaCentral);
