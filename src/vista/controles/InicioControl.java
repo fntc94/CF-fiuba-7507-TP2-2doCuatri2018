@@ -60,9 +60,11 @@ public class InicioControl extends GridPane {
         else{
             String nombreJugador1 = this.nombreJugador1.getText();
             String nombreJugador2 = this.nombreJugador2.getText();
-            JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
 
-            this.primaryStage.setScene(new Scene(juegoControl));
+            JuegoControl.Inicializar(this.primaryStage, nombreJugador1, nombreJugador2);
+//            JuegoControl juegoControl = new JuegoControl(this.primaryStage, nombreJugador1, nombreJugador2);
+
+            this.primaryStage.setScene(new Scene(JuegoControl.getInstanacia()));
             this.primaryStage.setFullScreen(true);
 
             this.playSound();

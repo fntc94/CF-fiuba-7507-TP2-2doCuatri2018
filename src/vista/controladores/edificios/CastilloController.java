@@ -11,8 +11,8 @@ public class CastilloController extends AtacableController<Castillo> {
 
     private CastilloBotonera botonera;
 
-    public CastilloController(Castillo edificio, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
-        super(edificio, color, mapaControl, juegoController, dueño);
+    public CastilloController(Castillo edificio, String color, MapaControl mapaControl, IJuegoController juegoController) {
+        super(edificio, color, mapaControl, juegoController);
 
         this.botonera = new CastilloBotonera(edificio, mapaControl);
     }

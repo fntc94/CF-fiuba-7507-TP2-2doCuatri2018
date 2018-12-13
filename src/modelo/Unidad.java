@@ -4,6 +4,8 @@ import modelo.movimiento.IDireccion;
 import modelo.movimiento.Movimiento;
 import modelo.posicion.Posicion;
 
+import java.util.function.Consumer;
+
 public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
     protected int vida;
@@ -18,6 +20,12 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
 
 
+    private Consumer<IAtacable> onDestruidoEventHanlder = aldeano -> {};
+
+    public void onDestruido(Consumer<IAtacable> eventHanlder){
+        this.onDestruidoEventHanlder = eventHanlder;
+    }
+
     @Override
     public Posicion getPosicion() {
         return posicion;
@@ -30,6 +38,7 @@ public abstract class Unidad implements IPosicionable, IAtacable, IMovible {
 
         if(this.vida <= danio){
             this.vida = 0;
+            onDestruidoEventHanlder.accept(this);
             return;
         }
 

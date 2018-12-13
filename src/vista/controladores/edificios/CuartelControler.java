@@ -11,8 +11,8 @@ public class CuartelControler extends AtacableController<Cuartel> {
 
     private Botonera botonera = null;
 
-    public CuartelControler(Cuartel edificio, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
-        super(edificio, color, mapaControl, juegoController, dueño);
+    public CuartelControler(Cuartel edificio, String color, MapaControl mapaControl, IJuegoController juegoController){
+        super(edificio, color, mapaControl, juegoController);
 
         this.botonera = new CuartelBotonera(edificio, mapaControl);
     }

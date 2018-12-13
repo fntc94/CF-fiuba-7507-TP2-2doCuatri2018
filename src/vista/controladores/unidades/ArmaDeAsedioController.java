@@ -21,8 +21,8 @@ public class ArmaDeAsedioController extends AtacableController<ArmaDeAsedio> {
         return this.botonera;
     }
 
-    public ArmaDeAsedioController(ArmaDeAsedio armaDeAsedio, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño){
-        super(armaDeAsedio, color, mapaControl, juegoController, dueño);
+    public ArmaDeAsedioController(ArmaDeAsedio armaDeAsedio, String color, MapaControl mapaControl, IJuegoController juegoController){
+        super(armaDeAsedio, color, mapaControl, juegoController);
 
         this.botonera = new ArmaDeAsedioBotonera(armaDeAsedio, mapaControl, this);
     }
@@ -30,7 +30,8 @@ public class ArmaDeAsedioController extends AtacableController<ArmaDeAsedio> {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.root.getStylesheets().add(this.getClass().getResource("/vista/css/ArmaDeAsedio.css").toExternalForm());
-        this.imageView.getStyleClass().add("red-desmontada");
+        String styleClass = String.format("%s-desmontada", this.color);
+        this.imageView.getStyleClass().add(styleClass);
     }
 
     @Override

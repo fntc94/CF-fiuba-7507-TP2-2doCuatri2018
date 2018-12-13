@@ -1,5 +1,6 @@
 package modelo.posicion;
 
+import modelo.IAtacable;
 import modelo.IPosicionable;
 import modelo.unidades.Aldeano;
 
@@ -59,6 +60,11 @@ public class Mapa implements Iterable<IPosicionable> {
         }
 
         this.posicionables.add(posicionable);
+
+    }
+
+    public void remover(IPosicionable posicionable){
+        this.posicionables.remove(posicionable);
     }
 
     private boolean sonDimensionesValidas(int alto, int ancho){

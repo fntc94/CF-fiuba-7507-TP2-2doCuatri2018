@@ -31,7 +31,7 @@ public class VidaController implements Initializable {
         this.vidaProgressBar.setProgress(this.obtenerProgresoDeVida());
 
         String className = this.atacable.getClass().getSimpleName();
-        String imagenPath = String.format("/vista/imagenes/%s_blue.png", className);
+        String imagenPath = String.format("/vista/imagenes/botonera/%s.png", className);
         this.imagen.setImage(new Image(imagenPath));
     }
 
