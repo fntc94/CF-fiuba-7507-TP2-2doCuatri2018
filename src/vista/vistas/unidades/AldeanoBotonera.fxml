@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import java.net.URL?>
 <fx:root fx:id="root" type="GridPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
@@ -21,23 +15,6 @@
         <GridPane GridPane.valignment="CENTER" fx:id="botoneraGridPane">
 
             <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
-
-            <!--<BorderPane GridPane.columnIndex="0" GridPane.halignment="center">-->
-
-                <!--<top>-->
-                    <!--<GridPane GridPane.rowIndex="0" style="-fx-background-color: blue">-->
-                        <!--<ProgressBar fx:id="vidaProgressBar" GridPane.rowIndex="0"/>-->
-                        <!--<Label fx:id="vidaLabel" GridPane.rowIndex="0" textAlignment="CENTER" GridPane.halignment="center"/>-->
-                    <!--</GridPane>-->
-                <!--</top>-->
-
-                <!--<center>-->
-                    <!--<ImageView fx:id="imagenPosicionable" fitHeight="50" preserveRatio="true">-->
-                        <!--<Image url="/vista/imagenes/Aldeano_blue.png"/>-->
-                    <!--</ImageView>-->
-                <!--</center>-->
-
-            <!--</BorderPane>-->
 
             <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
 

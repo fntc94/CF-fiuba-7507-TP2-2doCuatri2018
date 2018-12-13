@@ -5,6 +5,7 @@ import modelo.edificios.Castillo;
 import vista.controladores.edificios.CreacionUnidadesCastilloController;
 import vista.controladores.edificios.CreacionUnidadesCuartelController;
 import vista.controles.MapaControl;
+import vista.controles.botoneras.VidaController;
 
 public class CastilloBotonera extends EdificioBotonera<Castillo> {
 
@@ -21,7 +22,12 @@ public class CastilloBotonera extends EdificioBotonera<Castillo> {
             if(type == CreacionUnidadesCastilloController.class){
                 return new CreacionUnidadesCastilloController(this.edificio, this.mapa);
             }
-            else{
+            if (type.equals(VidaController.class)) {
+                VidaController vidaController = new VidaController(this.edificio);
+                this.vidaController= vidaController;
+                return vidaController;
+            }
+            else {
                 return null;
             }
         });
