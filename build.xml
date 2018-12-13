@@ -4,46 +4,46 @@
 
     <target name="definir_propiedades">
 
-        <property name="src" value="src"></property>
-        <property name="tests" value="tests"></property>
+        <property name="src" value="src"/>
+        <property name="tests" value="tests"/>
         <property name="build" value="build" />
         <property name="libs" value="libs" />
 
         <property name="src.out.dir" location="${build}/src" />
-        <property name="tests.out.dir" location="${build}/tests"></property>
+        <property name="tests.out.dir" location="${build}/tests"/>
 
         <property name="reports.out.dir" location="${build}/reports" />
         <property name="reports.xml.dir" location="${reports.out.dir}/junit-xml" />
         <property name="reports.html.dir" location="${reports.out.dir}/junit-html" />
 
-        <property name="tests.main" value="tests/jumast.fiuba.algoIII.tp2.Main"></property>
+        <property name="tests.main" value="tests/jumast.fiuba.algoIII.tp2.Main"/>
         <property name="jar.dest" value="app.jar"></property>
 
         <path id="classpath">
             <fileset dir="${libs}">
-                <include name="*.jar"></include>
+                <include name="*.jar"/>
             </fileset>
-            <pathelement location="${build}"></pathelement>
-            <pathelement location="${tests.out.dir}"></pathelement>
+            <pathelement location="${build}"/>
+            <pathelement location="${tests.out.dir}"/>
         </path>
 
         <path id="tests.classpath">
             <fileset dir="${libs}">
-                <include name="*.jar"></include>
+                <include name="*.jar"/>
             </fileset>
-            <pathelement location="${src.out.dir}"></pathelement>
-            <pathelement location="${tests.out.dir}"></pathelement>
+            <pathelement location="${src.out.dir}"/>
+            <pathelement location="${tests.out.dir}"/>
         </path>
 
     </target>
 
 
     <target name="setup" depends="definir_propiedades, resolve">
-        <delete dir="${build}"></delete>
-        <mkdir dir="${build}"></mkdir>
-        <mkdir dir="${src.out.dir}"></mkdir>
-        <mkdir dir="${tests.out.dir}"></mkdir>
-        <mkdir dir="${reports.out.dir}"></mkdir>
+        <delete dir="${build}"/>
+        <mkdir dir="${build}"/>
+        <mkdir dir="${src.out.dir}"/>
+        <mkdir dir="${tests.out.dir}"/>
+        <mkdir dir="${reports.out.dir}"/>
         <mkdir dir="${reports.xml.dir}" />
         <mkdir dir="${reports.html.dir}" />
     </target>
@@ -51,22 +51,22 @@
 
     <target name="compilar.aplicacion.sin.deps">
         <javac srcdir="${src}" destdir="${src.out.dir}" includeantruntime="false" debug="yes">
-            <classpath refid="classpath"></classpath>
+            <classpath refid="classpath"/>
         </javac>
     </target>
 
     <target name="compilar.tests.sin.deps">
         <javac srcdir="${tests}" destdir="${tests.out.dir}" includeantruntime="false" debug="yes">
-            <classpath refid="tests.classpath"></classpath>
+            <classpath refid="tests.classpath"/>
         </javac>
     </target>
 
-    <target name="compilar.todo" depends="setup, compilar.aplicacion.sin.deps, compilar.tests.sin.deps"></target>
+    <target name="compilar.todo" depends="setup, compilar.aplicacion.sin.deps, compilar.tests.sin.deps"/>
 
     <target name="ejecutar.tests.con.reportes" depends="compilar.todo">
         <junit fork="yes" failureproperty="test.failure" forkmode="once" showoutput="true">
-            <classpath refid="tests.classpath"></classpath>
-            <formatter type="xml"></formatter>
+            <classpath refid="tests.classpath"/>
+            <formatter type="xml"/>
             <!--<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />-->
             <batchtest todir="${reports.xml.dir}" unless="testcase">
                 <fileset dir="${tests.out.dir}" includes="**/*Test.class" />
@@ -85,7 +85,7 @@
 
     <target name="ejecutar.tests.sin.reportes" depends="compilar.todo">
         <junit fork="yes" failureproperty="test.failure" showoutput="false" logfailedtests="false">
-            <classpath refid="tests.classpath"></classpath>
+            <classpath refid="tests.classpath"/>
             <batchtest todir="${reports.xml.dir}" unless="testcase">
                 <fileset dir="${tests.out.dir}" includes="**/*Test.class" />
                 <formatter type="plain" usefile="false"/>
@@ -94,7 +94,7 @@
         <fail message="Pruebas fallidas" if="test.failure" />
     </target>
 
-    <target name="test" depends="ejecutar.tests.sin.reportes"></target>
+    <target name="test" depends="ejecutar.tests.sin.reportes"/>
 
     <!-- Ivy customization -->
     <property name="ivy.install.version" value="2.2.0" />
@@ -128,5 +128,26 @@
 
     </target>
     <!-- End of 'Resolve dependencies -->
+
+    <target name="empaquetar" depends="setup, compilar.aplicacion.sin.deps">
+        <copy todir="build/src" >
+            <fileset dir="src/">
+                <include name="**/*.wav" />
+                <include name="**/*.fxml" />
+                <include name="**/*.css" />
+                <include name="**/*.png" />
+                <include name="**/*.jpg" />
+                <include name="**/*.jpeg" />
+            </fileset>
+        </copy>
+    <jar destfile="build/dist/algo3.jar" basedir="build/src"/>
+    </target>
+
+    <target name="jugar" depends="empaquetar">
+        <java classname="vista.Main" fork="true">
+            <classpath refid="classpath" />
+            <classpath location="${build}/dist/algo3.jar" />
+        </java>
+    </target>
 
 </project>
