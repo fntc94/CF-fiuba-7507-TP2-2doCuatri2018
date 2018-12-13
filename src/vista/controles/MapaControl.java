@@ -186,66 +186,71 @@ public class MapaControl extends ScrollPane {
         IPosicionableController controller = null;
         if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "plaza") {
             int tamanioEdificio = 2;
+            String color = JuegoControl.getInstanacia().getColorJugadorActual();
             Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
             PlazaCentral plazaCentral = new PlazaCentral(posicion, new UnidadesFabrica());
-//            controller = new PlazaCentralController(plazaCentral, "red", this, this.juegoControl);
-            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(plazaCentral));
+            this.agregar(new VistaFactory(this.juegoControl, this, color).crearVista(plazaCentral));
+            JuegoControl.getInstanacia().getJugadorActual().agregar(plazaCentral);
             success = true;
 
         }
 
         else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "cuartel"){
             int tamanioEdificio = 2;
+            String color = JuegoControl.getInstanacia().getColorJugadorActual();
             Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
             Cuartel cuartel = new Cuartel(posicion, new UnidadesFabrica());
-//            controller = new CuartelControler(cuartel, "red", this, this.juegoControl);
-            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(cuartel));
+            this.agregar(new VistaFactory(this.juegoControl, this, color).crearVista(cuartel));
+            JuegoControl.getInstanacia().getJugadorActual().agregar(cuartel);
             success = true;
         }
 
         else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen == "Aldeano"){
             int tamanioEdificio = 1;
+            String color = JuegoControl.getInstanacia().getColorJugadorActual();
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             PlazaCentral plazaCentral = (PlazaCentral)this.dragSource;
             Aldeano aldeano = plazaCentral.construirAldeano(posicion);
-//            controller = new AldeanoController(aldeano, "red", this, this.juegoControl);
-            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(aldeano));
+            this.agregar(new VistaFactory(this.juegoControl, this, color).crearVista(aldeano));
+            JuegoControl.getInstanacia().getJugadorActual().agregar(aldeano);
             success = true;
         }
 
         else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen.equals(Espadachin.class.getSimpleName())){
             int tamanioEdificio = 1;
+            String color = JuegoControl.getInstanacia().getColorJugadorActual();
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Cuartel cuartel = (Cuartel)this.dragSource;
             Espadachin espadachin = cuartel.crearEspadachin(posicion);
-//            controller = new EspadachinController(espadachin, "red", this, this.juegoControl);
-            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(espadachin));
+            this.agregar(new VistaFactory(this.juegoControl, this, color).crearVista(espadachin));
+            JuegoControl.getInstanacia().getJugadorActual().agregar(espadachin);
             success = true;
         }
 
         else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen.equals(Arquero.class.getSimpleName())){
             int tamanioEdificio = 1;
+            String color = JuegoControl.getInstanacia().getColorJugadorActual();
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Cuartel cuartel = (Cuartel)this.dragSource;
             Arquero arquero = cuartel.crearArquero(posicion);
-//            controller = new ArqueroController(arquero, "red", this, this.juegoControl);
-            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(arquero));
+            this.agregar(new VistaFactory(this.juegoControl, this, color).crearVista(arquero));
+            JuegoControl.getInstanacia().getJugadorActual().agregar(arquero);
             success = true;
         }
 
         else if (db.hasContent(DataFormat.PLAIN_TEXT) && textoRecibidoConImagen.equals(ArmaDeAsedio.class.getSimpleName())){
             int tamanioEdificio = 1;
+            String color = JuegoControl.getInstanacia().getColorJugadorActual();
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Castillo castillo = (Castillo)this.dragSource;
             ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio(posicion);
-//            controller = new ArmaDeAsedioController(armaDeAsedio, "red", this, this.juegoControl);
-            this.agregar(new VistaFactory(this.juegoControl, this, "red").crearVista(armaDeAsedio));
+            this.agregar(new VistaFactory(this.juegoControl, this, color).crearVista(armaDeAsedio));
+            JuegoControl.getInstanacia().getJugadorActual().agregar(armaDeAsedio);
             success = true;
         }
 
 
 
-//        this.agregar(new PosicionableVista(controller));
         /* let the source know whether the string was successfully
          * transferred and used */
         event.setDropCompleted(success);

@@ -70,15 +70,12 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
     public void handleClick(MouseEvent mouseEvent) {
 
-        if(!this.juegoController.esDelJugador("")){
+        if(!this.juegoController.esDelJugador(this.unidad)){
             juegoController.cleanBotonera();
             return;
         }
 
-
-
-
-        if (this.juegoController.esDelJugador("") && this.estado.equals("seleccionable")) {
+        if (this.juegoController.esDelJugador(this.unidad) && this.estado.equals("seleccionable")) {
             this.juegoController.setBotonera(this.getBotonera());
         }
 

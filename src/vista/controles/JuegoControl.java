@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import modelo.IPosicionable;
 import modelo.edificios.*;
 import modelo.juego.Juego;
 import modelo.juego.Jugador;
@@ -19,9 +20,7 @@ import javafx.scene.control.Button;
 import vista.controladores.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class JuegoControl extends BorderPane implements Initializable, IJuegoController {
 
@@ -58,6 +57,8 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     private Jugador jugador1;
     private Jugador jugador2;
+
+    private Map<Jugador, String> colores = new HashMap();
 
     JuegoControl(Stage primaryStage, String nombreJugador1, String nombreJugador2) {
         this.listaDeParticipantes = new ArrayList();
@@ -142,6 +143,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
         Jugador jugador = new Jugador(nombreJugador, castillo);
         this.jugador1 = jugador;
+        this.colores.put(jugador, "red");
         jugador.agregar(plazaCentral);
         jugador.agregar(aldeano1);
         jugador.agregar(aldeano2);
@@ -177,6 +179,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
         Jugador jugador = new Jugador(nombreJugador2, castillo);
         this.jugador2 = jugador;
+        this.colores.put(jugador, "blue");
         jugador.agregar(plazaCentral);
         jugador.agregar(aldeano1);
         jugador.agregar(aldeano2);
@@ -202,8 +205,15 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     }
 
 
-    public boolean esDelJugador(String dueño){
-//        return (this.turno.devolverJugadorActual().devolverNombre() == dueño);
-        return true;
+    public boolean esDelJugador(IPosicionable posicionable){
+        return (this.turno.devolverJugadorActual().esDuenoDe(posicionable));
+    }
+
+    public Jugador getJugadorActual(){
+        return this.turno.devolverJugadorActual();
+    }
+
+    public String getColorJugadorActual(){
+       return this.colores.get(this.getJugadorActual());
     }
 }
