@@ -13,6 +13,7 @@
     -fx-border-radius: 15;
     -fx-border-width: 5;
     -fx-padding: 0,10,10,10;
+    -fx-background-insets: 5;
 }
 
 #inner{
