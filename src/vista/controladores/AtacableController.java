@@ -40,12 +40,14 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
     protected String color;
     protected MapaControl mapaControl;
     private IJuegoController juegoController;
+    private String dueño;
 
-    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController){
+    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño){
         this.unidad = unidad;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
+        this.dueño = dueño;
 
     }
 
@@ -66,28 +68,28 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
     public void handleClick(MouseEvent mouseEvent) {
 
-        if(this.estado.equals("seleccionable")){
+        if(this.juegoController.esDelJugador(this.dueño)){
             this.juegoController.setBotonera(this.getBotonera());
         }
 
-        if(this.estado.equals("ataquePotencial")){
+        else {
+                if (this.estado.equals("ataquePotencial")) {
 
-            try {
-                this.atacante.atacar(this.unidad);
-                new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
-                this.getBotonera().actualizarUI();
-                this.playSound();
-            }
-            catch (Exception e){
-                new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
-            }
+                    try {
+                        this.atacante.atacar(this.unidad);
+                        new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
+                        this.getBotonera().actualizarUI();
+                        this.playSound();
 
-            finally {
-                this.mapaControl.estadoSeleccionable();
-            }
+                    } catch (Exception e) {
+                        new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
 
+                    } finally {
+                        this.mapaControl.estadoSeleccionable();
+                    }
+                }
+                this.juegoController.cleanBotonera();
         }
-
 
 
     }

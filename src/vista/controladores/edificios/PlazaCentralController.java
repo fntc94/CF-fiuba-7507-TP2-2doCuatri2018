@@ -23,8 +23,8 @@ public class PlazaCentralController extends AtacableController<PlazaCentral> {
 
     private PlazaCentralBotonera botonera;
 
-    public PlazaCentralController(PlazaCentral edificio, String color, MapaControl mapaControl, IJuegoController juegoController) {
-        super(edificio, color, mapaControl, juegoController);
+    public PlazaCentralController(PlazaCentral edificio, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
+        super(edificio, color, mapaControl, juegoController, dueño);
 
         this.botonera = new PlazaCentralBotonera(edificio, mapaControl);
     }

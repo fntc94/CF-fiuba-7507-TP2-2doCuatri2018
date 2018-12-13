@@ -21,42 +21,44 @@ public class PosicionableControllerFactory {
     private JuegoControl juegoControl;
     private MapaControl mapaControl;
     private String color;
+    private String dueño;
 
-    public PosicionableControllerFactory(JuegoControl juegoControl, MapaControl mapaControl, String color){
+    public PosicionableControllerFactory(JuegoControl juegoControl, MapaControl mapaControl, String color, String dueño){
 
         this.juegoControl = juegoControl;
         this.mapaControl = mapaControl;
         this.color = color;
+        this.dueño = dueño;
     }
 
 
     public IPosicionableController crearControlador(Aldeano aldeano){
-        return new AldeanoController(aldeano, this.color, this.mapaControl, this.juegoControl);
+        return new AldeanoController(aldeano, this.color, this.mapaControl, this.juegoControl, this.dueño);
 
     }
 
     public IPosicionableController crearControlador(Castillo castillo){
-        return new CastilloController(castillo, this.color, mapaControl, this.juegoControl);
+        return new CastilloController(castillo, this.color, mapaControl, this.juegoControl, this.dueño);
     }
 
     public IPosicionableController crearControlador(PlazaCentral plazaCentral){
-        return new PlazaCentralController(plazaCentral, this.color, mapaControl, this.juegoControl);
+        return new PlazaCentralController(plazaCentral, this.color, mapaControl, this.juegoControl, this.dueño);
     }
 
     public IPosicionableController crearControlador(Espadachin espadachin){
-        return new EspadachinController(espadachin, this.color, this.mapaControl, this.juegoControl);
+        return new EspadachinController(espadachin, this.color, this.mapaControl, this.juegoControl, this.dueño);
     }
 
     public IPosicionableController crearControlador(Arquero arquero){
-        return new ArqueroController(arquero, this.color, this.mapaControl, this.juegoControl);
+        return new ArqueroController(arquero, this.color, this.mapaControl, this.juegoControl, this.dueño);
     }
 
     public IPosicionableController crearControlador(ArmaDeAsedio armaDeAsedio){
-        return new ArmaDeAsedioController(armaDeAsedio, this.color, this.mapaControl, this.juegoControl);
+        return new ArmaDeAsedioController(armaDeAsedio, this.color, this.mapaControl, this.juegoControl, this.dueño);
     }
 
     public IPosicionableController crearControlador(Cuartel cuartel){
-        return new CuartelControler(cuartel, this.color, this.mapaControl, this.juegoControl);
+        return new CuartelControler(cuartel, this.color, this.mapaControl, this.juegoControl, this.dueño);
     }
 
 }

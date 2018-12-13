@@ -47,6 +47,7 @@ public class MapaControl extends ScrollPane {
     private Mapa mapa;
     private Jugador jugador1;
     private Jugador jugador2;
+    private String dueño;
     private MiniMapaController miniMapaController;
 
     private Map<IPosicionable, Node> vistas = new HashMap();
@@ -225,7 +226,7 @@ public class MapaControl extends ScrollPane {
             int tamanioEdificio = 2;
             Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
             PlazaCentral plazaCentral = new PlazaCentral(posicion, new UnidadesFabrica());
-            controller = new PlazaCentralController(plazaCentral, "red", this, this.juegoControl);
+            controller = new PlazaCentralController(plazaCentral, "red", this, this.juegoControl, this.dueño);
             success = true;
 
         }
@@ -234,7 +235,7 @@ public class MapaControl extends ScrollPane {
             int tamanioEdificio = 2;
             Posicion posicion = new PosicionCuadrado(Limite.SuperiorIzquierdo, new Casillero(columna, fila), tamanioEdificio);
             Cuartel cuartel = new Cuartel(posicion, new UnidadesFabrica());
-            controller = new CuartelControler(cuartel, "red", this, this.juegoControl);
+            controller = new CuartelControler(cuartel, "red", this, this.juegoControl, this.dueño);
             success = true;
         }
 
@@ -243,7 +244,7 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             PlazaCentral plazaCentral = (PlazaCentral)this.dragSource;
             Aldeano aldeano = plazaCentral.construirAldeano(posicion);
-            controller = new AldeanoController(aldeano, "red", this, this.juegoControl);
+            controller = new AldeanoController(aldeano, "red", this, this.juegoControl, this.dueño);
             success = true;
         }
 
@@ -252,7 +253,7 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Cuartel cuartel = (Cuartel)this.dragSource;
             Espadachin espadachin = cuartel.crearEspadachin(posicion);
-            controller = new EspadachinController(espadachin, "red", this, this.juegoControl);
+            controller = new EspadachinController(espadachin, "red", this, this.juegoControl, this.dueño);
             success = true;
         }
 
@@ -261,7 +262,7 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Cuartel cuartel = (Cuartel)this.dragSource;
             Arquero arquero = cuartel.crearArquero(posicion);
-            controller = new ArqueroController(arquero, "red", this, this.juegoControl);
+            controller = new ArqueroController(arquero, "red", this, this.juegoControl, this.dueño);
             success = true;
         }
 
@@ -270,7 +271,7 @@ public class MapaControl extends ScrollPane {
             Posicion posicion = new PosicionDeUnCasillero(this.mapa, columna, fila);
             Castillo castillo = (Castillo)this.dragSource;
             ArmaDeAsedio armaDeAsedio = castillo.crearArmaDeAsedio(posicion);
-            controller = new ArmaDeAsedioController(armaDeAsedio, "red", this, this.juegoControl);
+            controller = new ArmaDeAsedioController(armaDeAsedio, "red", this, this.juegoControl, this.dueño);
             success = true;
         }
 
