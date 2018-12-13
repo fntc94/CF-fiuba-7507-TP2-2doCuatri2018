@@ -2,3 +2,8 @@
     -fx-background-image: url("../imagenes/menu_bg.png");
     -fx-background-repeat: repeat;
 }
+
+#statisticsContainer{
+    -fx-background-image: url("../imagenes/statistics_container.png");
+    -fx-background-repeat: no-repeat;
+}

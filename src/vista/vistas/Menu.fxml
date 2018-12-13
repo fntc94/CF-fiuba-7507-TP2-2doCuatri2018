@@ -2,24 +2,92 @@
 
 <?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<GridPane id="menuContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane id="menuContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="333.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <columnConstraints>
     <ColumnConstraints percentWidth="100.0" />
   </columnConstraints>
-  <Label id="stat1" alignment="CENTER" contentDisplay="CENTER" minHeight="12.5" prefHeight="25.0" prefWidth="215.0" text="" GridPane.halignment="RIGHT" />
+  <GridPane id="statisticsContainer" maxWidth="160.0" prefHeight="27.0" prefWidth="160.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <children>
+      <ImageView fitHeight="19.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <image>
+          <Image url="@../imagenes/oro_label.png" />
+        </image>
+        <GridPane.margin>
+          <Insets bottom="2.0" left="5.0" />
+        </GridPane.margin>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <image>
+          <Image url="@../imagenes/population_label.png" />
+        </image>
+        <GridPane.margin>
+          <Insets bottom="1.0" />
+        </GridPane.margin>
+      </ImageView>
+      <Label text="0" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+        <font>
+          <Font name="System Bold" size="13.0" fx:id="x1" />
+        </font>
+        <GridPane.margin>
+          <Insets right="8.0" fx:id="x2" />
+        </GridPane.margin>
+      </Label>
+      <Label font="$x1" text="0" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.margin="$x2" GridPane.rowIndex="0" />
+    </children>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+  </GridPane>
+  <GridPane id="statisticsContainer" maxWidth="160.0" prefHeight="27.0" prefWidth="160.0" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+    <children>
+      <ImageView fitHeight="19.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <image>
+          <Image url="@../imagenes/oro_label.png" />
+        </image>
+        <GridPane.margin>
+          <Insets bottom="2.0" left="5.0" />
+        </GridPane.margin>
+      </ImageView>
+      <ImageView fitHeight="19.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <image>
+          <Image url="@../imagenes/population_label.png" />
+        </image>
+        <GridPane.margin>
+          <Insets bottom="1.0" />
+        </GridPane.margin>
+      </ImageView>
+      <Label font="$x1" text="0" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+        <GridPane.margin>
+          <Insets right="8.0" fx:id="x2" />
+        </GridPane.margin>
+      </Label>
+      <Label font="$x1" text="0" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.margin="$x2" GridPane.rowIndex="0" />
+    </children>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <GridPane.margin>
+      <Insets right="5.0" />
+    </GridPane.margin>
+  </GridPane>
   <rowConstraints>
     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
   <stylesheets>
     <URL value="@../css/Menu.css" />
   </stylesheets>
-  <ImageView id="statTemporal" fitHeight="25.00009046325431" fitWidth="362.038343900052" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.halignment="LEFT" GridPane.rowIndex="0">
-    <image>
-      <Image url="@../imagenes/stat_temporal.png" />
-    </image>
-  </ImageView>
 </GridPane>
