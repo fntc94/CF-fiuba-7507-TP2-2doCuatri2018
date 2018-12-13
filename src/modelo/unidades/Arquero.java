@@ -6,7 +6,7 @@ import modelo.posicion.Posicion;
 import modelo.IAtacable;
 import modelo.IPosicionable;
 
-public class Arquero extends UnidadMilitar implements IPosicionable, IAtacable, IAtacante {
+public class Arquero extends UnidadMilitar {
 
     private static final int VIDA_MAXIMA = 75;
 
