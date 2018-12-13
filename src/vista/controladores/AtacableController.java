@@ -44,14 +44,12 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
     protected String color;
     protected MapaControl mapaControl;
     private IJuegoController juegoController;
-    private String dueño;
 
-    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
+    public AtacableController(TAtacable unidad, String color, MapaControl mapaControl, IJuegoController juegoController){
         this.unidad = unidad;
         this.color = color;
         this.mapaControl = mapaControl;
         this.juegoController = juegoController;
-        this.dueño = dueño;
 
     }
 
@@ -72,30 +70,40 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
     public void handleClick(MouseEvent mouseEvent) {
 
-        if (this.juegoController.esDelJugador(this.dueño)) {
+        if(!this.juegoController.esDelJugador("")){
+            juegoController.cleanBotonera();
+            return;
+        }
+
+
+
+
+        if (this.juegoController.esDelJugador("") && this.estado.equals("seleccionable")) {
             this.juegoController.setBotonera(this.getBotonera());
         }
 
-        else {
-            if (this.estado.equals("ataquePotencial")) {
+        if(this.estado.equals("ataquePotencial")){
 
-                try {
-                    this.atacante.atacar(this.unidad);
+            try {
+                this.atacante.atacar(this.unidad);
 
-                    new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
-                    this.getBotonera().actualizarUI();
-                    this.playSound();
+                if(this.unidad.getVida() == 0){
+
+
                 }
 
-                catch (Exception e) {
-                    new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
-                }
-
-                finally {
-                    this.mapaControl.estadoSeleccionable();
-                }
+                new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
+                this.getBotonera().actualizarUI();
+                this.playSound();
             }
-            this.juegoController.cleanBotonera();
+            catch (Exception e){
+                new Alert(Alert.AlertType.INFORMATION, e.getMessage()).show();
+            }
+
+            finally {
+                this.mapaControl.estadoSeleccionable();
+            }
+
         }
 
     }

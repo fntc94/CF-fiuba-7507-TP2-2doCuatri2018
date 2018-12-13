@@ -26,6 +26,23 @@ import java.util.ResourceBundle;
 public class JuegoControl extends BorderPane implements Initializable, IJuegoController {
 
 
+    public static JuegoControl instanacia;
+
+    public static void Inicializar(Stage primaryStage, String jugador1, String jugador2){
+        if(instanacia != null){
+            throw new RuntimeException();
+        }
+        instanacia = new JuegoControl(primaryStage, jugador1, jugador2);
+    }
+
+    public static JuegoControl getInstanacia(){
+
+        if(instanacia == null){
+            throw new RuntimeException();
+        }
+        return instanacia;
+    }
+
     private Stage primaryStage;
     private Juego juego;
     private List<Jugador> listaDeParticipantes;
@@ -38,6 +55,9 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private Button pasarTurno;
     @FXML
     private Text fichaTecnica;
+
+    private Jugador jugador1;
+    private Jugador jugador2;
 
     JuegoControl(Stage primaryStage, String nombreJugador1, String nombreJugador2) {
         this.listaDeParticipantes = new ArrayList();
@@ -121,6 +141,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
 
         Jugador jugador = new Jugador(nombreJugador, castillo);
+        this.jugador1 = jugador;
         jugador.agregar(plazaCentral);
         jugador.agregar(aldeano1);
         jugador.agregar(aldeano2);
@@ -155,6 +176,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Aldeano aldeano3 = new Aldeano(posAldeano3);
 
         Jugador jugador = new Jugador(nombreJugador2, castillo);
+        this.jugador2 = jugador;
         jugador.agregar(plazaCentral);
         jugador.agregar(aldeano1);
         jugador.agregar(aldeano2);
@@ -181,6 +203,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
 
     public boolean esDelJugador(String dueño){
-        return (this.turno.devolverJugadorActual().devolverNombre() == dueño);
+//        return (this.turno.devolverJugadorActual().devolverNombre() == dueño);
+        return true;
     }
 }

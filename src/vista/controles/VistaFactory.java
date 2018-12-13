@@ -23,12 +23,12 @@ public class VistaFactory {
         private MapaControl mapaControl;
         private String color;
 
-        public VistaFactory(JuegoControl juegoControl, MapaControl mapaControl, String color){
+    public VistaFactory(JuegoControl juegoControl, MapaControl mapaControl, String color){
 
             this.juegoControl = juegoControl;
             this.mapaControl = mapaControl;
             this.color = color;
-        }
+    }
 
 
         public PosicionableVista crearVista(Aldeano aldeano){

@@ -12,8 +12,8 @@ public class ArqueroController extends AtacableController<Arquero> {
 
     private ArqueroBotonera botonera;
 
-    public ArqueroController(Arquero unidad, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
-        super(unidad, color, mapaControl, juegoController, dueño);
+    public ArqueroController(Arquero unidad, String color, MapaControl mapaControl, IJuegoController juegoController){
+        super(unidad, color, mapaControl, juegoController);
 
         this.botonera = new ArqueroBotonera(unidad, mapaControl);
     }

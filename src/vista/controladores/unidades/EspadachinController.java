@@ -11,8 +11,8 @@ public class EspadachinController extends AtacableController<Espadachin> {
 
     private EspadachinBotonera botonera;
 
-    public EspadachinController(Espadachin unidad, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño) {
-        super(unidad, color, mapaControl, juegoController, dueño);
+    public EspadachinController(Espadachin unidad, String color, MapaControl mapaControl, IJuegoController juegoController){
+        super(unidad, color, mapaControl, juegoController);
 
         this.botonera = new EspadachinBotonera(unidad, mapaControl);
     }
