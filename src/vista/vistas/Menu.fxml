@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="menuContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="333.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane id="menuContainer" fx:controller="vista.controladores.MenuController" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="333.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <columnConstraints>
     <ColumnConstraints percentWidth="100.0" />
   </columnConstraints>
@@ -30,15 +30,15 @@
           <Insets bottom="1.0" />
         </GridPane.margin>
       </ImageView>
-      <Label text="0" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+      <Label fx:id="oroJugadorUno" textFill="white" text="100" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
         <font>
           <Font name="System Bold" size="13.0" fx:id="x1" />
         </font>
         <GridPane.margin>
-          <Insets right="8.0" fx:id="x2" />
+          <Insets right="8.0" fx:id="x3" />
         </GridPane.margin>
       </Label>
-      <Label font="$x1" text="0" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.margin="$x2" GridPane.rowIndex="0" />
+      <Label fx:id="poblacionJugadorUno" font="$x1" text="0" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.margin="$x3" GridPane.rowIndex="0" />
     </children>
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,7 +66,7 @@
           <Insets bottom="1.0" />
         </GridPane.margin>
       </ImageView>
-      <Label font="$x1" text="0" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+      <Label fx:id="oroJugadorDos" font="$x1" text="100" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
         <GridPane.margin>
           <Insets right="8.0" fx:id="x2" />
         </GridPane.margin>

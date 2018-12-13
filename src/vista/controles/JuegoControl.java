@@ -47,6 +47,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private List<Jugador> listaDeParticipantes;
     private MapaControl mapaControl;
     private Turno turno;
+    private MenuController menuController;
 
     @FXML
     private GridPane botonera;
@@ -71,11 +72,18 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         MapaControl mapaControl = new MapaControl(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2(), miniMapaController);
         this.mapaControl = mapaControl;
 
+        MenuController menuController = new MenuController();
+        this.menuController = menuController;
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Juego.fxml"));
         loader.setRoot(this);
         loader.setController(this);
 
         loader.setControllerFactory(type -> {
+
+            if(type.equals(MenuController.class)){
+                return menuController;
+            }
 
             if (type.equals(MiniMapaController.class)) {
                 return miniMapaController;
@@ -109,6 +117,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.centerProperty().setValue(mapaControl);
         this.autosize();
 
+        menuController.init();
     }
 
 
@@ -199,6 +208,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     public void cambioDeTurno(){
         this.turno.cambiarDeTurno();
+
+        // Actualiza la barra donde aparece la cantidad de oro y poblacion
+        this.menuController.actualizarEstadistica(this.getJugadorActual(), this.colores.get(this.getJugadorActual()));
+
         this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
         this.cleanBotonera();
 

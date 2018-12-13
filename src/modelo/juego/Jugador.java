@@ -1,5 +1,6 @@
 package modelo.juego;
 
+import javafx.scene.control.Label;
 import modelo.Edificio;
 import modelo.IPosicionable;
 import modelo.edificios.*;
@@ -81,4 +82,7 @@ public class Jugador {
         return !(this.castillo.sigueEnPie());
     }
 
+    public void mostrarOro(Label oroJugadorUno){
+        oroJugadorUno.setText(Integer.toString(this.bolsaDeOro));
+    }
 }
