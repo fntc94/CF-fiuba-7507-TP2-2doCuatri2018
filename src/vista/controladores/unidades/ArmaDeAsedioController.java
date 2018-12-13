@@ -21,8 +21,8 @@ public class ArmaDeAsedioController extends AtacableController<ArmaDeAsedio> {
         return this.botonera;
     }
 
-    public ArmaDeAsedioController(ArmaDeAsedio armaDeAsedio, String color, MapaControl mapaControl, IJuegoController juegoController){
-        super(armaDeAsedio, color, mapaControl, juegoController);
+    public ArmaDeAsedioController(ArmaDeAsedio armaDeAsedio, String color, MapaControl mapaControl, IJuegoController juegoController, String dueño){
+        super(armaDeAsedio, color, mapaControl, juegoController, dueño);
 
         this.botonera = new ArmaDeAsedioBotonera(armaDeAsedio, mapaControl, this);
     }
