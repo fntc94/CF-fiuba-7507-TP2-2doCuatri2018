@@ -12,6 +12,10 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
+    /*
+    * En la linea 75 y 76 de JuegoControl se inicializa MenuController y
+    * se asigna a una variable private de JuegoControl
+    * */
 
     @FXML
     private Label oroJugadorUno;
@@ -46,6 +50,10 @@ public class MenuController implements Initializable {
 
         Label labelOro = this.labelsOro.get(color);
 
+        /* El siguiente if esta porque por alguna razon oroJugadorUno es null
+         * init() se llama en la linea 120 de JuegoControl
+         * este metodo donde esta escrito este mismo comentario se llama en la linea 213
+        */
         if(labelOro == null) {
             this.labelsOro.put("red", this.oroJugadorUno);
             labelOro = this.labelsOro.get(color);
