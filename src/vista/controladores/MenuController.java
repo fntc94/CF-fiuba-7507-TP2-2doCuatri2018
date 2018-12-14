@@ -26,6 +26,12 @@ public class MenuController implements Initializable {
     @FXML
     private Label poblacionJugadorDos;
 
+    @FXML
+    private Label nombreJugador1;
+
+    @FXML
+    private Label nombreJugador2;
+
     Map<String, Label> labelsOro = new HashMap<>();
     Map<String, Label> labelsPoblacion = new HashMap<>();
 
@@ -69,5 +75,10 @@ public class MenuController implements Initializable {
         Label labelPoblacion = this.labelsPoblacion.get(color);
 
         labelPoblacion.setText(Integer.toString(cantidadDePoblacion));
+    }
+
+    public void setNombreDeJugadores(String nombreJugador1, String nombreJugador2) {
+        this.nombreJugador1.setText(nombreJugador1);
+        this.nombreJugador2.setText(nombreJugador2);
     }
 }
