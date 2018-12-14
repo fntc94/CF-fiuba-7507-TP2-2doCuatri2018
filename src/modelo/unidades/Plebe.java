@@ -30,4 +30,8 @@ public class Plebe {
             }
         }
     }
+
+    public int cantidadDeAldeanos(){
+        return this.aldeanos.size();
+    }
 }
