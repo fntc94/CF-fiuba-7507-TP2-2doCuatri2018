@@ -25,7 +25,9 @@ public class AldeanoBotonera extends UnidadBotonera<Aldeano> {
     protected Object getController(Class<?> type){
 
         if(type.equals(ConstruccionEdificiosController.class)){
-            return new ConstruccionEdificiosController(this.unidad, this.mapa);
+            ConstruccionEdificiosController controller = new ConstruccionEdificiosController(this.unidad, this.mapa);
+            controller.onCreacionUnidad(this::deshabilitar);
+            return controller;
         }
         else{
             return super.getController(type);

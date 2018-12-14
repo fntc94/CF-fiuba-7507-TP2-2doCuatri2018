@@ -9,6 +9,14 @@ import modelo.unidades.Aldeano;
 import vista.controles.MapaControl;
 
 public class ConstruccionEdificiosController {
+
+
+    private Runnable creacionEventHandler = () -> {};
+
+    public void onCreacionUnidad(Runnable creacionEventHandler){
+        this.creacionEventHandler = creacionEventHandler;
+    }
+
     private Aldeano aldeano;
     private MapaControl mapa;
     @FXML private ImageView plazaCentral;
@@ -32,6 +40,7 @@ public class ConstruccionEdificiosController {
 
 
         event.consume();
+        this.creacionEventHandler.run();
 
     }
 
@@ -45,6 +54,8 @@ public class ConstruccionEdificiosController {
         db.setContent(content);
 
         event.consume();
+
+        this.creacionEventHandler.run();
     }
 
 }
