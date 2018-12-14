@@ -247,6 +247,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.mapaControl.habilitarControladores();
 //        this.deshabilitarBotonera();
         this.setBotonera(null);
+        this.mapaControl.estadoSeleccionable();
     }
 
 
