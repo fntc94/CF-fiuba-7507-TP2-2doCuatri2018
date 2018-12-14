@@ -3,7 +3,7 @@ package vista.controles;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -15,9 +15,10 @@ import modelo.juego.Jugador;
 import modelo.juego.Turno;
 import modelo.posicion.*;
 import modelo.unidades.*;
-import vista.controladores.PosicionableControllerFactory;
 import javafx.scene.control.Button;
 import vista.controladores.*;
+import vista.controles.botoneras.Botonera;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -49,7 +50,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private Turno turno;
 
     @FXML
-    private GridPane botonera;
+    private GridPane botoneraGridPane;
     @FXML
     private Button pasarTurno;
     @FXML
@@ -117,13 +118,20 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     }
 
 
-    public void setBotonera(Node node) {
-        this.botonera.getChildren().clear();
-        this.botonera.add(node, 1, 0);
+    private Botonera botoneraVista;
+    public void setBotonera(Botonera botoneraVista) {
+        this.botoneraGridPane.getChildren().clear();
+        this.botoneraGridPane.add(botoneraVista, 1, 0);
+        this.botoneraVista = botoneraVista;
+        this.botoneraVista.habilitar();
     }
 
-    public  void cleanBotonera(){
-        this.botonera.getChildren().clear();
+    public void cleanBotonera(){
+//        this.botoneraGridPane.getChildren().clear();
+        if(this.botoneraVista != null){
+            this.botoneraVista.deshabilitar();
+        }
+
     }
 
     private void inicializarJugador1(String nombreJugador){
@@ -200,6 +208,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     public void cambioDeTurno(){
         this.turno.cambiarDeTurno();
         this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
+
         this.cleanBotonera();
 
     }
@@ -215,5 +224,9 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     public String getColorJugadorActual(){
        return this.colores.get(this.getJugadorActual());
+    }
+
+    public void notificarJuegoTerminado(){
+        new Alert(Alert.AlertType.INFORMATION, "Juego Terminado");
     }
 }

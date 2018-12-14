@@ -1,6 +1,8 @@
 package vista.controles.botoneras.unidades;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
 import modelo.unidades.Arquero;
 import vista.controles.MapaControl;
 import vista.utilidades.ReproductorDeSonido;
@@ -9,6 +11,9 @@ import vista.utilidades.ReproductorDeSonido;
 public class ArqueroBotonera extends UnidadBotonera<Arquero> {
 
     private MapaControl mapa;
+
+    @FXML
+    private VBox botoneraAtaque;
 
     @Override
     protected FXMLLoader getLoader() {
@@ -30,5 +35,15 @@ public class ArqueroBotonera extends UnidadBotonera<Arquero> {
         mapa.estadoSeleccionable();
     }
 
+    @Override
+    public void habilitar(){
+        super.habilitar();
+        this.botoneraAtaque.setDisable(false);
+    }
 
+    @Override
+    public void deshabilitar(){
+        super.deshabilitar();
+        this.botoneraAtaque.setDisable(true);
+    }
 }

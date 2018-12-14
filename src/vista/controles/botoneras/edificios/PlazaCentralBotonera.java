@@ -1,6 +1,8 @@
 package vista.controles.botoneras.edificios;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.GridPane;
 import modelo.edificios.PlazaCentral;
 import vista.controladores.edificios.CreacionUnidadesPlazaCentralController;
 import vista.controles.MapaControl;
@@ -9,6 +11,7 @@ import vista.controles.botoneras.VidaController;
 
 public class PlazaCentralBotonera extends EdificioBotonera<PlazaCentral> {
 
+    @FXML private GridPane creacionUnidadesBotonera;
 
     public PlazaCentralBotonera(PlazaCentral edificio, MapaControl mapa) {
         super(edificio, mapa);
@@ -36,4 +39,13 @@ public class PlazaCentralBotonera extends EdificioBotonera<PlazaCentral> {
     }
 
 
+    @Override
+    public void habilitar() {
+        this.creacionUnidadesBotonera.setDisable(false);
+    }
+
+    @Override
+    public void deshabilitar() {
+        this.creacionUnidadesBotonera.setDisable(true);
+    }
 }

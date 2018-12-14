@@ -43,7 +43,9 @@ public class VistaFactory {
         public PosicionableVista crearVista(Castillo castillo){
             CastilloController controller = new CastilloController(castillo, this.color, mapaControl, this.juegoControl);
             PosicionableVista vista = new PosicionableVista(controller);
-            castillo.onDestruido(atacable -> this.mapaControl.remover(vista));
+
+
+            castillo.onDestruido(atacable -> JuegoControl.getInstanacia().notificarJuegoTerminado());
             return vista;
         }
 

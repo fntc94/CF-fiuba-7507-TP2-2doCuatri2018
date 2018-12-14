@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import modelo.IMovible;
 import modelo.movimiento.*;
 import vista.controles.MapaControl;
@@ -15,6 +16,7 @@ import java.util.ResourceBundle;
 
 public class MovimientoController implements Initializable {
 
+    @FXML private BorderPane rootMovimiento;
     @FXML private Label posicionLabel;
 
     private MapaControl mapa;
@@ -99,6 +101,14 @@ public class MovimientoController implements Initializable {
         this.mapa.dibujar();
         this.actualizarPosicion();
 
+    }
+
+    public void habilitar(){
+        this.rootMovimiento.setDisable(false);
+    }
+
+    public  void deshabilitar(){
+        this.rootMovimiento.setDisable(true);
     }
 
 }

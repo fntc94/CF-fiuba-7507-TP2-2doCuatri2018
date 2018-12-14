@@ -16,7 +16,7 @@
 
             <fx:include fx:id="botoneraMovimiento" source="MovimientoBotonera.fxml" GridPane.columnIndex="1"/>
 
-            <VBox GridPane.columnIndex="2">
+            <VBox fx:id="botoneraAtaque" GridPane.columnIndex="2">
                 <Button onMouseClicked="#handleAtaque">Atacar</Button>
                 <Button onMouseClicked="#handleCancelar">Candelar</Button>
             </VBox>

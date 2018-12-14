@@ -27,7 +27,7 @@
 
             <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
 
-            <fx:include source="CreacionUnidadesPlazaCentral.fxml" alignment="CENTER"
+            <fx:include fx:id="creacionUnidadesBotonera" source="CreacionUnidadesPlazaCentral.fxml" alignment="CENTER"
                         GridPane.rowIndex="0" GridPane.columnIndex="1"
                         GridPane.valignment="CENTER"/>
 

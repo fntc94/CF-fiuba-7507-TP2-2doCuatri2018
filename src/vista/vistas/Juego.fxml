@@ -26,7 +26,7 @@
             </rowConstraints>
 
             <fx:include fx:id="miniMapa" source="MiniMapa.fxml" GridPane.columnIndex="0"/>
-            <GridPane fx:id="botonera" GridPane.columnIndex="1"/>
+            <GridPane fx:id="botoneraGridPane" GridPane.columnIndex="1"/>
             <Button fx:id="pasarTurno" GridPane.columnIndex="2" onMouseClicked="#cambioDeTurno">Pasar turno</Button>
             <Text fx:id="fichaTecnica" GridPane.columnIndex="3"></Text>
         </GridPane>

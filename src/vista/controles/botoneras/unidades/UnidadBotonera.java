@@ -22,7 +22,8 @@ public abstract class UnidadBotonera<TUnidad extends Unidad> extends Botonera im
     private double vidaInicial;
     protected MapaControl mapa;
 
-    private VidaController vidaController;
+    protected VidaController vidaController;
+    protected MovimientoController movimientoController;
 
 
     public UnidadBotonera(TUnidad unidad, MapaControl mapa){
@@ -57,7 +58,9 @@ public abstract class UnidadBotonera<TUnidad extends Unidad> extends Botonera im
     protected Object getController(Class<?> type){
 
         if(type.equals(MovimientoController.class)){
-            return new MovimientoController(unidad, mapa);
+            MovimientoController movimientoController = new MovimientoController(unidad, mapa);
+            this.movimientoController = movimientoController;
+            return this.movimientoController;
         }
 
         if(type.equals(VidaController.class)){
@@ -78,6 +81,16 @@ public abstract class UnidadBotonera<TUnidad extends Unidad> extends Botonera im
 
     public void actualizarUI(){
         this.vidaController.actualizarUI();
+    }
+
+    @Override
+    public void habilitar(){
+        this.movimientoController.habilitar();
+    }
+
+    @Override
+    public void deshabilitar(){
+        this.movimientoController.deshabilitar();
     }
 
 }

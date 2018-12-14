@@ -1,6 +1,8 @@
 package vista.controles.botoneras.edificios;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.GridPane;
 import modelo.edificios.Castillo;
 import vista.controladores.edificios.CreacionUnidadesCastilloController;
 import vista.controladores.edificios.CreacionUnidadesCuartelController;
@@ -8,6 +10,9 @@ import vista.controles.MapaControl;
 import vista.controles.botoneras.VidaController;
 
 public class CastilloBotonera extends EdificioBotonera<Castillo> {
+
+
+    @FXML GridPane contruccionBotonera;
 
     public CastilloBotonera(Castillo unidad, MapaControl mapa) {
         super(unidad, mapa);
@@ -32,5 +37,15 @@ public class CastilloBotonera extends EdificioBotonera<Castillo> {
             }
         });
         return loader;
+    }
+
+    @Override
+    public void habilitar() {
+        this.contruccionBotonera.setDisable(false);
+    }
+
+    @Override
+    public void deshabilitar() {
+        this.contruccionBotonera.setDisable(true);
     }
 }

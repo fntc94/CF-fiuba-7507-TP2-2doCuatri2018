@@ -4,6 +4,7 @@ package vista.controles.botoneras.unidades;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import modelo.unidades.ArmaDeAsedio;
 import vista.controladores.unidades.ArmaDeAsedioController;
 import vista.controles.MapaControl;
@@ -18,9 +19,11 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
     private ArmaDeAsedioController controller;
 
 
+    @FXML private VBox botones;
     @FXML private Button buttonAtacar;
     @FXML private Button buttonMontar;
     @FXML private Button buttonDesmontar;
+    @FXML private Button buttonCancelar;
 
     private Boolean montada = false;
 
@@ -71,6 +74,24 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
         this.buttonAtacar.setDisable(true);
 
         controller.desmontar();
+    }
+
+    @Override
+    public void habilitar(){
+       super.habilitar();
+       this.buttonAtacar.setDisable(false);
+       this.buttonMontar.setDisable(false);
+       this.buttonDesmontar.setDisable(false);
+       this.buttonCancelar.setDisable(false);
+    }
+
+    @Override
+    public void deshabilitar(){
+        super.deshabilitar();
+        this.buttonAtacar.setDisable(true);
+        this.buttonMontar.setDisable(true);
+        this.buttonDesmontar.setDisable(true);
+        this.buttonCancelar.setDisable(true);
     }
 
     @Override

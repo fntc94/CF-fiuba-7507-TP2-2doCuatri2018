@@ -1,12 +1,17 @@
 package vista.controles.botoneras.edificios;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.GridPane;
 import modelo.edificios.Cuartel;
 import vista.controladores.edificios.CreacionUnidadesCuartelController;
 import vista.controles.MapaControl;
 import vista.controles.botoneras.VidaController;
 
 public class CuartelBotonera extends EdificioBotonera<Cuartel> {
+
+
+    @FXML private GridPane creacionUnidadesBotonera;
 
     public CuartelBotonera(Cuartel edificio, MapaControl mapa) {
         super(edificio, mapa);
@@ -31,5 +36,15 @@ public class CuartelBotonera extends EdificioBotonera<Cuartel> {
             }
         });
         return loader;
+    }
+
+    @Override
+    public void habilitar() {
+        this.creacionUnidadesBotonera.setDisable(false);
+    }
+
+    @Override
+    public void deshabilitar() {
+        this.creacionUnidadesBotonera.setDisable(true);
     }
 }

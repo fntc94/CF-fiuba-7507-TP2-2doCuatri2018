@@ -22,7 +22,7 @@
 
             <fx:include source="../VidaBotonera.fxml" GridPane.halignment="CENTER"/>
 
-            <fx:include source="CreacionUnidadesCuartel.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="center"/>
+            <fx:include fx:id="creacionUnidadesBotonera" source="CreacionUnidadesCuartel.fxml" GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="center"/>
 
         </GridPane>
 
