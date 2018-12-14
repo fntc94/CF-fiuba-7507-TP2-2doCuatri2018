@@ -60,6 +60,7 @@ public abstract class UnidadBotonera<TUnidad extends Unidad> extends Botonera im
         if(type.equals(MovimientoController.class)){
             MovimientoController movimientoController = new MovimientoController(unidad, mapa);
             this.movimientoController = movimientoController;
+            this.movimientoController.onMovimiento(this::deshabilitar);
             return this.movimientoController;
         }
 

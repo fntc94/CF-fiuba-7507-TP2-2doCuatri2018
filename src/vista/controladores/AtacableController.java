@@ -19,13 +19,17 @@ import java.util.ResourceBundle;
 
 public abstract class AtacableController<TAtacable extends IAtacable> implements IPosicionableController, Initializable {
 
-    @FXML
-    protected GridPane root;
-    @FXML
-    protected ImageView imageView;
+    @FXML protected GridPane root;
+    @FXML protected ImageView imageView;
 
-    //    botonera botonera;
-    abstract protected Botonera getBotonera();
+
+    public void habilitar(){
+        this.getBotonera().habilitar();
+    }
+
+    public void deshabilitar(){
+        this.getBotonera().deshabilitar();
+    }
 
     private String estado = "seleccionable";
 
@@ -54,22 +58,17 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
     }
 
     @Override
-    public IPosicionable getPosicionable() {
-        return this.unidad;
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        String className = this.unidad.getClass().getSimpleName();
+        String resource = String.format("/vista/css/%s.css", className);
+        this.root.getStylesheets().add(this.getClass().getResource(resource).toExternalForm());
+        this.imageView.getStyleClass().add(color);
     }
 
-    @Override
-    public Posicion getPosicion() {
-        return unidad.getPosicion();
-    }
-
-    @Override
-    public String getColor() {
-        return this.color;
-    }
+    protected abstract Botonera getBotonera();
+    protected abstract String getWavFile();
 
     public void handleClick(MouseEvent mouseEvent) {
-
 
 
         if (this.estado.equals("seleccionable")) {
@@ -80,11 +79,6 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
 
             try {
                 this.atacante.atacar(this.unidad);
-
-                if(this.unidad.getVida() == 0){
-
-
-                }
 
                 new Alert(Alert.AlertType.INFORMATION, "Ataque concretado").show();
                 this.getBotonera().actualizarUI();
@@ -101,22 +95,24 @@ public abstract class AtacableController<TAtacable extends IAtacable> implements
         }
 
         if(!this.juegoController.esDelJugador(this.unidad)){
-            juegoController.cleanBotonera();
+            this.getBotonera().deshabilitar();
         }
-
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        String className = this.unidad.getClass().getSimpleName();
-        String resource = String.format("/vista/css/%s.css", className);
-        this.root.getStylesheets().add(this.getClass().getResource(resource).toExternalForm());
-        this.imageView.getStyleClass().add(color);
+    public IPosicionable getPosicionable() {
+        return this.unidad;
     }
 
+    @Override
+    public Posicion getPosicion() {
+        return unidad.getPosicion();
+    }
 
-    protected abstract String getWavFile();
-
+    @Override
+    public String getColor() {
+        return this.color;
+    }
 
     private void playSound() {
 

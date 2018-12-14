@@ -162,6 +162,15 @@ public class MapaControl extends ScrollPane {
         }
     }
 
+    public void habilitarControladores(){
+        for(PosicionableVista vista: this.vistas){
+            IPosicionableController controller = vista.getController();
+            controller.habilitar();
+        }
+    }
+
+
+
     public void estadoSeleccionable() {
 
         for(PosicionableVista vista: this.vistas){

@@ -25,7 +25,9 @@ public class CastilloBotonera extends EdificioBotonera<Castillo> {
 
         loader.setControllerFactory(type -> {
             if(type == CreacionUnidadesCastilloController.class){
-                return new CreacionUnidadesCastilloController(this.edificio, this.mapa);
+                CreacionUnidadesCastilloController controller = new CreacionUnidadesCastilloController(this.edificio, this.mapa);
+                controller.onCreacionUnidad(this::deshabilitar);
+                return controller;
             }
             if (type.equals(VidaController.class)) {
                 VidaController vidaController = new VidaController(this.edificio);

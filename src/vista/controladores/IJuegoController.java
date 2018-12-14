@@ -9,5 +9,6 @@ public interface IJuegoController {
 
     boolean esDelJugador(IPosicionable posicionable);
 
-    void cleanBotonera();
+    void habilitarBotonera();
+    void deshabilitarBotonera();
 }

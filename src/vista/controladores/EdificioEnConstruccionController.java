@@ -72,4 +72,14 @@ public class EdificioEnConstruccionController implements IPosicionableController
     public void estadoSeleccionable() {
 
     }
+
+    @Override
+    public void habilitar() {
+
+    }
+
+    @Override
+    public void deshabilitar() {
+
+    }
 }

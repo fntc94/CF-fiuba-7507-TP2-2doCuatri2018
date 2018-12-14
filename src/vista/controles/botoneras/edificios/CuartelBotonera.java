@@ -24,7 +24,9 @@ public class CuartelBotonera extends EdificioBotonera<Cuartel> {
 
         loader.setControllerFactory(type -> {
             if(type == CreacionUnidadesCuartelController.class){
-                return new CreacionUnidadesCuartelController(this.edificio, this.mapa);
+                CreacionUnidadesCuartelController controller = new CreacionUnidadesCuartelController(this.edificio, this.mapa);
+                controller.onCreacionUnidad(this::deshabilitar);
+                return controller;
             }
             if (type.equals(VidaController.class)) {
                 VidaController vidaController = new VidaController(this.edificio);

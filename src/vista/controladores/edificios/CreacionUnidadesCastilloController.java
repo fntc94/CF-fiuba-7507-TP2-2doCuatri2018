@@ -13,6 +13,13 @@ import vista.controles.MapaControl;
 
 public class CreacionUnidadesCastilloController {
 
+
+    private Runnable creacionEventHandler = () -> {};
+
+    public void onCreacionUnidad(Runnable creacionEventHandler){
+        this.creacionEventHandler = creacionEventHandler;
+    }
+
     @FXML
     private ImageView armaDeAsedioImageView;
 
@@ -38,5 +45,7 @@ public class CreacionUnidadesCastilloController {
         db.setContent(content);
 
         event.consume();
+
+        this.creacionEventHandler.run();
     }
 }

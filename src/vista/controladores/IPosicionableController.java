@@ -13,6 +13,8 @@ public interface IPosicionableController {
     String getColor();
     void handleClick(MouseEvent mouseEvent);
 
-    public void estadoAtaquePotencial(IAtacante atacante);
+    void estadoAtaquePotencial(IAtacante atacante);
     void estadoSeleccionable();
+    void habilitar();
+    void deshabilitar();
 }

@@ -27,6 +27,7 @@ public class EspadachinBotonera extends UnidadBotonera<Espadachin> {
     public void handleAtaque(){
         mapa.estadoAtaque(this.unidad);
         new ReproductorDeSonido("ataque_espadachin.wav").reproducirSonido();
+        this.deshabilitar();
     }
 
     public void handleCancelar(){

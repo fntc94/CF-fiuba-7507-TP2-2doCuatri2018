@@ -24,7 +24,9 @@ public class PlazaCentralBotonera extends EdificioBotonera<PlazaCentral> {
 
         loader.setControllerFactory(type -> {
             if(type == CreacionUnidadesPlazaCentralController.class){
-                return new CreacionUnidadesPlazaCentralController(this.edificio, this.mapa);
+                CreacionUnidadesPlazaCentralController controller = new CreacionUnidadesPlazaCentralController(this.edificio, this.mapa);
+                controller.onCreacionUnidad(this::deshabilitar);
+                return controller;
             }
             if (type.equals(VidaController.class)) {
                 VidaController vidaController = new VidaController(this.edificio);

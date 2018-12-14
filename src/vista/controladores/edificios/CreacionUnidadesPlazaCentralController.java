@@ -17,6 +17,11 @@ import java.awt.event.MouseEvent;
 public class CreacionUnidadesPlazaCentralController {
 
 
+    private Runnable creacionEventHandler = () -> {};
+
+    public void onCreacionUnidad(Runnable creacionEventHandler){
+        this.creacionEventHandler = creacionEventHandler;
+    }
 
     @FXML
     private ImageView aldeanoImageView;
@@ -44,5 +49,8 @@ public class CreacionUnidadesPlazaCentralController {
         db.setContent(content);
 
         event.consume();
+
+        this.creacionEventHandler.run();
+
     }
 }

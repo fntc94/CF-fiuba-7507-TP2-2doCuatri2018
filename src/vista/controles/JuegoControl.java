@@ -28,6 +28,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     public static JuegoControl instanacia;
 
+
+    PosicionableVista castilloJugador1Vista;
+    PosicionableVista castilloJugador2Vista;
+
     public static void Inicializar(Stage primaryStage, String jugador1, String jugador2){
         if(instanacia != null){
             throw new RuntimeException();
@@ -121,15 +125,28 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private Botonera botoneraVista;
     public void setBotonera(Botonera botoneraVista) {
         this.botoneraGridPane.getChildren().clear();
+        if(botoneraVista == null){
+            this.botoneraVista = null;
+            return;
+        }
+
         this.botoneraGridPane.add(botoneraVista, 1, 0);
         this.botoneraVista = botoneraVista;
-        this.botoneraVista.habilitar();
+//        this.botoneraVista.habilitar();
     }
 
-    public void cleanBotonera(){
+    public void deshabilitarBotonera(){
 //        this.botoneraGridPane.getChildren().clear();
         if(this.botoneraVista != null){
             this.botoneraVista.deshabilitar();
+        }
+
+    }
+
+    public void habilitarBotonera(){
+//        this.botoneraGridPane.getChildren().clear();
+        if(this.botoneraVista != null){
+            this.botoneraVista.habilitar();
         }
 
     }
@@ -160,7 +177,9 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.listaDeParticipantes.add(jugador);
 
         VistaFactory vistaFactory = new VistaFactory(this, this.mapaControl, "red");
-        this.mapaControl.agregar(vistaFactory.crearVista(castillo));
+        PosicionableVista castilloVista = vistaFactory.crearVista(castillo);
+        this.castilloJugador1Vista = castilloVista;
+        this.mapaControl.agregar(castilloVista);
         this.mapaControl.agregar(vistaFactory.crearVista(plazaCentral));
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano1));
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano2));
@@ -196,7 +215,9 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.listaDeParticipantes.add(jugador);
 
         VistaFactory vistaFactory = new VistaFactory(this, this.mapaControl, "blue");
-        this.mapaControl.agregar(vistaFactory.crearVista(castillo));
+        PosicionableVista castilloVista = vistaFactory.crearVista(castillo);
+        this.castilloJugador2Vista = castilloVista;
+        this.mapaControl.agregar(castilloVista);
         this.mapaControl.agregar(vistaFactory.crearVista(plazaCentral));
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano1));
         this.mapaControl.agregar(vistaFactory.crearVista(aldeano2));
@@ -205,12 +226,13 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     }
 
 
+
     public void cambioDeTurno(){
         this.turno.cambiarDeTurno();
         this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
-
-        this.cleanBotonera();
-
+        this.mapaControl.habilitarControladores();
+//        this.deshabilitarBotonera();
+        this.setBotonera(null);
     }
 
 

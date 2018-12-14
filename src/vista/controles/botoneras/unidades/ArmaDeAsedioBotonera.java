@@ -45,6 +45,7 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
     public void handleAtaque(){
         mapa.estadoAtaque(this.unidad);
         new ReproductorDeSonido("ataque_arma_asedio.wav").reproducirSonido();
+        this.deshabilitar();
 
     }
 
@@ -63,6 +64,7 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
         this.buttonAtacar.setDisable(false);
 
         this.controller.montar();
+        this.deshabilitar();
     }
 
     public void handleDesmontar(){
@@ -74,6 +76,7 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
         this.buttonAtacar.setDisable(true);
 
         controller.desmontar();
+        this.deshabilitar();
     }
 
     @Override

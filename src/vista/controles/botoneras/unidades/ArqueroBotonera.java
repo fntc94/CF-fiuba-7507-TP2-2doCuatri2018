@@ -29,6 +29,7 @@ public class ArqueroBotonera extends UnidadBotonera<Arquero> {
     public void handleAtaque(){
         mapa.estadoAtaque(this.unidad);
         new ReproductorDeSonido("ataque_arquero.wav").reproducirSonido();
+        this.deshabilitar();
     }
 
     public void handleCancelar(){

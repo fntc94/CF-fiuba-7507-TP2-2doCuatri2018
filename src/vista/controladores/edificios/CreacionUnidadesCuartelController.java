@@ -15,6 +15,12 @@ import vista.controles.MapaControl;
 public class CreacionUnidadesCuartelController {
 
 
+    private Runnable creacionEventHandler = () -> {};
+
+    public void onCreacionUnidad(Runnable creacionEventHandler){
+        this.creacionEventHandler = creacionEventHandler;
+    }
+
     @FXML private ImageView espadachinImageView;
     @FXML private ImageView arqueroImageView;
 
@@ -54,5 +60,7 @@ public class CreacionUnidadesCuartelController {
         db.setContent(content);
 
         event.consume();
+
+        this.creacionEventHandler.run();
     }
 }
