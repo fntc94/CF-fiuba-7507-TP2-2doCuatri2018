@@ -86,6 +86,14 @@ public class ArmaDeAsedioBotonera extends UnidadBotonera<ArmaDeAsedio> {
        this.buttonMontar.setDisable(false);
        this.buttonDesmontar.setDisable(false);
        this.buttonCancelar.setDisable(false);
+
+       if(this.montada){
+           this.buttonMontar.setDisable(true);
+           this.movimientoController.deshabilitar();
+       }
+       else{
+           this.buttonDesmontar.setDisable(true);
+       }
     }
 
     @Override
