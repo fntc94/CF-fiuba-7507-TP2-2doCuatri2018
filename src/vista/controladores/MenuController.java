@@ -12,10 +12,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
-    /*
-    * En la linea 75 y 76 de JuegoControl se inicializa MenuController y
-    * se asigna a una variable private de JuegoControl
-    * */
 
     @FXML
     private Label oroJugadorUno;
@@ -33,11 +29,7 @@ public class MenuController implements Initializable {
     Map<String, Label> labelsPoblacion = new HashMap<>();
 
     public void init(){
-        this.labelsOro.put("rojo", this.oroJugadorUno);
-        this.labelsOro.put("blue", this.oroJugadorDos);
 
-        this.labelsPoblacion.put("rojo", poblacionJugadorUno);
-        this.labelsPoblacion.put("blue", poblacionJugadorDos);
     }
 
     @Override
@@ -45,20 +37,29 @@ public class MenuController implements Initializable {
 
     }
 
-    public void actualizarEstadistica(Jugador jugadorActual, String color) {
+    public void actualizarOro(Jugador jugadorActual, String color) {
         jugadorActual.trabajar();
+
+        int cantidadOro = jugadorActual.getOro();
+
+        if(this.labelsOro.get("red") == null) {
+            this.labelsOro.put("red", this.oroJugadorUno);
+            this.labelsOro.put("blue", this.oroJugadorDos);
+        }
 
         Label labelOro = this.labelsOro.get(color);
 
-        /* El siguiente if esta porque por alguna razon oroJugadorUno es null
-         * init() se llama en la linea 120 de JuegoControl
-         * este metodo donde esta escrito este mismo comentario se llama en la linea 213
-        */
-        if(labelOro == null) {
-            this.labelsOro.put("red", this.oroJugadorUno);
-            labelOro = this.labelsOro.get(color);
+        labelOro.setText(Integer.toString(cantidadOro));
+    }
+
+    public void actualizarPoblacion(int poblacionJugador1, int poblacionJugador2){
+
+        if(this.labelsPoblacion.get("red") == null){
+            this.labelsPoblacion.put("red",this.poblacionJugadorUno);
+            this.labelsPoblacion.put("blue",this.poblacionJugadorDos);
         }
 
-        jugadorActual.mostrarOro(labelOro);
+        this.poblacionJugadorUno.setText(Integer.toString(poblacionJugador1));
+        this.poblacionJugadorDos.setText(Integer.toString(poblacionJugador2));
     }
 }

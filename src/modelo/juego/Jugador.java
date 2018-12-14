@@ -87,7 +87,7 @@ public class Jugador {
         return (this.plebe.cantidadDeAldeanos() + this.ejercito.cantidadDeSoldados());
     }
 
-    public void mostrarOro(Label oroJugadorUno){
-        oroJugadorUno.setText(Integer.toString(this.bolsaDeOro));
+    public int getOro(){
+       return this.bolsaDeOro;
     }
 }

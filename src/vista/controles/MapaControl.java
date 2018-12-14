@@ -144,6 +144,7 @@ public class MapaControl extends ScrollPane {
     }
 
     public void remover(PosicionableVista vista){
+        this.juegoControl.recolectarCadaveresDeAmbosJugadores();
         this.mapaGrandeGridPane.getChildren().remove(vista);
         this.vistas.remove(vista);
         IPosicionable posicionable = vista.getController().getPosicionable();

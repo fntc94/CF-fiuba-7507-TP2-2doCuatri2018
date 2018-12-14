@@ -207,10 +207,11 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
 
     public void cambioDeTurno(){
+
         this.turno.cambiarDeTurno();
 
-        // Actualiza la barra donde aparece la cantidad de oro y poblacion
-        this.menuController.actualizarEstadistica(this.getJugadorActual(), this.getColorJugadorActual());
+        this.menuController.actualizarOro(this.getJugadorActual(), this.getColorJugadorActual());
+        this.menuController.actualizarPoblacion(this.jugador1.cantidadDePoblacion(), this.jugador2.cantidadDePoblacion());
 
         this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
         this.cleanBotonera();
@@ -228,5 +229,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     public String getColorJugadorActual(){
        return this.colores.get(this.getJugadorActual());
+    }
+
+    public void recolectarCadaveresDeAmbosJugadores(){
+        this.jugador1.recolectorDeCadaveres();
+        this.jugador2.recolectorDeCadaveres();
     }
 }
