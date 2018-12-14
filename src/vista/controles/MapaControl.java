@@ -37,7 +37,7 @@ public class MapaControl extends ScrollPane {
     private Jugador jugador1;
     private Jugador jugador2;
     private MiniMapaController miniMapaController;
-
+    private MenuController menuController;
 
     private Object dragSource = null;
 
@@ -61,7 +61,6 @@ public class MapaControl extends ScrollPane {
         this.jugador2 = jugador2;
         this.miniMapaController = miniMapaController;
 
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Mapa.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -73,7 +72,6 @@ public class MapaControl extends ScrollPane {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     private void inicializarMapaVacio() {
@@ -145,6 +143,7 @@ public class MapaControl extends ScrollPane {
 
     public void remover(PosicionableVista vista){
         this.juegoControl.recolectarCadaveresDeAmbosJugadores();
+
         this.mapaGrandeGridPane.getChildren().remove(vista);
         this.vistas.remove(vista);
         IPosicionable posicionable = vista.getController().getPosicionable();
@@ -251,6 +250,7 @@ public class MapaControl extends ScrollPane {
         }
 
 
+        this.menuController.actualizarPoblacion(this.juegoControl.getJugadorActual().cantidadDePoblacion(), this.juegoControl.getColorJugadorActual());
 
         /* let the source know whether the string was successfully
          * transferred and used */
@@ -267,4 +267,7 @@ public class MapaControl extends ScrollPane {
         }
     }
 
+    public void setMenuController(MenuController menuController) {
+        this.menuController = menuController;
+    }
 }

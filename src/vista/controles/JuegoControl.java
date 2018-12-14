@@ -69,11 +69,12 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Juego juego = new Juego(nombreJugador1, nombreJugador2);
         this.juego = juego;
         MiniMapaController miniMapaController = new MiniMapaController(this, juego.getMapa());
-        MapaControl mapaControl = new MapaControl(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2(), miniMapaController);
-        this.mapaControl = mapaControl;
 
         MenuController menuController = new MenuController();
         this.menuController = menuController;
+
+        MapaControl mapaControl = new MapaControl(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2(), miniMapaController);
+        this.mapaControl = mapaControl;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/vistas/Juego.fxml"));
         loader.setRoot(this);
@@ -117,7 +118,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.centerProperty().setValue(mapaControl);
         this.autosize();
 
-        menuController.init();
+        this.mapaControl.setMenuController(this.menuController);
     }
 
 
@@ -207,15 +208,12 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
 
     public void cambioDeTurno(){
-
         this.turno.cambiarDeTurno();
 
         this.menuController.actualizarOro(this.getJugadorActual(), this.getColorJugadorActual());
-        this.menuController.actualizarPoblacion(this.jugador1.cantidadDePoblacion(), this.jugador2.cantidadDePoblacion());
 
         this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
         this.cleanBotonera();
-
     }
 
 
@@ -234,5 +232,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     public void recolectarCadaveresDeAmbosJugadores(){
         this.jugador1.recolectorDeCadaveres();
         this.jugador2.recolectorDeCadaveres();
+        this.menuController.actualizarPoblacion(this.jugador1.cantidadDePoblacion(), this.jugador2.cantidadDePoblacion());
     }
 }

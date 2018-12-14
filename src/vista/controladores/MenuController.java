@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import modelo.juego.Jugador;
 import vista.controles.JuegoControl;
+import vista.controles.MapaControl;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -27,10 +28,6 @@ public class MenuController implements Initializable {
 
     Map<String, Label> labelsOro = new HashMap<>();
     Map<String, Label> labelsPoblacion = new HashMap<>();
-
-    public void init(){
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,5 +58,16 @@ public class MenuController implements Initializable {
 
         this.poblacionJugadorUno.setText(Integer.toString(poblacionJugador1));
         this.poblacionJugadorDos.setText(Integer.toString(poblacionJugador2));
+    }
+
+    public void actualizarPoblacion(int cantidadDePoblacion, String color) {
+        if(this.labelsPoblacion.get("red") == null){
+            this.labelsPoblacion.put("red",this.poblacionJugadorUno);
+            this.labelsPoblacion.put("blue",this.poblacionJugadorDos);
+        }
+
+        Label labelPoblacion = this.labelsPoblacion.get(color);
+
+        labelPoblacion.setText(Integer.toString(cantidadDePoblacion));
     }
 }
