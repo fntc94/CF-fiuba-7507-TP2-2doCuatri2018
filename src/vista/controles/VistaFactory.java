@@ -32,10 +32,8 @@ public class VistaFactory {
 
 
         public PosicionableVista crearVista(Aldeano aldeano){
-
             AldeanoController aldeanoController = new AldeanoController(aldeano, this.color, this.mapaControl, this.juegoControl);
             PosicionableVista vista = new PosicionableVista(aldeanoController);
-
             aldeano.onDestruido(atacable -> this.mapaControl.remover(vista));
             return vista;
         }
@@ -43,8 +41,6 @@ public class VistaFactory {
         public PosicionableVista crearVista(Castillo castillo){
             CastilloController controller = new CastilloController(castillo, this.color, mapaControl, this.juegoControl);
             PosicionableVista vista = new PosicionableVista(controller);
-
-
             castillo.onDestruido(atacable -> JuegoControl.getInstanacia().notificarJuegoTerminado());
             return vista;
         }

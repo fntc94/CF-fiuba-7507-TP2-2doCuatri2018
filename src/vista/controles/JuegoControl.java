@@ -249,6 +249,6 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     }
 
     public void notificarJuegoTerminado(){
-        new Alert(Alert.AlertType.INFORMATION, "Juego Terminado");
+        new Alert(Alert.AlertType.INFORMATION, "Juego Terminado").show();
     }
 }
