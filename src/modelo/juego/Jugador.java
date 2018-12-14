@@ -1,6 +1,5 @@
 package modelo.juego;
 
-import com.sun.org.apache.regexp.internal.RE;
 import javafx.scene.control.Label;
 import modelo.Edificio;
 import modelo.IPosicionable;
