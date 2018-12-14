@@ -1,5 +1,6 @@
 package modelo.juego;
 
+import com.sun.org.apache.regexp.internal.RE;
 import javafx.scene.control.Label;
 import modelo.Edificio;
 import modelo.IPosicionable;
@@ -80,6 +81,10 @@ public class Jugador {
 
     public boolean castilloDestruido(){
         return !(this.castillo.sigueEnPie());
+    }
+
+    public int cantidadDePoblacion(){
+        return (this.plebe.cantidadDeAldeanos() + this.ejercito.cantidadDeSoldados());
     }
 
     public void mostrarOro(Label oroJugadorUno){
