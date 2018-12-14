@@ -1,5 +1,7 @@
 package modelo.juego;
 
+import com.sun.org.apache.regexp.internal.RE;
+import javafx.scene.control.Label;
 import modelo.Edificio;
 import modelo.IPosicionable;
 import modelo.edificios.*;
@@ -81,4 +83,11 @@ public class Jugador {
         return !(this.castillo.sigueEnPie());
     }
 
+    public int cantidadDePoblacion(){
+        return (this.plebe.cantidadDeAldeanos() + this.ejercito.cantidadDeSoldados());
+    }
+
+    public int getOro(){
+       return this.bolsaDeOro;
+    }
 }

@@ -21,4 +21,8 @@ public class Ejercito {
             }
         }
     }
+
+    public int cantidadDeSoldados(){
+        return this.unidadesEjercito.size();
+    }
 }

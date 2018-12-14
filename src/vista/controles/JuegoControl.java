@@ -52,6 +52,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
     private List<Jugador> listaDeParticipantes;
     private MapaControl mapaControl;
     private Turno turno;
+    private MenuController menuController;
 
     @FXML
     private GridPane botoneraGridPane;
@@ -73,6 +74,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         Juego juego = new Juego(nombreJugador1, nombreJugador2);
         this.juego = juego;
         MiniMapaController miniMapaController = new MiniMapaController(this, juego.getMapa());
+
+        MenuController menuController = new MenuController();
+        this.menuController = menuController;
+
         MapaControl mapaControl = new MapaControl(this, juego.getMapa(), juego.getJugador1(), juego.getJugador2(), miniMapaController);
         this.mapaControl = mapaControl;
 
@@ -81,6 +86,10 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         loader.setController(this);
 
         loader.setControllerFactory(type -> {
+
+            if(type.equals(MenuController.class)){
+                return menuController;
+            }
 
             if (type.equals(MiniMapaController.class)) {
                 return miniMapaController;
@@ -114,6 +123,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.centerProperty().setValue(mapaControl);
         this.autosize();
 
+        this.mapaControl.setMenuController(this.menuController);
     }
 
 
@@ -229,6 +239,9 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
 
     public void cambioDeTurno(){
         this.turno.cambiarDeTurno();
+
+        this.menuController.actualizarOro(this.getJugadorActual(), this.getColorJugadorActual());
+
         this.fichaTecnica.setText(this.turno.devolverJugadorActual().devolverNombre());
         this.mapaControl.habilitarControladores();
 //        this.deshabilitarBotonera();
@@ -248,7 +261,12 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
        return this.colores.get(this.getJugadorActual());
     }
 
-    public void notificarJuegoTerminado(){
+    public void notificarJuegoTerminado() {
         new Alert(Alert.AlertType.INFORMATION, "Juego Terminado").show();
+    }
+    public void recolectarCadaveresDeAmbosJugadores(){
+        this.jugador1.recolectorDeCadaveres();
+        this.jugador2.recolectorDeCadaveres();
+        this.menuController.actualizarPoblacion(this.jugador1.cantidadDePoblacion(), this.jugador2.cantidadDePoblacion());
     }
 }
