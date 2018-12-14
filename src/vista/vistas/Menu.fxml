@@ -8,10 +8,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane id="menuContainer" fx:controller="vista.controladores.MenuController" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="333.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<GridPane id="menuContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="875.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="vista.controladores.MenuController">
   <columnConstraints>
-    <ColumnConstraints percentWidth="100.0" />
+    <ColumnConstraints percentWidth="26.078655975563187" />
+    <ColumnConstraints percentWidth="50.59182894234442" />
+    <ColumnConstraints percentWidth="23.558610156548294" />
   </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+  <stylesheets>
+    <URL value="@../css/Menu.css" />
+  </stylesheets>
   <GridPane id="statisticsContainer" maxWidth="160.0" prefHeight="27.0" prefWidth="160.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
     <children>
       <ImageView fitHeight="19.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
@@ -30,7 +38,7 @@
           <Insets bottom="1.0" />
         </GridPane.margin>
       </ImageView>
-      <Label fx:id="oroJugadorUno" textFill="white" text="100" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+      <Label fx:id="oroJugadorUno" text="100" textFill="WHITE" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
         <font>
           <Font name="System Bold" size="13.0" fx:id="x1" />
         </font>
@@ -48,7 +56,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
   </GridPane>
-  <GridPane id="statisticsContainer" maxWidth="160.0" prefHeight="27.0" prefWidth="160.0" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+  <GridPane id="statisticsContainer" maxWidth="160.0" prefHeight="27.0" prefWidth="160.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
     <children>
       <ImageView fitHeight="19.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0">
         <image>
@@ -71,7 +79,11 @@
           <Insets right="8.0" fx:id="x2" />
         </GridPane.margin>
       </Label>
-      <Label fx:id="poblacionJugadorDos" font="$x1" text="3" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.margin="$x2" GridPane.rowIndex="0" />
+      <Label fx:id="poblacionJugadorDos" font="$x1" text="3" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+        <GridPane.margin>
+          <Insets right="8.0" fx:id="x2" />
+        </GridPane.margin>
+      </Label>
     </children>
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -84,10 +96,39 @@
       <Insets right="5.0" />
     </GridPane.margin>
   </GridPane>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-  <stylesheets>
-    <URL value="@../css/Menu.css" />
-  </stylesheets>
+  <GridPane alignment="TOP_CENTER" maxHeight="-1.0" maxWidth="-1.0" minHeight="16.0" prefHeight="27.0" prefWidth="500.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+    <children>
+      <Label fx:id="nombreJugador1" contentDisplay="CENTER" font="$x1" graphicTextGap="0.0" text="Jugador1" textAlignment="LEFT" textFill="WHITE" wrapText="false" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+        <graphic>
+          <ImageView fitHeight="19.51219372283247" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../imagenes/baner_para_nombre.png" />
+            </image>
+          </ImageView>
+        </graphic>
+        <GridPane.margin>
+          <Insets right="5.0" />
+        </GridPane.margin>
+      </Label>
+      <Label fx:id="nombreJugador2" contentDisplay="CENTER" font="$x1" graphicTextGap="0.0" text="Jugador2" textAlignment="LEFT" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <graphic>
+          <ImageView fitHeight="19.51219372283247" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../imagenes/baner_para_nombre.png" />
+            </image>
+          </ImageView>
+        </graphic>
+        <GridPane.margin>
+          <Insets left="5.0" />
+        </GridPane.margin>
+      </Label>
+    </children>
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+  </GridPane>
 </GridPane>

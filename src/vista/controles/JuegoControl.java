@@ -124,6 +124,7 @@ public class JuegoControl extends BorderPane implements Initializable, IJuegoCon
         this.autosize();
 
         this.mapaControl.setMenuController(this.menuController);
+        this.menuController.setNombreDeJugadores(nombreJugador1, nombreJugador2);
     }
 
 
